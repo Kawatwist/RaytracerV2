@@ -1,5 +1,20 @@
 #include "rt.h"
 
+unsigned int		ray(t_data *data, t_vec ray, int bounce)
+{
+	t_vec			tmp;
+	unsigned int	color[2];
+	void			*obj;
+	float			dist;
+
+	if ((ob = check_object(data, ray, &dist)) || dist == -1)
+		return (0);
+	
+	// Find Color over Texture / Item ...
+
+	return (color[0]);
+}
+
 unsigned int		ray(t_thread data, t_vector ray, int bounce)
 {
 	t_vector		tmp;
@@ -10,15 +25,18 @@ unsigned int		ray(t_thread data, t_vector ray, int bounce)
 
 	if ((obj = find_object(data, data.object, ray, &dist)) == NULL || dist == -1)
 		return (0x000000);
+
 	color[0] = find_color(obj, create_vec(set_neworigin(ray, dist), fill_vec(0,0,0)), data);
-	tmp.origin = set_neworigin_neg(ray, dist);
+	
+    tmp.origin = set_neworigin_neg(ray, dist);
 	tmp.direction = veccpy(ray.direction);
 	color[1] = find_closer_light(data, tmp, data.light, &coef);														// Shadow selon distance
 	// color[0] = set_color(color[0], 0x0, coef - new_set_angle2(data, obj, data.light, tmp));
 	new_set_angle(obj, data.light, tmp, &coef, data);
 	color[0] = set_color(color[0], color[1], coef * 0.3);															// GAMMA
 	color[0] = set_color(color[0], 0x0,  (1 - coef));
-	bounce--;
+	
+    bounce--;
 	if (bounce > 0)
 	{
 		if (((t_sphere *)obj)->specs.effect & 0xFF)

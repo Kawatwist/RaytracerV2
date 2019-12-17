@@ -31,6 +31,7 @@ typedef struct	s_effect
 	int			id_texture;
 	int			id_normal;
 	int			id_rotation;
+	char		type;
 	char		reflection;
 	char		opacity;
 	char		refraction;

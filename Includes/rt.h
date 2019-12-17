@@ -31,6 +31,7 @@ typedef struct	s_data
 //				EFFECT
 
 //				OBJECT
+void			*check_object(t_data *data, t_vec ray, float *dist);
 //				OBJECT
 
 //				RAY

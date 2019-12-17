@@ -27,8 +27,8 @@ typedef struct		s_camera
 
 typedef struct      s_object
 {
-    void			*item;
-    void			*light;
+    void			**item;
+    void			**light;
 	t_camera		camera;
 }                   t_object;
 
