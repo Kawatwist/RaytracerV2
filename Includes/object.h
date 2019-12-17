@@ -69,7 +69,6 @@ typedef	struct	s_cone
 	float		ang;
 }				t_cone;
 
-
 typedef	struct	s_cylinder
 {
 	t_vec		origin;

@@ -24,6 +24,7 @@ typedef struct	s_data
 	t_object	obj;
 	t_tga		*texture;
 	t_flag		flag;
+	t_vec		ray;
 }				t_data;
 
 //				EFFECT

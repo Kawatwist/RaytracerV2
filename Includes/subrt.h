@@ -17,11 +17,19 @@ typedef struct      s_input
     SDL_Event       ev;
 }                   t_input;
 
+typedef struct		s_camera
+{
+	t_vec			pos;
+	t_point			sc;
+	t_point			x;
+	t_point			y;
+}					t_camera;
+
 typedef struct      s_object
 {
     void			*item;
     void			*light;
-	t_vec			*camera;
+	t_camera		camera;
 }                   t_object;
 
 #endif
