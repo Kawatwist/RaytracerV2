@@ -39,8 +39,18 @@ typedef struct		s_camera
 typedef struct      s_object
 {
     void			**item;
+    int				nb_item;
     void			**light;
+	int				nb_light;
 	t_camera		camera;
+	int				nb_camera;
+	char			**texture;
+	int				nb_texture;
 }                   t_object;
+
+typedef struct      s_scene
+{
+    int             fd;
+}                   t_scene;
 
 #endif

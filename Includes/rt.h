@@ -25,12 +25,13 @@ struct	s_data
 	t_window	window;
 	t_input		input;
 	t_object	obj;
-	t_tga		*texture;
+	t_scene		parse;
 	t_flag		flag;
 	t_vec		ray;
+	t_tga		*texture;
+	SDL_Event	ev;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
-	SDL_Event	ev;
 };
 
 //				EFFECT
@@ -64,6 +65,10 @@ int				loop(t_data data);
 //				RAY
 
 //				PARSING
+int				parsing_files(t_data *data, char *line);
+int         	parsing_obj(t_data *data);
+int				parsing_camera(t_data *data);
+int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
 //				PARSING
 

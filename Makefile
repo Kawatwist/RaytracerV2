@@ -41,6 +41,10 @@ SRC				=	main.c										\
 					init_cam.c									\
 					quit.c										\
 					parse.c										\
+					header.c									\
+					camera.c									\
+					object.c									\
+					files.c										\
 					find.c										\
 					color.c										\
 					texture.c									\
