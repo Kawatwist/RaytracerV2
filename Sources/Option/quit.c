@@ -23,16 +23,16 @@ static char		*find_error(int error_value)
 	return ("\nUnindexed Error\n");
 }
 
-void			stop_execute(char *error, t_win *wn)
+void			stop_execute(char *error, t_data *data)
 {
-	(void)wn; // Free ?
+	(void)data; // Free ?
 	ft_putstr(error);
 	exit(0);
 }
 
-int				stop_main_execute(char *error, t_win *wn, int error_value)
+int				stop_main_execute(char *error, t_data *data, int error_value)
 {
-	(void)wn; // Free ?
+	(void)data; // Free ?
 	ft_putstr(error);
 	ft_putstr("Code erreur ");
 	ft_putnbr(error_value);

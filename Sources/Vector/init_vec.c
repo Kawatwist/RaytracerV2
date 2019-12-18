@@ -10,9 +10,9 @@ t_point		veccpy(t_point pnt)
 	return (ret);
 }
 
-t_vector	create_vec(t_point origin, t_point direction)
+t_vec		create_vec(t_point origin, t_point direction)
 {
-	t_vector ret;
+	t_vec 	ret;
 
 	ret.origin = veccpy(origin);
 	ret.direction = veccpy(direction);

@@ -25,17 +25,19 @@ typedef struct	s_vec
 
 typedef struct	s_effect
 {
-	t_point		movement;
-	t_point		axe;
-	int			color;
-	int			id_texture;
-	int			id_normal;
-	int			id_rotation;
-	char		type;
-	char		reflection;
-	char		opacity;
-	char		refraction;
-	char		flag;		// mov + axe
+	t_point			movement;
+	t_point			axe;
+	int				color;
+	int				id_texture;
+	int				id_normal;
+	int				id_rotation;
+	char			type;
+	unsigned char	reflection;
+	unsigned char	opacity;
+	unsigned char	refraction;
+	unsigned char	texture;
+	unsigned char	normal;
+	unsigned char	flag;		// mov + axe
 }				t_effect;
 
 typedef struct  s_base
@@ -48,6 +50,8 @@ typedef struct	s_light
 {
 	t_point		origin;
 	int			color;
+	float		distance;
+	float		intensity;
 }				t_light;
 
 typedef	struct	s_sphere

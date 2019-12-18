@@ -7,10 +7,21 @@ typedef struct      s_window
 {
     SDL_Window      *window;
     SDL_Renderer    *rend;
+    SDL_Texture     *txt;
     void            *pxl;
+    int             pitch;
     int             xscreen;
     int             yscreen;
-}                   t_window
+}                   t_window;
+
+typedef struct      s_calc
+{
+    float           a;
+    float           b;
+    float           c;
+    float           delta;
+    float           sqt;
+}                   t_calc;
 
 typedef struct      s_input
 {

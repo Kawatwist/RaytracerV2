@@ -11,7 +11,7 @@ static	t_point	find_dir(t_data *data, int x, int y)
 	return (ret);
 }
 
-int			send_ray(t_data *data)
+int			start_ray(t_data *data)
 {
 	int		x;
 	int		y;
@@ -22,8 +22,9 @@ int			send_ray(t_data *data)
 		y = -1;
 		while (++y < data->window.yscreen)
 		{
+			data->ray.origin = veccpy(data->obj.camera.pos.origin);
 			data->ray.direction = normalize(find_dir(data, x, y));
-			data->window.pxl[x + (y * data->window.xscreen)] = send_ray(data);
+			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] = send_ray(data, data->ray, 1);
 		}
 	}
 	return (0);

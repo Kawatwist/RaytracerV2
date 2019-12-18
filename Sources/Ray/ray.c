@@ -1,66 +1,79 @@
 #include "rt.h"
 
-unsigned int		ray(t_data *data, t_vec ray, int bounce)
+static t_vec		setup_refraction(void *obj, t_vec ray, float dist)
+{
+	t_vec tmp;
+
+	tmp.origin = set_neworigin_neg(ray, dist);
+	tmp.direction = find_refraction(obj, ray);
+	return (tmp);
+}
+
+static t_vec		setup_opacity(t_data *data, void *obj, t_vec ray, float dist)
+{
+	t_vec tmp;
+
+	(void)data;
+	(void)obj;
+	tmp.origin = set_neworigin_op(ray, dist);
+	tmp.direction = veccpy(ray.direction);
+	return (tmp);
+}
+
+static t_vec		setup_reflection(t_data *data, void *obj, t_vec ray, float dist)
+{
+	t_vec tmp;
+
+	(void)data;
+	tmp.origin = set_neworigin_neg(ray, dist);
+	tmp.direction = find_reflexion(obj, ray, *data);
+	return (tmp);
+}
+
+unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 {
 	t_vec			tmp;
 	unsigned int	color[2];
 	void			*obj;
-	float			dist;
+	float			dist[2];
 
-	if ((ob = check_object(data, ray, &dist)) || dist == -1)
+	// printf("%f || %f || %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
+	if (!(obj = check_object(data, ray, &dist[0])) || dist[0] == -1)
 		return (0);
-	
+	color[0] = find_color(data, obj, ray);
 	// Find Color over Texture / Item ...
+	// Setup Light
 
-	return (color[0]);
-}
+	// tmp.origin = set_neworigin_neg(ray, dist[0]);
+	// tmp.direction = veccpy(ray.direction);
+	// color[1] = find_closer_light(data, tmp, data->obj.light, &dist[1]);														// Shadow selon distance
+	// // color[0] = set_color(color[0], 0x0, coef - new_set_angle2(data, obj, data.light, tmp));
+	// new_set_angle(obj, data->obj.light, tmp, &dist[1], data);
+	// color[0] = set_color(color[0], color[1], dist[1] * 0.3);															// GAMMA
+	// color[0] = set_color(color[0], 0x0,  (1 - dist[1]));
 
-unsigned int		ray(t_thread data, t_vector ray, int bounce)
-{
-	t_vector		tmp;
-	unsigned int	color[2];
-	void			*obj;
-	float			dist;
-	float			coef;
-
-	if ((obj = find_object(data, data.object, ray, &dist)) == NULL || dist == -1)
-		return (0x000000);
-
-	color[0] = find_color(obj, create_vec(set_neworigin(ray, dist), fill_vec(0,0,0)), data);
-	
-    tmp.origin = set_neworigin_neg(ray, dist);
-	tmp.direction = veccpy(ray.direction);
-	color[1] = find_closer_light(data, tmp, data.light, &coef);														// Shadow selon distance
-	// color[0] = set_color(color[0], 0x0, coef - new_set_angle2(data, obj, data.light, tmp));
-	new_set_angle(obj, data.light, tmp, &coef, data);
-	color[0] = set_color(color[0], color[1], coef * 0.3);															// GAMMA
-	color[0] = set_color(color[0], 0x0,  (1 - coef));
-	
-    bounce--;
-	if (bounce > 0)
+	// Set Effect
+	if (bounce)
 	{
-		if (((t_sphere *)obj)->specs.effect & 0xFF)
+		if (((t_base *)obj)->effect.reflection)
 		{
-			tmp.origin = set_neworigin_neg(ray, dist);
-			tmp.direction = find_reflexion(obj, tmp, data);
+			tmp = setup_reflection(data, obj, ray, dist[0]);
 			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], (((t_sphere *)obj)->specs.effect & 0xFF) / 255.0);
+			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.reflection / 255.0);
 		}
-		if (((t_sphere *)obj)->specs.effect & 0xFF00)
+		if (((t_base *)obj)->effect.refraction)
 		{
-			tmp.origin = set_neworigin_op(ray, dist);
-			tmp.direction = veccpy(ray.direction); // normal texture
+			tmp = setup_refraction(obj, ray, dist[0]);
 			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], ((((t_sphere *)obj)->specs.effect & 0xFF00) >> 8) / 255.0);
+			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.refraction / 255.0);
 		}
-		if (((t_sphere *)obj)->specs.effect & 0xFF000000)
+		if (((t_base *)obj)->effect.opacity)
 		{
-			tmp.origin = set_neworigin_op(ray, dist);
-			tmp.direction = refraction(obj, ray); // normal texture
+			tmp = setup_opacity(data, obj, ray, dist[0]);
 			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], ((((t_sphere *)obj)->specs.effect & 0xFF000000) >> 24) / 255.0);
+			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.opacity / 255.0);
 		}
 	}
-
+	bounce--;
 	return (color[0]);
 }

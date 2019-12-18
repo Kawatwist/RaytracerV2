@@ -9,9 +9,10 @@ void		*check_object(t_data *data, t_vec ray, float *dist)
 	*dist = -1;
 	value = -1;
 	close = NULL;
+	index = 0;
 	while (data->obj.item[index])
 	{
-		value = data->dist[((t_base *)data->obj.item[index])->effect.type](data->obj.item[index], ray);
+		value = data->dist[(int)((t_base *)data->obj.item[index])->effect.type] (data->obj.item[index], ray);
 		if ((value > 0 && *dist == -1) || (value > 0 && value < *dist))
 		{
 			*dist = value;
@@ -19,5 +20,5 @@ void		*check_object(t_data *data, t_vec ray, float *dist)
 		}
 		index++;
 	}
-	return (ret);
+	return (close);
 }
