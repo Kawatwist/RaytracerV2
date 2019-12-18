@@ -66,8 +66,8 @@ int				loop(t_data data);
 
 //				PARSING
 int				parsing_files(t_data *data, char *line);
-int         	parsing_obj(t_data *data);
-int				parsing_camera(t_data *data);
+int         	parsing_obj(t_data *data, char **line, char *type);
+int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
 //				PARSING

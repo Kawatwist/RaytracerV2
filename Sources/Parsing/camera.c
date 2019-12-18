@@ -1,6 +1,6 @@
 #include "rt.h"
 
-int         parsing_camera(t_data *data)
+int         parsing_camera(t_data *data, char **old)
 {
     static int  index = 0;
 	char		*line;
@@ -10,6 +10,7 @@ int         parsing_camera(t_data *data)
 	{
 		printf("CameraParsing %d : %s\n", index, line);
 	}
+	*old = line;
 	index++;
     return (0);
 }
