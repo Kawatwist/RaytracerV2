@@ -6,7 +6,7 @@ int         parsing_camera(t_data *data, char **old)
 	char		*line;
 
 	line = NULL;
-	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
+	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1)) // FREE LINE
 	{
 		printf("CameraParsing %d : %s\n", index, line);
 	}

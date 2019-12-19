@@ -42,7 +42,7 @@ typedef struct      s_object
     int				nb_item;
     void			**light;
 	int				nb_light;
-	t_camera		camera;
+	t_camera		*camera;
 	int				nb_camera;
 	char			**texture;
 	int				nb_texture;
