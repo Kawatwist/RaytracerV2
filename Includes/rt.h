@@ -65,6 +65,7 @@ int				loop(t_data data);
 //				RAY
 
 //				PARSING
+t_point			get_point(char *str);
 int				parsing_files(t_data *data, char *line);
 int         	parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);

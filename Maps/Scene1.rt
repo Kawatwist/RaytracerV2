@@ -9,9 +9,9 @@
 	origin : {0.5 0.5 0.5}
 	direction : {0 0 1}
 [object:plan]
-	color : 0x9696AF
 	origin : {0 0 5}
 	direction : {0 0 1}
+	color : 0x9696AF
 [object:plan]
 	color : 0x9696AF
 	origin : {-2.5 -2.5 0}	
@@ -47,3 +47,12 @@
 	origin : {0.5 0.5 1}
 	direction : {0 1 0}
 	rayon : 0.5
+		[effect]
+			refraction : 255
+			opacity : 0
+			reflexion : 0
+			rotatex : 0
+			rotatey : 1
+			rotatez : 0
+			mv : 0
+		

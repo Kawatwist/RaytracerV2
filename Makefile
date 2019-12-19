@@ -40,6 +40,7 @@ SRC				=	main.c										\
 					init_sdl.c									\
 					init_cam.c									\
 					quit.c										\
+					get_point.c									\
 					parse.c										\
 					header.c									\
 					camera.c									\

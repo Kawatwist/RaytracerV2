@@ -1,6 +1,8 @@
 #ifndef OBJECT_H
 # define OBJECT_H
 
+# define MV (0x80000000)
+
 typedef enum	e_item
 {
 	SPHERE = 0,
