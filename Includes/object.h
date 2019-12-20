@@ -1,7 +1,7 @@
 #ifndef OBJECT_H
 # define OBJECT_H
 
-# define MV (0x80000000)
+# define MV 0b10000000
 
 typedef enum	e_item
 {

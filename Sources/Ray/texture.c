@@ -6,7 +6,7 @@ int			find_size(t_data data, void *obj)
 	int index;
 
 	index = (((t_sphere *)obj)->effect.id_texture);
-	ret = ((data.texture[index]).w << 16) + (data.texture[index]).h;
+	ret = ((data.texture[index])->w << 16) + (data.texture[index])->h;
 	return (ret);
 }
 
@@ -52,8 +52,8 @@ t_point		texture_plan(t_data *data, void *obj, t_vec ray)
 	u = fill_vec(((t_plan *)obj)->origin.direction.y,
 		((t_plan *)obj)->origin.direction.z, -((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
-	ontexture.x = dot_product(ray.origin, v) * ((wh & 0xFFFF0000) >> 16);
 	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF);
+	ontexture.x = dot_product(ray.origin, v) * ((wh & 0xFFFF0000) >> 16);
 	while (ontexture.x < 0)
 		ontexture.x += ((wh & 0xFFFF0000) >> 16);
 	while (ontexture.y < 0)
@@ -76,10 +76,10 @@ t_point		texture_sphere(t_data *data, void *obj, t_vec ray)
 		phi += 2 * M_PI;
 	ontexture.x = (int)((((wh & 0xFFFF0000) >> 16) - 1) * (phi / (2 * M_PI)));
 	ontexture.y = (int)(((wh & 0xFFFF) - 1) * ((M_PI - theta) / (M_PI)));
-	while (ontexture.x < 0)
-		ontexture.x += ((wh & 0xFFFF0000) >> 16);
-	while (ontexture.y < 0)
-		ontexture.y += (wh & 0xFFFF);
+	while (ontexture.x < 0 || ontexture.x > (wh & 0xFFFF0000) >> 16)
+		ontexture.x += (ontexture.x < 0 ? (wh & 0xFFFF0000) >> 16 : -((wh & 0xFFFF0000) >> 16));
+	while (ontexture.y < 0 || ontexture.y > (wh & 0xFFFF))
+		ontexture.y += (ontexture.y < 0 ? (wh & 0xFFFF) : -((wh & 0xFFFF)));
 	return (ontexture);
 }
 

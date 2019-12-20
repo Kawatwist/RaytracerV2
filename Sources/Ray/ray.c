@@ -24,9 +24,8 @@ static t_vec		setup_reflection(t_data *data, void *obj, t_vec ray, float dist)
 {
 	t_vec tmp;
 
-	(void)data;
-	tmp.origin = set_neworigin_neg(ray, dist);
 	tmp.direction = find_reflexion(obj, ray, *data);
+	tmp.origin = set_neworigin_neg(ray, dist);
 	return (tmp);
 }
 
@@ -40,7 +39,9 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	// printf("%f || %f || %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 	if (!(obj = check_object(data, ray, &dist[0])) || dist[0] == -1)
 		return (0);
-	color[0] = find_color(data, obj, ray);
+	tmp.origin = set_neworigin(ray, dist[0]);
+	tmp.direction = veccpy(ray.direction);
+	color[0] = find_color(data, obj, tmp);
 	// Find Color over Texture / Item ...
 	// Setup Light
 
@@ -73,7 +74,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 			color[1] = send_ray(data, tmp, bounce);
 			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.opacity / 255.0);
 		}
+		bounce--;
 	}
-	bounce--;
 	return (color[0]);
 }

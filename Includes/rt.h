@@ -28,10 +28,11 @@ struct	s_data
 	t_scene		parse;
 	t_flag		flag;
 	t_vec		ray;
-	t_tga		*texture;
+	t_tga		**texture;
 	SDL_Event	ev;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
+	int			percent;
 };
 
 //				EFFECT
