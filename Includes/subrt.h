@@ -40,7 +40,7 @@ typedef struct      s_object
 {
     void			**item;
     int				nb_item;
-    void			**light;
+    t_light			*light;
 	int				nb_light;
 	t_camera		*camera;
 	int				nb_camera;

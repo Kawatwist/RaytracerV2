@@ -41,6 +41,11 @@ t_point			find_reflexion(void *obj, t_vec ray, t_data data);
 t_point			find_normal(void *object, t_vec collide);
 //				EFFECT
 
+//				LIGHT
+unsigned int	ray_to_light(t_data *data, t_vec ray, float *coef);
+void        	setup_light(t_data *data);
+//				LIGHT
+
 //				OBJECT
 int				find_size(t_data data, void *obj);
 t_point			find_normal_texture(t_data data, void *obj, t_vec collide, t_point normal);

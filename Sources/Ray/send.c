@@ -11,28 +11,28 @@ static	t_point	find_dir(t_data *data, int x, int y)
 	return (ret);
 }
 
-static void	low_quality(t_data *data, int *x, int *y)
-{
-	(void)x;
-	(void)y;
-	(void)data;
-	int		w;
+// static void	low_quality(t_data *data, int *x, int *y)
+// {
+// 	(void)x;
+// 	(void)y;
+// 	(void)data;
+// 	int		w;
 
-	w = 0;
-	while (w < data->window.xscreen)
-	{
-		((unsigned int *)data->window.pxl)[(*x) + ((*y) * data->window.xscreen) + w] =
-			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
-		((unsigned int *)data->window.pxl)[(*x) + ((*y + 1) * data->window.xscreen) + w] =
-			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
-		((unsigned int *)data->window.pxl)[(*x) + ((*y + 2) * data->window.xscreen) + w] =
-			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
-		((unsigned int *)data->window.pxl)[(*x) + ((*y + 3) * data->window.xscreen) + w] =
-			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
-		w++;
-	}
-	(*y) += 3;
-}
+// 	w = 0;
+// 	while (w < data->window.xscreen)
+// 	{
+// 		((unsigned int *)data->window.pxl)[(*x) + ((*y) * data->window.xscreen) + w] =
+// 			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
+// 		((unsigned int *)data->window.pxl)[(*x) + ((*y + 1) * data->window.xscreen) + w] =
+// 			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
+// 		((unsigned int *)data->window.pxl)[(*x) + ((*y + 2) * data->window.xscreen) + w] =
+// 			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
+// 		((unsigned int *)data->window.pxl)[(*x) + ((*y + 3) * data->window.xscreen) + w] =
+// 			((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
+// 		w++;
+// 	}
+// 	(*y) += 3;
+// }
 
 int			start_ray(t_data *data)
 {
@@ -49,15 +49,15 @@ int			start_ray(t_data *data)
 			data->ray.direction = normalize(find_dir(data, x, y));
 			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] =
 				send_ray(data, data->ray, 1);
-			((unsigned int *)data->window.pxl)[(x + 1) + (y * data->window.xscreen)] =
-				((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
-			((unsigned int *)data->window.pxl)[(x + 2) + (y * data->window.xscreen)] =
-				((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
-			((unsigned int *)data->window.pxl)[(x + 3) + (y * data->window.xscreen)] =
-				((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
-			x+=3;
+			// ((unsigned int *)data->window.pxl)[(x + 1) + (y * data->window.xscreen)] =
+			// 	((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
+			// ((unsigned int *)data->window.pxl)[(x + 2) + (y * data->window.xscreen)] =
+			// 	((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
+			// ((unsigned int *)data->window.pxl)[(x + 3) + (y * data->window.xscreen)] =
+			// 	((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];
+			// x+=3;
 		}
-		low_quality(data, &x, &y);
+		// low_quality(data, &x, &y);
 	}
 	return (0);
 }

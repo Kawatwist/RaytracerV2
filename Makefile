@@ -45,6 +45,7 @@ SRC				=	main.c										\
 					header.c									\
 					camera.c									\
 					object.c									\
+					light.c										\
 					files.c										\
 					find.c										\
 					color.c										\
@@ -53,6 +54,7 @@ SRC				=	main.c										\
 					send.c										\
 					loop.c										\
 					shape.c										\
+					tolight.c									\
 					init_vec.c									\
 					mat_vec2.c									\
 					math_vec_float.c							\

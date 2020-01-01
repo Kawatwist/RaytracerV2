@@ -36,23 +36,18 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	void			*obj;
 	float			dist[2];
 
-	// printf("%f || %f || %f\n", ray.direction.x, ray.direction.y, ray.direction.z);
 	if (!(obj = check_object(data, ray, &dist[0])) || dist[0] == -1)
 		return (0);
 	tmp.origin = set_neworigin(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
-	color[0] = find_color(data, obj, tmp);
 	// Find Color over Texture / Item ...
+	color[0] = find_color(data, obj, tmp);
 	// Setup Light
-
-	// tmp.origin = set_neworigin_neg(ray, dist[0]);
-	// tmp.direction = veccpy(ray.direction);
-	// color[1] = find_closer_light(data, tmp, data->obj.light, &dist[1]);														// Shadow selon distance
-	// // color[0] = set_color(color[0], 0x0, coef - new_set_angle2(data, obj, data.light, tmp));
-	// new_set_angle(obj, data->obj.light, tmp, &dist[1], data);
-	// color[0] = set_color(color[0], color[1], dist[1] * 0.3);															// GAMMA
-	// color[0] = set_color(color[0], 0x0,  (1 - dist[1]));
-
+	tmp.origin = set_neworigin_neg(ray, dist[0]);
+	tmp.direction = veccpy(ray.direction);
+	tmp.direction = find_normal(obj, tmp);
+	color[1] = ray_to_light(data, tmp, &dist[1]);
+	color[0] = set_color(color[0], color[1], dist[1]);
 	// Set Effect
 	if (bounce)
 	{
