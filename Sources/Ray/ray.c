@@ -46,8 +46,10 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	tmp.origin = set_neworigin_neg(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
 	tmp.direction = find_normal(obj, tmp);
-	color[1] = ray_to_light(data, tmp, &dist[1]);
+	color[1] = ray_to_light(data, tmp, &dist[1], color[0]);
 	color[0] = set_color(color[0], color[1], dist[1]);
+	// if (!dist[1])
+	// 	color[0] = 0x0;
 	// Set Effect
 	if (bounce)
 	{

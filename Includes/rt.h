@@ -42,7 +42,7 @@ t_point			find_normal(void *object, t_vec collide);
 //				EFFECT
 
 //				LIGHT
-unsigned int	ray_to_light(t_data *data, t_vec ray, float *coef);
+unsigned int	ray_to_light(t_data *data, t_vec ray, float *coef, int base);
 void        	setup_light(t_data *data);
 //				LIGHT
 

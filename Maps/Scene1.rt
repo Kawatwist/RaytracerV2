@@ -1,18 +1,18 @@
 [header]
 	camera : 1
-	object : 6
+	object : 9
 	nb_texture : 2
-	textures : "./texture/oeil.tga"
+	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
 [camera:1]
 	origin : {0.5 0.5 0.5}
 	direction : {0 0 1}
 [object:plan]
-	origin : {0 0 3.5}
+	origin : {0 0 1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
 		[effect]
-			id_texture : 1
+			id_texture : 0
 			texture : 255
 			mv : 1
 [object:plan]
@@ -35,3 +35,28 @@
 	color : 0x7F8F7F
 	origin : {0 0 -5}
 	direction : {0 0 -1}
+[object:sphere]
+	color : 0XFF00FF
+	origin : {0.25 0.25 1}
+	direction : {0 1 0}
+	rayon : 0.5
+[object:sphere]
+	color : 0X00FF00
+	origin : {0.75 0.75 1}
+	direction : {0 1 0}
+	rayon : 0.5
+[object:sphere]
+	color : 0X0000FF
+	origin : {0.5 0.5 0.3}
+	direction : {0 1 0}
+	rayon : 0.5
+		[effect]
+			texture : 255
+			id_texture : 1
+			refraction : 0
+			opacity : 0
+			reflexion : 0
+			rotatex : 0
+			rotatey : 1
+			rotatez : 0
+			mv : 1

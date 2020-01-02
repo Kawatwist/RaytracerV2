@@ -37,8 +37,8 @@ t_point			find_normal(void *object, t_vec collide)
 	t_point normal;
 
 	if ((((t_base *)object)->effect.type) == SPHERE)
-		normal = normalize(sub_vec(collide.origin,
-			((t_base *)object)->origin.origin));
+		normal = neg_norm(normalize(sub_vec(collide.origin,
+			((t_base *)object)->origin.origin)));
 	else if ((((t_base *)object)->effect.type) == PLAN)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == CYLINDER)
