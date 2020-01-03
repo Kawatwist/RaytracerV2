@@ -25,34 +25,38 @@ unsigned int	ray_to_light(t_data *data, t_vec ray, float *coef, int base)
 	float	ang;
 	float	len;
 
+(void)base;
     index = -1;
-	color = base;
-	currcoef = 0;
-	*coef = 0;
+	color = 0x0;
+	currcoef = 0.0;
+	*coef = 0.0;
 	ray.direction = neg_norm(ray.direction);
 	while (++index < data->obj.nb_light)
 	{
-		ang = -dot_product(ray.direction, normalize(sub_vec(ray.origin, data->obj.light[index].origin)));
+		ang = (1.0 + -dot_product(ray.direction, normalize(sub_vec(ray.origin, data->obj.light[index].origin)))) / 2.0;
 		len = length(sub_vec(ray.origin, data->obj.light[index].origin));
-		if (ang > 0.0 || ((data->obj.light[index].distance) - len) < 0)
-		{
-			currcoef = ((data->obj.light[index].distance) - len);
-			currcoef > 1 ? currcoef = 1 : 0;
-			currcoef < 0 ? currcoef = 0 : 0;
-			currcoef = (currcoef * ang) * data->obj.light[index].intensity;
-			color = light_color(color, data->obj.light[index].color, currcoef);
-		}
-		else
-		{
-			currcoef = ((-ang) * 3.0);
-			currcoef > 1 ? currcoef = 1 : 0;
-			currcoef < 0 ? currcoef = 0 : 0;
-			color = set_color(color, 0x0, currcoef);
-		}
+		currcoef = ang;
+		color = light_color(color, 0x0, 1.0 - currcoef);
+		color = light_color(color, data->obj.light[index].color, currcoef);
+		// if (ang > 0.5 || ((data->obj.light[index].distance) - len) < 0)
+		// {
+		// 	currcoef = ((data->obj.light[index].distance) - len);
+		// 	currcoef > 1 ? currcoef = 1 : 0;
+		// 	currcoef < 0 ? currcoef = 0 : 0;
+		// 	currcoef = (currcoef * ang) * data->obj.light[index].intensity;
+		// 	color = light_color(color, data->obj.light[index].color, currcoef);
+		// }
+		// else
+		// {
+		// 	currcoef = ((ang));
+		// 	currcoef > 1 ? currcoef = 1 : 0;
+		// 	currcoef < 0 ? currcoef = 0 : 0;
+		// 	// color = set_color(color,data->obj.light[index].color, 1 - currcoef);
+		// 	color = set_color(color, 0x0, currcoef);
+		// }
 		*coef += currcoef;
-		
 	}
 	*coef > 1 ? *coef = 1 : 0;
-	// *coef = 1;
+	*coef = 1 * data->obj.light[index - 1].intensity;
 	return (color);
 }

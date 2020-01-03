@@ -1,14 +1,24 @@
 #include "rt.h"
 
-void        setup_light(t_data *data)
+int		parsing_light(t_data *data, char **old, char *line)
 {
-	data->obj.nb_light = 1;
-	data->obj.light = malloc(sizeof(t_light) * data->obj.nb_light);
-	for (int i = 0; i < data->obj.nb_light; i++)
+	static int	index = 0;
+
+	line = NULL;
+	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1)) // FREE LINE
 	{
-		data->obj.light[i].color = 0xFF00FF;
-		data->obj.light[i].distance = 5;
-		data->obj.light[i].intensity = 1;
-		data->obj.light[i].origin = fill_vec(-1 + (1.5 * i), 0.5, -0.5);
+		// printf("LightParsing %d : %s\n", index, line);
+		if (!ft_strncmp("\torigin : ", line, 10))
+			data->obj.light->origin = get_point(line);
+		else if (!ft_strncmp("\tcolor : ", line, 9))
+			data->obj.light->color = ft_atoi_base(line + 9, 16);
+		else if (!ft_strncmp("\tdistance : ", line, 12))
+			data->obj.light->distance = ft_atof(line + 12);
+		else if (!ft_strncmp("\tintensity : ", line, 13))
+			data->obj.light->intensity = ft_atof(line + 13);
+		// printf("yoooooooooo\n\n\n\n\n\n\n\n= %d\n", data->obj.light->color);
 	}
+	*old = line;
+	index++;
+	return (0);
 }
