@@ -12,12 +12,12 @@
 
 typedef struct	s_data t_data;
 
-typedef struct	s_flag
+typedef struct		s_flag
 {
-	int			pixel : 2;
-	int			perspective : 1;
-	int			bounce : 1;
-}				t_flag;
+	unsigned int	pixel : 2;
+	unsigned int	perspective : 1;
+	unsigned int	bounce : 1;
+}					t_flag;
 
 
 struct	s_data
@@ -29,7 +29,6 @@ struct	s_data
 	t_flag		flag;
 	t_vec		ray;
 	t_tga		**texture;
-	SDL_Event	ev;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
 	int			percent;
@@ -67,6 +66,9 @@ int				start_ray(t_data *data);
 unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
 unsigned int	find_color(t_data *data, void *obj, t_vec ray);
 unsigned int	set_color(unsigned int base, unsigned int new, float percent);
+char			key_old(t_data data, int mask);
+char			key_check(t_data data, int mask);
+void			input(t_data *data);
 int				loop(t_data data);
 //				RAY
 

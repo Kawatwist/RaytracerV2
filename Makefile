@@ -52,6 +52,8 @@ SRC				=	main.c										\
 					texture.c									\
 					ray.c										\
 					send.c										\
+					input.c										\
+					input_tool.c								\
 					loop.c										\
 					shape.c										\
 					tolight.c									\
