@@ -9,6 +9,6 @@ void        setup_light(t_data *data)
 		data->obj.light[i].color = 0xFF00FF;
 		data->obj.light[i].distance = 5;
 		data->obj.light[i].intensity = 1;
-		data->obj.light[i].origin = fill_vec(-1 + (1.5 * i), 0.5, -0.5);
+		data->obj.light[i].origin = fill_vec(-1 + (1.5 * i), 0.5, 0);
 	}
 }

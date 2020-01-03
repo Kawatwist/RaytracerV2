@@ -17,7 +17,7 @@ int			initialize_sdl(t_data *data)
 		data->window.yscreen);
 	if (data->window.txt == NULL)
 		return (3);
-	SDL_PollEvent(&data->ev);
+	SDL_PollEvent(&data->input.ev);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }

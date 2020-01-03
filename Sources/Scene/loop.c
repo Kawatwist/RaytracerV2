@@ -4,11 +4,12 @@ int			loop(t_data data)
 {
 	while (TRUE)
 	{
+		input(&data);
+		if (data.input.key[SDL_SCANCODE_ESCAPE] || SDL_QuitRequested())
+			break ;
 		SDL_LockTexture(data.window.txt, NULL, &data.window.pxl, &data.window.pitch);
 		if (start_ray(&data))
 			return (10);
-		if (SDL_QuitRequested())
-			break ;
 		data.percent++;
 		if (data.percent > 99)
 			data.percent = 0;
