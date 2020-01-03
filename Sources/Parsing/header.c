@@ -46,6 +46,8 @@ int         parsing_head(t_data *data ,char **ret)
 			data->obj.nb_camera = ft_atoi(&(line[10]));
         else if (!ft_strncmp("\tobject : ", line, 10))
 			data->obj.nb_item = ft_atoi(&(line[10]));
+		else if (!ft_strncmp("\tlight : ", line, 9))
+			data->obj.nb_light = ft_atoi(&(line[9]));
         else if (!ft_strncmp("\tnb_texture : ", line, 14))
 			data->obj.nb_texture = ft_atoi(&(line[14]));
 		else if (!ft_strncmp("\ttextures : ", line, 11))

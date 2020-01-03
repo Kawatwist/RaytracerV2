@@ -77,12 +77,12 @@ SDL_ttf.lo: SDL_ttf.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/secure/_strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/secure/_string.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/ft2build.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftheader.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/freetype.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftconfig.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftoption.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftstdlib.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/ft2build.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftheader.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/freetype.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftconfig.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftoption.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftstdlib.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/__stddef_max_align_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/limits.h \
@@ -96,24 +96,24 @@ SDL_ttf.lo: SDL_ttf.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/errno.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/errno.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/AvailabilityMacros.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fterrors.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftmoderr.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fterrdef.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fttypes.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftsystem.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftimage.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftoutln.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftstroke.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftglyph.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ttnameid.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_main.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_stdinc.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_config.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_platform.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fterrors.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftmoderr.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fterrdef.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fttypes.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftsystem.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftimage.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftoutln.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftstroke.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftglyph.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ttnameid.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_main.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_stdinc.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_config.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_platform.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/TargetConditionals.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/begin_code.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/close_code.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/begin_code.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/close_code.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/_types/_u_char.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/_types/_u_short.h \
@@ -165,16 +165,16 @@ SDL_ttf.lo: SDL_ttf.c \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/inttypes.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/float.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_assert.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_atomic.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_audio.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_error.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_endian.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_mutex.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_thread.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_rwops.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_clipboard.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_cpuinfo.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_assert.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_atomic.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_audio.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_error.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_endian.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_mutex.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_thread.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_rwops.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_clipboard.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_cpuinfo.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/immintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/mmintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/xmmintrin.h \
@@ -239,33 +239,33 @@ SDL_ttf.lo: SDL_ttf.c \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/movdirintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/ptwriteintrin.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/invpcidintrin.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_events.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_video.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_pixels.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_rect.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_surface.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_blendmode.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_keyboard.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_keycode.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_scancode.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_mouse.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_joystick.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_gamecontroller.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_quit.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_gesture.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_touch.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_filesystem.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_haptic.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_hints.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_loadso.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_log.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_messagebox.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_power.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_render.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_shape.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_system.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_timer.h \
-  /Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_version.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_events.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_video.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_pixels.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_rect.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_surface.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_blendmode.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_keyboard.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_keycode.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_scancode.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_mouse.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_joystick.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_gamecontroller.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_quit.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_gesture.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_touch.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_filesystem.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_haptic.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_hints.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_loadso.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_log.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_messagebox.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_power.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_render.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_shape.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_system.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_timer.h \
+  /Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_version.h \
   SDL_ttf.h
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/math.h:
@@ -424,17 +424,17 @@ SDL_ttf.lo: SDL_ttf.c \
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/secure/_string.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/ft2build.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/ft2build.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftheader.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftheader.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/freetype.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/freetype.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftconfig.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftconfig.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftoption.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftoption.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/config/ftstdlib.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/config/ftstdlib.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/stddef.h:
 
@@ -462,41 +462,41 @@ SDL_ttf.lo: SDL_ttf.c \
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/AvailabilityMacros.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fterrors.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fterrors.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftmoderr.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftmoderr.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fterrdef.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fterrdef.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/fttypes.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/fttypes.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftsystem.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftsystem.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftimage.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftimage.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftoutln.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftoutln.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftstroke.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftstroke.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ftglyph.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ftglyph.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/freetype2/freetype/ttnameid.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/freetype2/freetype/ttnameid.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_main.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_main.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_stdinc.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_stdinc.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_config.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_config.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_platform.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_platform.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/TargetConditionals.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/begin_code.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/begin_code.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/close_code.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/close_code.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/sys/types.h:
 
@@ -600,25 +600,25 @@ SDL_ttf.lo: SDL_ttf.c \
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/float.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_assert.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_assert.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_atomic.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_atomic.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_audio.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_audio.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_error.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_error.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_endian.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_endian.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_mutex.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_mutex.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_thread.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_thread.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_rwops.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_rwops.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_clipboard.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_clipboard.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_cpuinfo.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_cpuinfo.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/immintrin.h:
 
@@ -748,58 +748,58 @@ SDL_ttf.lo: SDL_ttf.c \
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include/invpcidintrin.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_events.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_events.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_video.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_video.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_pixels.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_pixels.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_rect.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_rect.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_surface.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_surface.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_blendmode.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_blendmode.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_keyboard.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_keyboard.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_keycode.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_keycode.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_scancode.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_scancode.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_mouse.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_mouse.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_joystick.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_joystick.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_gamecontroller.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_gamecontroller.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_quit.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_quit.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_gesture.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_gesture.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_touch.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_touch.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_filesystem.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_filesystem.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_haptic.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_haptic.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_hints.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_hints.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_loadso.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_loadso.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_log.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_log.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_messagebox.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_messagebox.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_power.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_power.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_render.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_render.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_shape.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_shape.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_system.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_system.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_timer.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_timer.h:
 
-/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2/SDL_version.h:
+/Users/luwargni/projet/backups/rt2/yo/libraries/include/SDL2/SDL_version.h:
 
 SDL_ttf.h:
