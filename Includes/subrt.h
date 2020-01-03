@@ -26,6 +26,8 @@ typedef struct      s_calc
 typedef struct      s_input
 {
     SDL_Event       ev;
+	unsigned char	*key;
+	unsigned char	oldkey[200];
 }                   t_input;
 
 typedef struct		s_camera
