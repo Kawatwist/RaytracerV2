@@ -31,21 +31,14 @@ static int		init_texture(t_data *data)
 		return (1);
 	ft_bzero(data->texture, sizeof(t_tga*) * data->obj.nb_texture);
 	index = 0;
-
-	printf("Debut Texture\n");
 	while (index < data->obj.nb_texture)
 	{
-		printf("Before [%s]\n", data->obj.texture[index]);
 		img = load_tga(data->obj.texture[index]);
-		printf("Load %p\n", img);
 		if (img == NULL)
 			img = load_tga("./Texture/Invalid.tga");
-		printf("Coucou %p\n", img);
 		data->texture[index] = img;
-		printf("Coucou %p\n", img);
 		index++;
 	}
-	printf("End Texture\n");
 	return (0);
 }
 
@@ -81,13 +74,21 @@ int				parsing_files(t_data *data, char *old)
 			line = old;
 			old = NULL;
 		}
-		printf("Parsing : %s\n", line);
 		if (!ft_strncmp("[camera", line, 7))
-			parsing_camera(data, &old);
+		{	
+			if (parsing_camera(data, &old))
+				return (11);
+		}
 		else if (!ft_strncmp("[object", line, 7))
-			parsing_obj(data, &old, line);
+		{	
+			if (parsing_obj(data, &old, line))
+				return (11);
+		}
 		else if (!ft_strncmp("[light", line, 6))
-			parsing_light(data, &old, line);//rajout
+		{	
+			if (parsing_light(data, &old, line))
+				return (11);//rajout
+		}
 		else
 			return (11);
 	}
