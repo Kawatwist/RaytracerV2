@@ -17,6 +17,8 @@ int			loop(t_data data)
 		SDL_RenderCopy(data.window.rend, data.window.txt, NULL, NULL);
 		SDL_RenderPresent(data.window.rend);
 		SDL_Delay(16);
+
+	// rot_cam(&data);
 	}
 	return (0);
 }

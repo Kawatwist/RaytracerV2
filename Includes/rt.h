@@ -87,6 +87,13 @@ int         	initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
 //				INIT
+
+//				TOOL
+
+t_point			rotx(t_point origin, float ang);
+t_point			roty(t_point origin, float ang);
+t_point			rotz(t_point origin, float ang);
+
 float			square(float f);
 float			ang(float value);
 float			rad(float value);
@@ -118,6 +125,7 @@ t_point			cross_vec(t_point v1, t_point v2);
 float			cross_product(double **mat, t_point v1, int row);
 float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
+//				TOOL
 
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);

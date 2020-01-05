@@ -4,9 +4,9 @@ int				init_light(t_data *data)
 {
 	if (data->obj.nb_light == 0)
 		data->obj.nb_light = 1;
-	if ((data->obj.light = malloc(sizeof(t_light) * (data->obj.nb_light))) == NULL)
+	if ((data->obj.light = malloc(sizeof(t_light) * (data->obj.nb_light + 1))) == NULL)
 		return (1);
-	ft_bzero(data->obj.light, sizeof(t_light) * (data->obj.nb_light));	
+	ft_bzero(data->obj.light, sizeof(t_light) * (data->obj.nb_light + 1));	
 	return (0);
 }
 
@@ -87,10 +87,11 @@ int				parsing_files(t_data *data, char *old)
 		else if (!ft_strncmp("[light", line, 6))
 		{	
 			if (parsing_light(data, &old, line))
-				return (11);//rajout
+				return (11);
 		}
 		else
 			return (11);
+		free(line);
 	}
 	return (0);
 }

@@ -5,7 +5,7 @@ int		parsing_light(t_data *data, char **old, char *line)
 	static int	index = 0;
 
 	line = NULL;
-	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1)) // FREE LINE
+	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
 		if (!ft_strncmp("\torigin : ", line, 10))
 			data->obj.light[index].origin = get_point(line);
