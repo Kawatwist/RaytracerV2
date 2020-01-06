@@ -31,6 +31,7 @@ struct	s_data
 	t_tga		**texture;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
+	void		(*move[3]) (t_data *data);
 	int			percent;
 };
 
@@ -126,6 +127,10 @@ float			cross_product(double **mat, t_point v1, int row);
 float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
 //				TOOL
+
+void			move_cam(t_data *data);
+void			move_obj(t_data *data);
+void			move_light(t_data *data);
 
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);

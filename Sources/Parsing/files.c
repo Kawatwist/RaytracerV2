@@ -14,9 +14,9 @@ int				init_camera(t_data *data)
 {
 	if (data->obj.nb_camera == 0)
 		data->obj.nb_camera = 1;
-	if ((data->obj.camera = malloc(sizeof(t_camera) * (data->obj.nb_camera + 1))) == NULL)
+	if ((data->obj.camera = malloc(sizeof(t_camera) * (data->obj.nb_camera))) == NULL)
 		return (1);
-	ft_bzero(data->obj.camera, sizeof(t_camera) * (data->obj.nb_camera + 1));
+	ft_bzero(data->obj.camera, sizeof(t_camera) * (data->obj.nb_camera));
 	return (0);
 }
 

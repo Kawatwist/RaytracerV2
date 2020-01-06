@@ -28,6 +28,9 @@ typedef struct      s_input
     SDL_Event       ev;
 	unsigned char	*key;
 	unsigned char	oldkey[200];
+    int             x;
+    int             y;
+    int             button;
 }                   t_input;
 
 typedef struct		s_camera
@@ -49,7 +52,7 @@ typedef struct      s_object
 	char			**texture;
 	int             nb_texture;
 	int	            index[3];
-	unsigned int	type_index;
+	int         	type_index;
 }                   t_object;
 
 typedef struct      s_scene
