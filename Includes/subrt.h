@@ -41,13 +41,15 @@ typedef struct		s_camera
 typedef struct      s_object
 {
     void			**item;
-    int				nb_item;
+    unsigned int	nb_item;
     t_light			*light;
 	int				nb_light;
 	t_camera		*camera;
-	int				nb_camera;
+	unsigned int	nb_camera;
 	char			**texture;
-	int				nb_texture;
+	unsigned int	nb_texture;
+	unsigned int	index[3];
+	unsigned int	type_index;
 }                   t_object;
 
 typedef struct      s_scene

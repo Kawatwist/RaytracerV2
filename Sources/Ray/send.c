@@ -46,7 +46,7 @@ int			start_ray(t_data *data)
 		x = -1;
 		while (++x < data->window.xscreen)
 		{
-			data->ray.origin = veccpy(data->obj.camera[0].pos.origin);
+			data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
 			data->ray.direction = normalize(find_dir(data, x, y));
 			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] =
 				send_ray(data, data->ray, 1);

@@ -2,7 +2,7 @@
 
 int         parsing_camera(t_data *data, char **old)
 {
-    static int  index = 0;
+    static unsigned int  index = 0;
 	char		*line;
 
 	line = NULL;

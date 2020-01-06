@@ -2,7 +2,7 @@
 
 static int	first_texture(t_data *data)
 {
-	int		i;
+	unsigned int	i;
 
 	i = 0;
 	if ((data->obj.texture = malloc(sizeof(char *) * data->obj.nb_texture + 1)) == NULL)

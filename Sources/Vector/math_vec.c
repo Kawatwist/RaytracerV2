@@ -44,6 +44,8 @@ t_point		normalize(t_point v1)
 {
 	float	value;
 
+	if (!v1.x && !v1.y && !v1.z)
+		return (fill_vec(0, 0, 1));
 	value = sqrtf(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
 	return (fill_vec(v1.x / value, v1.y / value, v1.z / value));
 }

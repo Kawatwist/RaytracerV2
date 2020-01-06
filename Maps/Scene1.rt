@@ -1,5 +1,5 @@
 [header]
-	camera : 1
+	camera : 2
 	object : 7
 	light : 1
 	nb_texture : 2
@@ -12,7 +12,10 @@
 	intensity : 0.5
 [camera:1]
 	origin : {0 0 -2}
-	direction : {0 1 0.5}
+	direction : {0 0 1}
+[camera:2]
+	origin : {0 0 0}
+	direction : {0 0 -1}
 [object:plan]
 	origin : {0 0 1}
 	direction : {0 0 1}
