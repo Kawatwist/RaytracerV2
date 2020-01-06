@@ -23,7 +23,7 @@ int				init_camera(t_data *data)
 static int		init_texture(t_data *data)
 {
 	t_tga	*img;
-	unsigned int	index;
+	int	index;
 
 	if (data->obj.nb_texture < 0)
 		data->obj.nb_texture = 0;
@@ -44,7 +44,7 @@ static int		init_texture(t_data *data)
 
 int				init_item(t_data *data)
 {
-	unsigned int		i;
+	int		i;
 
 	if (data->obj.nb_item < 0)
 		data->obj.nb_item = 0;

@@ -38,7 +38,7 @@ static void apply_rot(t_data *data, t_point base, t_point direction, int index)
 
 int	initialize_cam(t_data *data)
 {
-	unsigned int	index;
+	int	index;
 	t_point 		direction;
 	t_point 		base;
 

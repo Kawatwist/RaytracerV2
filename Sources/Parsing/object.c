@@ -66,7 +66,7 @@ static int	fill_effect(t_effect *effect, char *line)
 
 int         parsing_obj(t_data *data, char **old, char *type)
 {
-    static unsigned int  index = 0;
+    static int  index = 0;
 	char		*line;
 	char		val;
 
