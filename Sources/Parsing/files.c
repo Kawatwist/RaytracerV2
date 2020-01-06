@@ -4,9 +4,9 @@ int				init_light(t_data *data)
 {
 	if (data->obj.nb_light == 0)
 		data->obj.nb_light = 1;
-	if ((data->obj.light = malloc(sizeof(t_light) * (data->obj.nb_light + 1))) == NULL)
+	if ((data->obj.light = malloc(sizeof(t_light) * (data->obj.nb_light + 2))) == NULL)
 		return (1);
-	ft_bzero(data->obj.light, sizeof(t_light) * (data->obj.nb_light + 1));	
+	ft_bzero(data->obj.light, sizeof(t_light) * (data->obj.nb_light + 2));	
 	return (0);
 }
 
@@ -14,9 +14,9 @@ int				init_camera(t_data *data)
 {
 	if (data->obj.nb_camera == 0)
 		data->obj.nb_camera = 1;
-	if ((data->obj.camera = malloc(sizeof(t_camera) * (data->obj.nb_camera))) == NULL)
+	if ((data->obj.camera = malloc(sizeof(t_camera) * (data->obj.nb_camera + 1))) == NULL)
 		return (1);
-	ft_bzero(data->obj.camera, sizeof(t_camera) * (data->obj.nb_camera));
+	ft_bzero(data->obj.camera, sizeof(t_camera) * (data->obj.nb_camera + 1));
 	return (0);
 }
 

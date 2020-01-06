@@ -1,62 +1,63 @@
 #include "rt.h"
 
-static int		light_color(int color, int newcolor, float coef)
+static unsigned int	add_color(unsigned int base, unsigned int new)
 {
-	int				ret;
-	unsigned char	value[4];
+	unsigned char	color[4];
 
-	coef > 1 ? coef = 1 : 0;
-	coef < 0 ? coef = 0 : 0;
-	ret	= ((int)((newcolor & 0xFF) * coef) > 255 ? 255 : (int)((newcolor & 0xFF) * coef));
-	ret	+= (((int)((newcolor & 0xFF00) * coef) & 0xFF00) >> 8) > 255 ? 0xFF00 : (int)((newcolor & 0xFF00) * coef) & 0xFF00;
-	ret	+= (((int)((newcolor & 0xFF0000) * coef) & 0xFF0000) >> 16) > 255 ? 0xFF0000 : (int)((newcolor & 0xFF0000) * coef) & 0xFF0000;
-	value[0] = ((ret & 0xFF) + (color & 0xFF) > 255 ? 255 : (ret & 0xFF) + (color & 0xFF));
-	value[1] = ((((ret & 0xFF00) + (color & 0xFF00)) >> 8) > 255 ? 255 : ((ret & 0xFF00) + (color & 0xFF00)) >> 8);
-	value[2] = ((((ret & 0xFF0000) + (color & 0xFF0000)) >> 16) > 255 ? 255 : ((ret & 0xFF0000) + (color & 0xFF0000)) >> 16);
+	color[3] = 0xFF;
+	color[2] = (((base & 0xFF0000) >> 16)) + (((new & 0xFF0000) >> 16)) > 255 ? 255 : (((base & 0xFF0000) >> 16)) + (((new & 0xFF0000) >> 16));
+	color[1] = (((base & 0xFF00) >> 8)) + (((new & 0xFF00) >> 8)) > 255 ? 255 : (((base & 0xFF00) >> 8)) + (((new & 0xFF00) >> 8));
+	color[0] = ((base & 0xFF)) + ((new & 0xFF)) > 255 ? 255 : ((base & 0xFF)) + ((new & 0xFF));
+	return (*((int *)color));
+}
+
+static int		light_color(unsigned int color, unsigned int newcolor)
+{
+	unsigned char	value[4];
+	
+	if ((((newcolor & 0xFF) * (color & 0xFF)) / 255) > 255)
+		value[0] = 255;
+	else if ((((newcolor & 0xFF) * (color & 0xFF)) / 255) < 0)
+		value[0] = 0;
+	else
+		value[0] = ((newcolor & 0xFF) * (color & 0xFF)) / 255;
+
+	if ((((newcolor & 0xFF00) >> 8) * ((color & 0xFF00) >> 8) / 255) > 255)
+		value[1] = 255;
+	else if (((((newcolor & 0xFF00) >> 8) * ((color & 0xFF00) >> 8)) / 255) < 0)
+		value[1] = 0;
+	else
+		value[1] = (((newcolor & 0xFF00) >> 8) * ((color & 0xFF00) >> 8)) / 255;
+
+	if ((((newcolor & 0xFF0000) >> 16) * ((color & 0xFF0000) >> 16) / 255) > 255)
+		value[2] = 255;
+	else if (((((newcolor & 0xFF0000) >> 16) * ((color & 0xFF0000) >> 16)) / 255) < 0)
+		value[2] = 0;
+	else
+		value[2] = (((newcolor & 0xFF0000) >> 16) * ((color & 0xFF0000) >> 16)) / 255;
+
 	value[3] = 255;
 	return (*(int*)(value));
 }
 
-unsigned int	ray_to_light(t_data *data, t_vec ray, float *coef, int base)
+unsigned int	ray_to_light(t_data *data, t_vec ray, int base)
 {
-	int     index;
 	int		color;
-	float	currcoef;
-	float	ang;
+	int		index;
 	float	len;
+	float	dot;
 
-(void)base;
-    index = -1;
-	color = 0x0;
-	currcoef = 0.0;
-	*coef = 0.0;
-	ray.direction = neg_norm(ray.direction);
+	index = -1;
+	color = 0;
 	while (++index < data->obj.nb_light)
 	{
-		ang = (1.0 + -dot_product(ray.direction, normalize(sub_vec(ray.origin, data->obj.light[index].origin)))) / 2.0;
-		len = length(sub_vec(ray.origin, data->obj.light[index].origin));
-		currcoef = ang;
-		color = light_color(color, 0x0, 1.0 - currcoef);
-		color = light_color(color, data->obj.light[index].color, currcoef);
-		// if (ang > 0.5 || ((data->obj.light[index].distance) - len) < 0)
-		// {
-		// 	currcoef = ((data->obj.light[index].distance) - len);
-		// 	currcoef > 1 ? currcoef = 1 : 0;
-		// 	currcoef < 0 ? currcoef = 0 : 0;
-		// 	currcoef = (currcoef * ang) * data->obj.light[index].intensity;
-		// 	color = light_color(color, data->obj.light[index].color, currcoef);
-		// }
-		// else
-		// {
-		// 	currcoef = ((ang));
-		// 	currcoef > 1 ? currcoef = 1 : 0;
-		// 	currcoef < 0 ? currcoef = 0 : 0;
-		// 	// color = set_color(color,data->obj.light[index].color, 1 - currcoef);
-		// 	color = set_color(color, 0x0, currcoef);
-		// }
-		*coef += currcoef;
+		dot = -(((1 - -dot_product(normalize(sub_vec(ray.origin, data->obj.light[index].origin)), normalize(ray.direction))) * -1) / 2.0);
+		len = data->obj.light[index].distance - length(sub_vec(ray.origin, data->obj.light[index].origin));
+		if (len < 0)
+			len = 0;
+		if (len > 1)
+			len = 1;
+		color = add_color(color, light_color(base, set_color(0, data->obj.light[index].color, dot * len)));
 	}
-	*coef > 1 ? *coef = 1 : 0;
-	*coef = 1 * data->obj.light[index - 1].intensity;
 	return (color);
 }
