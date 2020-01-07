@@ -1,14 +1,31 @@
 #include "rt.h"
 
-static	t_point	find_pos(t_data *data, int x, int y)
+static void	rot_cam_input(t_data *data, int key_code)
 {
-	t_point		ret;
-
-	ret = veccpy(data->obj.camera[0].sc);
-	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
-	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
-	ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
-	return (ret);
+	if (key_code == 82)
+	{
+		(data->obj.camera[data->obj.index[0]]).sc = add_vec(rotx(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), 5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
+		(data->obj.camera[data->obj.index[0]]).x = rotx((data->obj.camera[data->obj.index[0]]).x, 5.0);
+		(data->obj.camera[data->obj.index[0]]).y = rotx((data->obj.camera[data->obj.index[0]]).y, 5.0);
+	}
+	if (key_code == 81)
+	{
+		(data->obj.camera[data->obj.index[0]]).sc = add_vec(rotx(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), -5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
+		(data->obj.camera[data->obj.index[0]]).x = rotx((data->obj.camera[data->obj.index[0]]).x, -5.0);
+		(data->obj.camera[data->obj.index[0]]).y = rotx((data->obj.camera[data->obj.index[0]]).y, -5.0);
+	}
+	if (key_code == 80)
+	{
+		(data->obj.camera[data->obj.index[0]]).sc = add_vec(roty(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), 5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
+		(data->obj.camera[data->obj.index[0]]).x = roty((data->obj.camera[data->obj.index[0]]).x, 5.0);
+		(data->obj.camera[data->obj.index[0]]).y = roty((data->obj.camera[data->obj.index[0]]).y, 5.0);
+	}
+	if (key_code == 79)
+	{
+		(data->obj.camera[data->obj.index[0]]).sc = add_vec(roty(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), -5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
+		(data->obj.camera[data->obj.index[0]]).x = roty((data->obj.camera[data->obj.index[0]]).x, -5.0);
+		(data->obj.camera[data->obj.index[0]]).y = roty((data->obj.camera[data->obj.index[0]]).y, -5.0);
+	}
 }
 
 static void	create_light(t_data *data, t_light *new, int x, int y)
@@ -36,41 +53,128 @@ static void	light_cursor(t_data *data)
 			data->obj.light[data->obj.nb_light - 1].origin = find_pos(data,data->input.x, data->input.y);
 		}
 		
-	}
-	else if (curr == 1)
-	{
-		data->obj.nb_light -= 1;
-		curr = 0;
-	}
 }
+
+// static	t_point	find_pos(t_data *data, int x, int y)
+// {
+// 	t_point		ret;
+
+// 	ret = veccpy(data->obj.camera[0].sc);
+// 	ret = add_vec(ret, mult_vec2(data->obj.camera[0].x, x));
+// 	ret = add_vec(ret, mult_vec2(data->obj.camera[0].y, y));
+// 	ret = sub_vec(ret, data->obj.camera[0].pos.origin);
+// 	return (ret);
+// }
+
+// static void	create_light(t_data *data, t_light *new, int x, int y)
+// {
+// 	new->color = 0xFFFFFF;
+// 	new->distance = 2;
+// 	new->intensity = 1;
+// 	new->origin = find_pos(data, x, y);
+// }
+
+// static void	light_cursor(t_data *data)
+// {
+// 	static char curr = 0;
+// 	if (data->input.button & SDL_BUTTON_LEFT)
+// 	{
+// 		if (curr == 0)
+// 		{
+// 			data->obj.nb_light += 1;
+// 			create_light(data, &data->obj.light[data->obj.nb_light], data->input.x, data->input.y);
+// 			curr = 1;
+// 		}
+// 		else
+// 		{
+// 			data->obj.light[data->obj.nb_light].origin = find_pos(data,data->input.x, data->input.y);
+// 		}
+		
+// 	}
+// 	else if (curr == 1)
+// 	{
+// 		data->obj.nb_light -= 1;
+// 		curr = 0;
+// 	}
+// }
 
 void		move_light(t_data *data)
 {
-	if (key_check(*data, SDL_SCANCODE_W))
+	if (key_old(*data, SDL_SCANCODE_W))
+		data->obj.light[data->obj.index[2]].origin.y -= 0.1;
+	if (key_old(*data, SDL_SCANCODE_S))
+		data->obj.light[data->obj.index[2]].origin.y += 0.1;
+	if (key_old(*data, SDL_SCANCODE_A))
+		data->obj.light[data->obj.index[2]].origin.x -= 0.1;
+	if (key_old(*data, SDL_SCANCODE_D))
+		data->obj.light[data->obj.index[2]].origin.x += 0.1;
+	if (key_old(*data, SDL_SCANCODE_Q))
 		data->obj.light[data->obj.index[2]].origin.z += 0.1;
-	if (key_check(*data, SDL_SCANCODE_S))
-		data->obj.light[data->obj.index[2]].origin.z += 0.1;
-	if (key_check(*data, SDL_SCANCODE_A))
-		data->obj.light[data->obj.index[2]].origin.z += 0.1;
-	if (key_check(*data, SDL_SCANCODE_D))
-		data->obj.light[data->obj.index[2]].origin.z += 0.1;
-	printf("light\n");
+	if (key_old(*data, SDL_SCANCODE_E))
+		data->obj.light[data->obj.index[2]].origin.z -= 0.1;
+	printf("light %d\n", data->obj.index[2]);
 }
 
 void		move_obj(t_data *data)
 {
-	(void)data;
-	if (key_check(*data, SDL_SCANCODE_W))
+	if (key_old(*data, SDL_SCANCODE_W))
+		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.y -= 0.1;
+	if (key_old(*data, SDL_SCANCODE_S))
+		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.y += 0.1;
+	if (key_old(*data, SDL_SCANCODE_A))
+		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.x -= 0.1;
+	if (key_old(*data, SDL_SCANCODE_D))
+		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.x += 0.1;
+	if (key_old(*data, SDL_SCANCODE_Q))
 		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.z += 0.1;
-	if (key_check(*data, SDL_SCANCODE_S))
+	if (key_old(*data, SDL_SCANCODE_E))
 		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.z -= 0.1;
 	printf("obj %d\n", data->obj.index[1]);
 }
 
 void		move_cam(t_data *data)
 {
-	(void)data;
-	printf("cam\n");
+	if (key_old(*data, SDL_SCANCODE_W))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.y -= 0.1;
+		data->obj.camera[data->obj.index[2]].sc.y -= 0.1;
+	}
+	if (key_old(*data, SDL_SCANCODE_S))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.y += 0.1;
+		data->obj.camera[data->obj.index[2]].sc.y += 0.1;
+	}
+	if (key_old(*data, SDL_SCANCODE_A))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.x -= 0.1;
+		data->obj.camera[data->obj.index[2]].sc.x -= 0.1;
+	}
+	if (key_old(*data, SDL_SCANCODE_D))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.x += 0.1;
+		data->obj.camera[data->obj.index[2]].sc.x += 0.1;
+	}
+	if (key_old(*data, SDL_SCANCODE_Q))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.z -= 0.1;
+		data->obj.camera[data->obj.index[2]].sc.z -= 0.1;
+	}
+	if (key_old(*data, SDL_SCANCODE_E))
+	{
+		data->obj.camera[data->obj.index[2]].pos.origin.z += 0.1;
+		data->obj.camera[data->obj.index[2]].sc.z += 0.1;
+	}
+
+/*============================================================================*/
+	if (key_old(*data, SDL_SCANCODE_UP))
+		rot_cam_input(data, SDL_SCANCODE_UP);
+	if (key_old(*data, SDL_SCANCODE_DOWN))
+		rot_cam_input(data, SDL_SCANCODE_DOWN);
+	if (key_old(*data, SDL_SCANCODE_LEFT))
+		rot_cam_input(data, SDL_SCANCODE_LEFT);
+	if (key_old(*data, SDL_SCANCODE_RIGHT))
+		rot_cam_input(data, SDL_SCANCODE_RIGHT);
+	printf("cam %d\n", data->obj.index[0]);
 }
 
 static void	stay_in_case(t_data *data)
@@ -93,9 +197,9 @@ static void	input_obj(t_data *data)
 		data->obj.index[data->obj.type_index] += 1;
 	if (key_check(*data, SDL_SCANCODE_KP_MINUS))
 		data->obj.index[data->obj.type_index] -= 1;
-	if (key_check(*data, SDL_SCANCODE_5))
-		data->obj.type_index += 1;
 	if (key_check(*data, SDL_SCANCODE_6))
+		data->obj.type_index += 1;
+	if (key_check(*data, SDL_SCANCODE_5))
 		data->obj.type_index -= 1;
 	// Check > Nb_type
 	stay_in_case(data);
@@ -103,9 +207,6 @@ static void	input_obj(t_data *data)
 	
 	//	data->obj.type_index ==> ptr sur function
 	data->move[data->obj.type_index] (data);
-			// Cam Function
-			// item Function
-			// Light Function
 }
 
 void        input(t_data *data)
@@ -115,8 +216,8 @@ void        input(t_data *data)
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.key, 200);
 	SDL_PollEvent(&data->input.ev);
-    if (key_check(*data, SDL_SCANCODE_Q))
+    if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 	input_obj(data);
-	light_cursor(data);
+	// light_cursor(data);
 }

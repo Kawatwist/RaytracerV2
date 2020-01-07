@@ -57,7 +57,7 @@ static int	fill_effect(t_effect *effect, char *line)
 		effect->texture = ft_atoi(line + 12);
 	else if (!ft_strncmp("\t\t\tid_texture", line, 13))
 		effect->id_texture = ft_atoi(line + 15);
-	else if (!ft_strncmp("\t\t[effect]", line, 11))
+	else if (!ft_strncmp("\t\t[effect]", line, 10))
 		return (0);
 	else
 		return (11);
@@ -78,16 +78,16 @@ int         parsing_obj(t_data *data, char **old, char *type)
 		return (11);
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1)) // Free Line
 	{
-		if (!ft_strncmp("\torigin :", line, 8))
+		if (!ft_strncmp("\torigin :", line, 9))
 			((t_base *)data->obj.item[index])->origin.origin = get_point(line);
-		else if (!ft_strncmp("\tdirection :", line, 11))
+		else if (!ft_strncmp("\tdirection :", line, 12))
 			((t_base *)data->obj.item[index])->origin.direction = get_point(line);
 		else if (!ft_strncmp("\tcolor :", line, 8))
 			((t_base *)data->obj.item[index])->effect.color = ((ft_atoi_base(line + 11, 16) & 0xFFFFFF) + (255 << 24));
-		else if (!ft_strncmp("\trayon : ", line, 8) && (((t_base *)data->obj.item[index])->effect.type == SPHERE || ((t_base *)data->obj.item[index])->effect.type == CYLINDER))
-			((t_sphere *)data->obj.item[index])->rayon = ft_atof(line + 8);
-		else if (!ft_strncmp("\tangle : ", line, 8) && (((t_base *)data->obj.item[index])->effect.type == CONE))
-			((t_cone *)data->obj.item[index])->ang = ft_atof(line + 8);
+		else if (!ft_strncmp("\trayon : ", line, 9) && (((t_base *)data->obj.item[index])->effect.type == SPHERE || ((t_base *)data->obj.item[index])->effect.type == CYLINDER))
+			((t_sphere *)data->obj.item[index])->rayon = ft_atof(line + 9);
+		else if (!ft_strncmp("\tangle : ", line, 9) && (((t_base *)data->obj.item[index])->effect.type == CONE))
+			((t_cone *)data->obj.item[index])->ang = ft_atof(line + 9);
 		else if (!ft_strncmp("\t\t", line, 2))
 		{
 			if (fill_effect(&(((t_base *)data->obj.item[index])->effect), line))

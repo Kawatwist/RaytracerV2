@@ -19,7 +19,7 @@ static void apply_rot(t_data *data, t_point base, t_point direction, int index)
 		(data->obj.camera[index]).y = rotx((data->obj.camera[index]).y, angle.x);
 		base = rotx(base, angle.x);
 	}
-	if (direction.x != base.x || direction.y != base.y)
+	if (direction.x != base.x || direction.z != base.z)
 	{
 		angle.y = ang(acos(dot_product(fill_vec(direction.x, 0, direction.z), fill_vec(base.x, 0, base.z))));
 		(data->obj.camera[index]).sc = add_vec(roty(sub_vec((data->obj.camera[index]).sc, (data->obj.camera[index]).pos.origin), angle.y), (data->obj.camera[index]).pos.origin);

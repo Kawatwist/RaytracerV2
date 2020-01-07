@@ -23,8 +23,8 @@ double  ft_atof(const char *nptr)
 	else
 	{
 		nbr = (double)ft_atoi(nptr);
-		flag -= (flag  & 0xFF);
-		while (nptr[flag & 0xFF] != '.' && nptr[flag & 0xFF] != '\0')
+		flag -= (flag & 0xFF);
+		while (nptr[flag & 0xFF] != '.' && nptr[flag & 0xFF] != '\0' && nptr[flag & 0xFF] != ' ') // jai rajouter l'espace
 			flag += 1;
 		if ((flag & 0xFF) != 0 && nptr[flag & 0xFF] == '.')
 		{
