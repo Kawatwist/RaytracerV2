@@ -1,5 +1,16 @@
 #include "rt.h"
 
+static	t_point	find_pos(t_data *data, int x, int y)
+{
+	t_point		ret;
+
+	ret = veccpy(data->obj.camera[0].sc);
+	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
+	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
+	ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
+	return (ret);
+}
+
 static void	rot_cam_input(t_data *data, int key_code)
 {
 	if (key_code == 82)
@@ -36,67 +47,30 @@ static void	create_light(t_data *data, t_light *new, int x, int y)
 	new->origin = find_pos(data, x, y);
 }
 
+
 static void	light_cursor(t_data *data)
 {
 	static char curr = 0;
-
 	if (data->input.button & SDL_BUTTON_LEFT)
 	{
 		if (curr == 0)
 		{
 			data->obj.nb_light += 1;
-			create_light(data, &(data->obj.light[data->obj.nb_light - 1]), data->input.x, data->input.y);
+			create_light(data, &data->obj.light[data->obj.nb_light], data->input.x, data->input.y);
 			curr = 1;
 		}
 		else
 		{
-			data->obj.light[data->obj.nb_light - 1].origin = find_pos(data,data->input.x, data->input.y);
+			data->obj.light[data->obj.nb_light].origin = find_pos(data,data->input.x, data->input.y);
 		}
 		
+	}
+	else if (curr == 1)
+	{
+		data->obj.nb_light -= 1;
+		curr = 0;
+	}
 }
-
-// static	t_point	find_pos(t_data *data, int x, int y)
-// {
-// 	t_point		ret;
-
-// 	ret = veccpy(data->obj.camera[0].sc);
-// 	ret = add_vec(ret, mult_vec2(data->obj.camera[0].x, x));
-// 	ret = add_vec(ret, mult_vec2(data->obj.camera[0].y, y));
-// 	ret = sub_vec(ret, data->obj.camera[0].pos.origin);
-// 	return (ret);
-// }
-
-// static void	create_light(t_data *data, t_light *new, int x, int y)
-// {
-// 	new->color = 0xFFFFFF;
-// 	new->distance = 2;
-// 	new->intensity = 1;
-// 	new->origin = find_pos(data, x, y);
-// }
-
-// static void	light_cursor(t_data *data)
-// {
-// 	static char curr = 0;
-// 	if (data->input.button & SDL_BUTTON_LEFT)
-// 	{
-// 		if (curr == 0)
-// 		{
-// 			data->obj.nb_light += 1;
-// 			create_light(data, &data->obj.light[data->obj.nb_light], data->input.x, data->input.y);
-// 			curr = 1;
-// 		}
-// 		else
-// 		{
-// 			data->obj.light[data->obj.nb_light].origin = find_pos(data,data->input.x, data->input.y);
-// 		}
-		
-// 	}
-// 	else if (curr == 1)
-// 	{
-// 		data->obj.nb_light -= 1;
-// 		curr = 0;
-// 	}
-// }
 
 void		move_light(t_data *data)
 {
@@ -134,15 +108,16 @@ void		move_obj(t_data *data)
 
 void		move_cam(t_data *data)
 {
+	printf("%f || %f || %f\n", data->obj.camera[data->obj.index[2]].pos.direction.x, data->obj.camera[data->obj.index[2]].pos.direction.y, data->obj.camera[data->obj.index[2]].pos.direction.z);
 	if (key_old(*data, SDL_SCANCODE_W))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.y -= 0.1;
-		data->obj.camera[data->obj.index[2]].sc.y -= 0.1;
+		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, data->obj.camera[data->obj.index[2]].pos.direction);
+		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, data->obj.camera[data->obj.index[2]].pos.direction);
 	}
 	if (key_old(*data, SDL_SCANCODE_S))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.y += 0.1;
-		data->obj.camera[data->obj.index[2]].sc.y += 0.1;
+		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, data->obj.camera[data->obj.index[2]].pos.direction);
+		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, data->obj.camera[data->obj.index[2]].pos.direction);
 	}
 	if (key_old(*data, SDL_SCANCODE_A))
 	{
@@ -219,5 +194,5 @@ void        input(t_data *data)
     if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 	input_obj(data);
-	// light_cursor(data);
+	light_cursor(data);
 }

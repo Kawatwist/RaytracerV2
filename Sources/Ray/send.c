@@ -41,7 +41,6 @@ int			start_ray(t_data *data)
 	int		y;
 
 	y = -1;
-	printf("Start Ray\n");
 	while (++y < data->window.yscreen)
 	{
 		x = -1;
@@ -61,6 +60,6 @@ int			start_ray(t_data *data)
 		if (data->flag.pixel)
 			low_quality(data, &x, &y);
 	}
-	printf("End Ray\n");
+	data->obj.camera[data->obj.index[0]].pos.direction = normalize(find_dir(data, data->window.xscreen >> 1, data->window.yscreen >> 1));
 	return (0);
 }
