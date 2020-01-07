@@ -40,10 +40,29 @@ static int		light_color(unsigned int color, unsigned int newcolor)
 	return (*(int*)(value));
 }
 
+float			stop_light(t_data *data, t_light light, t_vec ray, float *coef)
+{
+	float	intersect;
+	void	*obj;
+	t_vec	check;
+
+	intersect = -1;
+	check.origin = veccpy(ray.origin);
+	check.direction = sub_vec(light.origin, ray.origin);
+	obj = check_object(data, check, &intersect);
+	if (obj != NULL && intersect > 0)
+	{
+		intersect = length(sub_vec(ray.origin, ((t_base *)obj)->origin.origin));
+		*coef = length(sub_vec(light.origin, ((t_base *)obj)->origin.origin)) / length(sub_vec(ray.origin, light.origin));
+	}
+	return (intersect);
+}
+
 unsigned int	ray_to_light(t_data *data, t_vec ray, int base)
 {
 	int		color;
 	int		index;
+	float	obj[2];
 	float	len;
 	float	dot;
 
@@ -53,11 +72,14 @@ unsigned int	ray_to_light(t_data *data, t_vec ray, int base)
 	{
 		dot = -(((1 - -dot_product(normalize(sub_vec(ray.origin, data->obj.light[index].origin)), normalize(ray.direction))) * -1) / 2.0);
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin, data->obj.light[index].origin));
-		if (len < 0)
-			len = 0;
-		if (len > 1)
-			len = 1;
-		color = add_color(color, light_color(base, set_color(0, data->obj.light[index].color, dot * len)));
+		len < 0 ? len = 0 : 0;
+		len > 1 ? len = 1 : 0;
+		obj[1] = stop_light(data, data->obj.light[index], ray, &obj[0]);
+		if (!(obj[1] > 0.0 && obj[1] < length(sub_vec(ray.origin, data->obj.light[index].origin))))
+			obj[0] = 1;
+		len < 0 ? len = 0 : 0;
+		dot *= data->obj.light[index].intensity;
+		color = add_color(color, light_color(base, set_color(0, data->obj.light[index].color, (dot * len) * obj[0])));
 	}
 	return (color);
 }
