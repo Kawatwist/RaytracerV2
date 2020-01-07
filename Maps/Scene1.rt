@@ -12,7 +12,7 @@
 	intensity : 1
 [light:2]
 	origin : {1.0 0.5 3.5}
-	color : 0xFF
+	color : 0xFF00FF
 	distance : 5
 	intensity : 1
 [camera:1]

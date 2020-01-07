@@ -27,7 +27,7 @@ typedef struct      s_input
 {
     SDL_Event       ev;
 	unsigned char	*key;
-	unsigned char	oldkey[200];
+	unsigned char	oldkey[282];
     int             x;
     int             y;
     int             button;

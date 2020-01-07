@@ -1,0 +1,44 @@
+.TH Raytracer
+
+.SH Tache
++   Deplacement Cam
++   Speed movement cam
++   Input (Size + Specs)
++   Input Change Bounce numbers + Enable/Disable Bounce
+-   Multi-Thread
+-   Check Item work
+-   Texture Item
+-   Normal Texture
+    Check Reflexion work
+    Check Refraction work
+-   Check Opacity work ==> (Change color with transparency)
++   Parsing (Return Value pour savoir ou stop) (exemple 1 malloc/ 11 parsing ...)
++   Parsing commentaires
+    Norme
+    Leaks
+    Usage ?
+    Man 6 Rt
+
+.SH Input
+===========================
+Check If input is cool to use or change :
+    [Q] Down
+    [E] Up
+    [W] Front
+    [S] Back
+    [A] Left
+    [D] Right
+    [V] Quality
+    [5] Change Type -
+    [6] Change Type +
+    [<] Rot Cam
+    [^] Rot Cam
+    [v] Rot Cam
+    [>] Rot Cam
+KP  [-] Dec index
+KP  [+] Inc index
+
+.SH Need to Review
+==========================
+Add Input :
+    [] ??

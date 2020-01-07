@@ -16,7 +16,7 @@ int			loop(t_data data)
 		SDL_UnlockTexture(data.window.txt);
 		SDL_RenderCopy(data.window.rend, data.window.txt, NULL, NULL);
 		SDL_RenderPresent(data.window.rend);
-		SDL_Delay(16);
+		SDL_Delay(16); // <<= Fps
 
 	// rot_cam(&data);
 	}

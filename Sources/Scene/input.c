@@ -13,25 +13,25 @@ static	t_point	find_pos(t_data *data, int x, int y)
 
 static void	rot_cam_input(t_data *data, int key_code)
 {
-	if (key_code == 82)
+	if (key_code == SDL_SCANCODE_UP)
 	{
 		(data->obj.camera[data->obj.index[0]]).sc = add_vec(rotx(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), 5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
 		(data->obj.camera[data->obj.index[0]]).x = rotx((data->obj.camera[data->obj.index[0]]).x, 5.0);
 		(data->obj.camera[data->obj.index[0]]).y = rotx((data->obj.camera[data->obj.index[0]]).y, 5.0);
 	}
-	if (key_code == 81)
+	if (key_code == SDL_SCANCODE_DOWN)
 	{
 		(data->obj.camera[data->obj.index[0]]).sc = add_vec(rotx(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), -5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
 		(data->obj.camera[data->obj.index[0]]).x = rotx((data->obj.camera[data->obj.index[0]]).x, -5.0);
 		(data->obj.camera[data->obj.index[0]]).y = rotx((data->obj.camera[data->obj.index[0]]).y, -5.0);
 	}
-	if (key_code == 80)
+	if (key_code == SDL_SCANCODE_LEFT)
 	{
 		(data->obj.camera[data->obj.index[0]]).sc = add_vec(roty(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), 5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
 		(data->obj.camera[data->obj.index[0]]).x = roty((data->obj.camera[data->obj.index[0]]).x, 5.0);
 		(data->obj.camera[data->obj.index[0]]).y = roty((data->obj.camera[data->obj.index[0]]).y, 5.0);
 	}
-	if (key_code == 79)
+	if (key_code == SDL_SCANCODE_RIGHT)
 	{
 		(data->obj.camera[data->obj.index[0]]).sc = add_vec(roty(sub_vec((data->obj.camera[data->obj.index[0]]).sc, (data->obj.camera[data->obj.index[0]]).pos.origin), -5.0), (data->obj.camera[data->obj.index[0]]).pos.origin);
 		(data->obj.camera[data->obj.index[0]]).x = roty((data->obj.camera[data->obj.index[0]]).x, -5.0);
@@ -108,36 +108,46 @@ void		move_obj(t_data *data)
 
 void		move_cam(t_data *data)
 {
-	printf("%f || %f || %f\n", data->obj.camera[data->obj.index[2]].pos.direction.x, data->obj.camera[data->obj.index[2]].pos.direction.y, data->obj.camera[data->obj.index[2]].pos.direction.z);
-	if (key_old(*data, SDL_SCANCODE_W))
+	t_point tmp;
+
+	tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
+	if (key_old(*data, SDL_SCANCODE_W))//up
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, data->obj.camera[data->obj.index[2]].pos.direction);
-		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, data->obj.camera[data->obj.index[2]].pos.direction);
+		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
+		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
 	}
 	if (key_old(*data, SDL_SCANCODE_S))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, data->obj.camera[data->obj.index[2]].pos.direction);
-		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, data->obj.camera[data->obj.index[2]].pos.direction);
+		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
+		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
 	}
-	if (key_old(*data, SDL_SCANCODE_A))
+	if (key_old(*data, SDL_SCANCODE_A))//left
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.x -= 0.1;
-		data->obj.camera[data->obj.index[2]].sc.x -= 0.1;
+		tmp = roty(tmp, 90);
+		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
+		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
+		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
 	}
 	if (key_old(*data, SDL_SCANCODE_D))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.x += 0.1;
-		data->obj.camera[data->obj.index[2]].sc.x += 0.1;
+		tmp = roty(tmp, -90);
+		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
+		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
+		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
 	}
-	if (key_old(*data, SDL_SCANCODE_Q))
+	if (key_old(*data, SDL_SCANCODE_LSHIFT))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.z -= 0.1;
-		data->obj.camera[data->obj.index[2]].sc.z -= 0.1;
+		// tmp = rotx(tmp, 90);
+		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		// tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
 	}
-	if (key_old(*data, SDL_SCANCODE_E))
+	if (key_old(*data, SDL_SCANCODE_SPACE))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin.z += 0.1;
-		data->obj.camera[data->obj.index[2]].sc.z += 0.1;
+		// tmp = rotx(tmp, -90);
+		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		// tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
 	}
 
 /*============================================================================*/
@@ -189,7 +199,7 @@ void        input(t_data *data)
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
-	ft_memcpy(data->input.oldkey, data->input.key, 200);
+	ft_memcpy(data->input.oldkey, data->input.key, 282);
 	SDL_PollEvent(&data->input.ev);
     if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
