@@ -132,6 +132,8 @@ void			move_cam(t_data *data);
 void			move_obj(t_data *data);
 void			move_light(t_data *data);
 
+void			light_cursor(t_data *data);
+
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);
 int				main(int argc, char *argv[]);

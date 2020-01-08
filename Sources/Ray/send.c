@@ -49,7 +49,7 @@ int			start_ray(t_data *data)
 			data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
 			data->ray.direction = normalize(find_dir(data, x, y));
 			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] =
-				send_ray(data, data->ray, 1);
+				send_ray(data, data->ray, 3);
 			while (x % (data->flag.pixel + 1))
 			{
 				((unsigned int *)data->window.pxl)[x + 1 + (y * data->window.xscreen)] =

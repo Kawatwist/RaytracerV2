@@ -3,6 +3,7 @@
 .SH Tache
 +   Deplacement Cam
 +   Speed movement cam
+
 +   Input (Size + Specs)
 +   Input Change Bounce numbers + Enable/Disable Bounce
 -   Multi-Thread

@@ -29,14 +29,14 @@ typedef struct	s_effect
 {
 	t_point			movement;
 	t_point			axe;
-	int				color;
+	int				color;//3 input
 	int				id_texture;
 	int				id_normal;
 	int				id_rotation;
 	char			type;
-	unsigned char	reflection;
-	unsigned char	opacity;
-	unsigned char	refraction;
+	unsigned char	reflection;//1 input
+	unsigned char	opacity;//1 input
+	unsigned char	refraction;//1 input
 	unsigned char	texture;
 	unsigned char	normal;
 	unsigned char	flag;		// mov + axe

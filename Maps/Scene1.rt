@@ -1,7 +1,7 @@
 [header]
 	camera : 2
 	object : 7
-	light : 1
+	light : 2
 	nb_texture : 2
 	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
@@ -12,7 +12,7 @@
 	intensity : 1
 [light:2]
 	origin : {1.0 0.5 3.5}
-	color : 0xFF00FF
+	color : 0xFFFFFF
 	distance : 5
 	intensity : 1
 [camera:1]
@@ -30,7 +30,7 @@
 			texture : 255
 			mv : 1
 [object:plan]
-	color : 0x7F7F6F
+	color : 0x7F6F7F
 	origin : {-2.5 -2.5 0}
 	direction : {0 -1 0}
 [object:plan]

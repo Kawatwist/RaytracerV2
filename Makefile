@@ -68,6 +68,8 @@ SRC				=	main.c										\
 					reflexion.c									\
 					refraction.c								\
 					rot_matrice.c								\
+					move_type.c									\
+					light_cursor.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

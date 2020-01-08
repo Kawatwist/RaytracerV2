@@ -52,6 +52,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	// Set Effect
 	if (bounce)
 	{
+		bounce--;
 		if (((t_base *)obj)->effect.reflection)
 		{
 			tmp = setup_reflection(data, obj, ray, dist[0]);
@@ -70,7 +71,6 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 			color[1] = send_ray(data, tmp, bounce);
 			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.opacity / 255.0);
 		}
-		bounce--;
 	}
 	return (color[0]);
 }
