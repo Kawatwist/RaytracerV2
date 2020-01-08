@@ -1,28 +1,18 @@
 [header]
 	camera : 2
 	object : 7
-	light : 3
+	light : 1
 	nb_texture : 2
 	textures : "./texture/HD2.tga"
-	textures : "./texture/planet/moon.tga"
+	textures : "./texture/test.tga"
 [light:1]
-	origin : {-1 0.5 1.5}
-	color : 0xFF
-	distance : 10
+	origin : {-1 0.5 3.5}
+	color : 0xFFFFFF
+	distance : 500
 	intensity : 1
-[light:2]
-	origin : {0.0 0.5 1.5}
-	color : 0xFF00
-	distance : 10
-	intensity : 1
-[light:3]
-	origin : {1.0 0.5 1.5}
-	color : 0xFF0000
-	distance : 10
-	intensity : 1
-[light:3]
-	origin : {1.0 0.5 -1.5}
-	color : 0xFF00FF
+[light:1]
+	origin : {1 0.5 0}
+	color : 0xFFFFFF
 	distance : 5
 	intensity : 1
 [camera:1]
@@ -35,32 +25,31 @@
 	origin : {0 0 5}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-		[effect]
-			id_texture : 0
-			texture : 255
-			mv : 1
 [object:plan]
-	color : 0x7F7F6F
+	color : 0x7F7F7F
 	origin : {-2.5 -2.5 0}
 	direction : {0 -1 0}
 [object:plan]
-	color : 0x7F6F7F
+	color : 0x7F7F7F
 	origin : {-2.5 -2.5 0}
 	direction : {-1 0 0}
 [object:plan]
-	color : 0x6F7F7F
+	color : 0x7F7F7F
 	origin : {3.5 0 0}
 	direction : {1 0 0}
 [object:plan]
-	color : 0x7F7F8F
+	color : 0x7F7F7F
 	origin : {0 3.5 0}
 	direction : {0 1 0}
 [object:plan]
-	color : 0x7F8F7F
+	color : 0x7F7F7F
 	origin : {0 0 -5}
 	direction : {0 0 -1}
-[object:sphere]
+[object:cone]
 	color : 0xFF00FF
-	origin : {0 0 1}
+	origin : {0 0 3}
 	direction : {0 1 0}
-	rayon : 0.5
+	angle : 10
+		[effect]
+			id_texture : 1
+			texture : 0

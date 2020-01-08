@@ -11,7 +11,7 @@ static t_point	cylinder_normal(t_cylinder c, t_vec collide)
 	high = dot_product(oc, c.origin.direction);
 	plane = mult_vec2(c.origin.direction, high);
 	normal = sub_vec(collide.origin, add_vec(plane, c.origin.origin));
-	return (normalize(normal));
+	return (neg_norm(normalize(normal)));
 }
 
 static t_point	cone_normal(t_cone c, t_vec collide)

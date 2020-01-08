@@ -2,6 +2,8 @@
 
 int			loop(t_data data)
 {
+	data.flag.pixel = 2;
+	data.obj.type_index = 2;
 	while (TRUE)
 	{
 		input(&data);
@@ -17,8 +19,6 @@ int			loop(t_data data)
 		SDL_RenderCopy(data.window.rend, data.window.txt, NULL, NULL);
 		SDL_RenderPresent(data.window.rend);
 		SDL_Delay(16);
-
-	// rot_cam(&data);
 	}
 	return (0);
 }

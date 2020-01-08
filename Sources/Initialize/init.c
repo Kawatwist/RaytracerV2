@@ -11,7 +11,8 @@ int		initialize(t_data *data) // NEED TO GET WINDOW SIZE
 	data->dist[3] = cylinder;
 	data->txt[0] = texture_sphere;
 	data->txt[1] = texture_plan;
-	data->txt[2] = texture_cylinder;
+	data->txt[2] = texture_cone;
+	data->txt[3] = texture_cylinder;
 	data->move[0] = move_cam;
 	data->move[1] = move_obj;
 	data->move[2] = move_light;

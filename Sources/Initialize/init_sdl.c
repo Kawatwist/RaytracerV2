@@ -5,7 +5,7 @@ int			initialize_sdl(t_data *data)
 	data->window.xscreen = 400;
 	data->window.yscreen = 400;
 	SDL_Init(SDL_INIT_EVERYTHING);
-	data->window.window = SDL_CreateWindow("Rt", 0, 0, data->window.xscreen,
+	data->window.window = SDL_CreateWindow("Rt", 500, 500, data->window.xscreen,
 		data->window.yscreen, SDL_WINDOW_SHOWN);
 	if (data->window.window == NULL)
 		return (1);

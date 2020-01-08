@@ -54,6 +54,7 @@ t_point			find_normal_texture(t_data data, void *obj, t_vec collide, t_point nor
 t_point			texture_plan(t_data *data, void *obj, t_vec ray);
 t_point			texture_sphere(t_data *data, void *obj, t_vec ray);
 t_point			texture_cylinder(t_data *data, void *obj, t_vec ray);
+t_point			texture_cone(t_data *data, void *obj, t_vec ray);
 
 float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);
