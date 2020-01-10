@@ -1,71 +1,32 @@
 #include "rt.h"
 
-// float		cone(void *coo, t_vec hit)
-// {
-// 	t_calc	c;
-// 	double	tan_r2;
-
-// 	tan_r2 = tan(((t_cone *)coo)->ang) * tan(((t_cone *)coo)->ang);
-// 	c.a = hit.direction.x * hit.direction.x
-// 		+ hit.direction.y * hit.direction.y
-// 		- hit.direction.z * hit.direction.z * tan_r2;
-// 	c.b = 2 * (hit.direction.x * hit.origin.x
-// 			+ hit.direction.y * hit.origin.y
-// 			- hit.direction.z * hit.origin.z * tan_r2);
-// 	c.c = hit.origin.x * hit.origin.x + hit.origin.y * hit.origin.y
-// 		- hit.origin.z * hit.origin.z * tan_r2;
-// 	c.delta = (square(c.b) - (4 * c.a * c.c));
-// 	if (c.delta > 0)
-// 	{
-// 		c.a *= 2;
-// 		c.sqt = sqrt(c.delta);
-// 		c.delta = (-c.b - c.sqt) / c.a;
-// 		c.a = (-c.b + c.sqt) / c.a;
-// 		if (c.delta < c.a && c.delta > 0)
-// 			c.a = c.delta;
-// 	}
-// 	if (c.a < 0)
-// 		return (-1);
-// 	return (c.a);
-// }
-
-//    a   = D|D - (1+k*k)*(D|V)^2
-//    b/2 = D|X - (1+k*k)*(D|V)*(X|V)
-//    c   = X|X - (1+k*k)*(X|V)^2
-
 float		cone(void *coo, t_vec ray)
 {
-	t_cone	cone;
-	float	ang;
-	t_point	co;
 	t_calc	c;
+	t_cone	*cone;
+	double	k;
+	t_point oc;
 
-	cone = *(t_cone *)coo;
-	co = sub_vec(cone.origin.origin, ray.origin);
-	ang = square(cos(rad(cone.ang)));
-	c.a = dot_product(ray.direction, ray.direction) - (1 + square(tan(rad(cone.ang)))) * square((dot_product(ray.direction, cone.origin.direction)));
-	c.b = 2 * (dot_product(ray.direction, sub_vec(cone.origin.origin, ray.origin)) - (1 + square(tan(rad(cone.ang)))) * (dot_product(ray.direction, cone.origin.direction)) * dot_product(sub_vec(cone.origin.origin, ray.origin), cone.origin.direction));
-	c.c = dot_product(sub_vec(cone.origin.origin, ray.origin), sub_vec(cone.origin.origin, ray.origin)) 
-	- (1 + square(tan(rad(cone.ang)))) * 
-	square(dot_product(sub_vec(cone.origin.origin, ray.origin), cone.origin.direction));
-	if (!c.a && c.b)
-		return (-1);
-	c.delta = (square(c.b) - (4 * c.a * c.c));
-	if (c.delta > 0)
-	{
-		c.a *= 2;
-		c.sqt = sqrt(c.delta);
-		c.delta = (-c.b - c.sqt) / c.a;
-		c.a = (-c.b + c.sqt) / c.a;
-	}
-	if (c.a < 0 && c.delta < 0)
-		return (-1);
-	else if (c.a < 0)
-		return (c.delta);
-	else if (c.delta < 0)
-		return (c.a);
-
-	return (c.a < c.delta ? c.a : c.delta);
+	cone = coo;
+	k = tan(rad(cone->ang) / 2.0);
+	k = k * k;
+	oc = sub_vec(ray.origin, cone->origin.origin);
+	c.a = dot_product(ray.direction, ray.direction)
+			- (1 + k) * dot_product(ray.direction, cone->origin.direction) *
+			dot_product(ray.direction, cone->origin.direction);
+	c.b = 2 * (dot_product(ray.direction, oc))
+			- (1 + k) * dot_product(ray.direction, cone->origin.direction) *
+			dot_product(oc, cone->origin.direction);
+	k = dot_product(oc, oc) - (1 + k) *
+			dot_product(oc, cone->origin.direction) *
+			dot_product(oc, cone->origin.direction);
+	c.delta = (c.b * c.b) - (4 * c.a * k);
+	if (c.delta <= 0.0)
+		return (-1.0);
+	if ((k = (-c.b - sqrt(c.delta)) / (2.0 * c.a)) > 0)
+		return (k);
+	else
+		return ((-c.b + sqrt(c.delta)) / (2.0 * c.a));
 }
 
 float		cylinder(void *cylinder, t_vec ray)
