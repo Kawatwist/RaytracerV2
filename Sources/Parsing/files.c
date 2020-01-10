@@ -20,10 +20,32 @@ int				init_camera(t_data *data)
 	return (0);
 }
 
+static int		init_normal(t_data *data)
+{
+	t_tga	*img;
+	int		index;
+
+	if (data->obj.nb_normal < 0)
+		data->obj.nb_normal = 0;
+	if ((data->normal = malloc(sizeof(t_tga *) * data->obj.nb_normal)) == NULL)
+		return (1);
+	ft_bzero(data->normal, sizeof(t_tga*) * data->obj.nb_normal);
+	index = 0;
+	while (index < data->obj.nb_normal)
+	{
+		img = load_tga(data->obj.normal[index]);
+		if (img == NULL)
+			img = load_tga("./Texture/Invalid.tga");
+		data->normal[index] = img;
+		index++;
+	}
+	return (0);
+}
+
 static int		init_texture(t_data *data)
 {
 	t_tga	*img;
-	int	index;
+	int		index;
 
 	if (data->obj.nb_texture < 0)
 		data->obj.nb_texture = 0;
@@ -67,6 +89,7 @@ int				parsing_files(t_data *data, char *old)
 	init_item(data);
 	init_light(data);//rajout
 	init_texture(data);
+	init_normal(data);
 	while (old != NULL || get_next_line(data->parse.fd, &line)) // free line
 	{
 		if (old != NULL)

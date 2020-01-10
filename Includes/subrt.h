@@ -50,7 +50,9 @@ typedef struct      s_object
 	t_camera		*camera;
 	int             nb_camera;
 	char			**texture;
+	char			**normal;
 	int             nb_texture;
+	int             nb_normal;
 	int	            index[3];
 	int         	type_index;
 }                   t_object;

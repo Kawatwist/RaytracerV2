@@ -1,13 +1,13 @@
 #include "rt.h"
 
-t_point		find_refraction(void *obj, t_vec ray)
+t_point		find_refraction(t_data data, void *obj, t_vec ray)
 {
 	float	indice;
 	float	angle;
 	t_point	normal;
 	t_point	ret;
 
-	normal = find_normal(obj, ray);
+	normal = normalize(find_normal_with_txt(data, obj, ray));
 	indice = 2;
 	angle = dot_product(ray.direction, normal);
 	ret.x = ray.direction.x * indice - normal.x * (-angle + indice * angle);

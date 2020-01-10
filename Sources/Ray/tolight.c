@@ -69,12 +69,12 @@ unsigned int	ray_to_light(t_data *data, t_vec ray, int base)
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin, data->obj.light[index].origin));
 		len < 0 ? len = 0 : 0;
 		len > 1 ? len = 1 : 0;
-		// obj[1] = stop_light(data, data->obj.light[index], ray);
-		// if ((obj[1] >= (length(sub_vec(data->obj.light[index].origin, ray.origin))) && obj[1] > 0.0) || obj[1] == -1)
-		// 	obj[0] = 1.0;
-		// else if (obj[1] > 0.0)
-		// 	obj[0] = obj[1] / (length(sub_vec(data->obj.light[index].origin, ray.origin)));
-		// else
+		obj[1] = stop_light(data, data->obj.light[index], ray);
+		if ((obj[1] >= (length(sub_vec(data->obj.light[index].origin, ray.origin))) && obj[1] > 0.0) || obj[1] == -1)
+			obj[0] = 1.0;
+		else if (obj[1] > 0.0)
+			obj[0] = obj[1] / (length(sub_vec(data->obj.light[index].origin, ray.origin)));
+		else
 			obj[0] = 1;
 		len > 1 ? len = 1 : 0;
 		len < 0 ? len = 0 : 0;

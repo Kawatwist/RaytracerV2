@@ -19,25 +19,29 @@ t_point		find_normal_texture(t_data data, void *obj,
 
 	if ((((t_sphere *)obj)->effect.type & 0xFF) == PLAN)
 		uv = texture_plan(&data, obj, collide);
-	if ((((t_sphere *)obj)->effect.type & 0xFF) == SPHERE)
+	else if ((((t_sphere *)obj)->effect.type & 0xFF) == SPHERE)
 		uv = texture_sphere(&data, obj, collide);
+	else if ((((t_sphere *)obj)->effect.type & 0xFF) == CONE)
+		uv = texture_cone(&data, obj, collide);
+	else if ((((t_sphere *)obj)->effect.type & 0xFF) == CYLINDER)
+		uv = texture_cylinder(&data, obj, collide);
 	// uv.x = uv.x + (((t_sphere *)obj)->effect.id_texture &
 	// 	MV ? data.rotation : 0);
-	info = (((t_sphere *)obj)->effect.id_texture & (0xFFFF0000 - MV));
-	info += data.texture[info >> 16]->w;
-	while (uv.x < 0 || uv.x > (data.texture[info >> 16])->w)
-		uv.x += (uv.x < 0 ? (data.texture[info >> 16])->w :
-			-(data.texture[info >> 16])->w);
-	while (uv.y < 0 || uv.y > (data.texture[info >> 16])->h)
-		uv.y = uv.y > (data.texture[info >> 16])->h ? 0 : uv.y;
-	normal2.x = (((((data.texture[info >> 16])->data[(int)(uv.x +
+	info = (((t_sphere *)obj)->effect.id_normal & (0xFFFF0000 - MV));
+	info += data.normal[info >> 16]->w;
+	while (uv.x < 0 || uv.x > (data.normal[info >> 16])->w)
+		uv.x += (uv.x < 0 ? (data.normal[info >> 16])->w :
+			-(data.normal[info >> 16])->w);
+	while (uv.y < 0 || uv.y > (data.normal[info >> 16])->h)
+		uv.y = uv.y > (data.normal[info >> 16])->h ? 0 : uv.y;
+	normal2.x = (((((data.normal[info >> 16])->data[(int)(uv.x +
 		(uv.y * (info & 0xFFFF)))] & 0xFF) / 255.0) * 2) - 1);
-	normal2.y = ((((((data.texture[info >> 16])->data[(int)(uv.x +
+	normal2.y = ((((((data.normal[info >> 16])->data[(int)(uv.x +
 		(uv.y * (info & 0xFFFF)))] & 0xFF00) >> 8) / 255.0) * 2) - 1);
-	normal2.z = ((((((data.texture[info >> 16])->data[(int)(uv.x +
+	normal2.z = ((((((data.normal[info >> 16])->data[(int)(uv.x +
 		(uv.y * (info & 0xFFFF)))] & 0xFF0000) >> 16) / 255.0) * 2) - 1);
 	normal = normalize(add_vec(normal, mult_vec2(neg_norm(normal2),
-		dot_product(normal, normalize(normal2)) * 0.5)));
+		dot_product(normal, normalize(normal2)) * 0.5))); // FAUX
 	return (normal);
 }
 

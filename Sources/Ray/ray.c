@@ -1,11 +1,11 @@
 #include "rt.h"
 
-static t_vec		setup_refraction(void *obj, t_vec ray, float dist)
+static t_vec		setup_refraction(t_data data, void *obj, t_vec ray, float dist)
 {
 	t_vec tmp;
 
 	tmp.origin = set_neworigin_neg(ray, dist);
-	tmp.direction = find_refraction(obj, ray);
+	tmp.direction = find_refraction(data, obj, ray);
 	return (tmp);
 }
 
@@ -40,18 +40,17 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 		return (0);
 	tmp.origin = set_neworigin(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
-	// Find Color over Texture / Item ...
 	color[0] = find_color(data, obj, tmp);
-	// Setup Light
 	tmp.origin = set_neworigin_neg(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
-	tmp.direction = find_normal(obj, tmp);
+	tmp.direction = find_normal_with_txt(*data, obj, tmp);
 	color[0] = ray_to_light(data, tmp, color[0]);
 	// if (!dist[1])
 	// 	color[0] = 0x0;
 	// Set Effect
 	if (bounce)
 	{
+		bounce--;
 		if (((t_base *)obj)->effect.reflection)
 		{
 			tmp = setup_reflection(data, obj, ray, dist[0]);
@@ -60,7 +59,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 		}
 		if (((t_base *)obj)->effect.refraction)
 		{
-			tmp = setup_refraction(obj, ray, dist[0]);
+			tmp = setup_refraction(*data, obj, ray, dist[0]);
 			color[1] = send_ray(data, tmp, bounce);
 			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.refraction / 255.0);
 		}
@@ -70,7 +69,6 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 			color[1] = send_ray(data, tmp, bounce);
 			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.opacity / 255.0);
 		}
-		bounce--;
 	}
 	return (color[0]);
 }

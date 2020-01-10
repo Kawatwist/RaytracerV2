@@ -43,7 +43,6 @@ static t_point	add_rot(t_point mov, char *str)
 
 static int	fill_effect(t_effect *effect, char *line)
 {
-	printf("%s\n", line);
 	if (!ft_strncmp("\t\t\tmv : ", line, 8))
 		effect->flag += (ft_atoi(line + 8) > 0 ? MV : 0);
 	else if (!ft_strncmp("\t\t\trefraction : ", line, 16))
@@ -56,8 +55,12 @@ static int	fill_effect(t_effect *effect, char *line)
 		effect->movement = add_rot(effect->movement, line + 3);
 	else if (!ft_strncmp("\t\t\ttexture : ", line, 13))
 		effect->texture = ft_atoi(line + 13);
+	else if (!ft_strncmp("\t\t\tnormal : ", line, 12))
+		effect->normal = ft_atoi(line + 12);
 	else if (!ft_strncmp("\t\t\tid_texture : ", line, 16))
 		effect->id_texture = ft_atoi(line + 16);
+	else if (!ft_strncmp("\t\t\tid_normal : ", line, 15))
+		effect->id_normal = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t[effect]", line, 10))
 		return (0);
 	else

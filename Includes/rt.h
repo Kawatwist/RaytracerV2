@@ -3,6 +3,7 @@
 
 # include <stdlib.h>
 # include <math.h>
+# include <pthread.h>
 # include "libft.h"
 # include "tga_reader.h"
 # include "object.h"
@@ -19,7 +20,6 @@ typedef struct		s_flag
 	unsigned int	bounce : 1;
 }					t_flag;
 
-
 struct	s_data
 {
 	t_window	window;
@@ -29,6 +29,7 @@ struct	s_data
 	t_flag		flag;
 	t_vec		ray;
 	t_tga		**texture;
+	t_tga		**normal;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
 	void		(*move[3]) (t_data *data);
@@ -36,7 +37,7 @@ struct	s_data
 };
 
 //				EFFECT
-t_point			find_refraction(void *obj, t_vec ray);
+t_point			find_refraction(t_data data, void *obj, t_vec ray);
 t_point			find_reflexion(void *obj, t_vec ray, t_data data);
 t_point			find_normal(void *object, t_vec collide);
 //				EFFECT
@@ -50,6 +51,7 @@ void        	setup_light(t_data *data);
 //				OBJECT
 int				find_size(t_data data, void *obj);
 t_point			find_normal_texture(t_data data, void *obj, t_vec collide, t_point normal);
+t_point			find_normal_with_txt(t_data data, void *object, t_vec collide);
 
 t_point			texture_plan(t_data *data, void *obj, t_vec ray);
 t_point			texture_sphere(t_data *data, void *obj, t_vec ray);

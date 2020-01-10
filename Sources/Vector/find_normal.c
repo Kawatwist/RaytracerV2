@@ -47,3 +47,13 @@ t_point			find_normal(void *object, t_vec collide)
 		normal = cone_normal(*((t_cone *)object), collide);
 	return (normalize(normal));
 }
+
+t_point			find_normal_with_txt(t_data data, void *object, t_vec collide)
+{
+	t_point normal;
+
+	normal = find_normal(object, collide);
+	if (((t_base *)object)->effect.normal)
+		normal = find_normal_texture(data, object, collide, normal);
+	return (normal);
+}

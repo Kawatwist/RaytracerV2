@@ -7,7 +7,6 @@ static	t_point	find_pos(t_data *data, int x, int y)
 	ret = veccpy(data->obj.camera[0].sc);
 	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
 	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
-	ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
 	return (ret);
 }
 
@@ -41,8 +40,8 @@ static void	rot_cam_input(t_data *data, int key_code)
 
 static void	create_light(t_data *data, t_light *new, int x, int y)
 {
-	new->color = 0xFF00FF;
-	new->distance = 5;
+	new->color = 0xFFFFFF;
+	new->distance = 10;
 	new->intensity = 1;
 	new->origin = find_pos(data, x, y);
 }
@@ -55,15 +54,14 @@ static void	light_cursor(t_data *data)
 	{
 		if (curr == 0)
 		{
-			data->obj.nb_light += 1;
 			create_light(data, &data->obj.light[data->obj.nb_light], data->input.x, data->input.y);
+			data->obj.nb_light += 1;
 			curr = 1;
 		}
 		else
 		{
-			data->obj.light[data->obj.nb_light].origin = find_pos(data,data->input.x, data->input.y);
+			data->obj.light[data->obj.nb_light - 1].origin = find_pos(data,data->input.x, data->input.y);
 		}
-		
 	}
 	else if (curr == 1)
 	{
