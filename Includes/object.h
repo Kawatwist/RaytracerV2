@@ -2,6 +2,7 @@
 # define OBJECT_H
 
 # define MV 0b10000000
+#define  KEY_O SDL_SCANCODE_O
 
 typedef enum	e_item
 {
@@ -27,18 +28,18 @@ typedef struct	s_vec
 
 typedef struct	s_effect
 {
-	t_point			movement;
-	t_point			axe;
-	int				color;//3 input
-	int				id_texture;
-	int				id_normal;
-	int				id_rotation;
+	t_point			movement;// 3 input
+	t_point			axe;// 3 input
+	int				color;//789
+	int				id_texture;//4
+	int				id_normal;//5
+	int				id_rotation;//6
 	char			type;
-	unsigned char	reflection;//1 input
-	unsigned char	opacity;//1 input
-	unsigned char	refraction;//1 input
-	unsigned char	texture;
-	unsigned char	normal;
+	unsigned char	reflection;//1
+	unsigned char	opacity;//2
+	unsigned char	refraction;//3
+	unsigned char	texture;//0
+	unsigned char	normal;// 1 no num pad
 	unsigned char	flag;		// mov + axe
 }				t_effect;
 
@@ -51,9 +52,9 @@ typedef struct  s_base
 typedef struct	s_light
 {
 	t_point		origin;
-	int			color;
-	float		distance;
-	float		intensity;
+	int			color;//789
+	float		distance;//1
+	float		intensity;//2
 }				t_light;
 
 typedef	struct	s_sphere

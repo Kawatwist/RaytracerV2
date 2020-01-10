@@ -44,10 +44,10 @@ typedef struct		s_camera
 typedef struct      s_object
 {
     void			**item;
-    int             nb_item;
     t_light			*light;
-	int				nb_light;
 	t_camera		*camera;
+    int             nb_item;
+	int				nb_light;
 	int             nb_camera;
 	char			**texture;
 	int             nb_texture;

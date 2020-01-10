@@ -21,14 +21,18 @@ static unsigned int     find_texture_color(t_data *data, void *obj, t_vec ray)
 	unsigned int	ret;
 	int				index;
 
-	index = ((t_base *)obj)->effect.id_texture;
+	index = ((t_base *)obj)->effect.id_texture > data->obj.nb_texture ? 0 : ((t_base *)obj)->effect.id_texture;
 	uv = data->txt[(int)((t_base *)obj)->effect.type] (data, obj, ray);
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ? ((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
 	uv.y = (int)uv.y;
-	while ((int)uv.y >= data->texture[index]->h)
+	while ((int)uv.y > data->texture[index]->h)
 		uv.y -= data->texture[index]->h;
-	while ((int)uv.x >= data->texture[index]->w)
+	while ((int)uv.x > data->texture[index]->w)
 		uv.x -= data->texture[index]->w;
+	while ((int)uv.y < 0)
+		uv.y += data->texture[index]->h;
+	while ((int)uv.x < 0)
+		uv.x += data->texture[index]->w;
 	ret = ((unsigned int *)data->texture[index]->data)[(unsigned int)(uv.x + (uv.y * data->texture[index]->w))];
     ret = ((ret & 0xFF) << 24) +
 			((ret & 0xFF00) << 8) +

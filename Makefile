@@ -70,6 +70,9 @@ SRC				=	main.c										\
 					rot_matrice.c								\
 					move_type.c									\
 					light_cursor.c								\
+					input_obj.c									\
+					input_light.c								\
+					input_cam.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

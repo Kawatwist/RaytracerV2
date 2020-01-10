@@ -31,7 +31,7 @@ struct	s_data
 	t_tga		**texture;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
-	void		(*move[3]) (t_data *data);
+	void		(*move[3]) (t_data *data, void **obj);
 	int			percent;
 };
 
@@ -128,11 +128,31 @@ float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
 //				TOOL
 
-void			move_cam(t_data *data);
-void			move_obj(t_data *data);
-void			move_light(t_data *data);
+void			move_cam(t_data *data, void **obj);
+void			input_move_cam(t_data *data, t_point tmp);
+void		    call_rot_cam(t_data *data);
+
+
+void			move_obj(t_data *data, void **obj);
+void			input_move_obj(t_data *data, void **obj);
+void			input_color_obj(t_data *data, void **obj, char ctrl);
+void			input_descartes_obj(t_data *data, void **obj, char ctrl);
+void			input_id(t_data *data, void **obj, char ctrl);
+
+
+void			move_light(t_data *data, void **obj);
+void			input_move_light(t_data *data, void **light);
+void			input_color_light(t_data *data, void **light, char ctrl);
+void			input_distance_light(t_data *data, void **light, char ctrl);
+void			input_intensity_light(t_data *data, void **light, char ctrl);
+
+
+
 
 void			light_cursor(t_data *data);
+
+/*input_obj*/
+
 
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);

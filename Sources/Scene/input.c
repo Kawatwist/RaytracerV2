@@ -15,6 +15,8 @@ static void	stay_in_case(t_data *data)
 
 static void	input_obj(t_data *data)
 {
+	void		*tmp;
+	void		**obj;
 	static char	enter = 1;
 	//Modif Index
 	if (key_check(*data, SDL_SCANCODE_KP_ENTER))
@@ -31,7 +33,14 @@ static void	input_obj(t_data *data)
 	stay_in_case(data);
 	//Modif Obj
 	//	data->obj.type_index ==> ptr sur function
-	data->move[data->obj.type_index] (data);
+	if (data->obj.type_index == 1)
+		tmp = (data->obj.item[data->obj.index[1]]);
+	else if (data->obj.type_index == 2)
+		tmp = &(data->obj.light[data->obj.index[data->obj.type_index]]);
+	else
+		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
+	obj = &(tmp);
+	data->move[data->obj.type_index] (data, obj);
 }
 
 void        input(t_data *data)
