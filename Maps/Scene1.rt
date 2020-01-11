@@ -1,78 +1,36 @@
 [header]
-	camera : 2
+	camera : 1
 	object : 7
-	light : 3
-	nb_texture : 2
-	nb_normal : 1
+	light : 1
+	nb_texture : 4
+	nb_normal : 3
+	textures : "./texture/normal/weird.tga"
 	textures : "./texture/planet/earth.tga"
 	textures : "./texture/test.tga"
-	normal : "./texture/normal/coussin.tga"
+	textures : "./texture/normal/coussin.tga"
+	normal : "./texture/normal/weird.tga"
+	normal : "./texture/normal/normal.tga"
+	normal : "./texture/normal/normal_boost.tga"
 [light:1]
 	origin : {-1 0.5 0}
-	color : 0xFF0000
-	distance : 2.5
-	intensity : 1
-[light:2]
-	origin : {1 0.5 0}
-	color : 0xFF
-	distance : 2.5
-	intensity : 1
-[light:2]
-	origin : {0 0.5 4}
 	color : 0xFFFFFF
-	distance : 10000
-	intensity : 1
+	distance : 10
+	intensity : 0.5
 [camera:1]
-	origin : {0 0 -5}
+	origin : {0 0 -1}
 	direction : {0 0 1}
-[camera:2]
-	origin : {0 0 0}
-	direction : {0 0 -1}
 [object:plan]
-	origin : {0 0 2}
+	origin : {0 0 2.01}
 	direction : {0 0 1}
 	color : 0x7F7F7F
 		[effect]
-			id_texture : 0
-			texture : 0
-			reflexion : 125
-			normal : 255
-[object:plan]
-	color : 0x7F7F7F
-	origin : {-2.5 -2.5 0}
-	direction : {0 -1 0}
-			reflexion : 125
-			normal : 255
-[object:plan]
-	color : 0x7F7F7F
-	origin : {-2.5 -2.5 0}
-	direction : {-1 0 0}
-			reflexion : 125
-			normal : 255
-[object:plan]
-	color : 0x7F7F7F
-	origin : {2.5 0 0}
-	direction : {1 0 0}
-			reflexion : 125
-			normal : 255
-[object:plan]
-	color : 0x7F7F7F
-	origin : {0 3.5 0}
-	direction : {0 1 0}
-			reflexion : 125
-			normal : 255
-[object:plan]
-	color : 0x7F7F7F
-	origin : {0 0 -5}
-	direction : {0 0 -1}
-			reflexion : 125
-			normal : 255
-[object:sphere]
-	color : 0xFF00FF
-	origin : {0 0 1}
-	direction : {0 1 0}
-	rayon : 1
-		[effect]
+			id_texture : 1
+			id_normal : 1
 			texture : 255
-			refraction : 125
+			reflexion : 0
+			normal : 255
 			mv : 1
+[object:sphere]
+	origin : {0 0 -2.01}
+	direction : {0 0 1}
+	color : 0xFF00FF

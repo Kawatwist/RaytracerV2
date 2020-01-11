@@ -31,7 +31,7 @@ static int		init_normal(t_data *data)
 		return (1);
 	ft_bzero(data->normal, sizeof(t_tga*) * data->obj.nb_normal);
 	index = 0;
-	while (index < data->obj.nb_normal)
+	while (index < data->obj.nb_normal && data->obj.normal[index])
 	{
 		img = load_tga(data->obj.normal[index]);
 		if (img == NULL)

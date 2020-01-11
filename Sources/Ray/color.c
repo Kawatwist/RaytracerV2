@@ -22,7 +22,7 @@ static unsigned int     find_texture_color(t_data *data, void *obj, t_vec ray)
 	int				index;
 
 	index = ((t_base *)obj)->effect.id_texture;
-	uv = data->txt[(int)((t_base *)obj)->effect.type] (data, obj, ray);
+	uv = data->txt[(int)((t_base *)obj)->effect.type] (data, obj, ray, 1);
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ? ((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
 	uv.y = (int)uv.y;
 	while ((int)uv.y >= data->texture[index]->h)

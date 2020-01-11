@@ -96,6 +96,8 @@ int         parsing_head(t_data *data ,char **ret)
 		else
 			break ;
     }
+	if (line && line[0] != '[')
+		return (11);
 	*ret = line;
     return (0);
 }

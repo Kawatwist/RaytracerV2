@@ -1,0 +1,60 @@
+[header]
+	camera : 1
+	object : 7
+	light : 3
+	nb_texture : 1
+	nb_normal : 1
+	textures : "./texture/planet/moon.tga"
+	normal : "./texture/normal/coussin.tga"
+[light:1]
+	origin : {-0.49 -0.40 0.9}
+	color : 0xFF
+	distance : 3
+	intensity : 1
+[light:1]
+	origin : {0 0.40 0.9}
+	color : 0xFF0000
+	distance : 3
+	intensity : 1
+[light:1]
+	origin : {0.49 -0.40 0.9}
+	color : 0xFF
+	distance : 3
+	intensity : 1
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+[object:plan]
+	origin : {0 0 1}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflexion : 255
+			normal : 255
+[object:plan]
+	origin : {0 0 -1}
+	direction : {0 0 -1}
+	color : 0x7F7F7F
+[object:plan]
+	origin : {0.5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			texture : 255
+[object:plan]
+	origin : {-0.5 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+[object:plan]
+	origin : {0 0.5 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+[object:plan]
+	origin : {0 -0.5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+[object:sphere]
+	origin : {0.3 0.3 0.5}
+	direction : {0 0 1}
+	color : 0xFF00FF
+	rayon : 0.02
+			normal : 255
+			mv : 1

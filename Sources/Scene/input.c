@@ -41,7 +41,7 @@ static void	rot_cam_input(t_data *data, int key_code)
 static void	create_light(t_data *data, t_light *new, int x, int y)
 {
 	new->color = 0xFFFFFF;
-	new->distance = 10;
+	new->distance = 5;
 	new->intensity = 1;
 	new->origin = find_pos(data, x, y);
 }
@@ -84,7 +84,6 @@ void		move_light(t_data *data)
 		data->obj.light[data->obj.index[2]].origin.z += 0.1;
 	if (key_old(*data, SDL_SCANCODE_E))
 		data->obj.light[data->obj.index[2]].origin.z -= 0.1;
-	printf("light %d\n", data->obj.index[2]);
 }
 
 void		move_obj(t_data *data)

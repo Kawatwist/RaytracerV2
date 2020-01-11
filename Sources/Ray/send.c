@@ -24,7 +24,7 @@ static void	low_quality(t_data *data, int *x, int *y)
 	while (w < data->window.xscreen)
 	{
 		pxl = 0;
-		while (pxl < (data->flag.pixel))
+		while (pxl < ((data->flag.pixel) * 2))
 		{
 			((unsigned int *)data->window.pxl)[(*x) + ((*y + pxl) * data->window.xscreen) + w] =
 				((unsigned int *)data->window.pxl)[*x + ((*y - 1) * data->window.xscreen) + w];
@@ -50,7 +50,7 @@ int			start_ray(t_data *data)
 			data->ray.direction = normalize(find_dir(data, x, y));
 			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] =
 				send_ray(data, data->ray, 1);
-			while (x % (data->flag.pixel + 1))
+			while (x % ((data->flag.pixel + 1) * 2))
 			{
 				((unsigned int *)data->window.pxl)[x + 1 + (y * data->window.xscreen)] =
 				((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)];

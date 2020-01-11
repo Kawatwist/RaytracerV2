@@ -31,7 +31,7 @@ struct	s_data
 	t_tga		**texture;
 	t_tga		**normal;
 	float		(*dist[4]) (void *obj, t_vec ray);
-	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
+	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
 	void		(*move[3]) (t_data *data);
 	int			percent;
 };
@@ -49,14 +49,14 @@ void        	setup_light(t_data *data);
 //				LIGHT
 
 //				OBJECT
-int				find_size(t_data data, void *obj);
+int				find_size(t_data data, void *obj, int choose);
 t_point			find_normal_texture(t_data data, void *obj, t_vec collide, t_point normal);
 t_point			find_normal_with_txt(t_data data, void *object, t_vec collide);
 
-t_point			texture_plan(t_data *data, void *obj, t_vec ray);
-t_point			texture_sphere(t_data *data, void *obj, t_vec ray);
-t_point			texture_cylinder(t_data *data, void *obj, t_vec ray);
-t_point			texture_cone(t_data *data, void *obj, t_vec ray);
+t_point			texture_plan(t_data *data, void *obj, t_vec ray, int choose);
+t_point			texture_sphere(t_data *data, void *obj, t_vec ray, int choose);
+t_point			texture_cylinder(t_data *data, void *obj, t_vec ray, int choose);
+t_point			texture_cone(t_data *data, void *obj, t_vec ray, int choose);
 
 float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);
