@@ -1,6 +1,6 @@
 #include "rt.h"
 
-static void	rot_cam_input(t_data *data, int key_code)
+static void	rot_cam_input(t_data *data, int key_code)//possibilite de mettre un tmp
 {
 	if (key_code == SDL_SCANCODE_UP)
 	{
@@ -38,7 +38,7 @@ void    call_rot_cam(t_data *data)
 		rot_cam_input(data, SDL_SCANCODE_LEFT);
 	if (key_old(*data, SDL_SCANCODE_RIGHT))
 		rot_cam_input(data, SDL_SCANCODE_RIGHT);
-	printf("cam %d\n", data->obj.index[0]);
+	printf("cam %d\n", data->obj.index[0]);//debug
 }
 
 

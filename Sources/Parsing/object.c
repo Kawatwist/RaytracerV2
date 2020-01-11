@@ -22,7 +22,7 @@ static int	create_type(t_data *data, int index, int type)
 	void	*item;
 
 	if ((item = malloc(tab[(int)type])) == NULL)
-		return (11);
+		return (1);
 	ft_bzero(&((t_base *)item)->effect, sizeof(t_effect));
 	ft_bzero(item, sizeof(item));
 	data->obj.item[index] = item;
@@ -93,6 +93,8 @@ int         parsing_obj(t_data *data, char **old, char *type)
 			if (fill_effect(&(((t_base *)data->obj.item[index])->effect), line))
 				return (11);
 		}
+		else if (ft_strchr(line, '#'))
+			;
 		else
 			return (11);
 	}

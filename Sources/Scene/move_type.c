@@ -1,5 +1,4 @@
 #include "rt.h"
-//4 function dans le fichier
 
 void		move_light(t_data *data, void **light)
 {
@@ -20,7 +19,7 @@ void		move_light(t_data *data, void **light)
 	input_intensity_light(data, light, ctrl);
 	
 	ctrl = 0;	
-	printf("light %d\n", data->obj.index[2]);
+	printf("light %d\n", data->obj.index[2]);//debug
 	printf("Color : [%d]\t[%d]\t[%d]\n", ((*(t_light **)light)->color & 0xFF0000) >> 16, ((*(t_light **)light)->color & 0xFF00) >> 8, ((*(t_light **)light)->color & 0xFF));
 }
 
@@ -37,9 +36,9 @@ void		move_obj(t_data *data, void **obj)
 	input_color_obj(data, obj, ctrl);
 	
 	/*rayon*/
-	if (key_old(*data, KEY_O) && !ctrl && (*(t_base **)obj)->effect.type == SPHERE && (*(t_base **)obj)->effect.type == CYLINDER)// + autre obj avec rayon
+	if (key_old(*data, KEY_O) && !ctrl && ((*(t_base **)obj)->effect.type == SPHERE || (*(t_base **)obj)->effect.type == CYLINDER))// + autre obj avec rayon
 		(*(t_sphere **)obj)->rayon < 100.0 ? (*(t_sphere **)obj)->rayon += 0.1 : 0.0;
-	else if (key_old(*data, KEY_O))
+	else if (key_old(*data, KEY_O) && ctrl)
 		(*(t_sphere **)obj)->rayon > 0.1 ? (*(t_sphere **)obj)->rayon -= 0.1 : 0.0;
 
 	/*reflexion / opaciter / refraction*/

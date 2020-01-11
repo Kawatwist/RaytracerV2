@@ -13,8 +13,8 @@
     Check Reflexion work
     Check Refraction work
 -   Check Opacity work ==> (Change color with transparency)
-+   Parsing (Return Value pour savoir ou stop) (exemple 1 malloc/ 11 parsing ...)
-+   Parsing commentaires
++   Parsing (Return Value pour savoir ou stop) (exemple 1 malloc/ 11 parsing ...) #j'ai fais de mon mieux
++   Parsing commentaires #j'ai fais de mon mieux
     Norme
     Leaks
     Usage ?
@@ -30,12 +30,12 @@ Check If input is cool to use or change :
     [A] Left
     [D] Right
     [V] Quality
-    [5] Change Type -
-    [6] Change Type +
     [<] Rot Cam
     [^] Rot Cam
     [v] Rot Cam
     [>] Rot Cam
+KP  [-] Change Type -
+KP  [+] Change Type +
 KP  [-] Dec index
 KP  [+] Inc index
 
@@ -51,3 +51,5 @@ Add Input :
 j'ai set le rayon a 100.0 max
 
 petit probleme de 1 pixel sur la texture du plan
+
+petit probleme ligne 40 dans le fichier header.c je n'ai pas la possibilité de proteger pour les commentaires dans la map si on met un commentaire en 1ere ligne

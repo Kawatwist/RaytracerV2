@@ -2,9 +2,11 @@
 
 int		initialize(t_data *data) // NEED TO GET WINDOW SIZE
 {
+	int error_value;
+
 	ft_bzero(data, sizeof(t_data));
-	if (initialize_sdl(data))
-		return (1);
+	if ((error_value = initialize_sdl(data)))
+		return (error_value);
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;

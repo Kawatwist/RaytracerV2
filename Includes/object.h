@@ -40,7 +40,7 @@ typedef struct	s_effect
 	unsigned char	refraction;//3
 	unsigned char	texture;//0
 	unsigned char	normal;// 1 no num pad
-	unsigned char	flag;		// mov + axe
+	unsigned char	flag;		// mov + axe // set_bit
 }				t_effect;
 
 typedef struct  s_base

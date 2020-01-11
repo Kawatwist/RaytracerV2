@@ -25,10 +25,14 @@ static void	input_obj(t_data *data)
 		data->obj.index[data->obj.type_index] += 1;
 	if (key_check(*data, SDL_SCANCODE_KP_MINUS) && enter == 1)
 		data->obj.index[data->obj.type_index] -= 1;
-	if (key_check(*data, SDL_SCANCODE_6))
+	if (key_check(*data, SDL_SCANCODE_KP_PLUS) && enter != 1)
 		data->obj.type_index += 1;
-	if (key_check(*data, SDL_SCANCODE_5))
+	if (key_check(*data, SDL_SCANCODE_KP_MINUS) && enter != 1)
 		data->obj.type_index -= 1;
+	// if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
+	// 	data-> += 1;//mettre les bounce
+	// else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
+	// 	data->obj.type_index -= 1;
 	// Check > Nb_type
 	stay_in_case(data);
 	//Modif Obj

@@ -49,7 +49,7 @@ int				init_item(t_data *data)
 	if (data->obj.nb_item < 0)
 		data->obj.nb_item = 0;
 	if ((data->obj.item = malloc(sizeof(void *) * (data->obj.nb_item + 1))) == NULL)
-		return (11);
+		return (1);
 	i = -1;
 	while (++i <= data->obj.nb_item)
 		data->obj.item[i] = NULL;
@@ -65,9 +65,9 @@ int				parsing_files(t_data *data, char *old)
 	line = NULL;
 	init_camera(data);
 	init_item(data);
-	init_light(data);//rajout
+	init_light(data);
 	init_texture(data);
-	while (old != NULL || get_next_line(data->parse.fd, &line)) // free line
+	while (old != NULL || get_next_line(data->parse.fd, &line))
 	{
 		if (old != NULL)
 		{
@@ -89,6 +89,8 @@ int				parsing_files(t_data *data, char *old)
 			if (parsing_light(data, &old, line))
 				return (11);
 		}
+		else if (ft_strchr(line, '#'))
+			;
 		else
 			return (11);
 		free(line);

@@ -26,7 +26,8 @@ static int	fill_texture(t_data *data, char *line)
 	len = ft_strrchr(line, '"') - ft_strchr(line, '"') - 1;
 	if (!(len > 0 && len < 100))
 		return (11);
-	data->obj.texture[index] = ft_strndup(ft_strchr(line, '"') + 1, len);
+	if ((data->obj.texture[index] = ft_strndup(ft_strchr(line, '"') + 1, len)) == NULL)
+		return (1);
 	index++;
 	return (0);
 }
@@ -36,11 +37,11 @@ int         parsing_head(t_data *data ,char **ret)
     char        *line;
 
     line = NULL;
-    if (!(get_next_line(data->parse.fd, &line)))
+    while (get_next_line(data->parse.fd, &line) && line[0] == '#')
+        ;
+	if (ft_strncmp("[header]", line, 8))
         return (11);
-    if (ft_strncmp("[header]", line, 8))
-        return (11);
-    while ((get_next_line(data->parse.fd, &line)) && ft_strncmp("\t\t", line, 2)) // Free line
+    while ((get_next_line(data->parse.fd, &line)) && ft_strncmp("\t\t", line, 2))
     {
         if (!ft_strncmp("\tcamera : ", line, 10))
 			data->obj.nb_camera = ft_atoi(&(line[10]));
@@ -55,8 +56,11 @@ int         parsing_head(t_data *data ,char **ret)
 			if (fill_texture(data, line))
 				return (11);
 		}
+		else if (ft_strchr(line, '#'))
+			;
 		else
 			break ;
+		free(line);
     }
 	*ret = line;
     return (0);
