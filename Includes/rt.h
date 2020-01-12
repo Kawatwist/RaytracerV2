@@ -33,6 +33,7 @@ struct	s_data
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray);
 	void		(*move[3]) (t_data *data, void **obj);
 	int			percent;
+	int			bounce;
 };
 
 //				EFFECT
@@ -129,7 +130,7 @@ float			length(t_point v1);
 //				TOOL
 
 void			move_cam(t_data *data, void **obj);
-void			input_move_cam(t_data *data, t_point tmp);
+void			input_move_cam(t_data *data, t_point tmp, void **cam);
 void		    call_rot_cam(t_data *data);
 
 

@@ -42,30 +42,23 @@ void    call_rot_cam(t_data *data)
 }
 
 
-void	input_move_cam(t_data *data, t_point tmp)
+void	input_move_cam(t_data *data, t_point tmp, void **cam)
 {
-    if (key_old(*data, SDL_SCANCODE_A))
-	{
-		tmp = roty(tmp, 90);
-		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
-		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
-		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
-	}
 	if (key_old(*data, SDL_SCANCODE_D))
 	{
 		tmp = roty(tmp, 90);
-		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(tmp, 0.5));
-		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(tmp, 0.5));
+		(*(t_camera **)cam)->pos.origin = sub_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));
+		(*(t_camera **)cam)->sc = sub_vec((*(t_camera **)cam)->sc, mult_vec2(tmp, 0.5));
 		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
 	}
 	if (key_old(*data, SDL_SCANCODE_LSHIFT))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
-		data->obj.camera[data->obj.index[2]].sc = add_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		(*(t_camera **)cam)->pos.origin = add_vec((*(t_camera **)cam)->pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		(*(t_camera **)cam)->sc = add_vec((*(t_camera **)cam)->sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
 	}
 	if (key_old(*data, SDL_SCANCODE_SPACE))
 	{
-		data->obj.camera[data->obj.index[2]].pos.origin = sub_vec(data->obj.camera[data->obj.index[2]].pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
-		data->obj.camera[data->obj.index[2]].sc = sub_vec(data->obj.camera[data->obj.index[2]].sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		(*(t_camera **)cam)->pos.origin = sub_vec((*(t_camera **)cam)->pos.origin, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
+		(*(t_camera **)cam)->sc = sub_vec((*(t_camera **)cam)->sc, mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
 	}
 }

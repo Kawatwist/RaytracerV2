@@ -63,3 +63,4 @@
 		[effect]
 			id_texture : 1
 			texture : 255
+			refraction : 255

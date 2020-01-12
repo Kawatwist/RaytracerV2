@@ -49,7 +49,7 @@ static int	fill_effect(t_effect *effect, char *line)
 		effect->refraction = ft_atoi(line + 16);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
 		effect->opacity = ft_atoi(line + 13);
-	else if (!ft_strncmp("\t\t\treflexion : ", line, 15))
+	else if (!ft_strncmp("\t\t\treflection : ", line, 15))
 		effect->reflection = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t\trot", line, 6))
 		effect->movement = add_rot(effect->movement, line + 3);
