@@ -29,36 +29,36 @@
 	direction : {0 0 -1}
 	color : 0x7F7F7F
 			mv : 1
-			reflexion : 255
+			reflection : 255
 [object:plan]
 	origin : {0 0 -1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-			reflexion : 255
+			reflection : 255
 [object:plan]
 	origin : {0.5 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
 			texture : 255
-			reflexion : 255
+			reflection : 255
 [object:plan]
 	origin : {-0.5 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
-			reflexion : 255
+			reflection : 255
 [object:plan]
 	origin : {0 0.5 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
-			reflexion : 50
+			reflection : 50
 [object:plan]
 	origin : {0 -0.5 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
-			reflexion : 255
+			reflection : 255
 [object:sphere]
 	origin : {0.3 0.3 0.5}
 	color : 0xFF00FF
-	rayon : 0.02
+	rayon : 0.2
 			normal : 255
 			mv : 1

@@ -2,7 +2,7 @@
 #			Scene 42 : Planete				#
 #############################################
 [header]
-	camera : 1
+	camera : 2
 	object : 7
 	light : 2
 	nb_texture : 2
@@ -21,48 +21,45 @@
 	intensity : 1
 ############### Camera ##################
 [camera:1]
-	origin : {0 0 -1}
+	origin : {0 0 -5}
 	direction : {0 0 1}
 [camera:2]
 	origin : {0 0 0}
 	direction : {0 0 -1}
 ############### Object ##################
 [object:plan]
-	origin : {0 0 2.01}
-	direction : {0 0 1}
+	origin : {0 0 5}
+	direction : {0 0 -1}
 	color : 0x7F7F7F
 		[effect]
-			id_texture : 1
-			id_normal : 1
+			id_texture : 0
 			texture : 255
 			mv : 0
 [object:plan]
 	color : 0x7F6F7F
 	origin : {-2.5 -2.5 0}
-	direction : {0 -1 0}
+	direction : {0 1 0}
 [object:plan]
 	color : 0x7F6F7F
 	origin : {-2.5 -2.5 0}
-	direction : {-1 0 0}
+	direction : {1 0 0}
 [object:plan]
 	color : 0x6F7F7F
 	origin : {3.5 0 0}
-	direction : {1 0 0}
+	direction : {-1 0 0}
 [object:plan]
 	color : 0x7F7F8F
 	origin : {0 3.5 0}
-	direction : {0 1 0}
+	direction : {0 -1 0}
 [object:plan]
 	color : 0x7F8F7F
 	origin : {0 0 -5}
-	direction : {0 0 -1}
-[object:sphere]
-	origin : {0 0 -2.01}
 	direction : {0 0 1}
+[object:sphere]
 	color : 0xFF00FF
 	origin : {0 0 1}
 	direction : {0 1 0}
-	rayon : 0.5
+	rayon : 1
 		[effect]
 			id_texture : 1
 			texture : 255

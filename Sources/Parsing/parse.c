@@ -6,9 +6,9 @@ int		parsing(t_data *data, int nb, char *arg[])
 
 	line = NULL;
 	if (nb != 2)
-		return (11);//je sais pas quoi mettre
+		return (10);
 	if ((data->parse.fd = open(arg[1], O_RDONLY)) == -1)
-		return (11);
+		return (10);
 	if (parsing_head(data, &line))
 		return (11);
 	if (parsing_files(data, line))

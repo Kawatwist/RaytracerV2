@@ -34,7 +34,7 @@ struct	s_data
 	t_tga		**normal;
 	float		(*dist[4]) (void *obj, t_vec ray);
 	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
-	void		(*move[3]) (t_data *data);
+	void		(*move[3]) (t_data *data, void **obj);
 	int			percent;
 	int			bounce;
 };

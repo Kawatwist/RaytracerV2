@@ -4,7 +4,7 @@ static t_vec		setup_refraction(t_data data, void *obj, t_vec ray, float dist)
 {
 	t_vec tmp;
 
-	tmp.origin = set_neworigin_neg(ray, dist);
+	tmp.origin = set_neworigin_op(ray, dist);
 	tmp.direction = find_refraction(data, obj, ray);
 	return (tmp);
 }
