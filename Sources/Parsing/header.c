@@ -12,6 +12,7 @@ static int	first_normal(t_data *data)
 		data->obj.normal[i] = NULL;
 		i++;
 	}
+	ft_putendl("Normal Mapping is curently disable\n");
 	return (0);
 }
 
@@ -71,7 +72,7 @@ int         parsing_head(t_data *data ,char **ret)
         return (11);
     if (ft_strncmp("[header]", line, 8))
         return (11);
-    while ((get_next_line(data->parse.fd, &line)) && ft_strncmp("\t\t", line, 2)) // Free line
+    while ((get_next_line(data->parse.fd, &line)) && ft_strncmp("\t\t", line, 2))
     {
         if (!ft_strncmp("\tcamera : ", line, 10))
 			data->obj.nb_camera = ft_atoi(&(line[10]));
@@ -95,6 +96,7 @@ int         parsing_head(t_data *data ,char **ret)
 		}
 		else
 			break ;
+		free(line);
     }
 	if (line && line[0] != '[')
 		return (11);

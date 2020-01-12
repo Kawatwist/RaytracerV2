@@ -10,6 +10,8 @@
 # include "subrt.h"
 
 # define TRUE 1
+# define XSCREEN 800
+# define YSCREEN 800
 
 typedef struct	s_data t_data;
 

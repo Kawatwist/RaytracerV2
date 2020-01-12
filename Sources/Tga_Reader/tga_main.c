@@ -58,11 +58,5 @@ t_tga		*load_tga(const char *path)
 	}
 	else if (createpxl(tga) == 1)
 		return (free_tga(tga));
-	// printf("Coucou %p\n", tga->data);
-	// if (tga->data && tga->xorigin == 0)
-	// 	rotatepxl(tga);
-	// printf("Coucou\n");
-	// if (tga->data && tga->yorigin == 0 && tga->new_i == (tga->w * tga->h * 4))
-	// 	sym_vert(tga);
 	return (tga);
 }

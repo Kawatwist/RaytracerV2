@@ -80,7 +80,7 @@ int         parsing_obj(t_data *data, char **old, char *type)
 		return (11);
 	if (val == NONE || create_type(data, index, val))
 		return (11);
-	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1)) // Free Line
+	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
 		if (!ft_strncmp("\torigin :", line, 9))
 			((t_base *)data->obj.item[index])->origin.origin = get_point(line);
@@ -99,6 +99,7 @@ int         parsing_obj(t_data *data, char **old, char *type)
 		}
 		else
 			return (11);
+		free(line);
 	}
 	*old = line;
 	index++;

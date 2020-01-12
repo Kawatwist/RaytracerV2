@@ -24,8 +24,8 @@ static t_vec		setup_reflection(t_data *data, void *obj, t_vec ray, float dist)
 {
 	t_vec tmp;
 
-	tmp.direction = find_reflexion(obj, ray, *data);
 	tmp.origin = set_neworigin_neg(ray, dist);
+	tmp.direction = find_reflexion(obj, ray, *data);
 	return (tmp);
 }
 
@@ -38,16 +38,17 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 
 	if (!(obj = check_object(data, ray, &dist[0])) || dist[0] == -1)
 		return (0);
+
+/********* Texture Color ****************/
 	tmp.origin = set_neworigin(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
 	color[0] = find_color(data, obj, tmp);
+/********* Light Color ****************/
 	tmp.origin = set_neworigin_neg(ray, dist[0]);
 	tmp.direction = veccpy(ray.direction);
-	tmp.direction = find_normal_with_txt(*data, obj, tmp);
+	tmp.direction = find_normal(obj, tmp);
 	color[0] = ray_to_light(data, tmp, color[0]);
-	// if (!dist[1])
-	// 	color[0] = 0x0;
-	// Set Effect
+
 	if (bounce)
 	{
 		bounce--;

@@ -85,8 +85,8 @@ float		plane(void *plane, t_vec ray)
 
 	p = *(t_plan *)plane;
 	div = dot_product(ray.direction, p.origin.direction);
-	if (div <= 0)
+	if (div >= 0)
 		return (-1);
-	t = dot_product(sub_vec(p.origin.origin, ray.origin), p.origin.direction);
-	return (t / div);
+	t = -dot_product(sub_vec(p.origin.origin, ray.origin), p.origin.direction);
+	return (t / (-div));
 }

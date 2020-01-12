@@ -18,7 +18,7 @@ static char	*strcpy_between_2c(char *src, char c1, char c2)
 		i++;
 		size++;
 	}
-	if (!(str = (char *)malloc(sizeof(char) * (size) + 1))) // remove
+	if (!(str = (char *)malloc(sizeof(char) * (size) + 1)))
 		return (NULL);
 	i = i - size;
 	while (size--)

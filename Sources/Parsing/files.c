@@ -87,10 +87,10 @@ int				parsing_files(t_data *data, char *old)
 	line = NULL;
 	init_camera(data);
 	init_item(data);
-	init_light(data);//rajout
+	init_light(data);
 	init_texture(data);
 	init_normal(data);
-	while (old != NULL || get_next_line(data->parse.fd, &line)) // free line
+	while (old != NULL || get_next_line(data->parse.fd, &line))
 	{
 		if (old != NULL)
 		{

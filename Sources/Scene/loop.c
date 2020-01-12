@@ -16,9 +16,9 @@ int			loop(t_data data)
 		if (data.percent > 99)
 			data.percent = 0;
 		SDL_UnlockTexture(data.window.txt);
+		SDL_Delay(10);
 		SDL_RenderCopy(data.window.rend, data.window.txt, NULL, NULL);
 		SDL_RenderPresent(data.window.rend);
-		SDL_Delay(16);
 	}
 	return (0);
 }

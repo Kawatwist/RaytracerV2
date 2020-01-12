@@ -100,12 +100,13 @@ void		move_obj(t_data *data)
 		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.z += 0.1;
 	if (key_old(*data, SDL_SCANCODE_E))
 		((t_base *)(data->obj.item[data->obj.index[1]]))->origin.origin.z -= 0.1;
-	printf("obj %d\n", data->obj.index[1]);
+	ft_putstr("Object actually selected :");
+	ft_putnbr(data->obj.index[1]);
+	ft_putchar('\n');
 }
 
 void		move_cam(t_data *data)
 {
-	printf("%f || %f || %f\n", data->obj.camera[data->obj.index[2]].pos.direction.x, data->obj.camera[data->obj.index[2]].pos.direction.y, data->obj.camera[data->obj.index[2]].pos.direction.z);
 	if (key_old(*data, SDL_SCANCODE_W))
 	{
 		data->obj.camera[data->obj.index[2]].pos.origin = add_vec(data->obj.camera[data->obj.index[2]].pos.origin, data->obj.camera[data->obj.index[2]].pos.direction);
@@ -146,7 +147,9 @@ void		move_cam(t_data *data)
 		rot_cam_input(data, SDL_SCANCODE_LEFT);
 	if (key_old(*data, SDL_SCANCODE_RIGHT))
 		rot_cam_input(data, SDL_SCANCODE_RIGHT);
-	printf("cam %d\n", data->obj.index[0]);
+	ft_putstr("Camera actually selected :");
+	ft_putnbr(data->obj.index[2]);
+	ft_putchar('\n');
 }
 
 static void	stay_in_case(t_data *data)
@@ -164,7 +167,6 @@ static void	stay_in_case(t_data *data)
 
 static void	input_obj(t_data *data)
 {
-	//Modif Index
 	if (key_check(*data, SDL_SCANCODE_KP_PLUS))
 		data->obj.index[data->obj.type_index] += 1;
 	if (key_check(*data, SDL_SCANCODE_KP_MINUS))
@@ -173,11 +175,7 @@ static void	input_obj(t_data *data)
 		data->obj.type_index += 1;
 	if (key_check(*data, SDL_SCANCODE_5))
 		data->obj.type_index -= 1;
-	// Check > Nb_type
 	stay_in_case(data);
-	//Modif Obj
-	
-	//	data->obj.type_index ==> ptr sur function
 	data->move[data->obj.type_index] (data);
 }
 

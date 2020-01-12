@@ -62,7 +62,6 @@ void			rotatepxl(t_tga *tga)
 		return ;
 	while (i < (tga->w * tga->h * 4))
 	{
-		printf("Ah %d\n", i);
 		done[((tga->w * tga->h * 4) - (i + 0))] = tga->data[i];
 		done[((tga->w * tga->h * 4) - (i + 3))] = tga->data[i + 1];
 		done[((tga->w * tga->h * 4) - (i + 2))] = tga->data[i + 2];

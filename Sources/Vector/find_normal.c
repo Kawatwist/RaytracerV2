@@ -37,8 +37,8 @@ t_point			find_normal(void *object, t_vec collide)
 	t_point normal;
 
 	if ((((t_base *)object)->effect.type) == SPHERE)
-		normal = neg_norm(normalize(sub_vec(collide.origin,
-			((t_base *)object)->origin.origin)));
+		normal = normalize(sub_vec(collide.origin,
+			((t_base *)object)->origin.origin));
 	else if ((((t_base *)object)->effect.type) == PLAN)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == CYLINDER)
@@ -52,8 +52,10 @@ t_point			find_normal_with_txt(t_data data, void *object, t_vec collide)
 {
 	t_point normal;
 
+	(void)data;
 	normal = find_normal(object, collide);
-	if (((t_base *)object)->effect.normal)
-		normal = find_normal_texture(data, object, collide, normal);
+/**	if (((t_base *)object)->effect.normal)
+**	 	normal = find_normal_texture(data, object, collide, normal);
+**/
 	return (normal);
 }

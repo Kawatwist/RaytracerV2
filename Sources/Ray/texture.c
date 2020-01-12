@@ -16,6 +16,7 @@ int			find_size(t_data data, void *obj, int choose)
 	}
 }
 
+
 t_point		find_normal_texture(t_data data, void *obj,
 		t_vec collide, t_point normal)
 {
@@ -24,6 +25,7 @@ t_point		find_normal_texture(t_data data, void *obj,
 	t_point			uv;
 	t_point 		normal2;
 
+(void)normal;
 	if ((((t_sphere *)obj)->effect.type & 0xFF) == PLAN)
 		uv = texture_plan(&data, obj, collide, 0);
 	else if ((((t_sphere *)obj)->effect.type & 0xFF) == SPHERE)
@@ -34,19 +36,16 @@ t_point		find_normal_texture(t_data data, void *obj,
 		uv = texture_cylinder(&data, obj, collide, 0);
 	info = (((t_base *)obj)->effect.id_normal) << 16;
 	info += (data.normal[info >> 16]->w & 0xFFFF);
-	// uv.x = uv.x + (((t_sphere *)obj)->effect.flag & MV ? ((float)(data.percent / 100.0) * (info & 0xFFFF)) : 0);
+	uv.x = uv.x + (((t_sphere *)obj)->effect.flag & MV ? ((float)(data.percent / 100.0) * (info & 0xFFFF)) : 0);
 	while (uv.x < 0.0 || uv.x >= (info & 0xFFFF))
 		uv.x += (uv.x < 0 ? (info & 0xFFFF) - 1 : -(info & 0xFFFF) - 1);
 	while (uv.y < 0.0 || uv.y >= (data.normal[info >> 16])->h)
 		uv.y += (uv.y < 0 ? (data.normal[info >> 16])->h - 1 : -(data.normal[info >> 16])->h) - 1;
 	index = (uv.x + (uv.y * (info & 0xFFFF))) * 4;
-	normal2.x = normal.x - ((data.normal[info >> 16]->data[index + 1] / 255.0) * ((t_base*)obj)->effect.normal / 255.0);
-	normal2.y = normal.y - ((data.normal[info >> 16]->data[index + 2] / 255.0) * ((t_base*)obj)->effect.normal / 255.0);
-	normal2.z = normal.z;
-	// normal2 = normalize(mult_vec2(normal2, ((t_base*)obj)->effect.normal / 255.0));
-	// printf("Normal2 : %f\t%f\t%f\n", normal2.x, normal2.y, normal2.z);
-	// printf("Normal  : %f\t%f\t%f\n", normal.x, normal.y, normal.z);
-	return (normalize(normal2));
+	normal2.x = (((((unsigned char)(data.normal[info >> 16]->data[index + 1]) / 0x7F) - 0.5) * ((t_base*)obj)->effect.normal / 255.0));
+	normal2.y = (((((unsigned char)(data.normal[info >> 16]->data[index + 2]) / 0x7F) - 0.5) * ((t_base*)obj)->effect.normal / 255.0));
+	normal2.z = 2;
+	return (normal2);
 }
 
 t_point		texture_plan(t_data *data, void *obj, t_vec ray, int choose)

@@ -46,7 +46,6 @@ int	initialize_cam(t_data *data)
 	while (index < data->obj.nb_camera)
 	{
 		direction = normalize((data->obj.camera[index]).pos.direction);
-		// printf("%f || %f || %f\n", direction.x, direction.y, direction.z);
 		base = fill_vec(0, 0, 1);
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);

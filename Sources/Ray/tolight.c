@@ -65,7 +65,7 @@ unsigned int	ray_to_light(t_data *data, t_vec ray, int base)
 	color = 0;
 	while (++index < data->obj.nb_light)
 	{
-		dot = -(((1 - -dot_product(normalize(sub_vec(ray.origin, data->obj.light[index].origin)), normalize(ray.direction))) * -1) / 2.0);
+		dot = -(((1 - dot_product(normalize(sub_vec(ray.origin, data->obj.light[index].origin)), normalize(ray.direction))) * -1) / 2.0);
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin, data->obj.light[index].origin));
 		len < 0 ? len = 0 : 0;
 		len > 1 ? len = 1 : 0;

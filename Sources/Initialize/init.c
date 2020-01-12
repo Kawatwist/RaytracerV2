@@ -1,6 +1,6 @@
 #include "rt.h"
 
-int		initialize(t_data *data) // NEED TO GET WINDOW SIZE
+int		initialize(t_data *data)
 {
 	int error_value;
 
