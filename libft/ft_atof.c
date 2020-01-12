@@ -1,11 +1,22 @@
 #include "libft.h"
 
+int		count_zero(const char *str)
+{
+	int		count;
+
+	count = 0;
+	while (str[count] && str[count] == '0')
+		count++;
+	return (count);
+}
+
 double  ft_atof(const char *nptr)
 {
 	double		nbr;
 	double		nbr2;
 	long long	tmp;
 	int			flag; 			// [neg][0][j][i]
+	int			nb_0;
 
 	nbr2 = 0.0;
 	flag = 0;				// Check Char
@@ -22,13 +33,13 @@ double  ft_atof(const char *nptr)
 		return (0.0);
 	else
 	{
-		nbr = (double)ft_atoi(nptr);
+		nbr = (double)atoi(nptr);
 		flag -= (flag & 0xFF);
 		while (nptr[flag & 0xFF] != '.' && nptr[flag & 0xFF] != '\0' && nptr[flag & 0xFF] != ' ') // jai rajouter l'espace
 			flag += 1;
 		if ((flag & 0xFF) != 0 && nptr[flag & 0xFF] == '.')
 		{
-			nbr2 = (double)ft_atoi(&(nptr[(flag & 0xFF) + 1]));
+			nbr2 = (double)atoi(&(nptr[(flag & 0xFF) + 1]));
 			tmp = nbr2;			// Fonction Compte_nbr
 			while (tmp)
 			{
@@ -40,6 +51,12 @@ double  ft_atof(const char *nptr)
 			{
 				tmp *= 10;
 				flag -= (1 << 8); // Decrementation de j
+			}
+			nb_0 = count_zero(&(nptr[(flag & 0xFF) + 1]));
+			while (nb_0)
+			{
+				tmp *= 10;
+				nb_0--;
 			}
 			nbr2 /= tmp;
 			}

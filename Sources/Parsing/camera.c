@@ -14,6 +14,8 @@ int         parsing_camera(t_data *data, char **old)
 			data->obj.camera[index].pos.origin = get_point(line);
 		else if (!ft_strncmp("\tdirection : ", line, 13))
 			data->obj.camera[index].pos.direction = get_point(line);
+		else if (ft_strchr(line, '#'))
+			;
 		free(line);
 	}
 	*old = line;

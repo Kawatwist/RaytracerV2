@@ -22,7 +22,7 @@ static int	create_type(t_data *data, int index, int type)
 	void	*item;
 
 	if ((item = malloc(tab[(int)type])) == NULL)
-		return (11);
+		return (1);
 	ft_bzero(&((t_base *)item)->effect, sizeof(t_effect));
 	ft_bzero(item, sizeof(item));
 	data->obj.item[index] = item;
@@ -49,7 +49,7 @@ static int	fill_effect(t_effect *effect, char *line)
 		effect->refraction = ft_atoi(line + 16);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
 		effect->opacity = ft_atoi(line + 13);
-	else if (!ft_strncmp("\t\t\treflexion : ", line, 15))
+	else if (!ft_strncmp("\t\t\treflection : ", line, 15))
 		effect->reflection = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t\trot :", line, 15))
 		effect->movement = add_rot(effect->movement, line + 3);
@@ -97,6 +97,8 @@ int         parsing_obj(t_data *data, char **old, char *type)
 			if (fill_effect(&(((t_base *)data->obj.item[index])->effect), line))
 				return (11);
 		}
+		else if (ft_strchr(line, '#'))
+			;
 		else
 			return (11);
 		free(line);

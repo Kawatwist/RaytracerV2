@@ -68,6 +68,11 @@ SRC				=	main.c										\
 					reflexion.c									\
 					refraction.c								\
 					rot_matrice.c								\
+					move_type.c									\
+					light_cursor.c								\
+					input_obj.c									\
+					input_light.c								\
+					input_cam.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
@@ -98,7 +103,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
+	@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "${vertclair}DONE${neutre}"
 
 $(OBJ_PATH)/%.o: %.c $(HEADER) $(LIBFTA)

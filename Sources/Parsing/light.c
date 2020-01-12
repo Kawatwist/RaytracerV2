@@ -15,6 +15,9 @@ int		parsing_light(t_data *data, char **old, char *line)
 			data->obj.light[index].distance = ft_atof(line + 12);
 		else if (!ft_strncmp("\tintensity : ", line, 13))
 			data->obj.light[index].intensity = ft_atof(line + 13);
+		else if (ft_strchr(line, '#'))
+			;
+		free(line);
 	}
 	*old = line;
 	index++;

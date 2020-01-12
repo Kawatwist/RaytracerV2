@@ -1,24 +1,32 @@
+#############################################
+#			Scene 42 : Planete				#
+#############################################
 [header]
 	camera : 1
 	object : 7
-	light : 1
-	nb_texture : 4
-	nb_normal : 3
-	textures : "./texture/normal/weird.tga"
-	textures : "./texture/planet/earth.tga"
-	textures : "./texture/test.tga"
-	textures : "./texture/normal/coussin.tga"
-	normal : "./texture/normal/weird.tga"
-	normal : "./texture/normal/normal.tga"
-	normal : "./texture/normal/normal_boost.tga"
+	light : 2
+	nb_texture : 2
+	textures : "./texture/HD2.tga"
+	textures : "./texture/planet/moon.tga"
+############### Light ##################
 [light:1]
-	origin : {-1 0.5 0}
+	origin : {-2.5 0.5 -0.5}
+	color : 0xFFFF00
+	distance : 5
+	intensity : 1
+[light:2]
+	origin : {1.0 0.5 3.5}
 	color : 0xFFFFFF
-	distance : 10
-	intensity : 0.5
+	distance : 5
+	intensity : 1
+############### Camera ##################
 [camera:1]
 	origin : {0 0 -1}
 	direction : {0 0 1}
+[camera:2]
+	origin : {0 0 0}
+	direction : {0 0 -1}
+############### Object ##################
 [object:plan]
 	origin : {0 0 2.01}
 	direction : {0 0 1}
@@ -27,10 +35,35 @@
 			id_texture : 1
 			id_normal : 1
 			texture : 255
-			reflexion : 0
-			normal : 255
-			mv : 1
+			mv : 0
+[object:plan]
+	color : 0x7F6F7F
+	origin : {-2.5 -2.5 0}
+	direction : {0 -1 0}
+[object:plan]
+	color : 0x7F6F7F
+	origin : {-2.5 -2.5 0}
+	direction : {-1 0 0}
+[object:plan]
+	color : 0x6F7F7F
+	origin : {3.5 0 0}
+	direction : {1 0 0}
+[object:plan]
+	color : 0x7F7F8F
+	origin : {0 3.5 0}
+	direction : {0 1 0}
+[object:plan]
+	color : 0x7F8F7F
+	origin : {0 0 -5}
+	direction : {0 0 -1}
 [object:sphere]
 	origin : {0 0 -2.01}
 	direction : {0 0 1}
 	color : 0xFF00FF
+	origin : {0 0 1}
+	direction : {0 1 0}
+	rayon : 0.5
+		[effect]
+			id_texture : 1
+			texture : 255
+			refraction : 255
