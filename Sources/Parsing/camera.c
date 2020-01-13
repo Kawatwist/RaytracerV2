@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 20:52:08 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
-int         parsing_camera(t_data *data, char **old)
+int				parsing_camera(t_data *data, char **old)
 {
-    static int  index = 0;
+	static int	index = 0;
 	char		*line;
 
 	line = NULL;
@@ -20,5 +32,5 @@ int         parsing_camera(t_data *data, char **old)
 	}
 	*old = line;
 	index++;
-    return (0);
+	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 22:20:13 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 int			loop(t_data data)
@@ -9,7 +21,8 @@ int			loop(t_data data)
 		input(&data);
 		if (data.input.key[SDL_SCANCODE_ESCAPE] || SDL_QuitRequested())
 			break ;
-		SDL_LockTexture(data.window.txt, NULL, &data.window.pxl, &data.window.pitch);
+		SDL_LockTexture(data.window.txt, NULL,
+		&data.window.pxl, &data.window.pitch);
 		if (start_ray(&data))
 			return (10);
 		data.percent++;

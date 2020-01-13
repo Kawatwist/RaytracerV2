@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_cursor.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 22:19:41 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 22:19:44 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static	t_point	find_pos(t_data *data, int x, int y)
@@ -10,7 +22,7 @@ static	t_point	find_pos(t_data *data, int x, int y)
 	return (ret);
 }
 
-static void	create_light(t_data *data, t_light *new, int x, int y)
+static void		add_light(t_data *data, t_light *new, int x, int y)
 {
 	new->color = 0xFFFFFF;
 	new->distance = 2.5;
@@ -18,22 +30,22 @@ static void	create_light(t_data *data, t_light *new, int x, int y)
 	new->origin = find_pos(data, x, y);
 }
 
-
-void		light_cursor(t_data *data)
+void			light_cursor(t_data *data)
 {
-	static char curr = 0;
+	static char	curr = 0;
+
 	if (data->input.button & SDL_BUTTON_LEFT)
 	{
 		if (curr == 0)
 		{
-			create_light(data, &data->obj.light[data->obj.nb_light], data->input.x, data->input.y);
+			add_light(data, &data->obj.light[data->obj.nb_light],
+			data->input.x, data->input.y);
 			data->obj.nb_light += 1;
 			curr = 1;
 		}
 		else
-		{
-			data->obj.light[data->obj.nb_light - 1].origin = find_pos(data,data->input.x, data->input.y);
-		}
+			data->obj.light[data->obj.nb_light - 1].origin =
+			find_pos(data, data->input.x, data->input.y);
 	}
 	else if (curr == 1)
 	{

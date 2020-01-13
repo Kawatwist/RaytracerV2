@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_point.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 20:06:18 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 20:06:51 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static char	*strcpy_between_2c(char *src, char c1, char c2)
@@ -6,6 +18,7 @@ static char	*strcpy_between_2c(char *src, char c1, char c2)
 	size_t	size;
 	int		i;
 	int		j;
+
 	if (!src)
 		return (NULL);
 	size = 0;

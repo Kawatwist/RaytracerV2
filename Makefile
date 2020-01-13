@@ -73,6 +73,9 @@ SRC				=	main.c										\
 					input_obj.c									\
 					input_light.c								\
 					input_cam.c									\
+					input_textures.c							\
+					create_type.c								\
+					fill_obj.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

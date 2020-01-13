@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 20:44:10 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 int		parsing_light(t_data *data, char **old, char *line)
@@ -7,6 +19,7 @@ int		parsing_light(t_data *data, char **old, char *line)
 	line = NULL;
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
+		printf("Ligth Function : %s\n", line);
 		if (!ft_strncmp("\torigin : ", line, 10))
 			data->obj.light[index].origin = get_point(line);
 		else if (!ft_strncmp("\tcolor : ", line, 9))

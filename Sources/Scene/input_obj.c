@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_obj.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/13 22:01:17 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
+
+/*
+**	Id_rotation currently not Used
+**
+**	if (key_check(*data, SDL_SCANCODE_KP_6) && !ctrl)
+**		(*(t_base **)obj)->effect.id_rotation += 1;
+**	else if (key_check(*data, SDL_SCANCODE_KP_6) && ctrl)
+**		(*(t_base **)obj)->effect.id_rotation -= 1;
+*/
 
 void	input_id(t_data *data, void **obj, char ctrl)
 {
@@ -8,22 +29,17 @@ void	input_id(t_data *data, void **obj, char ctrl)
 	else if (key_check(*data, SDL_SCANCODE_KP_4) && ctrl &&
 	(*(t_base **)obj)->effect.id_texture > 0)
 		(*(t_base **)obj)->effect.id_texture -= 1;
-
-	//demander a loic comment proteger id_texture car on a pas de nb_normal
-	if (key_check(*data, SDL_SCANCODE_KP_5) && !ctrl)
+	if (key_check(*data, SDL_SCANCODE_KP_5) && !ctrl &&
+	(*(t_base **)obj)->effect.id_normal < data->obj.nb_normal - 1)
 		(*(t_base **)obj)->effect.id_normal += 1;
-	else if (key_check(*data, SDL_SCANCODE_KP_5) && ctrl)
+	else if (key_check(*data, SDL_SCANCODE_KP_5) && ctrl &&
+	(*(t_base **)obj)->effect.id_normal > 0)
 		(*(t_base **)obj)->effect.id_normal -= 1;
-
-	if (key_check(*data, SDL_SCANCODE_KP_6) && !ctrl)
-		(*(t_base **)obj)->effect.id_rotation += 1;
-	else if (key_check(*data, SDL_SCANCODE_KP_6) && ctrl)
-		(*(t_base **)obj)->effect.id_rotation -= 1;
 }
 
 void	input_descartes_obj(t_data *data, void **obj, char ctrl)
 {
-	t_effect 	*tmp;
+	t_effect	*tmp;
 
 	tmp = &(*(t_base **)obj)->effect;
 	if (key_old(*data, SDL_SCANCODE_KP_1) && !ctrl && tmp->reflection < 255)
@@ -31,11 +47,11 @@ void	input_descartes_obj(t_data *data, void **obj, char ctrl)
 	else if (key_old(*data, SDL_SCANCODE_KP_1) && ctrl && tmp->reflection > 0)
 		tmp->reflection -= 1;
 	if (key_old(*data, SDL_SCANCODE_KP_2) && !ctrl && tmp->refraction < 255)
-		 tmp->refraction += 1;
+		tmp->refraction += 1;
 	else if (key_old(*data, SDL_SCANCODE_KP_2) && ctrl && tmp->refraction > 0)
 		tmp->refraction -= 1;
 	if (key_old(*data, SDL_SCANCODE_KP_3) && !ctrl && tmp->opacity < 255)
-		 tmp->opacity += 1;
+		tmp->opacity += 1;
 	else if (key_old(*data, SDL_SCANCODE_KP_3) && ctrl && tmp->opacity > 0)
 		tmp->opacity -= 1;
 }
@@ -45,7 +61,7 @@ void	input_color_obj(t_data *data, void **obj, char ctrl)
 	if (key_old(*data, SDL_SCANCODE_KP_7) && !ctrl &&
 	((*(t_base **)obj)->effect.color & 0xFF0000) >> 16 < 255)
 		((char *)&((*(t_base **)obj)->effect.color))[2] += 1;
-    if (key_old(*data, SDL_SCANCODE_KP_7) && ctrl &&
+	if (key_old(*data, SDL_SCANCODE_KP_7) && ctrl &&
 	((*(t_base **)obj)->effect.color & 0xFF0000) >> 16 > 0)
 		((char *)&((*(t_base **)obj)->effect.color))[2] -= 1;
 	if (key_old(*data, SDL_SCANCODE_KP_8) && !ctrl &&
@@ -64,7 +80,7 @@ void	input_color_obj(t_data *data, void **obj, char ctrl)
 
 void	input_move_obj(t_data *data, void **obj)
 {
-    if (key_old(*data, SDL_SCANCODE_SPACE))
+	if (key_old(*data, SDL_SCANCODE_SPACE))
 		(*(t_base **)obj)->origin.origin.y -= 0.1;
 	if (key_old(*data, SDL_SCANCODE_LSHIFT))
 		(*(t_base **)obj)->origin.origin.y += 0.1;

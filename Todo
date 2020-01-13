@@ -76,3 +76,6 @@ petit probleme ligne 40 dans le fichier header.c je n'ai pas la possibilité de 
 void		move_cam(t_data *data, void **cam)
 {
 	(void)cam;//faire reduire les lignes avec le void **cam
+
+
+printf enter dans input a enlever

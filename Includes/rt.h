@@ -83,20 +83,27 @@ int				loop(t_data data);
 //				PARSING
 t_point			get_point(char *str);
 int				parsing_files(t_data *data, char *line);
-int         	parsing_obj(t_data *data, char **line, char *type);
+int				create_light(t_data *data);
+int				create_camera(t_data *data);
+int				create_normal(t_data *data);
+int				create_texture(t_data *data);
+int				create_item(t_data *data);
+int				find_type(char *type);
+int				create_type(t_data *data, int index, int type);
+int				fill_obj(t_data *data, char **line, int index);
+int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
 //				PARSING
 
 //				INIT
-int         	initialize_cam(t_data *data);
+int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
 //				INIT
 
 //				TOOL
-
 t_point			rotx(t_point origin, float ang);
 t_point			roty(t_point origin, float ang);
 t_point			rotz(t_point origin, float ang);
@@ -144,6 +151,7 @@ void			input_move_obj(t_data *data, void **obj);
 void			input_color_obj(t_data *data, void **obj, char ctrl);
 void			input_descartes_obj(t_data *data, void **obj, char ctrl);
 void			input_id(t_data *data, void **obj, char ctrl);
+void			input_textures(t_data *data, void **obj, char ctrl);
 
 
 void			move_light(t_data *data, void **obj);
