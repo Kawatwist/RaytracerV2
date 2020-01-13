@@ -25,7 +25,7 @@
 	direction : {0 0 1}
 [camera:2]
 	origin : {0 0 0}
-	direction : {0 0 -1}
+	direction : {1 0 0}
 ############### Object ##################
 [object:plan]
 	origin : {0 0 5}

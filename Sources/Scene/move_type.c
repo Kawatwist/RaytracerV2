@@ -36,9 +36,7 @@ void		move_obj(t_data *data, void **obj)
 	input_color_obj(data, obj, ctrl);
 	
 	/*rayon*/
-	if (key_old(*data, KEY_O) && !ctrl &&
-	((*(t_base **)obj)->effect.type == SPHERE ||
-	(*(t_base **)obj)->effect.type == CYLINDER))// + autre obj avec rayon
+	if (key_old(*data, KEY_O) && !ctrl)// + autre obj avec rayon
 		(*(t_sphere **)obj)->rayon < 100.0
 		? (*(t_sphere **)obj)->rayon += 0.1 : 0.0;
 	else if (key_old(*data, KEY_O) && ctrl)
@@ -81,7 +79,7 @@ void		move_cam(t_data *data, void **cam)
 {
 	t_point tmp;
 
-	tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
+	tmp = veccpy(data->obj.camera[data->obj.index[0]].pos.direction);
 	if (key_old(*data, SDL_SCANCODE_W))
 	{
 		(*(t_camera **)cam)->pos.origin =

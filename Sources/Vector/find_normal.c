@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 18:26:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/13 23:41:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_point	cylinder_normal(t_cylinder c, t_vec collide)
 	high = dot_product(oc, c.origin.direction);
 	plane = mult_vec2(c.origin.direction, high);
 	normal = sub_vec(collide.origin, add_vec(plane, c.origin.origin));
-	return (neg_norm(normalize(normal)));
+	return (normalize(normal));
 }
 
 static t_point	cone_normal(t_cone c, t_vec collide)
@@ -35,12 +35,12 @@ static t_point	cone_normal(t_cone c, t_vec collide)
 	t_point	oc;
 
 	oc = sub_vec(collide.origin, c.origin.origin);
-	dot = dot_product(oc, c.origin.direction);
+	dot = dot_product(c.origin.direction, oc);
 	coef = 1 / (tan(rad(c.ang)) / 2.0);
 	high = length(mult_vec2(oc, coef));
-	ret = normalize(sub_vec(oc, mult_vec2(c.origin.direction,
-		(dot > 0 ? -high : high))));
-	return (ret);
+	ret = sub_vec(oc, mult_vec2(c.origin.direction,
+		(dot > 0 ? -high : high)));
+	return (normalize(ret));
 }
 
 t_point			find_normal(void *object, t_vec collide)
@@ -48,8 +48,8 @@ t_point			find_normal(void *object, t_vec collide)
 	t_point normal;
 
 	if ((((t_base *)object)->effect.type) == SPHERE)
-		normal = normalize(sub_vec(collide.origin,
-			((t_base *)object)->origin.origin));
+		normal = normalize(neg_norm(sub_vec(collide.origin,
+			((t_base *)object)->origin.origin)));
 	else if ((((t_base *)object)->effect.type) == PLAN)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == CYLINDER)

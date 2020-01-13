@@ -8,7 +8,7 @@ float		cone(void *coo, t_vec ray)
 	t_point oc;
 
 	cone = coo;
-	k = tan(rad(cone->ang) / 2.0);
+	k = tan(rad(cone->ang / 2.0));
 	k = k * k;
 	oc = sub_vec(ray.origin, cone->origin.origin);
 	c.a = dot_product(ray.direction, ray.direction)

@@ -61,7 +61,10 @@ static void	input_obj(t_data *data)
 	else
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
-	printf("enter = %d\n\n", enter);
+	if (enter == 1)
+		printf("Current Mode Object\n\n");
+	else
+		printf("Current Mode Index\n\n");
 	data->move[data->obj.type_index] (data, obj);
 }
 

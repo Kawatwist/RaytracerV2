@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 17:38:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/13 23:42:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,30 @@ static t_vec		setup_reflection(t_data *data, void *obj,
 	return (tmp);
 }
 
-static void			bounce_effect(t_data *data, t_vec ray, t_ray r)
+static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 {
 	t_vec			tmp;
 
-	if (((t_base *)r.obj)->effect.reflection)
+	if (((t_base *)r->obj)->effect.reflection)
 	{
-		tmp = setup_reflection(data, r.obj, ray, r.dist[0]);
-		r.color[1] = send_ray(data, tmp, r.bounce);
-		r.color[0] = set_color(r.color[0], r.color[1],
-			((t_base *)r.obj)->effect.reflection / 255.0);
+		tmp = setup_reflection(data, r->obj, ray, r->dist[0]);
+		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[0] = set_color(r->color[0], r->color[1],
+			((t_base *)r->obj)->effect.reflection / 255.0);
 	}
-	if (((t_base *)r.obj)->effect.refraction)
+	if (((t_base *)r->obj)->effect.refraction)
 	{
-		tmp = setup_refraction(*data, r.obj, ray, r.dist[0]);
-		r.color[1] = send_ray(data, tmp, r.bounce);
-		r.color[0] = set_color(r.color[0], r.color[1],
-			((t_base *)r.obj)->effect.refraction / 255.0);
+		tmp = setup_refraction(*data, r->obj, ray, r->dist[0]);
+		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[0] = set_color(r->color[0], r->color[1],
+			((t_base *)r->obj)->effect.refraction / 255.0);
 	}
-	if (((t_base *)r.obj)->effect.opacity)
+	if (((t_base *)r->obj)->effect.opacity)
 	{
-		tmp = setup_opacity(data, r.obj, ray, r.dist[0]);
-		r.color[1] = send_ray(data, tmp, r.bounce);
-		r.color[0] = set_color(r.color[0], r.color[1],
-			((t_base *)r.obj)->effect.opacity / 255.0);
+		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
+		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[0] = set_color(r->color[0], r->color[1],
+			((t_base *)r->obj)->effect.opacity / 255.0);
 	}
 }
 
@@ -86,6 +86,6 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.color[0] = ray_to_light(data, r.tmp, r.color[0]);
 	r.bounce = bounce;
 	if (r.bounce--)
-		bounce_effect(data, ray, r);
+		bounce_effect(data, ray, &r);
 	return (r.color[0]);
 }

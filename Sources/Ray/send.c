@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 20:10:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/13 22:24:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static	t_point	find_dir(t_data *data, int x, int y)
 {
 	t_point		ret;
 
-	ret = veccpy(data->obj.camera[0].sc);
-	ret = add_vec(ret, mult_vec2(data->obj.camera[0].x, x));
-	ret = add_vec(ret, mult_vec2(data->obj.camera[0].y, y));
-	ret = sub_vec(ret, data->obj.camera[0].pos.origin);
+	ret = veccpy(data->obj.camera[data->obj.index[0]].sc);
+	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
+	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
+	ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
 	return (ret);
 }
 
