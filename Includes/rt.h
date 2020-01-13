@@ -10,8 +10,8 @@
 # include "subrt.h"
 
 # define TRUE 1
-# define XSCREEN 800
-# define YSCREEN 800
+# define XSCREEN 400
+# define YSCREEN 400
 
 typedef struct	s_data t_data;
 
@@ -90,6 +90,9 @@ int				parsing(t_data *data, int nb, char *arg[]);
 //				PARSING
 
 //				INIT
+void			rot_init_cam_x(t_data *data, t_point *base, t_point *direction, int index);
+void			rot_init_cam_y(t_data *data, t_point *base, t_point *direction, int index);
+void			rot_init_cam_z(t_data *data, t_point *base, t_point *direction, int index);
 int         	initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);

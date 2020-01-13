@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 18:02:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:54:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static float		dist(t_data *data, t_vec ray, int index, float *obj)
 			ray.origin)));
 	else
 		obj[0] = 1;
+	return (obj[0]);
 }
 
 unsigned int		ray_to_light(t_data *data, t_vec ray, int base)

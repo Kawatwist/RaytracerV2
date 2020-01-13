@@ -19,7 +19,7 @@ static char		*find_error(int error_value)
 	if (error_value == 10)
 		return ("\nEmpty map\n");
 	if (error_value == 11)
-		return ("\nIncorrec path name\n");
+		return ("\nIncorrect path name\n");
 	return ("\nUnindexed Error\n");
 }
 

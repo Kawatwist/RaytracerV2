@@ -10,8 +10,8 @@ typedef struct      s_window
     SDL_Texture     *txt;
     void            *pxl;
     int             pitch;
-    int             xscreen;
-    int             yscreen;
+    int             x;
+    int             y;
 }                   t_window;
 
 typedef struct      s_calc

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 17:51:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/13 20:10:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static void		low_quality(t_data *data, int *x, int *y)
 
 	w = 0;
 	pxl = 0;
-	while (w < data->window.xscreen)
+	while (w < data->window.x)
 	{
 		pxl = 0;
 		while (pxl < ((data->flag.pixel) * 2))
 		{
 			((unsigned int *)data->window.pxl)[(*x) +
-					((*y + pxl) * data->window.xscreen) + w] =
+					((*y + pxl) * data->window.x) + w] =
 				((unsigned int *)data->window.pxl)[*x +
-						((*y - 1) * data->window.xscreen) + w];
+						((*y - 1) * data->window.x) + w];
 			pxl++;
 		}
 		w++;
@@ -51,9 +51,9 @@ static void		low_pixel_x(t_data *data, int *x, int y)
 	while (*x % (data->flag.pixel + 1))
 	{
 		((unsigned int *)data->window.pxl)[*x + 1 +
-			(y * data->window.xscreen)] =
+			(y * data->window.x)] =
 			((unsigned int *)data->window.pxl)
-			[*x + (y * data->window.xscreen)];
+			[*x + (y * data->window.x)];
 		*x += 1;
 	}
 }
@@ -70,20 +70,20 @@ int				start_ray(t_data *data)
 	int		y;
 
 	y = -1;
-	while (++y < data->window.yscreen)
+	while (++y < data->window.y)
 	{
 		x = -1;
-		while (++x < data->window.xscreen)
+		while (++x < data->window.x)
 		{
 			setup_ray(data, x, y);
-			((unsigned int *)data->window.pxl)[x + (y * data->window.xscreen)] =
+			((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
 					send_ray(data, data->ray, data->bounce);
 			low_pixel_x(data, &x, y);
 		}
 		data->flag.pixel ? low_quality(data, &x, &y) : 0;
 	}
 	data->obj.camera[data->obj.index[0]].pos.direction =
-		normalize(find_dir(data, data->window.xscreen >> 1,
-		data->window.yscreen >> 1));
+		normalize(find_dir(data, data->window.x >> 1,
+		data->window.y >> 1));
 	return (0);
 }
