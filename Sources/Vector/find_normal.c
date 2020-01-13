@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_normal.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
+/*   Updated: 2020/01/13 18:26:48 by lomasse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static t_point	cylinder_normal(t_cylinder c, t_vec collide)
@@ -31,7 +43,6 @@ static t_point	cone_normal(t_cone c, t_vec collide)
 	return (ret);
 }
 
-
 t_point			find_normal(void *object, t_vec collide)
 {
 	t_point normal;
@@ -54,8 +65,12 @@ t_point			find_normal_with_txt(t_data data, void *object, t_vec collide)
 
 	(void)data;
 	normal = find_normal(object, collide);
-/**	if (((t_base *)object)->effect.normal)
-**	 	normal = find_normal_texture(data, object, collide, normal);
-**/
 	return (normal);
 }
+
+/*
+**		Normal Mapping (Can be Check in Sources/Effect/normal_map.c)
+**		Need to be place in Find_normal_with_txt
+**		if (((t_base *)object)->effect.normal)
+**	 		normal = find_normal_texture(data, object, collide, normal);
+*/
