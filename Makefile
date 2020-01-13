@@ -44,6 +44,7 @@ SRC				=	main.c										\
 					get_point.c									\
 					parse.c										\
 					header.c									\
+					parse_texture.c								\
 					camera.c									\
 					object.c									\
 					light.c										\
