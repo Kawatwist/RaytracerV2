@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
+/*   Updated: 2020/01/13 17:38:28 by lomasse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
-static t_vec		setup_refraction(t_data data, void *obj, t_vec ray, float dist)
+static t_vec		setup_refraction(t_data data, void *obj,
+		t_vec ray, float dist)
 {
 	t_vec tmp;
 
@@ -9,7 +22,8 @@ static t_vec		setup_refraction(t_data data, void *obj, t_vec ray, float dist)
 	return (tmp);
 }
 
-static t_vec		setup_opacity(t_data *data, void *obj, t_vec ray, float dist)
+static t_vec		setup_opacity(t_data *data, void *obj,
+		t_vec ray, float dist)
 {
 	t_vec tmp;
 
@@ -20,7 +34,8 @@ static t_vec		setup_opacity(t_data *data, void *obj, t_vec ray, float dist)
 	return (tmp);
 }
 
-static t_vec		setup_reflection(t_data *data, void *obj, t_vec ray, float dist)
+static t_vec		setup_reflection(t_data *data, void *obj,
+		t_vec ray, float dist)
 {
 	t_vec tmp;
 
@@ -29,47 +44,48 @@ static t_vec		setup_reflection(t_data *data, void *obj, t_vec ray, float dist)
 	return (tmp);
 }
 
-unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
+static void			bounce_effect(t_data *data, t_vec ray, t_ray r)
 {
 	t_vec			tmp;
-	unsigned int	color[2];
-	void			*obj;
-	float			dist[2];
 
-	if (!(obj = check_object(data, ray, &dist[0])) || dist[0] == -1)
-		return (0);
-
-/********* Texture Color ****************/
-	tmp.origin = set_neworigin(ray, dist[0]);
-	tmp.direction = veccpy(ray.direction);
-	color[0] = find_color(data, obj, tmp);
-/********* Light Color ****************/
-	tmp.origin = set_neworigin_neg(ray, dist[0]);
-	tmp.direction = veccpy(ray.direction);
-	tmp.direction = find_normal(obj, tmp);
-	color[0] = ray_to_light(data, tmp, color[0]);
-
-	if (bounce)
+	if (((t_base *)r.obj)->effect.reflection)
 	{
-		bounce--;
-		if (((t_base *)obj)->effect.reflection)
-		{
-			tmp = setup_reflection(data, obj, ray, dist[0]);
-			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.reflection / 255.0);
-		}
-		if (((t_base *)obj)->effect.refraction)
-		{
-			tmp = setup_refraction(*data, obj, ray, dist[0]);
-			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.refraction / 255.0);
-		}
-		if (((t_base *)obj)->effect.opacity)
-		{
-			tmp = setup_opacity(data, obj, ray, dist[0]);
-			color[1] = send_ray(data, tmp, bounce);
-			color[0] = set_color(color[0], color[1], ((t_base *)obj)->effect.opacity / 255.0);
-		}
+		tmp = setup_reflection(data, r.obj, ray, r.dist[0]);
+		r.color[1] = send_ray(data, tmp, r.bounce);
+		r.color[0] = set_color(r.color[0], r.color[1],
+			((t_base *)r.obj)->effect.reflection / 255.0);
 	}
-	return (color[0]);
+	if (((t_base *)r.obj)->effect.refraction)
+	{
+		tmp = setup_refraction(*data, r.obj, ray, r.dist[0]);
+		r.color[1] = send_ray(data, tmp, r.bounce);
+		r.color[0] = set_color(r.color[0], r.color[1],
+			((t_base *)r.obj)->effect.refraction / 255.0);
+	}
+	if (((t_base *)r.obj)->effect.opacity)
+	{
+		tmp = setup_opacity(data, r.obj, ray, r.dist[0]);
+		r.color[1] = send_ray(data, tmp, r.bounce);
+		r.color[0] = set_color(r.color[0], r.color[1],
+			((t_base *)r.obj)->effect.opacity / 255.0);
+	}
+}
+
+unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
+{
+	t_ray			r;
+
+	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
+		return (0);
+	r.tmp.origin = set_neworigin(ray, r.dist[0]);
+	r.tmp.direction = veccpy(ray.direction);
+	r.color[0] = find_color(data, r.obj, r.tmp);
+	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
+	r.tmp.direction = veccpy(ray.direction);
+	r.tmp.direction = find_normal(r.obj, r.tmp);
+	r.color[0] = ray_to_light(data, r.tmp, r.color[0]);
+	r.bounce = bounce;
+	if (r.bounce--)
+		bounce_effect(data, ray, r);
+	return (r.color[0]);
 }

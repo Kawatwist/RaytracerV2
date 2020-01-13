@@ -57,6 +57,15 @@ typedef struct      s_object
 	int         	type_index;
 }                   t_object;
 
+typedef struct      s_ray
+{
+	t_vec			tmp;
+    unsigned int	color[2];
+	void			*obj;
+	float			dist[2];
+	int				bounce;
+}                   t_ray;
+
 typedef struct      s_scene
 {
     int             fd;
