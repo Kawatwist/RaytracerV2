@@ -9,7 +9,7 @@
 # indicate that you have read the license and understand and accept it
 # fully.
 
-prefix=/Users/lomasse/Projet/RaytracerV2/libraries
+prefix=/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries
 exec_prefix=${prefix}
 exec_prefix_set=no
 includedir=${prefix}/include

@@ -47,7 +47,7 @@ DISTCLEAN += $(OBJ_BUILD)/config.cache    \
 
 # Standard installation variables.
 #
-prefix       := /Users/lomasse/Projet/RaytracerV2/libraries
+prefix       := /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries
 exec_prefix  := ${prefix}
 libdir       := ${exec_prefix}/lib
 bindir       := ${exec_prefix}/bin

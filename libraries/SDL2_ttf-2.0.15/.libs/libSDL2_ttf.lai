@@ -17,7 +17,7 @@ old_library='libSDL2_ttf.a'
 inherited_linker_flags=' '
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/Users/lomasse/Projet/RaytracerV2/libraries/lib /Users/lomasse/Projet/RaytracerV2/libraries/lib/libfreetype.la -lz -lbz2 /Users/lomasse/Projet/RaytracerV2/libraries/lib/libSDL2.la -lm -liconv -lobjc'
+dependency_libs=' -L/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib/libfreetype.la -lz -lbz2 /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib/libSDL2.la -lm -liconv -lobjc'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''
@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/lomasse/Projet/RaytracerV2/libraries/lib'
+libdir='/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib'
