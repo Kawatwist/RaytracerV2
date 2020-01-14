@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/14 17:16:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/14 18:27:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_point			find_normal(void *object, t_vec collide)
 	t_point normal;
 
 	if ((((t_base *)object)->effect.type) == SPHERE)
-		normal = normalize(neg_norm(sub_vec(collide.origin,
-			((t_base *)object)->origin.origin)));
+		normal = normalize(sub_vec(collide.origin,
+			((t_base *)object)->origin.origin));
 	else if ((((t_base *)object)->effect.type) == PLAN)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == CYLINDER)
