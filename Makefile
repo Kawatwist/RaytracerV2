@@ -39,10 +39,12 @@ SRC				=	main.c										\
 					init.c										\
 					init_sdl.c									\
 					init_cam.c									\
+					rot_init_cam.c								\
 					quit.c										\
 					get_point.c									\
 					parse.c										\
 					header.c									\
+					parse_texture.c								\
 					camera.c									\
 					object.c									\
 					light.c										\

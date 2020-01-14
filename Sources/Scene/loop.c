@@ -14,8 +14,8 @@
 
 int			loop(t_data data)
 {
-	data.flag.pixel = 2;
-	data.obj.type_index = 2;
+	data.flag.pixel = 0;
+	data.obj.type_index = 0;
 	while (TRUE)
 	{
 		input(&data);

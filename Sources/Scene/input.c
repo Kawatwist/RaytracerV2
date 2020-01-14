@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 22:15:23 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/14 18:35:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ static void	input_obj(t_data *data)
 	else
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
-	printf("enter = %d\n\n", enter);
-	data->move[data->obj.type_index](data, obj);
+	if (enter == 1)
+		printf("Current Mode Object\n\n");
+	else
+		printf("Current Mode Index\n\n");
+	data->move[data->obj.type_index] (data, obj);
 }
 
 void		input(t_data *data)

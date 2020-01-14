@@ -10,8 +10,8 @@
 # include "subrt.h"
 
 # define TRUE 1
-# define XSCREEN 800
-# define YSCREEN 800
+# define XSCREEN 400
+# define YSCREEN 400
 
 typedef struct	s_data t_data;
 
@@ -82,6 +82,8 @@ int				loop(t_data data);
 
 //				PARSING
 t_point			get_point(char *str);
+int				fill_texture(t_data *data, char *line);
+int				fill_normal(t_data *data, char *line);
 int				parsing_files(t_data *data, char *line);
 int				create_light(t_data *data);
 int				create_camera(t_data *data);
@@ -98,7 +100,10 @@ int				parsing(t_data *data, int nb, char *arg[]);
 //				PARSING
 
 //				INIT
-int				initialize_cam(t_data *data);
+void			rot_init_cam_x(t_data *data, t_point *base, t_point *direction, int index);
+void			rot_init_cam_y(t_data *data, t_point *base, t_point *direction, int index);
+void			rot_init_cam_z(t_data *data, t_point *base, t_point *direction, int index);
+int         	initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
 //				INIT

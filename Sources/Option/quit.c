@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
+/*   Updated: 2020/01/13 20:15:31 by lomasse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static char		*find_error(int error_value)
@@ -19,20 +31,28 @@ static char		*find_error(int error_value)
 	if (error_value == 10)
 		return ("\nEmpty map\n");
 	if (error_value == 11)
-		return ("\nIncorrec path name\n");
+		return ("\nIncorrect path name\n");
 	return ("\nUnindexed Error\n");
 }
 
+/*
+**	Can't Stop the Program properly
+*/
+
 void			stop_execute(char *error, t_data *data)
 {
-	(void)data; // Free ?
+	(void)data;
 	ft_putstr(error);
 	exit(0);
 }
 
+/*
+**	End of the main if something went wrong
+*/
+
 int				stop_main_execute(char *error, t_data *data, int error_value)
 {
-	(void)data; // Free ?
+	(void)data;
 	ft_putstr(error);
 	ft_putstr("Code erreur ");
 	ft_putnbr(error_value);

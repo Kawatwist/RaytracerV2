@@ -10,8 +10,8 @@ typedef struct      s_window
     SDL_Texture     *txt;
     void            *pxl;
     int             pitch;
-    int             xscreen;
-    int             yscreen;
+    int             x;
+    int             y;
 }                   t_window;
 
 typedef struct      s_calc
@@ -56,6 +56,15 @@ typedef struct      s_object
 	int	            index[3];
 	int         	type_index;
 }                   t_object;
+
+typedef struct      s_ray
+{
+	t_vec			tmp;
+    unsigned int	color[2];
+	void			*obj;
+	float			dist[2];
+	int				bounce;
+}                   t_ray;
 
 typedef struct      s_scene
 {
