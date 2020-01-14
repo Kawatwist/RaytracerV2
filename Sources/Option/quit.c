@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 20:15:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/14 19:23:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static char		*find_error(int error_value)
 		return ("\nEmpty map\n");
 	if (error_value == 11)
 		return ("\nIncorrect path name\n");
+	if (error_value > 11)
+		printf("\nC'est trop la !\n");
 	return ("\nUnindexed Error\n");
 }
 
