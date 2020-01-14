@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 20:52:08 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/14 19:20:37 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int				parsing_camera(t_data *data, char **old)
 
 	line = NULL;
 	if (index >= data->obj.nb_camera)
-		return (11);
+		return (12);
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
 		if (!ft_strncmp("\torigin : ", line, 10))
@@ -28,6 +28,8 @@ int				parsing_camera(t_data *data, char **old)
 			data->obj.camera[index].pos.direction = normalize(get_point(line));
 		else if (ft_strchr(line, '#'))
 			;
+		else
+			break;
 		free(line);
 	}
 	*old = line;
