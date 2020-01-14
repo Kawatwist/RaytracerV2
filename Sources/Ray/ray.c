@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 23:42:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:17:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static t_vec		setup_reflection(t_data *data, void *obj,
 	t_vec tmp;
 
 	tmp.origin = set_neworigin_neg(ray, dist);
-	tmp.direction = find_reflexion(obj, ray, *data);
+	tmp.direction = veccpy(ray.direction);
+	tmp.direction = find_reflexion(obj, tmp, *data);
+	data->ray.direction = veccpy(tmp.direction);
+	data->ray.origin = veccpy(tmp.origin);
 	return (tmp);
 }
 
@@ -51,7 +54,7 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 	if (((t_base *)r->obj)->effect.reflection)
 	{
 		tmp = setup_reflection(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[1] = send_ray(data, tmp, r->bounce); // Probleme sur TMP ? (Reflexion a une normale uniquement)
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.reflection / 255.0);
 	}
