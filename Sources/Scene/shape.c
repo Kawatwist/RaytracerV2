@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 22:35:25 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/14 21:19:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,26 @@ float		cone(void *coo, t_vec ray)
 {
 	t_calc	c;
 	t_cone	*cone;
-	double	k;
 	t_point oc;
+	double	k;
 
 	cone = coo;
-	k = tan(rad(cone->ang / 2.0));
-	k = k * k;
-	oc = sub_vec(ray.origin, cone->origin.origin);
-	c.a = dot_product(ray.direction, ray.direction)
-			- (1 + k) * dot_product(ray.direction, cone->origin.direction) *
-			dot_product(ray.direction, cone->origin.direction);
-	c.b = 2 * (dot_product(ray.direction, oc))
-			- (1 + k) * dot_product(ray.direction, cone->origin.direction) *
-			dot_product(oc, cone->origin.direction);
-	k = dot_product(oc, oc) - (1 + k) *
-			dot_product(oc, cone->origin.direction) *
-			dot_product(oc, cone->origin.direction);
-	c.delta = (c.b * c.b) - (4 * c.a * k);
-	if (c.delta <= 0.0)
-		return (-1.0);
-	if ((k = (-c.b - sqrt(c.delta)) / (2.0 * c.a)) > 0)
-		return (k);
-	else
-		return ((-c.b + sqrt(c.delta)) / (2.0 * c.a));
+	k = cos(rad(cone->ang / 2.0));
+	oc = sub_vec(cone->origin.origin, ray.origin);
+	c.a = square(dot_product(ray.direction, cone->origin.direction)) - k;
+	c.b = 2 * ((dot_product(ray.direction, cone->origin.direction) *
+			dot_product(oc, cone->origin.direction)) -
+			(dot_product(ray.direction, oc) * k));
+	c.c = square(dot_product(oc, cone->origin.direction)) -
+			dot_product(oc, mult_vec2(oc, k));
+	c.delta = (c.b * c.b) - (4 * c.a * c.c);
+	if (c.delta < 0 || c.a == 0 || c.b > 0)
+		return (-1);
+	c.t0 = -(-c.b + sqrt(c.delta)) / (2 * c.a);
+	c.t1 = -(-c.b - sqrt(c.delta)) / (2 * c.a);
+	if (c.t0 > 0 && c.t1 > 0)
+		return (c.t1 > c.t0 ? c.t0 : c.t1);
+	return (-1);
 }
 
 float		cylinder(void *cylinder, t_vec ray)
