@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:49:42 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 20:52:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/14 20:05:52 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			fill_normal(t_data *data, char *line)
 			return (1);
 	len = ft_strrchr(line, '"') - ft_strchr(line, '"') - 1;
 	if (!(len > 0 && len < 100))
-		return (11);
+		return (14);
 	data->obj.normal[index] = ft_strndup(ft_strchr(line, '"') + 1, len);
 	index++;
 	return (0);
@@ -71,10 +71,10 @@ int			fill_texture(t_data *data, char *line)
 			return (1);
 	len = ft_strrchr(line, '"') - ft_strchr(line, '"') - 1;
 	if (!(len > 0 && len < 100))
-		return (11);
+		return (14);
 	if ((data->obj.texture[index] =
 		ft_strndup(ft_strchr(line, '"') + 1, len)) == NULL)
-		return (1);
+		return (14);
 	index++;
 	return (0);
 }
