@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/14 21:35:00 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/14 22:20:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ int			parsing_head(t_data *data, char **ret)
 
 	line = NULL;
 	while (get_next_line(data->parse.fd, &line) && line[0] == '#')
-		;
+		free(line);
 	if (ft_strncmp("[header]", line, 8))
 		return (12);
+	free(line);
 	if ((er = parsing_head_v2(data, ret, line)) != 0)
 		return (er);
 	if (ret && *ret[0] != '[')
