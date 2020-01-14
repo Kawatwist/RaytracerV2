@@ -1,0 +1,42 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~Figure V3~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+[header]
+	object : 5
+	light : 1
+	camera : 2
+[light:1]
+	origin : {0.75 0 -1}
+	distance : 5
+	intensity : 1
+	color : 0xFFFFFF
+[camera:1]
+	origin : {0.5 0 -1}
+	direction : {0 0 1}
+[camera:2]
+	origin : {1 0 -1}
+	direction : {0 0.5 0.5}
+[object:plan]
+	color : 0x4F2FFF
+	origin : {0.5 0.2 2}
+	direction : {0 0 -1}
+[object:plan]
+	color : 0x4F4F4F
+	origin : {0.5 0.2 2}
+	direction : {0 -1 0}
+[object:cone]
+	origin : {0.5 0 0}
+	direction : {0.77 0.77 0}
+	color : 0xFFFF4F
+	angle : 75
+[object:sphere]
+	origin : {0.5 0.125 -0.25}
+	color : 0x6F000F
+	rayon : 0.075
+[object:cylinder]
+	origin : {0 0.25 0}
+	direction : {-1 1 -0.25}
+	color : 0xFF3F
+	rayon : 0.2
