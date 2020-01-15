@@ -1,0 +1,84 @@
+#############################################
+#			Scene 42 : The Tri				#
+#############################################
+[header]
+	xscreen : 400
+	yscreen : 400
+	quality : 2
+	bounce : 0
+	camera : 2
+	object : 8
+	light : 3
+	nb_texture : 2
+	nb_normal : 1
+	textures : "./texture/HD2.tga"
+	textures : "./texture/planet/moon.tga"
+	normal : "./texture/normal/coussin.tga"
+############### Light ##################
+[light:1]
+	origin : {-0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+[light:1]
+	origin : {0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 2
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+############### Object #################
+[object:plan]
+	origin : {0 0 2}
+	direction : {-1 0 -1}
+	color : 0x7F7F7F
+			mv : 1
+			reflection : 255
+[object:plan]
+	origin : {0 0 2}
+	direction : {1 0 -1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0 0 -2}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0 -1 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0 1 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:cylinder]
+	origin : {0 0 1}
+	direction : {0 -1 0}
+	color : 0xFF00FF
+	rayon : 0.1
+			reflection : 0
+[object:sphere]
+	origin : {0 -1 1}
+	direction : {0 -1 0}
+	color : 0xFF00FF
+	rayon : 0.25
+			reflection : 0
+[object:sphere]
+	origin : {0 1 1}
+	direction : {0 -1 0}
+	color : 0xFF00FF
+	rayon : 0.25
+			reflection : 0
