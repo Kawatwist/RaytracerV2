@@ -3,7 +3,7 @@
 top_builddir = .
 srcdir  = .
 objects = build
-prefix = /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries
+prefix = /Users/lomasse/Projet/RaytracerV2/libraries
 exec_prefix = ${prefix}
 bindir	= $(DESTDIR)${exec_prefix}/bin
 libdir  = $(DESTDIR)${exec_prefix}/lib
@@ -21,16 +21,16 @@ EXE	=
 SHELL	= /bin/sh
 CC      = gcc
 CFLAGS  = -g -O2 
-EXTRA_CFLAGS =  -D_GNU_SOURCE=1 -I/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/include/SDL2 -D_THREAD_SAFE -DHAVE_SIGNAL_H -DHAVE_SETBUF -fvisibility=hidden -DHAVE_FORK -DMUSIC_CMD -DMUSIC_WAV -DMUSIC_MID -DMUSIC_MID_TIMIDITY -I$(srcdir)/timidity -DMUSIC_MID_NATIVE -I$(srcdir)/native_midi
+EXTRA_CFLAGS =  -D_GNU_SOURCE=1 -I/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2 -D_THREAD_SAFE -DHAVE_SIGNAL_H -DHAVE_SETBUF -fvisibility=hidden -DHAVE_FORK -DMUSIC_CMD -DMUSIC_WAV -DMUSIC_MID -DMUSIC_MID_TIMIDITY -I$(srcdir)/timidity -DMUSIC_MID_NATIVE -I$(srcdir)/native_midi
 LDFLAGS = 
-EXTRA_LDFLAGS =  -L/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib -lSDL2 -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit -Wl,-framework,CoreServices -lm
+EXTRA_LDFLAGS =  -L/Users/lomasse/Projet/RaytracerV2/libraries/lib -lSDL2 -Wl,-framework,AudioToolbox -Wl,-framework,AudioUnit -Wl,-framework,CoreServices -lm
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 INSTALL = /usr/bin/install -c
 AR	= ar
 RANLIB	= ranlib
 WINDRES	= 
-SDL_CFLAGS = -I/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/include/SDL2 -D_THREAD_SAFE
-SDL_LIBS = -L/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib -lSDL2
+SDL_CFLAGS = -I/Users/lomasse/Projet/RaytracerV2/libraries/include/SDL2 -D_THREAD_SAFE
+SDL_LIBS = -L/Users/lomasse/Projet/RaytracerV2/libraries/lib -lSDL2
 
 TARGET  = libSDL2_mixer.la
 OBJECTS = $(objects)/effect_position.lo $(objects)/effect_stereoreverse.lo $(objects)/effects_internal.lo $(objects)/load_aiff.lo $(objects)/load_voc.lo $(objects)/mixer.lo $(objects)/music.lo $(objects)/music_cmd.lo $(objects)/music_flac.lo $(objects)/music_fluidsynth.lo $(objects)/music_mad.lo $(objects)/music_mikmod.lo $(objects)/music_modplug.lo $(objects)/music_mpg123.lo $(objects)/music_nativemidi.lo $(objects)/music_ogg.lo $(objects)/music_opus.lo $(objects)/music_timidity.lo $(objects)/music_wav.lo $(objects)/common.lo $(objects)/instrum.lo $(objects)/mix.lo $(objects)/output.lo $(objects)/playmidi.lo $(objects)/readmidi.lo $(objects)/resample.lo $(objects)/tables.lo $(objects)/timidity.lo $(objects)/native_midi_common.lo $(objects)/native_midi_mac.lo $(objects)/native_midi_macosx.lo $(objects)/native_midi_win32.lo 

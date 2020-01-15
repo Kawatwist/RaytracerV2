@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/lib'
+libdir='/Users/lomasse/Projet/RaytracerV2/libraries/lib'

@@ -10,8 +10,8 @@
 # include "subrt.h"
 
 # define TRUE 1
-# define XSCREEN 400
-# define YSCREEN 400
+# define XSCREEN 1000
+# define YSCREEN 1000
 
 typedef struct	s_data t_data;
 
@@ -172,6 +172,8 @@ void			light_cursor(t_data *data);
 
 /*input_obj*/
 
+
+void			create_screenshot(t_data *data, void *pxl);
 
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);
