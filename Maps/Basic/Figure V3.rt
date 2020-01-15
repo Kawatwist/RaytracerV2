@@ -9,15 +9,15 @@
 	camera : 1
 [light:1]
 	origin : {0.75 0 -1}
-	distance : 2.75
+	distance : 200.75
 	intensity : 0.75
 	color : 0xFFFFFF
 [camera:1]
-	origin : {0.5 0 -1}
+	origin : {0.5 -0.1 -1}
 	direction : {0 0 1}
 [object:cone]
-	origin : {0.5 0 0}
-	direction : {0 1 0}
+	origin : {0.5 0.3 0.5}
+	direction : {0.5 1 0}
 	color : 0xFFFF4F
 	angle : 75
 [object:plan]

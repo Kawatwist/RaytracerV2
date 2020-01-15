@@ -76,6 +76,7 @@ SRC				=	main.c										\
 					input_light.c								\
 					input_cam.c									\
 					input_textures.c							\
+					screenshot.c								\
 					create_type.c								\
 					fill_obj.c									\
 

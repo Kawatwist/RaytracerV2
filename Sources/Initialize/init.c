@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 20:11:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/15 15:58:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 int		initialize(t_data *data)
 {
-	int error_value;
-
 	ft_bzero(data, sizeof(t_data));
-	if ((error_value = initialize_sdl(data)))
-		return (error_value);
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;

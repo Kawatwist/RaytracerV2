@@ -21,6 +21,8 @@ typedef struct      s_calc
     float           c;
     float           delta;
     float           sqt;
+    float           t0;
+    float           t1;
 }                   t_calc;
 
 typedef struct      s_input

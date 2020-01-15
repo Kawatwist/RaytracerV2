@@ -4,6 +4,10 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 [header]
+	xscreen : 400
+	yscreen : 400
+	quality : 0
+	bounce : 0
 	object : 5
 	light : 1
 	camera : 2
