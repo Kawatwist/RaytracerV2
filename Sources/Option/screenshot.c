@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 17:24:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/15 18:44:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		create_screenshot(t_data *data, void *pxl)
 	fd = creat(name, S_IRUSR | S_IRGRP | S_IROTH);
 	init_head(data, &header);
 	ft_putnstr_fd(header, 18, fd);
-	ft_putnstr_fd(pxl, XSCREEN * YSCREEN * 4, fd);
+	ft_putnstr_fd(pxl, data->window.x * data->window.y * 4, fd);
 	ft_putstr("Screenshot Done : ");
 	ft_putstr(name);
 	ft_putchar('\n');
