@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 15:58:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:37:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
+	data->window.x = 0;
+	data->window.y = 0;
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;

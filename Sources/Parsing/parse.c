@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 19:19:37 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/15 21:39:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int		parsing(t_data *data, int nb, char *arg[])
 	if ((error_value = parsing_files(data, line)) != 0)
 		return (error_value);
 	data->percent = 0;
+	if (!data->window.x || !data->window.y)
+	{
+		data->window.x = XSCREEN;
+		data->window.y = YSCREEN;
+	}
 	if ((error_value = initialize_cam(data)) != 0)
 		return (error_value);
 	return (0);
