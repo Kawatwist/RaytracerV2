@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 15:59:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:46:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 int			initialize_sdl(t_data *data)
 {
-	if (!data->window.x || !data->window.y)
-	{
-		data->window.x = XSCREEN;
-		data->window.y = YSCREEN;
-	}
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 		return (1);
 	data->window.window = SDL_CreateWindow("Rtv1", 500, 500, data->window.x,

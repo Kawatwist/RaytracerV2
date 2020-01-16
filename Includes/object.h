@@ -2,6 +2,7 @@
 # define OBJECT_H
 
 # define MV 0b10000000
+# define NS 0b1000000
 #define  KEY_O SDL_SCANCODE_O
 
 typedef enum	e_item
