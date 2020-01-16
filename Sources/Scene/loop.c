@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 20:47:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/16 00:03:18 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int			loop(t_data data)
 {
+	int		err;
+
 	data.obj.type_index = 0;
 	while (TRUE)
 	{
@@ -22,13 +24,12 @@ int			loop(t_data data)
 			break ;
 		SDL_LockTexture(data.window.txt, NULL,
 		&data.window.pxl, &data.window.pitch);
-		if (start_ray(&data))
-			return (10);
+		if ((err = start_ray(&data)) != 0)
+			return (err);
 		data.percent++;
 		if (data.percent > 99)
 			data.percent = 0;
 		SDL_UnlockTexture(data.window.txt);
-		SDL_Delay(10);
 		SDL_RenderCopy(data.window.rend, data.window.txt, NULL, NULL);
 		SDL_RenderPresent(data.window.rend);
 	}

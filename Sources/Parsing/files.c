@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 19:21:24 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/15 23:54:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 
 	if (!ft_strncmp("[camera", *line, 7))
 	{
-		curr = 14;
+		curr = 16;
 		parsing_camera(data, old);
 	}
 	else if (!ft_strncmp("[object", *line, 7))
 	{
-		curr = 15;
+		curr = 17;
 		parsing_obj(data, old, *line);
 	}
 	else if (!ft_strncmp("[light", *line, 6))
 	{
-		curr = 16;
+		curr = 15;
 		parsing_light(data, old, *line);
 	}
 	else if ((*line)[0] == '#')
@@ -41,14 +41,13 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 int				parsing_files(t_data *data, char *old)
 {
 	char	*line;
-	int		error_value;
+	int		er;
 
 	line = NULL;
-	create_camera(data);
-	create_item(data);
-	create_light(data);
-	create_texture(data);
-	create_normal(data);
+	if ((er = create_camera(data)) || (er = create_item(data)) ||
+		(er = create_light(data)) || (er = create_texture(data)) ||
+		(er = create_normal(data)))
+		return (er);
 	while (old != NULL || get_next_line(data->parse.fd, &line))
 	{
 		if (old != NULL)
@@ -56,11 +55,11 @@ int				parsing_files(t_data *data, char *old)
 			line = old;
 			old = NULL;
 		}
-		printf("Parsing Files : %d\n", error_value);
-		if ((error_value = parsing_files2(data, &old, &line)) == 0)
+		data->parse.error_line += 1;
+		if ((er = parsing_files2(data, &old, &line)) == 0)
 			;
 		else
-			return (error_value);
+			return (er);
 		free(line);
 	}
 	return (0);

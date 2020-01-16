@@ -71,6 +71,7 @@ typedef struct      s_ray
 typedef struct      s_scene
 {
     int             fd;
+    unsigned int    error_line;
 }                   t_scene;
 
 #endif

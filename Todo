@@ -79,3 +79,5 @@ void		move_cam(t_data *data, void **cam)
 
 
 printf enter dans input a enlever
+
+pouvoir set un nb de bounce

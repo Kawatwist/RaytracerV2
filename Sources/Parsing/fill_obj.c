@@ -6,7 +6,11 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/16 00:36:05 by lomasse          ###   ########.fr       */
+=======
+/*   Updated: 2020/01/14 21:58:49 by luwargni         ###   ########.fr       */
+>>>>>>> Input
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +82,7 @@ static int		fill_effect(t_effect *effect, char *line)
 	else if (!ft_strncmp("\t\t[effect]", line, 10))
 		return (0);
 	else
-		return (11);
+		return (20);
 	return (0);
 }
 
@@ -100,12 +104,12 @@ int				fill_obj(t_data *data, char **line, int index)
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
 	else if (!ft_strncmp("\t\t", *line, 2))
 	{
-		if (fill_effect(&(((t_base *)data->obj.item[index])->effect), *line))
-			return (11);
+		if (fill_effect(&(((t_base *)data->obj.item[index])->effect), *line) == 20)
+			return (20);
 	}
 	else if (ft_strchr(*line, '#'))
 		;
 	else
-		return (11);
+		return (17);
 	return (0);
 }
