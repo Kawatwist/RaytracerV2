@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 21:33:16 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/15 23:54:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int				parsing_files(t_data *data, char *old)
 			line = old;
 			old = NULL;
 		}
+		data->parse.error_line += 1;
 		if ((er = parsing_files2(data, &old, &line)) == 0)
 			;
 		else

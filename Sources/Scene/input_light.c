@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:04 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 21:46:21 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/15 21:43:38 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ void	input_distance_light(t_data *data, void **light, char ctrl)
 {
 	if (key_old(*data, SDL_SCANCODE_KP_1) && !ctrl)
 		(*(t_light **)light)->distance += 0.1;
-	else if (key_old(*data, SDL_SCANCODE_KP_1) && ctrl)
+	else if (key_old(*data, SDL_SCANCODE_KP_1) && ctrl && (*(t_light **)light)->distance > 0.0)
 		(*(t_light **)light)->distance -= 0.1;
 }
 
 void	input_intensity_light(t_data *data, void **light, char ctrl)
 {
-	if (key_old(*data, SDL_SCANCODE_KP_2) && !ctrl)
+	if (key_old(*data, SDL_SCANCODE_KP_2) && !ctrl &&
+	(*(t_light **)light)->intensity < 1.0)
 		(*(t_light **)light)->intensity += 0.1;
-	else if (key_old(*data, SDL_SCANCODE_KP_2) && ctrl)
+	else if (key_old(*data, SDL_SCANCODE_KP_2) && ctrl &&
+	(*(t_light **)light)->intensity > 0.0)
 		(*(t_light **)light)->intensity -= 0.1;
 }
 

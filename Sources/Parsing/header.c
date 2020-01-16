@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 21:33:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/15 23:59:21 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 	while ((get_next_line(data->parse.fd, &line)) &&
 			ft_strncmp("\t\t", line, 2))
 	{
+		data->parse.error_line += 1;
 		if (!ft_strncmp("\tcamera : ", line, 10))
 			data->obj.nb_camera = ft_atoi(&(line[10]));
 		else if (!ft_strncmp("\tbounce : ", line, 10))
@@ -75,13 +76,16 @@ int			parsing_head(t_data *data, char **ret)
 
 	line = NULL;
 	while (get_next_line(data->parse.fd, &line) && line[0] == '#')
+	{
 		free(line);
+		data->parse.error_line += 1;
+	}
 	if (ft_strncmp("[header]", line, 8))
 		return (12);
 	free(line);
 	if ((er = parsing_head_v2(data, ret, line)) != 0)
 		return (er);
 	if (ret && *ret[0] != '[')
-		return (19);
+		return (12);
 	return (0);
 }
