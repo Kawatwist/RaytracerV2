@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/14 17:17:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/16 00:31:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal(r.obj, r.tmp);
-	r.color[0] = ray_to_light(data, r.tmp, r.color[0]);
+	if (!(((t_base *)r.obj)->effect.flag & NS))
+		r.color[0] = ray_to_light(data, r.tmp, r.color[0]);
 	r.bounce = bounce;
 	if (r.bounce--)
 		bounce_effect(data, ray, &r);

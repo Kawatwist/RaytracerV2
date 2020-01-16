@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 21:08:59 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/16 00:36:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int		fill_effect(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\tmv : ", line, 8))
 		effect->flag += (ft_atoi(line + 8) > 0 ? MV : 0);
+	else if (!ft_strncmp("\t\t\tns : ", line, 8))
+		effect->flag += (ft_atoi(line + 8) > 0 ? NS : 0);
 	else if (!ft_strncmp("\t\t\trefraction : ", line, 16))
 		effect->refraction = ft_atoi(line + 16);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))

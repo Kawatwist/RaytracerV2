@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 21:19:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/16 01:12:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ float		cylinder(void *cylinder, t_vec ray)
 	d.b = dot_product(os, cross_vec(c.origin.direction,
 		sub_vec(ray.origin, c.origin.origin))) * 2.0;
 	d.c = dot_product(tmp, tmp) - square(c.rayon);
-	if (!d.a && d.b)
-		return (-1);
 	d.delta = square(d.b) - (4.0 * d.a * d.c);
+	if (!d.a && d.b > 0)
+		return (-1);
 	if (d.delta < 0)
 		return (-1);
 	d.sqt = sqrtf(d.delta);
-	if ((d.c = (((-d.b) - d.sqt) / (2.0 * d.a))) > 0)
-		return (d.c);
-	else
-		return ((-d.b) + d.sqt / (2.0 * d.a));
-	return (d.c);
+	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);
+	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
+	if (d.t0 > 0 && d.t1 > 0)
+		return (d.t1 > d.t0 ? d.t0 : d.t1);
+	return (-1);
 }
 
 float		sphere(void *sphere, t_vec ray)

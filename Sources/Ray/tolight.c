@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 18:54:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/16 00:55:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ float				stop_light(t_data *data, t_light light, t_vec ray)
 	intersect = -1;
 	check.origin = veccpy(ray.origin);
 	check.direction = sub_vec(light.origin, ray.origin);
-	obj = check_object(data, check, &intersect);
+	obj = check_object_light(data, check, &intersect);
 	if (obj == NULL || intersect < 0)
 		return (-1);
 	intersect = square(square(intersect));
@@ -74,7 +74,7 @@ static float		dist(t_data *data, t_vec ray, int index, float *obj)
 		obj[0] = 1.0;
 	else if (obj[1] > 0.0)
 		obj[0] = obj[1] / (length(sub_vec(data->obj.light[index].origin,
-			ray.origin)));
+			ray.origin)) );
 	else
 		obj[0] = 1;
 	return (obj[0]);
