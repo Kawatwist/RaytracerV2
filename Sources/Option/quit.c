@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/16 00:00:14 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/17 21:36:17 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,65 @@ void			stop_execute(char *error, t_data *data)
 **	End of the main if something went wrong
 */
 
+void		clear_texture(t_data *data, t_tga **tofree)
+{
+	int		i;
+
+	i = -1;
+	while (i++ < data->obj.nb_texture - 1)
+		(tofree)[i] != NULL ? free_tga((tofree)[i]) : 0;
+	free((tofree));
+}
+
+void		clear_obj_item(t_data *data, t_object tofree)
+{
+	int		i;
+
+	i = -1;
+	while (i++ < data->obj.nb_item)
+		tofree.item[i] != NULL ? free(tofree.item[i]) : 0;
+	free(tofree.item);
+}
+
+void		clear_normal(t_data *data, t_tga **tofree)
+{
+	int		i;
+
+	i = -1;
+	while (i++ < data->obj.nb_normal - 1)
+		(tofree)[i] != NULL ? free_tga((tofree)[i]) : 0;
+	free((tofree));
+}
+
+void		clear_obj_cam(t_object tofree)
+{
+	tofree.camera != NULL ? free(tofree.camera) : 0;
+}
+
+void		clear_obj_light(t_object tofree)
+{
+	tofree.light != NULL ? free(tofree.light) : 0;
+}
+
+int				clear_memory(t_data *data, SDL_Renderer *r)
+{
+	clear_texture(data, data->texture);
+	clear_obj_item(data, data->obj);
+	clear_normal(data, data->normal);
+	clear_obj_cam(data->obj);
+	clear_obj_light(data->obj);
+
+	SDL_DestroyTexture(data->window.txt);
+	SDL_DestroyRenderer(data->window.rend);
+	SDL_DestroyWindow(data->window.window);
+	SDL_Quit();
+	sleep(5);
+	(void)r;
+	return (0);
+}
+
 int				stop_main_execute(char *error, t_data *data, int error_value)
 {
-	(void)data;
 	ft_putstr(error);
 	ft_putstr("Erreur ");
 	ft_putnbr(error_value);
@@ -83,5 +139,6 @@ int				stop_main_execute(char *error, t_data *data, int error_value)
 		ft_putnbr(data->parse.error_line + 1);
 	}
 	ft_putstr(find_error(error_value));
+	//clear_memory(data, data->dinwo);
 	return (error_value);
 }

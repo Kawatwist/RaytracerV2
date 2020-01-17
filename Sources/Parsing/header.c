@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 23:59:21 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/16 19:32:08 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 		else if (!(val = is_tga(data, line)) || (line[0] == '#'))
 			;
 		else if (val == 1 || val == 14)
+		{
+			free(line);//need test
 			return (val);
+		}
 		else
 			break ;
 		free(line);
@@ -81,7 +84,10 @@ int			parsing_head(t_data *data, char **ret)
 		data->parse.error_line += 1;
 	}
 	if (ft_strncmp("[header]", line, 8))
+	{
+		free(line);
 		return (12);
+	}
 	free(line);
 	if ((er = parsing_head_v2(data, ret, line)) != 0)
 		return (er);

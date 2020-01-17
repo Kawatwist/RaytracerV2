@@ -177,6 +177,7 @@ void			light_cursor(t_data *data);
 
 void			create_screenshot(t_data *data, void *pxl);
 
+int				clear_memory(t_data *data, SDL_Renderer *r);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);
 int				main(int argc, char *argv[]);

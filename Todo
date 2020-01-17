@@ -81,3 +81,12 @@ void		move_cam(t_data *data, void **cam)
 printf enter dans input a enlever
 
 pouvoir set un nb de bounce
+
+texture a free a la fin de prog
+tga a free a la fin de prog surement et avec la fonction
+
+
+malloc de structure camera
+
+	if ((item = malloc(tab[(int)type])) == NULL)
+		return (1); ligne 37 et 37 in parsing obj and create obj
