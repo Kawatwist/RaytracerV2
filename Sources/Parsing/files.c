@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 23:54:14 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:41:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ int				parsing_files(t_data *data, char *old)
 	int		er;
 
 	line = NULL;
-	if ((er = create_camera(data)) || (er = create_item(data)) ||
-		(er = create_light(data)) || (er = create_texture(data)) ||
+	if ((er = create_camera(data)) ||
+		(er = create_item(data)) ||
+		(er = create_light(data)) ||
+		(er = create_texture(data)) ||
 		(er = create_normal(data)))
 		return (er);
 	while (old != NULL || get_next_line(data->parse.fd, &line))

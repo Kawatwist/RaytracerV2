@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rt.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
+/*   Updated: 2020/01/18 18:13:34 by lomasse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef RT_H
 # define RT_H
 
@@ -13,16 +25,16 @@
 # define XSCREEN 1000
 # define YSCREEN 1000
 
-typedef struct	s_data t_data;
-
-typedef struct		s_flag
+typedef struct	s_flag
 {
-	unsigned int	pixel : 2;
-	unsigned int	perspective : 1;
-	unsigned int	bounce : 1;
-}					t_flag;
+	Uint32		pixel : 2;
+	Uint32		perspective : 1;
+	Uint32		bounce : 1;
+}				t_flag;
 
-struct	s_data
+typedef struct s_data	t_data;
+
+struct			s_data
 {
 	t_window	window;
 	t_input		input;
@@ -39,29 +51,28 @@ struct	s_data
 	int			bounce;
 };
 
-//				EFFECT
 t_point			find_refraction(t_data data, void *obj, t_vec ray);
 t_point			find_reflexion(void *obj, t_vec ray, t_data data);
 t_point			find_normal(void *object, t_vec collide);
-//				EFFECT
-
-//				LIGHT
 
 void			*check_object_light(t_data *data, t_vec ray, float *dist);
 unsigned int	ray_to_light(t_data *data, t_vec ray, t_vec tmp, int base);
 int				parsing_light(t_data *data, char **old, char *line);
-void        	setup_light(t_data *data);
-//				LIGHT
+void			setup_light(t_data *data);
 
-//				OBJECT
 int				find_size(t_data data, void *obj, int choose);
-t_point			find_normal_texture(t_data data, void *obj, t_vec collide, t_point normal);
+t_point			find_normal_texture(t_data data, void *obj,
+					t_vec collide, t_point normal);
 t_point			find_normal_with_txt(t_data data, void *object, t_vec collide);
 
-t_point			texture_plan(t_data *data, void *obj, t_vec ray, int choose);
-t_point			texture_sphere(t_data *data, void *obj, t_vec ray, int choose);
-t_point			texture_cylinder(t_data *data, void *obj, t_vec ray, int choose);
-t_point			texture_cone(t_data *data, void *obj, t_vec ray, int choose);
+t_point			texture_plan(t_data *data,
+					void *obj, t_vec ray, int choose);
+t_point			texture_sphere(t_data *data,
+					void *obj, t_vec ray, int choose);
+t_point			texture_cylinder(t_data *data,
+					void *obj, t_vec ray, int choose);
+t_point			texture_cone(t_data *data,
+					void *obj, t_vec ray, int choose);
 
 float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);
@@ -69,9 +80,7 @@ float			plane(void *plane, t_vec ray);
 float			sphere(void *sphere, t_vec ray);
 
 void			*check_object(t_data *data, t_vec ray, float *dist);
-//				OBJECT
 
-//				RAY
 int				start_ray(t_data *data);
 unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
 unsigned int	find_color(t_data *data, void *obj, t_vec ray);
@@ -80,9 +89,7 @@ char			key_old(t_data data, int mask);
 char			key_check(t_data data, int mask);
 void			input(t_data *data);
 int				loop(t_data data);
-//				RAY
 
-//				PARSING
 t_point			get_point(char *str);
 int				fill_texture(t_data *data, char *line);
 int				fill_normal(t_data *data, char *line);
@@ -99,18 +106,17 @@ int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
-//				PARSING
 
-//				INIT
-void			rot_init_cam_x(t_data *data, t_point *base, t_point *direction, int index);
-void			rot_init_cam_y(t_data *data, t_point *base, t_point *direction, int index);
-void			rot_init_cam_z(t_data *data, t_point *base, t_point *direction, int index);
-int         	initialize_cam(t_data *data);
+void			rot_init_cam_x(t_data *data, t_point *base,
+					t_point *direction, int index);
+void			rot_init_cam_y(t_data *data, t_point *base,
+					t_point *direction, int index);
+void			rot_init_cam_z(t_data *data, t_point *base,
+					t_point *direction, int index);
+int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
-//				INIT
 
-//				TOOL
 t_point			rotx(t_point origin, float ang);
 t_point			roty(t_point origin, float ang);
 t_point			rotz(t_point origin, float ang);
@@ -146,12 +152,10 @@ t_point			cross_vec(t_point v1, t_point v2);
 float			cross_product(double **mat, t_point v1, int row);
 float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
-//				TOOL
 
 void			move_cam(t_data *data, void **obj);
 void			input_move_cam(t_data *data, t_point tmp, void **cam);
-void		    call_rot_cam(t_data *data);
-
+void			call_rot_cam(t_data *data);
 
 void			move_obj(t_data *data, void **obj);
 void			input_move_obj(t_data *data, void **obj);
@@ -160,24 +164,17 @@ void			input_descartes_obj(t_data *data, void **obj, char ctrl);
 void			input_id(t_data *data, void **obj, char ctrl);
 void			input_textures(t_data *data, void **obj, char ctrl);
 
-
 void			move_light(t_data *data, void **obj);
 void			input_move_light(t_data *data, void **light);
 void			input_color_light(t_data *data, void **light, char ctrl);
 void			input_distance_light(t_data *data, void **light, char ctrl);
 void			input_intensity_light(t_data *data, void **light, char ctrl);
 
-
-
-
 void			light_cursor(t_data *data);
-
-/*input_obj*/
-
 
 void			create_screenshot(t_data *data, void *pxl);
 
-int				clear_memory(t_data *data, SDL_Renderer *r);
+int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);
 int				main(int argc, char *argv[]);

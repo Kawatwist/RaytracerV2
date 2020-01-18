@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/01/16 19:32:08 by luwargni         ###   ########.fr       */
-=======
-/*   Updated: 2020/01/16 15:52:49 by lomasse          ###   ########.fr       */
->>>>>>> Shape
+/*   Updated: 2020/01/18 17:44:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +44,7 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 		else if (!ft_strncmp("\tbounce : ", line, 10))
 			data->bounce = ft_atoi(&(line[10]));
 		else if (!ft_strncmp("\tquality : ", line, 11))
-			data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 0b11; // Need to secure /!
+			data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
 		else if (!ft_strncmp("\tobject : ", line, 10))
 			data->obj.nb_item = ft_atoi(&(line[10]));
 		else if (!ft_strncmp("\tlight : ", line, 9))
@@ -65,7 +61,7 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 			;
 		else if (val == 1 || val == 14)
 		{
-			free(line);//need test
+			free(line);
 			return (val);
 		}
 		else

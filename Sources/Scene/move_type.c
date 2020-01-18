@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 18:35:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:55:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void		move_light(t_data *data, void **light)
 	ft_putchar('\n');
 }
 
+/*
+** mouvement axe flag
+*/
+
 void		move_obj(t_data *data, void **obj)
 {
 	static char ctrl = 0;
@@ -47,9 +51,6 @@ void		move_obj(t_data *data, void **obj)
 	input_descartes_obj(data, obj, ctrl);
 	input_id(data, obj, ctrl);
 	input_textures(data, obj, ctrl);
-	/*mouvement*/
-	/*axe*/
-	/*flag*/
 	ctrl = 0;
 	ft_putstr("Object actually selected :");
 	ft_putnbr(data->obj.index[1]);

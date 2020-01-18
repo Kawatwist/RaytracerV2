@@ -41,6 +41,7 @@ SRC				=	main.c										\
 					init_cam.c									\
 					rot_init_cam.c								\
 					quit.c										\
+					clear.c										\
 					get_point.c									\
 					parse.c										\
 					header.c									\

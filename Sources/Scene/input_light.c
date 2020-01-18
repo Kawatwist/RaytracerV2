@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:04 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 21:43:38 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:49:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	input_distance_light(t_data *data, void **light, char ctrl)
 {
 	if (key_old(*data, SDL_SCANCODE_KP_1) && !ctrl)
 		(*(t_light **)light)->distance += 0.1;
-	else if (key_old(*data, SDL_SCANCODE_KP_1) && ctrl && (*(t_light **)light)->distance > 0.0)
+	else if (key_old(*data, SDL_SCANCODE_KP_1) && ctrl &&
+		(*(t_light **)light)->distance > 0.0)
 		(*(t_light **)light)->distance -= 0.1;
 }
 

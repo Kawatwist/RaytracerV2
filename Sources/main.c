@@ -6,12 +6,11 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 16:59:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:25:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
 
 int		main(int argc, char *argv[])
 {
@@ -26,7 +25,7 @@ int		main(int argc, char *argv[])
 		return (value);
 	if ((value = loop(data)) != 0 && value != 50)
 		return (stop_main_execute("Error in Runing : ", &data, value));
-	clear_memory(&data, data.window.rend);
+	clear_memory(&data);
 	ft_putstr("See you soon !\n");
 	return (0);
 }

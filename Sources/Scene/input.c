@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 16:51:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:49:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ static void	input_obj(t_data *data)
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
 	if (enter == 1)
-		printf("Current Mode Object\n\n");
+		ft_putstr("Current Mode Object\n\n");
 	else
-		printf("Current Mode Index\n\n");
-	data->move[data->obj.type_index] (data, obj);
+		ft_putstr("Current Mode Index\n\n");
+	data->move[data->obj.type_index](data, obj);
 }
 
 void		input(t_data *data)

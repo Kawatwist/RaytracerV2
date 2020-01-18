@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 16:59:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:47:51 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,12 @@ float				stop_light(t_data *data, t_light light, t_vec ray)
 
 static float		dist(t_data *data, t_vec ray, int index, float *obj)
 {
-	obj[0] = obj[1] / length(sub_vec(data->obj.light[index].origin,
-		ray.origin));
+	if (obj[1] > 0.0 && !(obj[1] >= length(sub_vec(
+		data->obj.light[index].origin, ray.origin))))
+		obj[0] = obj[1] / length(sub_vec(data->obj.light[index].origin,
+			ray.origin));
+	else
+		obj[0] = 1;
 	return (obj[0]);
 }
 
@@ -92,10 +96,7 @@ unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin,
 			data->obj.light[index].origin));
 		obj[1] = stop_light(data, data->obj.light[index], ray);
-		if (obj[1] > 0.0 && !(obj[1] >= length(sub_vec(data->obj.light[index].origin, ray.origin))))
-			obj[0] = dist(data, ray, index, obj);
-		else
-			obj[0] = 1;
+		obj[0] = dist(data, ray, index, obj);
 		len > 1 ? len = 1 : 0;
 		len < 0 ? len = 0 : 0;
 		dot *= data->obj.light[index].intensity;
