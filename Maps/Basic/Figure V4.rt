@@ -9,7 +9,7 @@
 	quality : 0
 	bounce : 0
 	object : 5
-	light : 1
+	light : 0
 	camera : 2
 [light:1]
 	origin : {0.75 0 -1}
@@ -30,11 +30,6 @@
 	color : 0x4F4F4F
 	origin : {0.5 0.2 2}
 	direction : {0 -1 0}
-[object:cone]
-	origin : {0.5 0 0}
-	direction : {0.77 0.77 0}
-	color : 0xFFFF4F
-	angle : 75
 [object:sphere]
 	origin : {0.5 0.125 -0.25}
 	color : 0x6F000F
@@ -44,3 +39,8 @@
 	direction : {-1 1 -0.25}
 	color : 0xFF3F
 	rayon : 0.2
+[object:cone]
+	origin : {1 0 0}
+	direction : {1 1 0}
+	color : 0xFFFF3F
+	angle : 50

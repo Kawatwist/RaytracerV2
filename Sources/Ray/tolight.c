@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/16 00:55:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/17 20:56:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,21 @@ float				stop_light(t_data *data, t_light light, t_vec ray)
 
 	intersect = -1;
 	check.origin = veccpy(ray.origin);
-	check.direction = sub_vec(light.origin, ray.origin);
+	check.direction = normalize(sub_vec(light.origin, ray.origin));
 	obj = check_object_light(data, check, &intersect);
-	if (obj == NULL || intersect < 0)
+	if (obj == NULL || intersect <= 0)
 		return (-1);
-	intersect = square(square(intersect));
 	return (intersect);
 }
 
 static float		dist(t_data *data, t_vec ray, int index, float *obj)
 {
-	if ((obj[1] >= (length(sub_vec(data->obj.light[index].origin, ray.origin)))
-			&& obj[1] > 0.0) || obj[1] == -1)
-		obj[0] = 1.0;
-	else if (obj[1] > 0.0)
-		obj[0] = obj[1] / (length(sub_vec(data->obj.light[index].origin,
-			ray.origin)) );
-	else
-		obj[0] = 1;
+	obj[0] = obj[1] / length(sub_vec(data->obj.light[index].origin,
+		ray.origin));
 	return (obj[0]);
 }
 
-unsigned int		ray_to_light(t_data *data, t_vec ray, int base)
+unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 {
 	int		color;
 	int		index;
@@ -88,6 +81,7 @@ unsigned int		ray_to_light(t_data *data, t_vec ray, int base)
 	float	len;
 	float	dot;
 
+	(void)tmp;
 	index = -1;
 	color = 0;
 	while (++index < data->obj.nb_light)
@@ -98,7 +92,10 @@ unsigned int		ray_to_light(t_data *data, t_vec ray, int base)
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin,
 			data->obj.light[index].origin));
 		obj[1] = stop_light(data, data->obj.light[index], ray);
-		dist(data, ray, index, obj);
+		if (obj[1] > 0.0 && !(obj[1] >= length(sub_vec(data->obj.light[index].origin, ray.origin))))
+			obj[0] = dist(data, ray, index, obj);
+		else
+			obj[0] = 1;
 		len > 1 ? len = 1 : 0;
 		len < 0 ? len = 0 : 0;
 		dot *= data->obj.light[index].intensity;
