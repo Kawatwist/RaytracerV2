@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/16 00:31:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/17 20:23:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 	if (((t_base *)r->obj)->effect.reflection)
 	{
 		tmp = setup_reflection(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce); // Probleme sur TMP ? (Reflexion a une normale uniquement)
+		r->color[1] = send_ray(data, tmp, r->bounce);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.reflection / 255.0);
 	}
@@ -87,7 +87,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal(r.obj, r.tmp);
 	if (!(((t_base *)r.obj)->effect.flag & NS))
-		r.color[0] = ray_to_light(data, r.tmp, r.color[0]);
+		r.color[0] = ray_to_light(data, ray, r.tmp, r.color[0]);
 	r.bounce = bounce;
 	if (r.bounce--)
 		bounce_effect(data, ray, &r);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/16 01:12:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/17 21:11:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ float		cone(void *coo, t_vec ray)
 	t_cone	*cone;
 	t_point oc;
 	double	k;
-
 	cone = coo;
-	k = cos(rad(cone->ang / 2.0));
+	k =  1 + square(cos(rad(cone->ang / 2.0)));
 	oc = sub_vec(cone->origin.origin, ray.origin);
 	c.a = square(dot_product(ray.direction, cone->origin.direction)) - k;
 	c.b = 2 * ((dot_product(ray.direction, cone->origin.direction) *
@@ -37,7 +36,6 @@ float		cone(void *coo, t_vec ray)
 		return (c.t1 > c.t0 ? c.t0 : c.t1);
 	return (-1);
 }
-
 float		cylinder(void *cylinder, t_vec ray)
 {
 	t_cylinder	c;
@@ -62,6 +60,8 @@ float		cylinder(void *cylinder, t_vec ray)
 	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
 	if (d.t0 > 0 && d.t1 > 0)
 		return (d.t1 > d.t0 ? d.t0 : d.t1);
+	else if  (d.t0 > 0 || d.t1 > 0)
+		return (d.t0 > 0 ? d.t0 : d.t1);
 	return (-1);
 }
 
@@ -78,12 +78,13 @@ float		sphere(void *sphere, t_vec ray)
 	d.c = dot_product(os, os) - square(s.rayon);
 	d.delta = square(d.b) - (4.0 * d.a * d.c);
 	d.sqt = sqrtf(d.delta);
-	d.c = ((-d.b) - d.sqt) / (2.0 * d.a);
-	if (d.c <= ((-d.b) + d.sqt) / (2.0 * d.a) && d.c > 0)
-		return (d.c);
-	else
-		return (((-d.b) + d.sqt) / (2.0 * d.a));
-	return (d.c);
+	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);
+	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
+	if (d.t0 > 0 && d.t1 > 0)
+		return (d.t1 > d.t0 ? d.t0 : d.t1);
+	else if  (d.t0 > 0 || d.t1 > 0)
+		return (d.t0 > 0 ? d.t0 : d.t1);
+	return (-1);
 }
 
 float		plane(void *plane, t_vec ray)
