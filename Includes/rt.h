@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 18:42:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 21:26:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
+int				check_parse(t_data *data);
 
 void			rot_init_cam_x(t_data *data, t_point *base,
 					t_point *direction, int index);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 17:41:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 22:00:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int		parsing_files2(t_data *data, char **old, char **line)
 {
 	static int	curr = 12;
+	int			val;
 
 	if (!ft_strncmp("[camera", *line, 7))
 	{
@@ -24,7 +25,8 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	else if (!ft_strncmp("[object", *line, 7))
 	{
 		curr = 17;
-		parsing_obj(data, old, *line);
+		if ((val = parsing_obj(data, old, *line)) != 0)
+			return (val);
 	}
 	else if (!ft_strncmp("[light", *line, 6))
 	{
@@ -52,16 +54,14 @@ int				parsing_files(t_data *data, char *old)
 		return (er);
 	while (old != NULL || get_next_line(data->parse.fd, &line))
 	{
-		if (old != NULL)
-		{
-			line = old;
-			old = NULL;
-		}
+		old != NULL ? line = old : 0;
+		old != NULL ? old = NULL : 0;
 		data->parse.error_line += 1;
-		if ((er = parsing_files2(data, &old, &line)) == 0)
-			;
-		else
+		if ((er = parsing_files2(data, &old, &line)) != 0)
+		{
+			free(line);
 			return (er);
+		}
 		free(line);
 	}
 	return (0);

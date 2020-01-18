@@ -40,6 +40,7 @@ SRC				=	main.c										\
 					init_sdl.c									\
 					init_cam.c									\
 					rot_init_cam.c								\
+					check.c										\
 					quit.c										\
 					clear.c										\
 					get_point.c									\

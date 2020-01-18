@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 19:46:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 20:59:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ int			parsing_head(t_data *data, char **ret)
 		free(line);
 		data->parse.error_line += 1;
 	}
-	if (ft_strncmp("[header]", line, 8))
+	if (!line || ft_strncmp("[header]", line, 8))
 	{
-		free(line);
+		line != NULL ? free(line) : 0;
 		return (12);
 	}
 	free(line);

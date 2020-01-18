@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 19:47:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 21:51:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		parsing(t_data *data, int nb, char *arg[])
 	if (nb != 2)
 		return (10);
 	if ((data->parse.fd = open(arg[1], O_RDONLY)) == -1 ||
-			read(data->parse.fd, NULL, 0))
+			read(data->parse.fd, NULL, 0) || !ft_strcmp(arg[1], "/dev/zero"))
 		return (10);
 	if ((error_value = parsing_head(data, &line)) != 0)
 		return (error_value);

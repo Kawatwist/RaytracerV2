@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 19:45:11 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 20:44:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		clear_texture(t_data *data, t_tga **tofree)
 	int		i;
 
 	i = -1;
-	while (i++ < data->obj.nb_texture - 1)
+	while (i++ < data->obj.nb_texture - 1 && (tofree))
 		(tofree)[i] != NULL ? free_tga((tofree)[i]) : 0;
 	if (tofree != NULL)
 		free((tofree));
@@ -28,7 +28,7 @@ static void		clear_obj_item(t_data *data, t_object tofree)
 	int		i;
 
 	i = -1;
-	while (i++ < data->obj.nb_item - 1)
+	while (i++ < data->obj.nb_item - 1 && (tofree).item)
 		tofree.item[i] != NULL ? free(tofree.item[i]) : 0;
 	if (tofree.item != NULL)
 		free(tofree.item);
