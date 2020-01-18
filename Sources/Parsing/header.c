@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 17:44:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 18:32:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,29 @@ static int	is_tga(t_data *data, char *line)
 	return (-1);
 }
 
+static int	parsing_head_v3(t_data *data, char *line)
+{
+	if (!ft_strncmp("\tcamera : ", line, 10))
+		data->obj.nb_camera = ft_atoi(&(line[10]));
+	else if (!ft_strncmp("\tbounce : ", line, 10))
+		data->bounce = ft_atoi(&(line[10]));
+	else if (!ft_strncmp("\tquality : ", line, 11))
+		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
+	else if (!ft_strncmp("\tobject : ", line, 10))
+		data->obj.nb_item = ft_atoi(&(line[10]));
+	else if (!ft_strncmp("\tlight : ", line, 9))
+		data->obj.nb_light = ft_atoi(&(line[9]));
+	else if (!ft_strncmp("\tnb_texture : ", line, 14))
+		data->obj.nb_texture = ft_atoi(&(line[14]));
+	else if (!ft_strncmp("\tnb_normal : ", line, 13))
+		data->obj.nb_normal = ft_atoi(&(line[13]));
+	else if (!ft_strncmp("\txscreen : ", line, 11))
+		data->window.x = ft_atoi(&(line[11]));
+	else
+		return (1);
+	return (0);
+}
+
 static int	parsing_head_v2(t_data *data, char **ret, char *line)
 {
 	int		val;
@@ -39,22 +62,8 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 			ft_strncmp("\t\t", line, 2))
 	{
 		data->parse.error_line += 1;
-		if (!ft_strncmp("\tcamera : ", line, 10))
-			data->obj.nb_camera = ft_atoi(&(line[10]));
-		else if (!ft_strncmp("\tbounce : ", line, 10))
-			data->bounce = ft_atoi(&(line[10]));
-		else if (!ft_strncmp("\tquality : ", line, 11))
-			data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
-		else if (!ft_strncmp("\tobject : ", line, 10))
-			data->obj.nb_item = ft_atoi(&(line[10]));
-		else if (!ft_strncmp("\tlight : ", line, 9))
-			data->obj.nb_light = ft_atoi(&(line[9]));
-		else if (!ft_strncmp("\tnb_texture : ", line, 14))
-			data->obj.nb_texture = ft_atoi(&(line[14]));
-		else if (!ft_strncmp("\tnb_normal : ", line, 13))
-			data->obj.nb_normal = ft_atoi(&(line[13]));
-		else if (!ft_strncmp("\txscreen : ", line, 11))
-			data->window.x = ft_atoi(&(line[11]));
+		if ((val = parsing_head_v3(data, line)) == 0)
+			;
 		else if (!ft_strncmp("\tyscreen : ", line, 11))
 			data->window.y = ft_atoi(&(line[11]));
 		else if (!(val = is_tga(data, line)) || (line[0] == '#'))
