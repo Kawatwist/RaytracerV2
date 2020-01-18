@@ -83,7 +83,7 @@ SRC				=	main.c										\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
-LIBS 			= SDL2 SDL2_mixer SDL2_ttf freetype ft
+LIBS 			= SDL2 ft
 
 LIB_PATH 		= ./libft \
 				  ./libraries/lib \
@@ -154,38 +154,7 @@ resdl:
 	@echo "${cyanclair}DONE${neutre}"
 	@make image
 
-image: libraries/lib/libSDL2_mixer.dylib
-
-libraries/lib/libSDL2_mixer.dylib: libraries/lib/libSDL2_ttf.dylib
-	@echo "${cyanfonce}Installing SDL2_mixer ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz -o libraries/SDL2_mixer-2.0.4.tar.gz
-	@tar -xf ./libraries/SDL2_mixer-2.0.4.tar.gz -C libraries
-	@cd libraries/SDL2_mixer-2.0.4 ; ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/SDL2_mixer-2.0.4
-	@make -C ./libraries/SDL2_mixer-2.0.4 install
-	@echo "${cyanclair}DONE${neutre}"
-
-libraries/lib/libSDL2_ttf.dylib: libraries/lib/libfreetype.dylib
-	@echo "${cyanfonce}Installing SDL2_ttf ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.15.tar.gz -o libraries/SDL2_ttf-2.0.15.tar.gz
-	@tar -xf ./libraries/SDL2_ttf-2.0.15.tar.gz -C libraries
-	@cd libraries/SDL2_ttf-2.0.15 ; FT2_CONFIG=$(shell pwd)/libraries/bin/freetype-config ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/SDL2_ttf-2.0.15
-	@make -C ./libraries/SDL2_ttf-2.0.15 install
-	@echo "${cyanclair}DONE${neutre}"
-
-libraries/lib/libfreetype.dylib: libraries/lib/libSDL2.dylib
-	@echo "${cyanfonce}Installing freetype2 ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz -Lo libraries/freetype-2.4.11.tar.gz
-	@tar -xf ./libraries/freetype-2.4.11.tar.gz -C libraries
-	@cd libraries/freetype-2.4.11 ; ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/freetype-2.4.11
-	@make -C ./libraries/freetype-2.4.11 install
-	@echo "${cyanclair}DONE${neutre}"
-
+image: libraries/lib/libSDL2.dylib
 
 libraries/lib/libSDL2.dylib:
 	@echo "${cyanfonce}Installing SDL2 ...${neutre}\c"

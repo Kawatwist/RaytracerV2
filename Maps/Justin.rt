@@ -11,6 +11,7 @@
 	light : 3
 	nb_texture : 2
 	nb_normal : 1
+	refresh : 0
 	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
 	normal : "./texture/normal/coussin.tga"

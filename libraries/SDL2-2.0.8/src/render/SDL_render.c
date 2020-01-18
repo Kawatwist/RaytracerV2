@@ -188,7 +188,7 @@ SDL_RendererEventWatch(void *userdata, SDL_Event *event)
                 }
             } else if (event->window.event == SDL_WINDOWEVENT_MINIMIZED) {
                 renderer->hidden = SDL_TRUE;
-            } else if (event->window.event == SDL_WINDOWEVENT_RESTORED ||
+            } else if (event->window.event == SDL_WINDOWEVENT_RESTORED || 
                        event->window.event == SDL_WINDOWEVENT_MAXIMIZED) {
                 if (!(SDL_GetWindowFlags(window) & SDL_WINDOW_HIDDEN)) {
                     renderer->hidden = SDL_FALSE;
@@ -1295,9 +1295,9 @@ UpdateLogicalSize(SDL_Renderer *renderer)
         SDL_RenderSetViewport(renderer, NULL);
     } else if (want_aspect > real_aspect) {
         if (scale_policy == 1) {
-            /* We want a wider aspect ratio than is available -
-             zoom so logical height matches the real height
-             and the width will grow off the screen
+            /* We want a wider aspect ratio than is available - 
+             zoom so logical height matches the real height 
+             and the width will grow off the screen 
              */
             scale = (float)h / renderer->logical_h;
             viewport.y = 0;

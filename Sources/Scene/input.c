@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 17:49:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 18:55:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void		input(t_data *data)
 	SDL_PollEvent(&data->input.ev);
 	if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
+	if (key_check(*data, SDL_SCANCODE_R))
+		data->flag.refresh = (data->flag.refresh ? 0 : 1);
 	input_obj(data);
 	light_cursor(data);
 }

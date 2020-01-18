@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 18:32:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 18:59:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int	parsing_head_v3(t_data *data, char *line)
 		data->obj.nb_normal = ft_atoi(&(line[13]));
 	else if (!ft_strncmp("\txscreen : ", line, 11))
 		data->window.x = ft_atoi(&(line[11]));
+	else if (!ft_strncmp("\trefresh : ", line, 11))
+		data->flag.refresh = (ft_atoi(&(line[11])) & 0b1);
 	else
 		return (1);
 	return (0);
