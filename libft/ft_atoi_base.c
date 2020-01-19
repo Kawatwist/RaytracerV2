@@ -6,13 +6,13 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:07:58 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/19 21:02:24 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/19 21:05:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_isspace(char *c)
+static int	ft_ispace(char *c)
 {
 	while (c)
 	{
@@ -36,7 +36,7 @@ int			ft_atoi_base(char *s, int b)
 	hex_str = "0123456789ABCDEF";
 	if (!(b >= 2 && b <= 16))
 		return (0);
-	ft_isspace(s);
+	ft_ispace(s);
 	s[i + 1] == '-' ? nb[1] = 1 : 0;
 	s[i + 1] == '-' ? i++ : 0;
 	if (s[i + 1] == '0' && s[i + 2] == 'x')
