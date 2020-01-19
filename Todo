@@ -88,5 +88,6 @@ tga a free a la fin de prog surement et avec la fonction
 
 malloc de structure camera
 
-	if ((item = malloc(tab[(int)type])) == NULL)
-		return (1); ligne 37 et 37 in parsing obj and create obj
+
+
+faire le pixel qui depasse lors de l'agrossisage des pixels

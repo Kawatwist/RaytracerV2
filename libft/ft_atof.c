@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/19 18:02:18 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/19 19:33:59 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int		count_zero(const char *str)
+static int		count_zero(const char *str)
 {
 	int		count;
 
@@ -10,59 +22,73 @@ int		count_zero(const char *str)
 	return (count);
 }
 
-double  ft_atof(const char *nptr)
+static double	check_sign(const char **nptr, int *flag)
+{
+	if (!(*nptr) || *(*nptr) == '\0')
+		return (0.0);
+	if (*(*nptr) == '-' || *(*nptr) == '+')
+	{
+		(*flag) = (*(*nptr) == '-' ? 0b1000000000000000000000000 : 0);
+		(*nptr)++;
+	}
+	while ((*nptr)[(*flag) & 0xFF] && (((*nptr)[(*flag) & 0xFF] >= '0' &&
+	(*nptr)[(*flag) & 0xFF] <= '9') || (*nptr)[(*flag) & 0xFF] == '.'))
+		(*flag) += 1;
+	if (!((*nptr)[(*flag) & 0xFF] == '\0' || ((*nptr)[(*flag) & 0xFF] == ' ')))
+		return (0.0);
+	return (1);
+}
+
+static void		get_nbr2(const char *nptr, double *nbr2,
+long long tmp, int *flag)
+{
+	int			nb_0;
+
+	(*nbr2) = (double)ft_atoi(&(nptr[((*flag) & 0xFF) + 1]));
+	tmp = (*nbr2);
+	while (tmp)
+	{
+		tmp /= 10;
+		(*flag) += (1 << 8);
+	}
+	tmp = 1;
+	while (((*flag) & 0xFF00))
+	{
+		tmp *= 10;
+		(*flag) -= (1 << 8);
+	}
+	nb_0 = count_zero(&(nptr[((*flag) & 0xFF) + 1]));
+	while (nb_0)
+	{
+		tmp *= 10;
+		nb_0--;
+	}
+	(*nbr2) /= tmp;
+}
+
+double			ft_atof(const char *nptr)
 {
 	double		nbr;
 	double		nbr2;
 	long long	tmp;
-	int			flag; 			// [neg][0][j][i]
-	int			nb_0;
+	int			flag;
 
 	nbr2 = 0.0;
-	flag = 0;				// Check Char
-	if (!nptr || *nptr == '\0')
-		return (0);
-	if (*nptr == '-' || *nptr == '+')
-	{
-		flag = (*nptr == '-' ? 0b1000000000000000000000000 : 0); // Si le premier char == '-' on met la valeur 16777216 a notre variable (Neg actif) 
-		nptr++;
-	}
-	while (nptr[flag & 0xFF] && ((nptr[flag & 0xFF] >= '0' && nptr[flag & 0xFF] <= '9') || nptr[flag & 0xFF] == '.')) // On avance tant que l'on es different des valeurs (Seulement sur le premier Byte)
-		flag += 1; //Incrementation de i (1 << 0)
-	if (!(nptr[flag & 0xFF] == '\0' || (nptr[flag & 0xFF] == ' ')))
+	flag = 0;
+	if ((check_sign(&nptr, &flag)) != 1)
 		return (0.0);
 	else
 	{
-		nbr = (double)atoi(nptr);
+		nbr = (double)ft_atoi(nptr);
 		flag -= (flag & 0xFF);
-		while (nptr[flag & 0xFF] != '.' && nptr[flag & 0xFF] != '\0' && nptr[flag & 0xFF] != ' ') // jai rajouter l'espace
+		while (nptr[flag & 0xFF] != '.' &&
+		nptr[flag & 0xFF] != '\0' && nptr[flag & 0xFF] != ' ')
 			flag += 1;
 		if ((flag & 0xFF) != 0 && nptr[flag & 0xFF] == '.')
-		{
-			nbr2 = (double)atoi(&(nptr[(flag & 0xFF) + 1]));
-			tmp = nbr2;			// Fonction Compte_nbr
-			while (tmp)
-			{
-				tmp /= 10;
-				flag += (1 << 8); // Incrementation de j
-			}				// Fonction Power
-			tmp = 1;
-			while ((flag & 0xFF00))
-			{
-				tmp *= 10;
-				flag -= (1 << 8); // Decrementation de j
-			}
-			nb_0 = count_zero(&(nptr[(flag & 0xFF) + 1]));
-			while (nb_0)
-			{
-				tmp *= 10;
-				nb_0--;
-			}
-			nbr2 /= tmp;
-			}
+			get_nbr2(nptr, &nbr2, tmp, &flag);
 	}
 	nbr = nbr + nbr2;
-	if (flag & 0x1000000) // On check si le bit 0b000000001000000000000000000000000 est actif
+	if (flag & 0x1000000)
 		nbr *= -1;
 	return (nbr);
 }

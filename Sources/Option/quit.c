@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:51:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/19 18:00:31 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,5 @@ int				stop_main_execute(char *error, t_data *data, int error_value)
 	}
 	ft_putstr(find_error(error_value));
 	clear_memory(data);
-	sleep(50);
 	return (error_value);
 }
