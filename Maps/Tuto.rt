@@ -53,9 +53,9 @@
 ##	Need To Know : The Screen of the camera is at 0.5 in the direction So this camera's screen is at {0 0 0}
 ##
 [object:sphere]
-	origin : {0 0 1}
+	origin : {0.5 0 1}
 	color : 0x7F7F7F
-	rayon : 0.125
+	rayon : 0.3
 		[effect]
 			id_texture : 0
 			id_normal : 0
@@ -70,9 +70,9 @@
 ##	The Effect section is some different thing you can apply, Like Reflection, Refraction ...
 ##	Id_texture is which texture is select
 ##	Id_normal is which normal is select
-##	Reflection [0 => 255] 
-##	Refraction [0 => 255] 
-##	Opacity [0 => 255] 
+##	Reflection [0 => 255]
+##	Refraction [0 => 255]
+##	Opacity [0 => 255]
 ##	Texture [0 => 255]
 ##	Normal [0 => 255]
 ##	Mv actuve the rotation of the texture
@@ -83,12 +83,12 @@
 	color : 0x7F7F7F
 		[effect]
 [object:cylinder]
-	origin : {0 0.5 0}
+	origin : {0 0 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
 	rayon : 0.1
-[object:plan]
-	origin : {0 0.5 0}
-	direction : {0 -1 0}
+[object:cone]
+	origin : {0.5 0 0}
+	direction : {1 0 0}
 	color : 0x7F7F7F
 	angle : 30
