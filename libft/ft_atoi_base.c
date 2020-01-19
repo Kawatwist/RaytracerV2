@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 19:07:58 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/19 20:58:11 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/19 21:02:24 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,4 @@ int			ft_atoi_base(char *s, int b)
 			(*nb) = ((*nb) * b) + j;
 	}
 	return (nb[1] ? ~(*nb) + 1 : *nb);
-}
-
-int			main(int ac, char **av)
-{
-	printf("%d\n", ft_atoi_base(av[1], atoi(av[2])));
-	return (0);
 }
