@@ -1,0 +1,77 @@
+#############################################
+#			Scene 42 : Planete				#
+#############################################
+[header]
+	xscreen : 600
+	yscreen : 400
+	quality : 3
+	bounce : 0
+	camera : 1
+	object : 7
+	light : 1
+	nb_texture : 2
+	textures : "./texture/planet/sun.tga"
+	textures : "./texture/teststar.tga"
+############### Light ##################
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 7
+	intensity : 1
+############### Camera ##################
+[camera:1]
+	origin : {0 0 -5}
+	direction : {0 0 1}
+############### Object ##################
+############### Plan ####################
+[object:plan]
+	origin : {0 0 5}
+	direction : {0 0 -1}
+	color : 0x7F7F7F
+		[effect]
+			id_texture : 1
+			texture : 255
+[object:plan]
+	color : 0x7F6F7F
+	origin : {-2.5 -2.5 0}
+	direction : {0 1 0}
+		[effect]
+			id_texture : 1
+			texture : 255
+[object:plan]
+	color : 0x7F6F7F
+	origin : {-2.5 -2.5 0}
+	direction : {1 0 0}
+		[effect]
+			id_texture : 1
+			texture : 255
+[object:plan]
+	color : 0x6F7F7F
+	origin : {3.5 0 0}
+	direction : {-1 0 0}
+		[effect]
+			id_texture : 1
+			texture : 255
+[object:plan]
+	color : 0x7F7F8F
+	origin : {0 3.5 0}
+	direction : {0 -1 0}
+		[effect]
+			id_texture : 1
+			texture : 255
+[object:plan]
+	color : 0x7F8F7F
+	origin : {0 0 -5}
+	direction : {0 0 1}
+		[effect]
+			id_texture : 1
+			texture : 255
+############### Sphere ##################
+[object:sphere]
+	color : 0xFFFF00
+	origin : {0 0 0}
+	direction : {0 1 0}
+	rayon : 0.2
+		[effect]
+			id_texture : 0
+			texture : 255
