@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 17:30:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/19 22:25:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ static char	*findname(char *name)
 	return (name);
 }
 
-static void	ft_revputnstr_fd(void *str, long int len, int fd, long int x)
+static void	ft_revputnstr_fd(void *str, long int len, int fd, long int size)
 {
+	int	x;
+	int	y;
+
+	x = size & 0xFFFFFFFF;
+	y = (size & 0xFFFFFFFF00000000) >> 32;
 	while (len-- > 0)
-		write(fd, &(((int *)str)[((x & 0xFFFFFFFF) -
-			(len % (x & 0xFFFFFFFF))) +
-			((len / (x & 0xFFFFFFFF)) *
-			(x >> 32)) - 1]), 4);
+		write(fd, &(((int *)str)[(x - (len % x)) + ((len / x) * x)]), 4);
 }
 
 static void	ft_putnstr_fd(void *str, long int len, int fd)
