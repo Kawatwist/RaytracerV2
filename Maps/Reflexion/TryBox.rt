@@ -1,0 +1,94 @@
+#############################################
+#			Scene 42 : The Box				#
+#############################################
+[header]
+	xscreen : 2560
+	yscreen : 1440
+	quality : 0
+	bounce : 5
+	camera : 2
+	object : 11
+	light : 2
+	nb_texture : 2
+	nb_normal : 1
+	textures : "./texture/HD2.tga"
+	textures : "./texture/planet/moon.tga"
+	normal : "./texture/normal/coussin.tga"
+############### Light ##################
+[light:1]
+	origin : {-0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 3
+	intensity : 1
+[light:1]
+	origin : {0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 3
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+############### Object #################
+[object:plan]
+	origin : {0 0 1}
+	direction : {0 0 -1}
+	color : 0x7F7F7F
+			mv : 1
+			reflection : 255
+[object:plan]
+	origin : {0 0 -1}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0.5 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {-0.5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0 0.5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 225
+[object:plan]
+	origin : {0 -0.5 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 225
+############### Inclined #################
+[object:plan]
+	origin : {-1.2 0 0}
+	direction : {1 0 1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {-1.2 0 0}
+	direction : {1 0 -1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {1.2 0 0}
+	direction : {-1 0 1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {1.2 0 0}
+	direction : {-1 0 -1}
+	color : 0x7F7F7F
+			reflection : 255
+############## Other #################
+[object:sphere]
+	origin : {0 0.2 0.10}
+	color : 0x7F7F7F
+	rayon : 0.2
+			refraction : 200
+			reflection : 255
