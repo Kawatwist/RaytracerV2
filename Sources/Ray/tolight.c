@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 17:47:51 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/20 16:53:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 		dot = -(((1 - dot_product(normalize(sub_vec(ray.origin,
 			data->obj.light[index].origin)),
 			normalize(ray.direction))) * -1) / 2.0);
+		dot > 0.98 ? dot = 1 : 0;
 		len = data->obj.light[index].distance - length(sub_vec(ray.origin,
 			data->obj.light[index].origin));
 		obj[1] = stop_light(data, data->obj.light[index], ray);
@@ -100,8 +101,11 @@ unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 		len > 1 ? len = 1 : 0;
 		len < 0 ? len = 0 : 0;
 		dot *= data->obj.light[index].intensity;
-		color = add_color(color, light_color(base, set_color(0,
-			data->obj.light[index].color, (dot * len) * obj[0])));
+		if (dot < 1)
+			color = add_color(color, light_color(base, set_color(0,
+				data->obj.light[index].color, (dot * len) * obj[0])));
+		else
+			color = set_color(color, data->obj.light[index].color, (dot * len) * obj[0]);
 	}
 	return (color);
 }

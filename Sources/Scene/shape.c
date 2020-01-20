@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 17:56:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/20 16:40:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,23 @@ float		cone(void *coo, t_vec ray)
 	double	k;
 
 	cone = coo;
-	k = 1 + square(cos(rad(cone->ang / 2.0)));
-	oc = sub_vec(cone->origin.origin, ray.origin);
-	c.a = square(dot_product(ray.direction, cone->origin.direction)) - k;
-	c.b = 2 * ((dot_product(ray.direction, cone->origin.direction) *
-			dot_product(oc, cone->origin.direction)) -
-			(dot_product(ray.direction, oc) * k));
-	c.c = square(dot_product(oc, cone->origin.direction)) -
-			dot_product(oc, mult_vec2(oc, k));
+	oc = sub_vec(ray.origin, cone->origin.origin);
+	k = square(tan(rad(cone->ang) / 2.0)) + 1;
+	c.a = dot_product(ray.direction, ray.direction) -
+		(k * dot_product(ray.direction, cone->origin.direction) *
+		dot_product(ray.direction, cone->origin.direction));
+	c.b = 2 * (dot_product(ray.direction, oc) -
+		(k * dot_product(ray.direction, cone->origin.direction) *
+		dot_product(cone->origin.direction, oc)));
+	c.c = dot_product(oc, oc) - (k * dot_product(oc, cone->origin.direction) *
+		dot_product(oc, cone->origin.direction));
 	c.delta = (c.b * c.b) - (4 * c.a * c.c);
-	if (c.delta < 0 || c.a == 0 || c.b > 0)
-		return (-1);
-	c.t0 = -(-c.b + sqrt(c.delta)) / (2 * c.a);
-	c.t1 = -(-c.b - sqrt(c.delta)) / (2 * c.a);
+	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
+	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
 	if (c.t0 > 0 && c.t1 > 0)
 		return (c.t1 > c.t0 ? c.t0 : c.t1);
+	else if (c.t0 > 0 || c.t1 > 0)
+		return (c.t0 > 0 ? c.t0 : c.t1);
 	return (-1);
 }
 

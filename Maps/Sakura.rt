@@ -3,7 +3,7 @@
 #############################################
 [header]
 	xscreen : 600
-	yscreen : 600
+	yscreen : 400
 	quality : 0
 	bounce : 0
 	camera : 2

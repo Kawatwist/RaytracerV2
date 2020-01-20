@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:09:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/20 16:03:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		low_quality(t_data *data, int *x, int *y)
 
 	w = 0;
 	pxl = 0;
-	while (w < data->window.x)
+	while (w < data->window.x - 1)
 	{
 		pxl = 0;
 		while (pxl < ((data->flag.pixel) * 2))
