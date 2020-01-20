@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 22:40:22 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/19 22:40:23 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:38:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-
-# include <stdio.h>
 # include "libft.h"
 
 typedef struct		s_gnl
