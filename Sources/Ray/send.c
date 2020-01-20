@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 16:03:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/20 22:22:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,26 @@ static void		low_quality(t_data *data, int *x, int *y)
 {
 	int		w;
 	int		pxl;
+	int		pos;
 
-	w = 0;
+	w = -1;
 	pxl = 0;
-	while (w < data->window.x - 1)
+	pos = (*x - 1) + ((*y) * data->window.x);
+	while (++w < data->window.x)
 	{
-		pxl = 0;
-		while (pxl < ((data->flag.pixel) * 2))
+		pxl = -1;
+		while (++pxl < ((data->flag.pixel) * 2) && (*y + pxl) < data->window.y)
 		{
-			((unsigned int *)data->window.pxl)[(*x) +
-					((*y + pxl) * data->window.x) + w] =
-				((unsigned int *)data->window.pxl)[*x +
-						((*y - 1) * data->window.x) + w];
-			pxl++;
+			((unsigned int *)data->window.pxl)[pos + w + (pxl * data->window.x)] =
+			((unsigned int *)data->window.pxl)[pos + w + ((pxl - 1) * data->window.x)];
 		}
-		w++;
 	}
 	(*y) += (data->flag.pixel);
 }
 
 static void		low_pixel_x(t_data *data, int *x, int y)
 {
-	while (*x % (data->flag.pixel + 1))
+	while (*x % (data->flag.pixel + 1) && *x < data->window.x)
 	{
 		((unsigned int *)data->window.pxl)[*x + 1 +
 			(y * data->window.x)] =
