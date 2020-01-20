@@ -67,6 +67,7 @@ SRC				=	main.c										\
 					math_vec.c									\
 					vec_tool.c									\
 					find_normal.c								\
+					normal_map.c								\
 					switch_vec.c								\
 					ang.c										\
 					reflexion.c									\
