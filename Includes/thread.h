@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 21:54:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/21 23:18:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 
 typedef	struct 		s_thread
 {
-	t_object		obj;
-	unsigned int	color;
+	pthread_t			thd;
+	t_object			obj;
+	pthread_mutex_t		mutex;
+	pthread_cond_t		cond;
+	pthread_attr_t		signal;
+	void				*pxl;
+	int					x;
+	int					y;
+	int					index;
+	unsigned int		len;
 }					t_thread;
 
 #endif

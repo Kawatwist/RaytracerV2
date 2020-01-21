@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 23:55:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/21 21:28:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ t_point		find_normal_texture(t_data data, void *obj,
 	int				info;
 	unsigned int	index;
 	t_point			uv;
-	// t_point 		normal2;
 
-	(void)normal;
 	if ((((t_sphere *)obj)->effect.type & 0xFF) == PLAN)
 		uv = texture_plan(&data, obj, collide, 0);
 	else if ((((t_sphere *)obj)->effect.type & 0xFF) == SPHERE)
@@ -49,16 +47,13 @@ t_point		find_normal_texture(t_data data, void *obj,
 	info += (data.normal[info >> 16]->w & 0xFFFF);
 	uv.x = uv.x + (((t_sphere *)obj)->effect.flag & MV ?
 		((float)(data.percent / 100.0) * (info & 0xFFFF)) : 0);
-/*		No problem before */
 	while (uv.x < 0.0 || uv.x >= (info & 0xFFFF))
 		uv.x += (uv.x < 0 ? (info & 0xFFFF) :
 			-(info & 0xFFFF));
 	while (uv.y < 0.0 || uv.y >= (data.normal[info >> 16])->h)
 		uv.y += (uv.y < 0 ? (data.normal[info >> 16])->h :
 			- (data.normal[info >> 16])->h);
-/*		I Don't think before too */
 	index = ((int)uv.x + ((int)uv.y * (info & 0xFFFF))) * 4;
-/*		This is correct */
 	normal = convert_normalrgb(normal, (unsigned char *)((Uint32*)&(data.normal[info >> 16]->data[index + 3])), ((t_base *)obj)->effect.normal / 255.0); // +3 ??
 	return (normalize(normal));
 }
