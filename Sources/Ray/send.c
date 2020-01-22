@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 22:22:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/22 16:24:02 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,17 @@ int				start_ray(t_data *data)
 	int		x;
 	int		y;
 
+	data->flag.antialiasing = 0;
 	y = -1;
 	while (++y < data->window.y)
 	{
 		x = -1;
 		while (++x < data->window.x)
 		{
+			super_sample(data, x, y); //antialiasing
 			setup_ray(data, x, y);
-			((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
-					send_ray(data, data->ray, data->bounce);
+			/** ((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
+					send_ray(data, data->ray, data->bounce); */
 			low_pixel_x(data, &x, y);
 		}
 		data->flag.pixel ? low_quality(data, &x, &y) : 0;

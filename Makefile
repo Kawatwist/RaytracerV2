@@ -21,11 +21,11 @@ rouge=\033[31m
 
 NAME			= rtv1
 
-HEADER 			= $(shell find includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
+HEADER 			= $(shell find Includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
 
-SRC_PATH		= $(shell find sources -type d)
+SRC_PATH		= $(shell find Sources -type d)
 
-INC_PATH 		= $(shell find includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
+INC_PATH 		= $(shell find Includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
 
 OBJ_PATH		= OBJ
 
@@ -82,6 +82,7 @@ SRC				=	main.c										\
 					screenshot.c								\
 					create_type.c								\
 					fill_obj.c									\
+					antialiasing.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

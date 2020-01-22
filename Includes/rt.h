@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:26:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/22 15:55:26 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 typedef struct	s_flag
 {
+	Uint32		antialiasing : 2;
 	Uint32		pixel : 2;
 	Uint32		perspective : 1;
 	Uint32		bounce : 1;
@@ -90,6 +91,7 @@ char			key_old(t_data data, int mask);
 char			key_check(t_data data, int mask);
 void			input(t_data *data);
 int				loop(t_data data);
+void			super_sample(t_data *data, int x, int y);
 
 t_point			get_point(char *str);
 int				fill_texture(t_data *data, char *line);
