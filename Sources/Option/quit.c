@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/19 18:00:31 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:33:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static char		*find_error(int error_value)
 void			stop_execute(char *error, t_data *data)
 {
 	(void)data;
+	ft_putstr("Critical Error : ");
 	ft_putstr(error);
 	exit(0);
 }

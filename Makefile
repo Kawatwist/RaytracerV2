@@ -102,7 +102,7 @@ vpath %.c $(foreach dir, $(SRC_PATH), $(dir):)
 
 IFLAG			= $(foreach dir, $(INC_PATH), -I$(dir) )
 
-CFLAG 			= -Wall -Wextra -Werror
+CFLAG 			= -Wall -Wextra -Werror -pthread
 
 LFLAG 			= $(foreach dir, $(LIB_PATH), -L $(dir) ) $(foreach lib, $(LIBS), -l$(lib) ) $(foreach fmw, $(FRAMEWORK), -framework $(fmw) )
 

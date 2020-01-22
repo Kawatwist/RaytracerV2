@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/21 23:17:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/22 21:53:51 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ struct			s_data
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
 	int					bounce;
-	pthread_attr_t		thd[4]; // LIMITED AT 4 !
+	// pthread_attr_t		thd[4]; // LIMITED AT 4 !
+	pthread_mutex_t		mutex;
+	pthread_cond_t		cond;
 	void				*thread;
 };
 
