@@ -59,6 +59,10 @@ SRC				=	main.c										\
 					input.c										\
 					input_tool.c								\
 					loop.c										\
+					create_thread.c								\
+					init_thread.c								\
+					thread_function.c							\
+					thread_poll.c								\
 					shape.c										\
 					tolight.c									\
 					init_vec.c									\

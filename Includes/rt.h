@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/22 15:55:26 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/01/22 17:00:05 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,21 @@ typedef struct s_data	t_data;
 
 struct			s_data
 {
-	t_window	window;
-	t_input		input;
-	t_object	obj;
-	t_scene		parse;
-	t_flag		flag;
-	t_vec		ray;
-	t_tga		**texture;
-	t_tga		**normal;
-	float		(*dist[4]) (void *obj, t_vec ray);
-	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
-	void		(*move[3]) (t_data *data, void **obj);
-	int			percent;
-	int			bounce;
+	t_window			window;
+	t_input				input;
+	t_object			obj;
+	t_scene				parse;
+	t_flag				flag;
+	t_vec				ray;
+	t_tga				**texture;
+	t_tga				**normal;
+	float				(*dist[4]) (void *obj, t_vec ray);
+	t_point				(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
+	void				(*move[3]) (t_data *data, void **obj);
+	int					percent;
+	int					bounce;
+	pthread_attr_t		thd[4]; // LIMITED AT 4 !
+	void				*thread;
 };
 
 t_point			find_refraction(t_data data, void *obj, t_vec ray);
@@ -177,6 +179,13 @@ void			input_intensity_light(t_data *data, void **light, char ctrl);
 void			light_cursor(t_data *data);
 
 void			create_screenshot(t_data *data, void *pxl);
+
+
+void			*thread_function(void	*arg);
+int				thread_poll(t_data *data);
+int     		start_thread(t_data *data);
+void			reset_item(t_object base, t_object *dest);
+int				get_thread(t_data *data);
 
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
