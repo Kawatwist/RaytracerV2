@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/22 22:42:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 23:34:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int			loop(t_data data)
 
 	data.obj.type_index = 0;
 
-	// if ((err = get_thread(&data)) != 0)
-	// 	return (err);
+	if ((err = init_thread_memory(&data)) != 0)
+		return (err);
 	if ((err = looping(&data)) != 0)
 		return (err);
 	while (TRUE)

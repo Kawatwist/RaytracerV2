@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/22 22:44:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 17:16:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int				start_ray(t_data *data)
 		x = -1;
 		while (++x < data->window.x)
 		{
-			super_sample(data, x, y); //antialiasing
+			// super_sample(data, x, y); //antialiasing
 			setup_ray(data, x, y);
-			/** ((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
-					send_ray(data, data->ray, data->bounce); */
+			((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
+					send_ray(data, data->ray, data->bounce);
 			low_pixel_x(data, &x, y);
 		}
 		data->flag.pixel ? low_quality(data, &x, &y) : 0;

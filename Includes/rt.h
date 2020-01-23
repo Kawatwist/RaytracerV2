@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/22 22:43:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 23:35:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ struct			s_data
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
 	int					bounce;
-	// pthread_attr_t		thd[4]; // LIMITED AT 4 !
-	pthread_mutex_t		mutex;
-	pthread_cond_t		cond;
 	void				*thread;
 };
 
@@ -124,6 +121,7 @@ void			rot_init_cam_z(t_data *data, t_point *base,
 int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
+int				init_memory_thread(t_data *data);
 
 t_point			rotx(t_point origin, float ang);
 t_point			roty(t_point origin, float ang);
