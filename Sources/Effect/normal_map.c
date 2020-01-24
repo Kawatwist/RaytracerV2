@@ -6,17 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/21 21:28:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:30:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**	This is the Future Function About Normal Mapping
-**	It's actually doesnt work correctly
-**	Need to be Set back for Rt
-*/
-
 #include "rt.h"
+#include "thread.h"
 
 static t_point	convert_normalrgb(t_point normal, unsigned char *color, float percent)
 {
@@ -28,7 +23,7 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color, float per
 	return (ret);
 }
 
-t_point		find_normal_texture(t_data data, void *obj,
+t_point		find_normal_texture(t_thread data, void *obj,
 					t_vec collide, t_point normal)
 {
 	int				info;

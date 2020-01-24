@@ -6,13 +6,13 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/19 21:25:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 21:17:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-static t_vec		setup_refraction(t_data data, void *obj,
+#include "thread.h"
+static t_vec		setup_refraction(t_thread data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -22,7 +22,7 @@ static t_vec		setup_refraction(t_data data, void *obj,
 	return (tmp);
 }
 
-static t_vec		setup_opacity(t_data *data, void *obj,
+static t_vec		setup_opacity(t_thread *data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -34,7 +34,7 @@ static t_vec		setup_opacity(t_data *data, void *obj,
 	return (tmp);
 }
 
-static t_vec		setup_reflection(t_data *data, void *obj,
+static t_vec		setup_reflection(t_thread *data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -47,7 +47,7 @@ static t_vec		setup_reflection(t_data *data, void *obj,
 	return (tmp);
 }
 
-static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
+static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 {
 	t_vec			tmp;
 
@@ -74,18 +74,24 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 	}
 }
 
-unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
+unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 {
 	t_ray			r;
 
+	printf("Start Send\n");
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (0xFF000000);
+	printf("Obj Find\n");
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
+	printf("Color\n");
 	r.color[0] = find_color(data, r.obj, r.tmp);
+	printf("Color Find\n");
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
+	printf("Normal\n");
 	r.tmp.direction = find_normal(r.obj, r.tmp);
+	printf("Normal Find\n");
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, ray, r.tmp, r.color[0]);
 	r.bounce = bounce;

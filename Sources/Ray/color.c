@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:10:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:42:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ unsigned int		find_color(t_data *data, void *obj, t_vec ray)
 
 	if (!(((t_base *)obj)->effect.texture))
 		return (((t_base *)obj)->effect.color);
+	printf("Looking for txt\n");
 	colortmp = find_texture_color(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
 		((t_base *)obj)->effect.texture / 255));

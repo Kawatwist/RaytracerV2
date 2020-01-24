@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 17:28:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:28:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 static unsigned int	add_color(unsigned int base, unsigned int new)
 {
@@ -51,7 +52,7 @@ static int			light_color(unsigned int color, unsigned int newcolor)
 	return (*(int*)(value));
 }
 
-float				stop_light(t_data *data, t_light light, t_vec ray)
+float				stop_light(t_thread *data, t_light light, t_vec ray)
 {
 	float	intersect;
 	void	*obj;
@@ -66,7 +67,7 @@ float				stop_light(t_data *data, t_light light, t_vec ray)
 	return (intersect);
 }
 
-static float		dist(t_data *data, t_vec ray, int index, float *obj)
+static float		dist(t_thread *data, t_vec ray, int index, float *obj)
 {
 	if (obj[1] > 0.0 && !(obj[1] >= length(sub_vec(
 		data->obj.light[index].origin, ray.origin))))
@@ -77,7 +78,7 @@ static float		dist(t_data *data, t_vec ray, int index, float *obj)
 	return (obj[0]);
 }
 
-unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
+unsigned int		ray_to_light(t_thread *data, t_vec tmp, t_vec ray, int base)
 {
 	int		color;
 	int		index;
