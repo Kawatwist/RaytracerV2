@@ -2,6 +2,8 @@
 #			Scene 42 : The Box				#
 #############################################
 [header]
+	xscreen : 400
+	yscreen : 400
 	camera : 1
 	object : 7
 	light : 3

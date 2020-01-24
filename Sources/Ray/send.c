@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/22 22:44:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 16:42:12 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,12 @@ static void		low_pixel_x(t_data *data, int *x, int y)
 	}
 }
 
-static void		setup_ray(t_data *data, int x, int y)
-{
-	data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
-	data->ray.direction = normalize(find_dir(data, x, y));
-}
-
 int				start_ray(t_data *data)
 {
 	int		x;
 	int		y;
 
-	data->flag.antialiasing = 0;
+	data->flag.antialiasing = 3;
 	y = -1;
 	while (++y < data->window.y)
 	{
@@ -75,9 +69,6 @@ int				start_ray(t_data *data)
 		while (++x < data->window.x)
 		{
 			super_sample(data, x, y); //antialiasing
-			setup_ray(data, x, y);
-			/** ((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
-					send_ray(data, data->ray, data->bounce); */
 			low_pixel_x(data, &x, y);
 		}
 		data->flag.pixel ? low_quality(data, &x, &y) : 0;
