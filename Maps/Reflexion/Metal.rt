@@ -4,12 +4,15 @@
 #														#
 #########################################################
 [header]
+	xscreen : 400;
+	yscreen : 400;
 	camera : 1
 	object : 9
 	light : 4
-	nb_texture : 2
+	nb_texture : 3
 	textures : "./texture/planet/earth.tga"
-	textures : "./texture/plafond.tga"
+	textures : "./texture/texture/up.tga"
+	textures : "./texture/texture/newjinx.tga"
 ############################ Light #####################
 [light:1]
 	origin : {-0.49 -0.40 0.5}
@@ -37,11 +40,12 @@
 	direction : {0 0 1}
 ############################ Object ####################
 [object:plan]
-	origin : {0 0 1}
+	origin : {0 0 0.5}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
 			texture : 255
-			id_texture : 1
+			id_texture : 2
+			mv : 1
 [object:plan]
 	origin : {0 0 -1}
 	direction : {0 0 1}

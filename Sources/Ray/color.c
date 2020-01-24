@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 21:55:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 22:54:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ unsigned int		set_ambiant(unsigned int base)
 }
 
 unsigned int		set_color(unsigned int base, unsigned int new,
-		float percent)
+		float percent, char alpha)
 {
 	unsigned char	color[4];
 	unsigned int	ret;
 
-	color[0] = 0xFF;
+	color[0] = alpha;
 	color[1] = (((base & 0xFF0000) >> 16) * (1 - percent)) +
 		(((new & 0xFF0000) >> 16) * percent);
 	color[2] = (((base & 0xFF00) >> 8) * (1 - percent)) +
@@ -72,5 +72,5 @@ unsigned int		find_color(t_data *data, void *obj, t_vec ray)
 		return (((t_base *)obj)->effect.color);
 	colortmp = find_texture_color(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
-		((t_base *)obj)->effect.texture / 255));
+		((t_base *)obj)->effect.texture / 255, ((char *)&colortmp)[0]));
 }

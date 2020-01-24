@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 21:48:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 22:24:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				start_ray(t_data *data);
 unsigned int	set_ambiant(unsigned int base);
 unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
 unsigned int	find_color(t_data *data, void *obj, t_vec ray);
-unsigned int	set_color(unsigned int base, unsigned int new, float percent);
+unsigned int	set_color(unsigned int base, unsigned int new, float percent, char alpha);
 char			key_old(t_data data, int mask);
 char			key_check(t_data data, int mask);
 void			input(t_data *data);

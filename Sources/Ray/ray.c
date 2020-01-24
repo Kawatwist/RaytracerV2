@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 21:49:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 23:19:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 		tmp = setup_reflection(data, r->obj, ray, r->dist[0]);
 		r->color[1] = send_ray(data, tmp, r->bounce);
 		r->color[0] = set_color(r->color[0], r->color[1],
-			((t_base *)r->obj)->effect.reflection / 255.0);
+			((t_base *)r->obj)->effect.reflection / 255.0, -1);
 	}
 	if (((t_base *)r->obj)->effect.refraction)
 	{
 		tmp = setup_refraction(*data, r->obj, ray, r->dist[0]);
 		r->color[1] = send_ray(data, tmp, r->bounce);
 		r->color[0] = set_color(r->color[0], r->color[1],
-			((t_base *)r->obj)->effect.refraction / 255.0);
+			((t_base *)r->obj)->effect.refraction / 255.0, -1);
 	}
 	if (((t_base *)r->obj)->effect.opacity)
 	{
 		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
 		r->color[1] = send_ray(data, tmp, r->bounce);
 		r->color[0] = set_color(r->color[0], r->color[1],
-			((t_base *)r->obj)->effect.opacity / 255.0);
+			((t_base *)r->obj)->effect.opacity / 255.0, -1);
 	}
 }
 
@@ -83,6 +83,12 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
+	if (((unsigned char *)&(r.color[0]))[0] > 240 && ((t_base *)r.obj)->effect.texture)
+	{
+		r.tmp.origin = set_neworigin_op(ray, r.dist[0]);
+		r.tmp.direction = veccpy(ray.direction);
+		return(send_ray(data, r.tmp, bounce));
+	}
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal(r.obj, r.tmp);
