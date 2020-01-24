@@ -2,15 +2,16 @@
 #			Scene 42 : The Tri				#
 #############################################
 [header]
-	xscreen : 400
-	yscreen : 400
+	xscreen : 2560
+	yscreen : 1440
 	quality : 0
-	bounce : 0
+	bounce : 10
 	camera : 2
 	object : 16
 	light : 2
 	nb_texture : 2
 	nb_normal : 1
+	ambiant : 0xFF00FF
 	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
 	normal : "./texture/normal/coussin.tga"
@@ -37,77 +38,77 @@
 	origin : {0 0 -1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {0 0 2}
 	direction : {1 0 -1}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {0 0 2}
 	direction : {-1 0 -1}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {1 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {-1 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {0 -1 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:plan]
 	origin : {0 1 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
-			reflection : 125
+			reflection : 200
 [object:sphere]
 	origin : {1 1 1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {-1 1 1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {1 -1 1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {-1 -1 1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {1 1 -1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {-1 1 -1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {1 -1 -1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:sphere]
 	origin : {-1 -1 -1}
 	color : 0x7F7F7F
 	rayon : 0.25
-			reflection : 200
+			reflection : 255
 [object:cylinder]
 	origin : {0 0 2}
 	direction : {0 1 0}

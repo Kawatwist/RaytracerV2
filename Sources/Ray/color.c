@@ -6,11 +6,19 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:10:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 21:55:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+unsigned int		set_ambiant(unsigned int base)
+{
+	return (0xFF000000 +
+			((((unsigned char *)&base)[2] / 5) << 16) + 
+			((((unsigned char *)&base)[1] / 5) << 8) + 
+			(((unsigned char *)&base)[0] / 5));
+}
 
 unsigned int		set_color(unsigned int base, unsigned int new,
 		float percent)

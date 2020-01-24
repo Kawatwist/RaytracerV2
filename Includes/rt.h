@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 16:37:29 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/01/24 21:48:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <math.h>
-# include <pthread.h>
 # include "libft.h"
 # include "tga_reader.h"
 # include "object.h"
@@ -51,10 +50,7 @@ struct			s_data
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
 	int					bounce;
-	// pthread_attr_t		thd[4]; // LIMITED AT 4 !
-	pthread_mutex_t		mutex;
-	pthread_cond_t		cond;
-	void				*thread;
+	int					ambiant;
 };
 
 t_point			find_refraction(t_data data, void *obj, t_vec ray);
@@ -88,6 +84,7 @@ float			sphere(void *sphere, t_vec ray);
 void			*check_object(t_data *data, t_vec ray, float *dist);
 
 int				start_ray(t_data *data);
+unsigned int	set_ambiant(unsigned int base);
 unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
 unsigned int	find_color(t_data *data, void *obj, t_vec ray);
 unsigned int	set_color(unsigned int base, unsigned int new, float percent);
@@ -181,13 +178,6 @@ void			input_intensity_light(t_data *data, void **light, char ctrl);
 void			light_cursor(t_data *data);
 
 void			create_screenshot(t_data *data, void *pxl);
-
-
-void			*thread_function(void	*arg);
-int				thread_poll(t_data *data);
-int     		start_thread(t_data *data);
-void			reset_item(t_object base, t_object *dest);
-int				get_thread(t_data *data);
 
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
