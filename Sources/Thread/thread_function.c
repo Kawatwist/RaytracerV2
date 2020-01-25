@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 20:34:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 20:00:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ void	*thread_function(void *arg)
 	{
 		if ((x = curr % data->x) != 0 || !data->flag.pixel)
 		{
-			y = (curr / data->y) + data->pos;
+			y = (curr / data->y) + (data->pos / data->x);
 			setup_ray(data, x, y);
-			printf("Je vais envoyer un ray en [%d,\t%d]\n", x, y);
 			((unsigned int *)data->pxl)[curr] = send_ray(data, data->ray, data->bounce);
-			printf("Ray Find\n");
 		}
 		else
 			printf("Oh lala je vais baisser la qualite\n");

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 19:44:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 21:02:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int     start_thread(t_data *data)
     int     err;
 
     i = -1;
+    load_modif(data, data->thread);
     while (++i < 4)
     {
         ((t_thread *)data->thread)[i].percent = data->percent;

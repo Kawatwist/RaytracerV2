@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 21:17:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 20:57:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void			*check_object(t_thread *data, t_vec ray, float *dist);
 /*
 **			Ray Setup
 */
+int     		load_modif(t_data *data, t_thread *tmp);
 unsigned int	set_color(unsigned int base, unsigned int new, float percent);
 t_point			find_normal(void *object, t_vec collide);
 unsigned int	find_color(t_thread *data, void *obj, t_vec ray);

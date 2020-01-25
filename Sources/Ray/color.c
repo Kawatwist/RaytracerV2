@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 20:42:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:36:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 unsigned int		set_color(unsigned int base, unsigned int new,
 		float percent)
@@ -28,7 +29,7 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	return (ret);
 }
 
-static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
+static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray)
 {
 	t_point			uv;
 	unsigned int	ret;
@@ -56,13 +57,12 @@ static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
 	return (ret);
 }
 
-unsigned int		find_color(t_data *data, void *obj, t_vec ray)
+unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 {
 	Uint32	colortmp;
 
 	if (!(((t_base *)obj)->effect.texture))
 		return (((t_base *)obj)->effect.color);
-	printf("Looking for txt\n");
 	colortmp = find_texture_color(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
 		((t_base *)obj)->effect.texture / 255));

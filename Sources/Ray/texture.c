@@ -6,13 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 17:49:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:36:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
-int			find_size(t_data data, void *obj, int choose)
+int			find_size(t_thread data, void *obj, int choose)
 {
 	int index;
 
@@ -28,14 +29,14 @@ int			find_size(t_data data, void *obj, int choose)
 	}
 }
 
-t_point		texture_plan(t_data *data, void *obj, t_vec ray, int choose)
+t_point		texture_plan(void *data, void *obj, t_vec ray, int choose)
 {
 	int		wh;
 	t_point ontexture;
 	t_point u;
 	t_point v;
 
-	wh = find_size(*data, obj, choose);
+	wh = find_size(*(t_thread *)data, obj, choose);
 	u = fill_vec(((t_plan *)obj)->origin.direction.y,
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);
@@ -51,14 +52,14 @@ t_point		texture_plan(t_data *data, void *obj, t_vec ray, int choose)
 	return (ontexture);
 }
 
-t_point		texture_sphere(t_data *data, void *obj, t_vec ray, int choose)
+t_point		texture_sphere(void *data, void *obj, t_vec ray, int choose)
 {
 	t_point	ontexture;
 	int		wh;
 	float	phi;
 	float	theta;
 
-	wh = find_size(*data, obj, choose);
+	wh = find_size(*(t_thread *)data, obj, choose);
 	theta = acos(sub_vec(ray.origin,
 		((t_sphere *)obj)->origin.origin).y / ((t_sphere *)obj)->rayon);
 	phi = atan2(sub_vec(ray.origin, ((t_sphere *)obj)->origin.origin).z,
@@ -76,7 +77,7 @@ t_point		texture_sphere(t_data *data, void *obj, t_vec ray, int choose)
 	return (ontexture);
 }
 
-t_point		texture_cylinder(t_data *data, void *obj, t_vec ray, int choose)
+t_point		texture_cylinder(void *data, void *obj, t_vec ray, int choose)
 {
 	int		wh;
 	float	phi;
@@ -84,7 +85,7 @@ t_point		texture_cylinder(t_data *data, void *obj, t_vec ray, int choose)
 	t_point	u;
 	t_point	v;
 
-	wh = find_size(*data, obj, choose);
+	wh = find_size(*(t_thread *)data, obj, choose);
 	u = fill_vec(((t_cylinder *)obj)->origin.direction.y,
 		((t_cylinder *)obj)->origin.direction.z,
 		-((t_cylinder *)obj)->origin.direction.x);
@@ -101,14 +102,14 @@ t_point		texture_cylinder(t_data *data, void *obj, t_vec ray, int choose)
 	return (ontexture);
 }
 
-t_point		texture_cone(t_data *data, void *obj, t_vec ray, int choose)
+t_point		texture_cone(void *data, void *obj, t_vec ray, int choose)
 {
 	int		wh;
 	t_point ontexture;
 	t_point	u;
 	float	phi;
 
-	wh = find_size(*data, obj, choose);
+	wh = find_size(*(t_thread *)data, obj, choose);
 	u = fill_vec(((t_cylinder *)obj)->origin.direction.y,
 		((t_cylinder *)obj)->origin.direction.z,
 		-((t_cylinder *)obj)->origin.direction.x);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 20:40:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 20:46:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static int		setup_txt_and_normal(t_data *data, t_thread *tmp)
 				return (1);
 			if ((tgamp->data = malloc(((size_t)(data->texture[j]->w * data->texture[j]->h) * 4))) == NULL)
 				return (1);
+			tgamp->w = data->texture[j]->w;
+			tgamp->h = data->texture[j]->h;
+			ft_memcpy((tgamp->data), (data->texture[j]->data), ((size_t)(data->texture[j]->w * data->texture[j]->h) * 4));
 			(*tmp).texture[j] = tgamp;
-			ft_memcpy(((*tmp).texture[j]->data), (data->texture[j]->data), ((size_t)(data->texture[j]->w * data->texture[j]->h) * 4));
 		}
 	}
 	if (((*tmp).normal = malloc(sizeof(t_tga **) * data->obj.nb_normal)) == NULL)
@@ -46,8 +48,10 @@ static int		setup_txt_and_normal(t_data *data, t_thread *tmp)
 				return (1);
 			if ((tgamp->data = malloc(((size_t)(data->normal[j]->w * data->normal[j]->h) * 4))) == NULL)
 				return (1);
+			tgamp->w = data->texture[j]->w;
+			tgamp->h = data->texture[j]->h;
+			ft_memcpy((tgamp->data), (data->normal[j]->data), ((size_t)(data->normal[j]->w * data->normal[j]->h) * 4));
 			(*tmp).normal[j] = tgamp;
-			ft_memcpy(((*tmp).normal[j]->data), (data->normal[j]->data), ((size_t)(data->normal[j]->w * data->normal[j]->h) * 4));
 		}
 	}
 	return (0);
@@ -110,6 +114,7 @@ static int		copy_item(t_object base, t_object *dest, int nb)
 		else
 			dest->item[i] = NULL;
 	}
+	dest->item[i] = NULL;
 	return (0);
 }
 
@@ -120,21 +125,26 @@ static int		setup_obj(t_data *data, t_thread *tmp)
 	ft_memcpy(&tmp->obj, &data->obj, sizeof(t_object));
 	i = -1;
 	while (++i < 4)
+	{
 		if ((tmp[i].obj.item = malloc(sizeof(void *) * data->obj.nb_item + 1)) == NULL)
 			return (1);
-	i = -1;
-	while (++i < 4)
-	{
-		if ((tmp[i].obj.light = malloc(sizeof(t_light) * data->obj.nb_light)) == NULL)
-			return (1);
-		ft_memcpy(&tmp[i].obj.light, &data->obj.light, sizeof(t_light) * data->obj.nb_light);
+		tmp[i].obj.nb_item = data->obj.nb_item;
 	}
 	i = -1;
 	while (++i < 4)
 	{
-		if ((tmp[i].obj.camera = malloc(sizeof(t_camera) * data->obj.nb_camera)) == NULL)
+		if ((tmp[i].obj.light = malloc(sizeof(t_light) * data->obj.nb_light) + 1) == NULL)
 			return (1);
-		ft_memcpy(&tmp[i].obj.light, &data->obj.light, sizeof(t_light) * data->obj.nb_light);
+		ft_memcpy(&(*tmp[i].obj.light), &(*data->obj.light), sizeof(t_light) * data->obj.nb_light);
+		tmp[i].obj.nb_light = data->obj.nb_light;
+	}
+	i = -1;
+	while (++i < 4)
+	{
+		if ((tmp[i].obj.camera = malloc(sizeof(t_camera) * data->obj.nb_camera) + 1) == NULL)
+			return (1);
+		ft_memcpy(&(*tmp[i].obj.camera), &(*data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
+		tmp[i].obj.nb_camera = data->obj.nb_camera;
 	}
 	i = -1;
 	while (++i < 4)

@@ -62,7 +62,7 @@ SRC				=	main.c										\
 					create_thread.c								\
 					init_thread.c								\
 					thread_function.c							\
-					thread_poll.c								\
+					thread_load.c								\
 					shape.c										\
 					tolight.c									\
 					init_vec.c									\

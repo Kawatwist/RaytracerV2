@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/24 19:45:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:56:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 static int	looping(t_data *data)
 {
-	// int		err;
+	int		err;
 
 	SDL_LockTexture(data->window.txt, NULL,
 			&data->window.pxl, &data->window.pitch);
-	// sleep(2);
-	// thread_poll(data); // PROBLEME DE CONDITION
-	start_thread(data);
-	// sleep(2);
-	// if ((err = start_ray(data)) != 0)
-	// 	return (err);
+	if ((err = start_thread(data)))
+		return (err);
 	data->percent++;
 	if (data->percent > 99)
 		data->percent = 0;

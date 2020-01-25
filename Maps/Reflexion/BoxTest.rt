@@ -13,7 +13,7 @@
 	light : 3
 	nb_texture : 2
 	nb_normal : 1
-	textures : "./texture/HD2.tga"
+	textures : "./texture/texture/newjinx.tga"
 	textures : "./texture/normal/coussin.tga"
 	normal : "./texture/normal/coussin.tga"
 ############################ Light #####################
