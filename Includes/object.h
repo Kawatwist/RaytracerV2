@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 18:19:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 17:22:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_effect
 	char			type;
 	unsigned char	reflection;
 	unsigned char	opacity;
+	unsigned char	transparancy;
 	unsigned char	refraction;
 	unsigned char	texture;
 	unsigned char	normal;

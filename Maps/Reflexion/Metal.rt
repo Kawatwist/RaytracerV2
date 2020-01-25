@@ -7,12 +7,15 @@
 	xscreen : 400;
 	yscreen : 400;
 	camera : 1
+	quality : 0
+	aa : 0
+	bounce : 1
 	object : 9
 	light : 4
 	nb_texture : 3
 	textures : "./texture/planet/earth.tga"
 	textures : "./texture/texture/up.tga"
-	textures : "./texture/texture/newjinx.tga"
+	textures : "./texture/texture/JINX.tga"
 ############################ Light #####################
 [light:1]
 	origin : {-0.49 -0.40 0.5}
@@ -43,6 +46,8 @@
 	origin : {0 0 0.5}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
+			reflection : 255
+			transparancy : 125
 			texture : 255
 			id_texture : 2
 			mv : 1
@@ -50,19 +55,16 @@
 	origin : {0 0 -1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-			reflection : 255
 [object:plan]
 	origin : {0.5 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
-			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:plan]
 	origin : {-0.5 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
-			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:plan]
@@ -82,6 +84,5 @@
 	direction : {0 1 0}
 	color : 0xFF00FF
 	rayon : 0.25
-			reflection : 125
 			texture : 255
 			mv : 1

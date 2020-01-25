@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 22:54:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:27:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,10 @@ static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ?
 			((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
 	uv.y = (int)uv.y;
-	while ((int)uv.y > data->texture[index]->h)
-		uv.y -= data->texture[index]->h;
-	while ((int)uv.x > data->texture[index]->w)
-		uv.x -= data->texture[index]->w;
-	while ((int)uv.y < 0)
-		uv.y += data->texture[index]->h;
-	while ((int)uv.x < 0)
-		uv.x += data->texture[index]->w;
+	while ((int)uv.y > data->texture[index]->h || (int)uv.y < 0)
+		uv.y += (uv.y > 0 ? -data->texture[index]->w : data->texture[index]->w);
+	while ((int)uv.x > data->texture[index]->w || (int)uv.x < 0)
+		uv.x += (uv.x > 0 ? -data->texture[index]->w : data->texture[index]->w);
 	ret = ((unsigned int *)data->texture[index]->data)[(unsigned int)(uv.x +
 			(uv.y * data->texture[index]->w))];
 	ret = ((ret & 0xFF) << 24) +

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 22:24:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:20:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 
 typedef struct	s_flag
 {
-	Uint32		antialiasing : 2;
 	Uint32		pixel : 2;
 	Uint32		perspective : 1;
 	Uint32		bounce : 1;
 	Uint32		refresh : 1;
+	Uint32		antialiasing : 2;
 }				t_flag;
 
 typedef struct s_data	t_data;

@@ -10,7 +10,7 @@
 	light : 2
 	camera : 1
 	quality : 1
-	ambiant : 0xFF
+	ambiant : 0x0
 	nb_texture : 1
 	textures : "texture/texture/newjinx.tga"
 [light:1]

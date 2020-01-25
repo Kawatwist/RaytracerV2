@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/01/24 16:40:22 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/01/25 18:19:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	super_sample(t_data *data, int x, int y)
 	t_vec			next_ray_y;
 	unsigned int 	curr_pixel[16];
 
-	if (data->flag.antialiasing > 0)
+	if ((data->flag.antialiasing & 0b11) > 0)
 	{
 		setup_ray(data, x + 1, y);
 		next_ray_x = data->ray; //next ray on X axis

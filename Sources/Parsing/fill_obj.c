@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 21:44:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 17:24:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static int		fill_effect(t_effect *effect, char *line)
 		effect->movement = add_rot(effect->movement, line + 3);
 	else if (!ft_strncmp("\t\t\ttexture : ", line, 13))
 		effect->texture = ft_atoi(line + 13);
+	else if (!ft_strncmp("\t\t\ttransparancy : ", line, 18))
+		effect->transparancy = ft_atoi(line + 18);
 	else if (!ft_strncmp("\t\t\tnormal : ", line, 12))
 		effect->normal = ft_atoi(line + 12);
 	else if (!ft_strncmp("\t\t\tid_texture : ", line, 16))

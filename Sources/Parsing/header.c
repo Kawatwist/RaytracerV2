@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 21:47:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:18:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int	parsing_head_v3(t_data *data, char *line)
 		data->ambiant = set_ambiant(ft_atoi_base(&(line[11]), 16));
 	else if (!ft_strncmp("\tquality : ", line, 11))
 		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
+	else if (!ft_strncmp("\taa : ", line, 6))
+		data->flag.antialiasing = ((unsigned int)ft_atoi(&(line[6])) & 0b11);
 	else if (!ft_strncmp("\tobject : ", line, 10))
 		data->obj.nb_item = ft_atoi(&(line[10]));
 	else if (!ft_strncmp("\tlight : ", line, 9))

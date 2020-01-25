@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 23:19:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:24:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 
 unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 {
+	int				txt;
 	t_ray			r;
 
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
@@ -83,12 +84,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
-	if (((unsigned char *)&(r.color[0]))[0] > 240 && ((t_base *)r.obj)->effect.texture)
-	{
-		r.tmp.origin = set_neworigin_op(ray, r.dist[0]);
-		r.tmp.direction = veccpy(ray.direction);
-		return(send_ray(data, r.tmp, bounce));
-	}
+	txt = r.color[0];
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal(r.obj, r.tmp);
@@ -97,5 +93,11 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	r.bounce = bounce;
 	if (r.bounce--)
 		bounce_effect(data, ray, &r);
+	if (((t_base *)r.obj)->effect.texture && ((unsigned char *)&(txt))[0] > 0 && ((t_base *)r.obj)->effect.transparancy)
+	{
+		r.tmp.origin = set_neworigin_op(ray, r.dist[0]);
+		r.tmp.direction = veccpy(ray.direction);
+		return(set_color(send_ray(data, r.tmp, bounce), r.color[0], ((255 - ((unsigned char *)&(txt))[0])) / 255.0, -1));
+	}
 	return (r.color[0] ? r.color[0] : 0xFF000000);
 }

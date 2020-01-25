@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/24 16:42:12 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/01/25 18:19:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				start_ray(t_data *data)
 	int		x;
 	int		y;
 
-	data->flag.antialiasing = 3;
 	y = -1;
 	while (++y < data->window.y)
 	{
