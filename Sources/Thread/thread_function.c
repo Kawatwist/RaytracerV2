@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 20:00:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 22:43:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	*thread_function(void *arg)
 	curr = -1;
 	while (++curr < data->len)
 	{
-		if ((x = curr % data->x) != 0 || !data->flag.pixel)
+		y = (curr / data->y) + (data->pos / data->x);
+		if ((x = curr % data->x) || !data->flag.pixel)
 		{
-			y = (curr / data->y) + (data->pos / data->x);
 			setup_ray(data, x, y);
 			((unsigned int *)data->pxl)[curr] = send_ray(data, data->ray, data->bounce);
 		}

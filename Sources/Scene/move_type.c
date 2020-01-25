@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 17:55:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 22:38:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 void		move_light(t_data *data, void **light)
 {

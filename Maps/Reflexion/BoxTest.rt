@@ -8,7 +8,7 @@
 	yscreen : 400
 	bounce : 1
 	refresh : 1
-	camera : 3
+	camera : 1
 	object : 7
 	light : 3
 	nb_texture : 2
@@ -36,12 +36,6 @@
 [camera:1]
 	origin : {0 0 -0.5}
 	direction : {0 0 1}
-[camera:2]
-	origin : {-1 0 -0.5}
-	direction : {1 0 0}
-[camera:3]
-	origin : {0 0 -0.5}
-	direction : {1 0 1}
 ############################ Object ####################
 [object:plan]
 	origin : {0 0 1}
@@ -49,6 +43,7 @@
 	color : 0x7F7F7F
 			texture : 255
 			reflection : 255
+			mv : 1
 [object:plan]
 	origin : {0 0 -1}
 	direction : {0 0 1}
