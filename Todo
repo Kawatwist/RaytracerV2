@@ -1,0 +1,17 @@
+[0000 0000] [0000 0000] [0000 0000] [0000 0000]
+
+
+
+changer le nom de la fenetre[x]
+
+
+mettre dans header filter de 1 a 3 par exemple et le chiffre definira une touche qui va etre soit gris soit sepia soit cartoon
+
+filters :
+	- 1 = gris[x]
+	- 2 = sepia[x]
+	- 3 = cartoon[x]
+
+faire aussi une amelioration pour savoir sur quel obj dans la section ou on est
+
+need touche reset cam

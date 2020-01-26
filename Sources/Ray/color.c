@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:10:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 22:54:32 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	color[2] = (((base & 0xFF00) >> 8) * (1 - percent)) +
 		(((new & 0xFF00) >> 8) * percent);
 	color[3] = ((base & 0xFF) * (1 - percent)) + ((new & 0xFF) * percent);
-	ret = (color[0] << 24) + (color[1] << 16) + (color[2] << 8) + color[3];
+	ret = (color[0] << 24) | (color[1] << 16) | (color[2] << 8) | color[3];
 	return (ret);
 }
 

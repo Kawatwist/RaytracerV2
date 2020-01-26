@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 22:00:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 21:05:56 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 
 int				parsing_files(t_data *data, char *old)
 {
-	char	*line;
-	int		er;
+	char		*line;
+	int			er;
 
 	line = NULL;
 	if ((er = create_camera(data)) ||

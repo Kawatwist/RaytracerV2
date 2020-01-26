@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 21:26:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 21:39:19 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_flag
 	Uint32		perspective : 1;
 	Uint32		bounce : 1;
 	Uint32		refresh : 1;
+	Uint32		filter : 2;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -80,6 +81,7 @@ float			cylinder(void *cylinder, t_vec ray);
 float			plane(void *plane, t_vec ray);
 float			sphere(void *sphere, t_vec ray);
 
+float			sphere_depth(void *sphere, t_vec ray);
 void			*check_object(t_data *data, t_vec ray, float *dist);
 
 int				start_ray(t_data *data);

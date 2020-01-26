@@ -19,7 +19,7 @@ vertfonce=\033[0;32m
 vertclair=\033[1;32m
 rouge=\033[31m
 
-NAME			= rtv1
+NAME			= rt
 
 HEADER 			= $(shell find includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
 
@@ -81,6 +81,7 @@ SRC				=	main.c										\
 					screenshot.c								\
 					create_type.c								\
 					fill_obj.c									\
+					shape_cartoon.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

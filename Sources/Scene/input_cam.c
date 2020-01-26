@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:10:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/13 22:30:04 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/25 21:42:34 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		input_move_cam(t_data *data, t_point tmp, void **cam)
 		sub_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));
 		(*(t_camera **)cam)->sc =
 		sub_vec((*(t_camera **)cam)->sc, mult_vec2(tmp, 0.5));
-		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
+		tmp = veccpy(data->obj.camera[data->obj.index[0]].pos.direction);
 	}
 	if (key_old(*data, SDL_SCANCODE_A))
 	{
@@ -102,7 +102,7 @@ void		input_move_cam(t_data *data, t_point tmp, void **cam)
 		add_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));
 		(*(t_camera **)cam)->sc =
 		add_vec((*(t_camera **)cam)->sc, mult_vec2(tmp, 0.5));
-		tmp = veccpy(data->obj.camera[data->obj.index[2]].pos.direction);
+		tmp = veccpy(data->obj.camera[data->obj.index[0]].pos.direction);
 	}
 	input_move_cam2(data, cam);
 }

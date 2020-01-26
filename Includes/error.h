@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:13:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 18:25:21 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 18:53:52 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@
 # define ERR_EMPTY "\nEmpty map\n"
 # define ERR_PATH "\nIncorrect Path name\n"
 # define ERR_HEADER "\nIncorrect Header\n"
-# define ERR_TYPE "\nIncorrect Nb_types\n"
+# define ERR_NB_TYPE "\nIncorrect Nb_types\n"
+# define ERR_TEXTURES "\nIncorrect Textures\n"
+# define ERR_IN_LIGHT "\nIncorrect Light\n"
+# define ERR_IN_CAM "\nIncorrect Camera\n"
+# define ERR_IN_OBJ "\nIncorrect Objet\n"
+# define ERR_NAME "\nIncorrect Name\n"
+# define ERR_TYPE "\nIncorrect Type\n"
 # define ERR_UNINDEXED "\nUnindexed Error\n"
 
 #endif
