@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 18:18:23 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:29:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 static int	is_tga(t_data *data, char *line)
 {

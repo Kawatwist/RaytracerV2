@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 18:27:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:12:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 unsigned int		set_ambiant(unsigned int base)
 {
@@ -36,7 +37,7 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	return (ret);
 }
 
-static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
+static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray)
 {
 	t_point			uv;
 	unsigned int	ret;
@@ -60,7 +61,7 @@ static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
 	return (ret);
 }
 
-unsigned int		find_color(t_data *data, void *obj, t_vec ray)
+unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 {
 	Uint32	colortmp;
 

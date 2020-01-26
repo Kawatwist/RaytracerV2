@@ -6,13 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 18:40:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:04:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
-void		*check_object_light(t_data *data, t_vec ray, float *dist)
+void		*check_object_light(t_thread *data, t_vec ray, float *dist)
 {
 	void	*close;
 	int		index;
@@ -22,6 +23,7 @@ void		*check_object_light(t_data *data, t_vec ray, float *dist)
 	value = -1;
 	close = NULL;
 	index = 0;
+	(void)ray;
 	while (data->obj.item[index])
 	{
 		if (!(((t_base *)data->obj.item[index])->effect.flag & NS))
@@ -39,7 +41,7 @@ void		*check_object_light(t_data *data, t_vec ray, float *dist)
 	return (close);
 }
 
-void		*check_object(t_data *data, t_vec ray, float *dist)
+void		*check_object(t_thread *data, t_vec ray, float *dist)
 {
 	void	*close;
 	int		index;
@@ -49,7 +51,7 @@ void		*check_object(t_data *data, t_vec ray, float *dist)
 	value = -1;
 	close = NULL;
 	index = 0;
-	while (data->obj.item[index])
+	while (index < data->obj.nb_item)
 	{
 		value = data->dist[(int)((t_base *)data->obj.item[index])
 			->effect.type](data->obj.item[index], ray);

@@ -6,13 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 18:24:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:19:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
-static t_vec		setup_refraction(t_data data, void *obj,
+static t_vec		setup_refraction(t_thread data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -22,7 +23,7 @@ static t_vec		setup_refraction(t_data data, void *obj,
 	return (tmp);
 }
 
-static t_vec		setup_opacity(t_data *data, void *obj,
+static t_vec		setup_opacity(t_thread *data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -34,7 +35,7 @@ static t_vec		setup_opacity(t_data *data, void *obj,
 	return (tmp);
 }
 
-static t_vec		setup_reflection(t_data *data, void *obj,
+static t_vec		setup_reflection(t_thread *data, void *obj,
 		t_vec ray, float dist)
 {
 	t_vec tmp;
@@ -47,7 +48,7 @@ static t_vec		setup_reflection(t_data *data, void *obj,
 	return (tmp);
 }
 
-static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
+static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 {
 	t_vec			tmp;
 
@@ -74,11 +75,12 @@ static void			bounce_effect(t_data *data, t_vec ray, t_ray *r)
 	}
 }
 
-unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
+unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 {
 	int				txt;
 	t_ray			r;
 
+	(void)bounce;
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
@@ -91,6 +93,7 @@ unsigned int		send_ray(t_data *data, t_vec ray, int bounce)
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, ray, r.tmp, r.color[0]);
 	r.bounce = bounce;
+	// return (r.color[0]);
 	if (r.bounce--)
 		bounce_effect(data, ray, &r);
 	if (((t_base *)r.obj)->effect.texture && ((unsigned char *)&(txt))[0] > 0 && ((t_base *)r.obj)->effect.transparancy)

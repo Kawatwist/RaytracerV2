@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 18:48:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:21:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 int		initialize(t_data *data)
 {

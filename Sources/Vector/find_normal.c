@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 23:01:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:31:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 static t_point	cylinder_normal(t_cylinder c, t_vec collide)
 {
@@ -59,7 +60,7 @@ t_point			find_normal(void *object, t_vec collide)
 	return (normalize(normal));
 }
 
-t_point			find_normal_with_txt(t_data data, void *object, t_vec collide)
+t_point			find_normal_with_txt(t_thread data, void *object, t_vec collide)
 {
 	t_point normal;
 
