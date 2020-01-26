@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 23:04:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:32:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,8 @@ void		*check_object(t_thread *data, t_vec ray, float *dist)
 		}
 		index++;
 	}
+	if (data->flag.filter == 3 && ((t_base *)close)->effect.type == SPHERE)
+		if (sphere_depth(close, ray) < 1)
+			return (NULL);
 	return (close);
 }

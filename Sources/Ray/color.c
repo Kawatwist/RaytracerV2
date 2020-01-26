@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 23:12:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:32:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 unsigned int		set_ambiant(unsigned int base)
 {
 	return (0xFF000000 +
-			((((unsigned char *)&base)[2] / 5) << 16) + 
-			((((unsigned char *)&base)[1] / 5) << 8) + 
+			((((unsigned char *)&base)[2] / 5) << 16) +
+			((((unsigned char *)&base)[1] / 5) << 8) +
 			(((unsigned char *)&base)[0] / 5));
 }
 
@@ -33,7 +33,7 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	color[2] = (((base & 0xFF00) >> 8) * (1 - percent)) +
 		(((new & 0xFF00) >> 8) * percent);
 	color[3] = ((base & 0xFF) * (1 - percent)) + ((new & 0xFF) * percent);
-	ret = (color[0] << 24) + (color[1] << 16) + (color[2] << 8) + color[3];
+	ret = (color[0] << 24) | (color[1] << 16) | (color[2] << 8) | color[3];
 	return (ret);
 }
 

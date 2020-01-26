@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/25 18:06:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 22:48:28 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ float		cylinder(void *cylinder, t_vec ray)
 		sub_vec(ray.origin, c.origin.origin))) * 2.0;
 	d.c = dot_product(tmp, tmp) - square(c.rayon);
 	d.delta = square(d.b) - (4.0 * d.a * d.c);
-	if (!d.a && d.b > 0)
-		return (-1);
-	if (d.delta < 0)
+	if ((!d.a && d.b > 0) || d.delta < 0)
 		return (-1);
 	d.sqt = sqrtf(d.delta);
 	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);

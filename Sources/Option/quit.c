@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 17:30:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 23:32:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static char		*find_error(int error_value)
 {
 	static char *err[] = {NULL, ERR_MALLOC, ERR_WINDOW, ERR_SURFACE, ERR_TXT,
 			ERR_RENDER, ERR_KEYBOARD, ERR_MOUSE, ERR_EMPTY, ERR_PATH,
-			ERR_HEADER, ERR_TYPE, ERR_UNINDEXED};
+			ERR_HEADER, ERR_NB_TYPE, ERR_TEXTURES, ERR_IN_LIGHT, ERR_IN_CAM,
+			ERR_IN_OBJ, ERR_NAME, ERR_TYPE, ERR_UNINDEXED};
 
-	error_value >= 12 ? error_value = 12 : 0;
-	error_value < 0 ? error_value = 12 : 0;
+	error_value >= 12 ? error_value = 12 : 0;//probablement pas necessaire
+	error_value < 0 ? error_value = 12 : 0;//probablement pas necessaire
 	return (err[error_value]);
 }
 

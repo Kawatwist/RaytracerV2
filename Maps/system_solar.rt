@@ -9,6 +9,7 @@
 	camera : 1
 	object : 8
 	light : 1
+	filter : 0
 	nb_texture : 3
 	textures : "./texture/planet/sun.tga"
 	textures : "./texture/Texture/Ground.tga"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 17:06:11 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 22:13:15 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int				initialize_cam(t_data *data)
 		base = fill_vec(0, 0, 1);
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);
+		// printf("avant\n");
+		base = normalize(fill_vec(1.9, 2.6, -1));
+		// printf("Base : %f\t\t%f\t%f\n", base.x, base.y, base.z);
+		// printf("       %f\t\t%f\t%f\n", direction.x, direction.y, direction.z);
+		// exit(0);
 		index++;
 	}
 	return (0);
