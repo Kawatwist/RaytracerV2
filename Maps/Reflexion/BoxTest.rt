@@ -4,8 +4,9 @@
 #														#
 #########################################################
 [header]
-	xscreen : 400
-	yscreen : 400
+	xscreen : 1000
+	yscreen : 1000
+	quality : 3
 	bounce : 1
 	refresh : 1
 	camera : 1
