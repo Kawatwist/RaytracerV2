@@ -3,18 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/01/26 23:03:23 by lomasse          ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2020/01/26 21:39:19 by luwargni         ###   ########.fr       */
-=======
-/*   Updated: 2020/01/25 18:20:23 by lomasse          ###   ########.fr       */
->>>>>>> 390cf4a58c5dcdd5f743f6ee86106b4e0b029b20
->>>>>>> ec204c001aceed3ca63f4e18db94dcd8b8b39a69
+/*   Updated: 2020/01/26 23:42:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +55,7 @@ struct			s_data
 	void				*thread;
 };
 
+float			sphere_depth(void *sphere, t_vec ray);
 /*
 **			Collide Object
 */
@@ -70,28 +63,10 @@ float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);
 float			plane(void *plane, t_vec ray);
 float			sphere(void *sphere, t_vec ray);
-<<<<<<< HEAD
 /*
 **			Parsing
 */
 int				parsing_light(t_data *data, char **old, char *line);
-=======
-
-float			sphere_depth(void *sphere, t_vec ray);
-void			*check_object(t_data *data, t_vec ray, float *dist);
-
-int				start_ray(t_data *data);
-unsigned int	set_ambiant(unsigned int base);
-unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
-unsigned int	find_color(t_data *data, void *obj, t_vec ray);
-unsigned int	set_color(unsigned int base, unsigned int new, float percent, char alpha);
-char			key_old(t_data data, int mask);
-char			key_check(t_data data, int mask);
-void			input(t_data *data);
-int				loop(t_data data);
-void			super_sample(t_data *data, int x, int y);
-
->>>>>>> ec204c001aceed3ca63f4e18db94dcd8b8b39a69
 t_point			get_point(char *str);
 int				parsing_files(t_data *data, char *line);
 int				create_light(t_data *data);
