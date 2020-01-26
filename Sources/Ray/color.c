@@ -6,19 +6,27 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 22:54:32 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/26 22:48:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+unsigned int		set_ambiant(unsigned int base)
+{
+	return (0xFF000000 +
+			((((unsigned char *)&base)[2] / 5) << 16) +
+			((((unsigned char *)&base)[1] / 5) << 8) +
+			(((unsigned char *)&base)[0] / 5));
+}
+
 unsigned int		set_color(unsigned int base, unsigned int new,
-		float percent)
+		float percent, char alpha)
 {
 	unsigned char	color[4];
 	unsigned int	ret;
 
-	color[0] = 0xFF;
+	color[0] = alpha;
 	color[1] = (((base & 0xFF0000) >> 16) * (1 - percent)) +
 		(((new & 0xFF0000) >> 16) * percent);
 	color[2] = (((base & 0xFF00) >> 8) * (1 - percent)) +
@@ -39,14 +47,10 @@ static unsigned int	find_texture_color(t_data *data, void *obj, t_vec ray)
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ?
 			((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
 	uv.y = (int)uv.y;
-	while ((int)uv.y > data->texture[index]->h)
-		uv.y -= data->texture[index]->h;
-	while ((int)uv.x > data->texture[index]->w)
-		uv.x -= data->texture[index]->w;
-	while ((int)uv.y < 0)
-		uv.y += data->texture[index]->h;
-	while ((int)uv.x < 0)
-		uv.x += data->texture[index]->w;
+	while ((int)uv.y > data->texture[index]->h || (int)uv.y < 0)
+		uv.y += (uv.y > 0 ? -data->texture[index]->w : data->texture[index]->w);
+	while ((int)uv.x > data->texture[index]->w || (int)uv.x < 0)
+		uv.x += (uv.x > 0 ? -data->texture[index]->w : data->texture[index]->w);
 	ret = ((unsigned int *)data->texture[index]->data)[(unsigned int)(uv.x +
 			(uv.y * data->texture[index]->w))];
 	ret = ((ret & 0xFF) << 24) +
@@ -64,5 +68,5 @@ unsigned int		find_color(t_data *data, void *obj, t_vec ray)
 		return (((t_base *)obj)->effect.color);
 	colortmp = find_texture_color(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
-		((t_base *)obj)->effect.texture / 255));
+		((t_base *)obj)->effect.texture / 255, ((char *)&colortmp)[0]));
 }

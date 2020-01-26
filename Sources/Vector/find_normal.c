@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/17 20:19:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/20 23:01:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,8 @@ t_point			find_normal_with_txt(t_data data, void *object, t_vec collide)
 {
 	t_point normal;
 
-	(void)data;
 	normal = find_normal(object, collide);
+	if (((t_base *)object)->effect.normal)
+		normal = find_normal_texture(data, object, collide, normal);
 	return (normal);
 }
-
-/*
-**		Normal Mapping (Can be Check in Sources/Effect/normal_map.c)
-**		Need to be place in Find_normal_with_txt
-**		if (((t_base *)object)->effect.normal)
-**	 		normal = find_normal_texture(data, object, collide, normal);
-*/

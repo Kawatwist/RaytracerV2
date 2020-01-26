@@ -9,6 +9,7 @@
 	object : 1
 	light : 1
 	camera : 1
+	ambiant : 0x7F007F
 [light:1]
 	origin : {1.5 0 -2}
 	distance : 3.25

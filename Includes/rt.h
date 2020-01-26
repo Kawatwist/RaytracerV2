@@ -6,7 +6,11 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/26 21:39:19 by luwargni         ###   ########.fr       */
+=======
+/*   Updated: 2020/01/25 18:20:23 by lomasse          ###   ########.fr       */
+>>>>>>> 390cf4a58c5dcdd5f743f6ee86106b4e0b029b20
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +19,6 @@
 
 # include <stdlib.h>
 # include <math.h>
-# include <pthread.h>
 # include "libft.h"
 # include "tga_reader.h"
 # include "object.h"
@@ -32,25 +35,27 @@ typedef struct	s_flag
 	Uint32		bounce : 1;
 	Uint32		refresh : 1;
 	Uint32		filter : 2;
+	Uint32		antialiasing : 2;
 }				t_flag;
 
 typedef struct s_data	t_data;
 
 struct			s_data
 {
-	t_window	window;
-	t_input		input;
-	t_object	obj;
-	t_scene		parse;
-	t_flag		flag;
-	t_vec		ray;
-	t_tga		**texture;
-	t_tga		**normal;
-	float		(*dist[4]) (void *obj, t_vec ray);
-	t_point		(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
-	void		(*move[3]) (t_data *data, void **obj);
-	int			percent;
-	int			bounce;
+	t_window			window;
+	t_input				input;
+	t_object			obj;
+	t_scene				parse;
+	t_flag				flag;
+	t_vec				ray;
+	t_tga				**texture;
+	t_tga				**normal;
+	float				(*dist[4]) (void *obj, t_vec ray);
+	t_point				(*txt[4]) (t_data *data, void *obj, t_vec ray, int choose);
+	void				(*move[3]) (t_data *data, void **obj);
+	int					percent;
+	int					bounce;
+	int					ambiant;
 };
 
 t_point			find_refraction(t_data data, void *obj, t_vec ray);
@@ -85,13 +90,15 @@ float			sphere_depth(void *sphere, t_vec ray);
 void			*check_object(t_data *data, t_vec ray, float *dist);
 
 int				start_ray(t_data *data);
+unsigned int	set_ambiant(unsigned int base);
 unsigned int	send_ray(t_data *data, t_vec ray, int bounce);
 unsigned int	find_color(t_data *data, void *obj, t_vec ray);
-unsigned int	set_color(unsigned int base, unsigned int new, float percent);
+unsigned int	set_color(unsigned int base, unsigned int new, float percent, char alpha);
 char			key_old(t_data data, int mask);
 char			key_check(t_data data, int mask);
 void			input(t_data *data);
 int				loop(t_data data);
+void			super_sample(t_data *data, int x, int y);
 
 t_point			get_point(char *str);
 int				fill_texture(t_data *data, char *line);

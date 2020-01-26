@@ -2,7 +2,10 @@
 #			Scene 42 : The Box				#
 #############################################
 [header]
+	xscreen : 400
+	yscreen : 400
 	camera : 1
+	ambiant : 0xFF
 	object : 7
 	light : 3
 	nb_texture : 2

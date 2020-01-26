@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 17:50:49 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/26 22:47:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int			initialize_sdl(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 		return (1);
-	data->window.window = SDL_CreateWindow("Rt", 500, 500, data->window.x,
+	data->window.window = SDL_CreateWindow("RT", 500, 500, data->window.x,
 		data->window.y, SDL_WINDOW_SHOWN);
 	if (data->window.window == NULL)
 		return (2);

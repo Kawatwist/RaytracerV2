@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 18:53:31 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/26 22:47:09 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static char		*find_error(int error_value)
 void			stop_execute(char *error, t_data *data)
 {
 	(void)data;
+	ft_putstr("Critical Error : ");
 	ft_putstr(error);
 	exit(0);
 }

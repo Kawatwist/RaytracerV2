@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/20 17:28:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/24 22:27:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 
 	(void)tmp;
 	index = -1;
-	color = 0;
+	color = data->ambiant;
 	while (++index < data->obj.nb_light)
 	{
 		dot = -(((1 - dot_product(normalize(sub_vec(ray.origin,
@@ -101,7 +101,7 @@ unsigned int		ray_to_light(t_data *data, t_vec tmp, t_vec ray, int base)
 		len < 0 ? len = 0 : 0;
 		dot *= data->obj.light[index].intensity;
 		color = add_color(color, light_color(base, set_color(0,
-			data->obj.light[index].color, (dot * len) * obj[0])));
+			data->obj.light[index].color, (dot * len) * obj[0], -1)));
 	}
 	return (color);
 }

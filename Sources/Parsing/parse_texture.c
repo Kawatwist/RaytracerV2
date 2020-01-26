@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:49:42 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/18 20:50:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:14:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	first_normal(t_data *data)
 		data->obj.normal[i] = NULL;
 		i++;
 	}
-	ft_putendl("Normal Mapping is curently disable\n");
 	return (0);
 }
 

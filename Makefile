@@ -21,11 +21,11 @@ rouge=\033[31m
 
 NAME			= rt
 
-HEADER 			= $(shell find includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
+HEADER 			= $(shell find Includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
 
-SRC_PATH		= $(shell find sources -type d)
+SRC_PATH		= $(shell find Sources -type d)
 
-INC_PATH 		= $(shell find includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
+INC_PATH 		= $(shell find Includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
 
 OBJ_PATH		= OBJ
 
@@ -59,6 +59,10 @@ SRC				=	main.c										\
 					input.c										\
 					input_tool.c								\
 					loop.c										\
+					create_thread.c								\
+					init_thread.c								\
+					thread_function.c							\
+					thread_poll.c								\
 					shape.c										\
 					tolight.c									\
 					init_vec.c									\
@@ -67,6 +71,7 @@ SRC				=	main.c										\
 					math_vec.c									\
 					vec_tool.c									\
 					find_normal.c								\
+					normal_map.c								\
 					switch_vec.c								\
 					ang.c										\
 					reflexion.c									\
@@ -82,6 +87,7 @@ SRC				=	main.c										\
 					create_type.c								\
 					fill_obj.c									\
 					shape_cartoon.c								\
+					antialiasing.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
@@ -98,7 +104,7 @@ vpath %.c $(foreach dir, $(SRC_PATH), $(dir):)
 
 IFLAG			= $(foreach dir, $(INC_PATH), -I$(dir) )
 
-CFLAG 			= -Wall -Wextra -Werror
+CFLAG 			= -Wall -Wextra -Werror -pthread
 
 LFLAG 			= $(foreach dir, $(LIB_PATH), -L $(dir) ) $(foreach lib, $(LIBS), -l$(lib) ) $(foreach fmw, $(FRAMEWORK), -framework $(fmw) )
 
@@ -112,7 +118,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "${vertclair}DONE${neutre}"
 
 $(OBJ_PATH)/%.o: %.c $(HEADER) $(LIBFTA)
