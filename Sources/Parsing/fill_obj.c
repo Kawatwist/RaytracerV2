@@ -6,13 +6,17 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/01/16 01:18:56 by lomasse          ###   ########.fr       */
+=======
+/*   Updated: 2020/01/25 17:24:12 by lomasse          ###   ########.fr       */
+>>>>>>> ec204c001aceed3ca63f4e18db94dcd8b8b39a69
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		find_type(char *type)
+int				find_type(char *type)
 {
 	type = ft_strchr(type, ':');
 	if (type != NULL)
@@ -27,7 +31,7 @@ int		find_type(char *type)
 	return (NONE);
 }
 
-int		create_type(t_data *data, int index, int type)
+int				create_type(t_data *data, int index, int type)
 {
 	static	size_t	tab[4] = {sizeof(t_sphere)
 			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)};
@@ -69,6 +73,8 @@ static int		fill_effect(t_effect *effect, char *line)
 		effect->movement = add_rot(effect->movement, line + 3);
 	else if (!ft_strncmp("\t\t\ttexture : ", line, 13))
 		effect->texture = ft_atoi(line + 13);
+	else if (!ft_strncmp("\t\t\ttransparancy : ", line, 18))
+		effect->transparancy = ft_atoi(line + 18);
 	else if (!ft_strncmp("\t\t\tnormal : ", line, 12))
 		effect->normal = ft_atoi(line + 12);
 	else if (!ft_strncmp("\t\t\tid_texture : ", line, 16))
@@ -100,7 +106,8 @@ int				fill_obj(t_data *data, char **line, int index)
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
 	else if (!ft_strncmp("\t\t", *line, 2))
 	{
-		if (fill_effect(&(((t_base *)data->obj.item[index])->effect), *line) == 20)
+		if (fill_effect(&(((t_base *)data->obj.item[index])->effect),
+			*line) == 20)
 			return (20);
 	}
 	else if (ft_strchr(*line, '#'))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:49:42 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/14 20:05:52 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/25 18:14:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	first_normal(t_data *data)
 		data->obj.normal[i] = NULL;
 		i++;
 	}
-	ft_putendl("Normal Mapping is curently disable\n");
 	return (0);
 }
 
@@ -34,6 +33,8 @@ int			fill_normal(t_data *data, char *line)
 	static int	index = 0;
 	int			len;
 
+	if (index >= data->obj.nb_normal)
+		return (14);
 	if (index == 0)
 		if (first_normal(data))
 			return (1);
@@ -66,6 +67,8 @@ int			fill_texture(t_data *data, char *line)
 	static int	index = 0;
 	int			len;
 
+	if (index >= data->obj.nb_texture)
+		return (14);
 	if (index == 0)
 		if (first_texture(data))
 			return (1);

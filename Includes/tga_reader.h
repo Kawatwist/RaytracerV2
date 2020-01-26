@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   tga_reader.h									   :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: lomasse <marvin@42.fr>					 +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2019/03/13 13:54:50 by lomasse		   #+#	#+#			 */
-/*   Updated: 2019/03/27 16:46:57 by lomasse		  ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tga_reader.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/18 18:19:59 by lomasse           #+#    #+#             */
+/*   Updated: 2020/01/18 18:20:53 by lomasse          ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TGA_READER_H
@@ -43,22 +43,22 @@ typedef struct		s_tga
 	int				new_i;
 }					t_tga;
 
-void			sym_vert(t_tga *tga);
-void			rotatepxl(t_tga *tga);
-void			fill(t_tga *tga, unsigned char *base,
-		unsigned char *tofill, int bpp);
-unsigned char	*pxlbasecm(t_tga *tga,
-		unsigned char *newstr);
-unsigned char	*pxlbase(t_tga *tga, unsigned char *newstr);
-int				createpxl(t_tga *tga);
-int				uncompress(t_tga *tga);
-int				getheader(t_tga *tga);
-int				getcm(t_tga *tga);
-int				getdata(t_tga *tga);
-int				getfile(t_tga *tga, const char *path);
-void			*cleartga(t_tga *tga);
-int				inittga(t_tga *tga);
-void			*free_tga(t_tga *tga);
-t_tga			*load_tga(const char *path);
+void				sym_vert(t_tga *tga);
+void				rotatepxl(t_tga *tga);
+void				fill(t_tga *tga, unsigned char *base,
+						unsigned char *tofill, int bpp);
+unsigned char		*pxlbasecm(t_tga *tga,
+						unsigned char *newstr);
+unsigned char		*pxlbase(t_tga *tga, unsigned char *newstr);
+int					createpxl(t_tga *tga);
+int					uncompress(t_tga *tga);
+int					getheader(t_tga *tga);
+int					getcm(t_tga *tga);
+int					getdata(t_tga *tga);
+int					getfile(t_tga *tga, const char *path);
+void				*cleartga(t_tga *tga);
+int					inittga(t_tga *tga);
+void				*free_tga(t_tga *tga);
+t_tga				*load_tga(const char *path);
 
 #endif

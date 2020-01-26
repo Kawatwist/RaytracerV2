@@ -19,13 +19,13 @@ vertfonce=\033[0;32m
 vertclair=\033[1;32m
 rouge=\033[31m
 
-NAME			= rtv1
+NAME			= rt
 
-HEADER 			= $(shell find includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
+HEADER 			= $(shell find Includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
 
-SRC_PATH		= $(shell find sources -type d)
+SRC_PATH		= $(shell find Sources -type d)
 
-INC_PATH 		= $(shell find includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
+INC_PATH 		= $(shell find Includes -type d) $(shell find libft -type d) $(shell find libraries/include -type d 2>/dev/null || true) \
 
 OBJ_PATH		= OBJ
 
@@ -40,7 +40,9 @@ SRC				=	main.c										\
 					init_sdl.c									\
 					init_cam.c									\
 					rot_init_cam.c								\
+					check.c										\
 					quit.c										\
+					clear.c										\
 					get_point.c									\
 					parse.c										\
 					header.c									\
@@ -57,6 +59,10 @@ SRC				=	main.c										\
 					input.c										\
 					input_tool.c								\
 					loop.c										\
+					create_thread.c								\
+					init_thread.c								\
+					thread_function.c							\
+					thread_poll.c								\
 					shape.c										\
 					tolight.c									\
 					init_vec.c									\
@@ -65,6 +71,7 @@ SRC				=	main.c										\
 					math_vec.c									\
 					vec_tool.c									\
 					find_normal.c								\
+					normal_map.c								\
 					switch_vec.c								\
 					ang.c										\
 					reflexion.c									\
@@ -79,10 +86,12 @@ SRC				=	main.c										\
 					screenshot.c								\
 					create_type.c								\
 					fill_obj.c									\
+					shape_cartoon.c								\
+					antialiasing.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
-LIBS 			= SDL2 SDL2_mixer SDL2_ttf freetype ft
+LIBS 			= SDL2 ft
 
 LIB_PATH 		= ./libft \
 				  ./libraries/lib \
@@ -95,7 +104,7 @@ vpath %.c $(foreach dir, $(SRC_PATH), $(dir):)
 
 IFLAG			= $(foreach dir, $(INC_PATH), -I$(dir) )
 
-CFLAG 			= -Wall -Wextra -Werror
+CFLAG 			= -Wall -Wextra -Werror -pthread
 
 LFLAG 			= $(foreach dir, $(LIB_PATH), -L $(dir) ) $(foreach lib, $(LIBS), -l$(lib) ) $(foreach fmw, $(FRAMEWORK), -framework $(fmw) )
 
@@ -109,7 +118,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -o $(NAME) $(OBJ) $(LFLAG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "${vertclair}DONE${neutre}"
 
 $(OBJ_PATH)/%.o: %.c $(HEADER) $(LIBFTA)
@@ -153,38 +162,7 @@ resdl:
 	@echo "${cyanclair}DONE${neutre}"
 	@make image
 
-image: libraries/lib/libSDL2_mixer.dylib
-
-libraries/lib/libSDL2_mixer.dylib: libraries/lib/libSDL2_ttf.dylib
-	@echo "${cyanfonce}Installing SDL2_mixer ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz -o libraries/SDL2_mixer-2.0.4.tar.gz
-	@tar -xf ./libraries/SDL2_mixer-2.0.4.tar.gz -C libraries
-	@cd libraries/SDL2_mixer-2.0.4 ; ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/SDL2_mixer-2.0.4
-	@make -C ./libraries/SDL2_mixer-2.0.4 install
-	@echo "${cyanclair}DONE${neutre}"
-
-libraries/lib/libSDL2_ttf.dylib: libraries/lib/libfreetype.dylib
-	@echo "${cyanfonce}Installing SDL2_ttf ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.15.tar.gz -o libraries/SDL2_ttf-2.0.15.tar.gz
-	@tar -xf ./libraries/SDL2_ttf-2.0.15.tar.gz -C libraries
-	@cd libraries/SDL2_ttf-2.0.15 ; FT2_CONFIG=$(shell pwd)/libraries/bin/freetype-config ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/SDL2_ttf-2.0.15
-	@make -C ./libraries/SDL2_ttf-2.0.15 install
-	@echo "${cyanclair}DONE${neutre}"
-
-libraries/lib/libfreetype.dylib: libraries/lib/libSDL2.dylib
-	@echo "${cyanfonce}Installing freetype2 ...${neutre}\c"
-	@mkdir -p libraries
-	@curl -s https://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz -Lo libraries/freetype-2.4.11.tar.gz
-	@tar -xf ./libraries/freetype-2.4.11.tar.gz -C libraries
-	@cd libraries/freetype-2.4.11 ; ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/freetype-2.4.11
-	@make -C ./libraries/freetype-2.4.11 install
-	@echo "${cyanclair}DONE${neutre}"
-
+image: libraries/lib/libSDL2.dylib
 
 libraries/lib/libSDL2.dylib:
 	@echo "${cyanfonce}Installing SDL2 ...${neutre}\c"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:48:50 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 23:50:43 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/18 21:55:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int				parsing_obj(t_data *data, char **old, char *type)
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
 		data->parse.error_line += 1;
-		if (fill_obj(data, &line, index) == 0)
-			;
-		else
-			return (20);
+		if ((val = fill_obj(data, &line, index)) != 0)
+		{
+			free(line);
+			return (val);
+		}
 		free(line);
 	}
 	*old = line;

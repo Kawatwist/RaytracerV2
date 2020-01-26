@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 23:50:36 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:33:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				parsing_camera(t_data *data, char **old)
 		else if (ft_strchr(line, '#'))
 			;
 		else
-			break;
+			break ;
 		free(line);
 	}
 	*old = line;

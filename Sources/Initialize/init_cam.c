@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 18:44:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/23 22:13:15 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,24 @@ static void		preset_cam(t_data *data, int index)
 {
 	float	coef;
 
-
 	(data->obj.camera[index]).sc =
-		add_vec((data->obj.camera[index]).pos.origin, fill_vec(-0.5, -0.5, 0.5));
+		add_vec((data->obj.camera[index]).pos.origin,
+			fill_vec(-0.5, -0.5, 0.5));
 	if (data->window.x >= data->window.y)
 	{
 		coef = (float)data->window.x / (float)data->window.y;
 		(data->obj.camera[index]).x = fill_vec(coef / data->window.x, 0, 0);
 		(data->obj.camera[index]).y = fill_vec(0, 1.0 / data->window.y, 0);
-		(data->obj.camera[index]).sc = add_vec((data->obj.camera[index]).sc, fill_vec((1 - coef) / 2.0, 0, 0));
+		(data->obj.camera[index]).sc = add_vec((data->obj.camera[index]).sc,
+			fill_vec((1 - coef) / 2.0, 0, 0));
 	}
 	else
 	{
 		coef = (float)data->window.y / (float)data->window.x;
 		(data->obj.camera[index]).x = fill_vec(1.0 / data->window.x, 0, 0);
 		(data->obj.camera[index]).y = fill_vec(0, coef / data->window.y, 0);
-		(data->obj.camera[index]).sc = add_vec((data->obj.camera[index]).sc, fill_vec(0, (1 - coef) / 2, 0));
+		(data->obj.camera[index]).sc = add_vec((data->obj.camera[index]).sc,
+			fill_vec(0, (1 - coef) / 2, 0));
 	}
 }
 
@@ -59,6 +61,11 @@ int				initialize_cam(t_data *data)
 		base = fill_vec(0, 0, 1);
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);
+		// printf("avant\n");
+		base = normalize(fill_vec(1.9, 2.6, -1));
+		// printf("Base : %f\t\t%f\t%f\n", base.x, base.y, base.z);
+		// printf("       %f\t\t%f\t%f\n", direction.x, direction.y, direction.z);
+		// exit(0);
 		index++;
 	}
 	return (0);

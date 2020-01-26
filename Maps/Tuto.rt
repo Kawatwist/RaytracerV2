@@ -1,0 +1,93 @@
+## ~~~~~~~~~~~~ Welcome To The Tutorial Scene ~~~~~~~~~~~~ ##
+##
+## Rt's File Is store with different part
+##
+## [Header] Is the Main part, He need to be the first on the scene
+## This Part choose how many light/cam/item is on the scene, load texture, boune ...
+##
+[header]
+	xscreen : 600
+	yscreen : 200
+	quality : 0
+	bounce : 0
+	refresh : 0
+	camera : 1
+	object : 4
+	light : 1
+	nb_normal : 1
+	nb_texture : 1
+	normal : "./Texture/Normal/Coussin.tga"
+	textures : "./Texture/Texture/Jinx.tga"
+##
+##  Xscreen Yscreen is the size of the screen [0 => 16k] (pixel)
+##  Quality is the number of pixel per ray (Increase the fps but loose the quality) [0 => 3]
+##  Bounce is the special effect on object like, Reflection, Refraction and Normal
+##  Refresh is to choose what's will happend after the Rendering of the first Screen (Screenshot/Quit/...)
+##  Camera Is the Numbers of camera on the scene /!\ If the Numbers of Camera/Light/Object is higher than the real number he will just allocated more memory for nothing
+##  Object Is the Numbers of Object on the scene
+##  Light Is the Numbers of Light on the Scene
+##  Nb_normal is the Numbers of Normal Map on the scene
+##  Nb_texture is the Numbers of Texture on the scene
+##
+[light:BasicLight]
+	origin : {0 -0.5 1}
+	color : 0xFFFFFF
+	distance : 10
+	intensity : 1
+##
+##  Light Section (Can be set everywhere on the file after the Header's Part)
+##	After The ':' In the Declaration Line is the Name of the Item (Can Be set Everything)
+##  Origin is the position in the scene of the light
+##  Color is the Light's color, store in ARGB32, Need to be choose in Hexadecimal Value
+##  Distance is how far the Light can be illuminate the scene
+##  Intensity [0 => 1] Is the Intensity of the light
+##
+[camera:BasicCam]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+##
+##	Camera Section (Can be set everywhere on the file after the Header's Part)
+##	After The ':' In the Declaration Line is the Name of the Item (Can Be set Everything)
+##  Origin is the position in the scene of the camera
+##	Direction is where the camera is looking
+##	Need To Know : The Screen of the camera is at 0.5 in the direction So this camera's screen is at {0 0 0}
+##
+[object:sphere]
+	origin : {0.5 0 1}
+	color : 0x7F7F7F
+	rayon : 0.3
+			id_texture : 0
+			id_normal : 0
+			reflection : 125
+			refraction : 125
+			opacity : 125
+			texture : 125
+			normal : 0
+			mv : 1
+			ns : 0
+##	You cant name an object, the type of object is his name [sphere, plan, cylinder, cone]
+##	The Effect section is some different thing you can apply, Like Reflection, Refraction ...
+##	Id_texture is which texture is select
+##	Id_normal is which normal is select
+##	Reflection [0 => 255]
+##	Refraction [0 => 255]
+##	Opacity [0 => 255]
+##	Texture [0 => 255]
+##	Normal [0 => 255]
+##	Mv actuve the rotation of the texture
+##	Disable the light / Shadow
+[object:plan]
+	origin : {0 0.5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+		[effect]
+[object:cylinder]
+	origin : {0 0 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+	rayon : 0.1
+[object:cone]
+	origin : {0.5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+	angle : 30

@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 16:51:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 22:36:37 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		input_filter(t_data *data)
+{
+	if (key_check(*data, SDL_SCANCODE_1))
+		data->flag.filter = (data->flag.filter == 0) ? 1 : 0;
+	if (key_check(*data, SDL_SCANCODE_2))
+		data->flag.filter = (data->flag.filter == 0) ? 2 : 0;
+	if (key_check(*data, SDL_SCANCODE_3))
+		data->flag.filter = (data->flag.filter == 0) ? 3 : 0;
+}
 
 static void	stay_in_case(t_data *data)
 {
@@ -66,10 +76,10 @@ static void	input_obj(t_data *data)
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
 	if (enter == 1)
-		printf("Current Mode Object\n\n");
+		ft_putstr("Current Mode Object\n\n");
 	else
-		printf("Current Mode Index\n\n");
-	data->move[data->obj.type_index] (data, obj);
+		ft_putstr("Current Mode Index\n\n");
+	data->move[data->obj.type_index](data, obj);
 }
 
 void		input(t_data *data)
@@ -83,6 +93,9 @@ void		input(t_data *data)
 	SDL_PollEvent(&data->input.ev);
 	if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
+	if (key_check(*data, SDL_SCANCODE_R))
+		data->flag.refresh = (data->flag.refresh ? 0 : 1);
 	input_obj(data);
 	light_cursor(data);
+	input_filter(data);//ajout
 }

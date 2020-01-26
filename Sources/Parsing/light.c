@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/15 23:55:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/18 17:41:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		parsing_light(t_data *data, char **old, char *line)
 		else if (ft_strchr(line, '#'))
 			;
 		else
-			break;
+			break ;
 		free(line);
 	}
 	data->parse.error_line -= 1;

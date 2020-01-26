@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 23:37:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/18 17:49:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_point		texture_plan(t_data *data, void *obj, t_vec ray, int choose)
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
-	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF) + ((wh & 0xFFFF) >> 1);
+	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF) +
+		((wh & 0xFFFF) >> 1);
 	ontexture.x = dot_product(ray.origin, v) * (wh >> 16) + ((wh >> 16) >> 1);
 	while (ontexture.x < 0 || ontexture.x >= (wh >> 16))
 		ontexture.x += (ontexture.x < 0 ? (wh >> 16) - 1 : -(wh >> 16) - 1);

@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   libft.h											:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: luwargni <luwargni@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2018/11/08 02:55:41 by lomasse		   #+#	#+#			 */
-/*   Updated: 2019/12/08 15:45:17 by luwargni		 ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/19 22:40:28 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/19 22:41:28 by luwargni         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
@@ -49,7 +49,7 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
-int				  	ft_atoi_base(char *str, int base);
+int					ft_atoi_base(char *str, int base);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_strchrlen(char *str, int c);

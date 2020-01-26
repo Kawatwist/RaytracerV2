@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   get_next_line.h									:+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: lomasse <marvin@42.fr>					 +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2018/11/14 11:56:50 by lomasse		   #+#	#+#			 */
-/*   Updated: 2018/11/23 17:10:06 by lomasse		  ###   ########.fr	   */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/19 22:40:22 by luwargni          #+#    #+#             */
+/*   Updated: 2020/01/20 17:38:30 by lomasse          ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
@@ -18,8 +18,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-
-# include <stdio.h>
 # include "libft.h"
 
 typedef struct		s_gnl

@@ -6,12 +6,11 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 18:44:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/19 22:25:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
 
 static char	*findname(char *name)
 {
@@ -33,19 +32,20 @@ static char	*findname(char *name)
 	return (name);
 }
 
-// static void	ft_revputnstr_fd(void *str, long int len, int fd)
-// {
-// 	while (len > 0)
-// 	{
-// 		write(fd, &(((char *)str)[len -1]), 4);
-// 		len -= 4;
-// 	}
-// }
+static void	ft_revputnstr_fd(void *str, long int len, int fd, long int size)
+{
+	int	x;
+	int	y;
+
+	x = size & 0xFFFFFFFF;
+	y = (size & 0xFFFFFFFF00000000) >> 32;
+	while (len-- > 0)
+		write(fd, &(((int *)str)[(x - (len % x)) + ((len / x) * x)]), 4);
+}
 
 static void	ft_putnstr_fd(void *str, long int len, int fd)
 {
-	while (len--)
-		ft_putchar_fd(*((char *)str++), fd);
+	write(fd, str, len);
 }
 
 static void	init_head(t_data *data, unsigned char (*header)[18])
@@ -82,7 +82,8 @@ void		create_screenshot(t_data *data, void *pxl)
 	fd = creat(name, S_IRUSR | S_IRGRP | S_IROTH);
 	init_head(data, &header);
 	ft_putnstr_fd(header, 18, fd);
-	ft_putnstr_fd(pxl, data->window.x * data->window.y * 4, fd);
+	ft_revputnstr_fd(pxl, data->window.x * data->window.y, fd,
+		((long int)data->window.y << 32) + data->window.x);
 	ft_putstr("Screenshot Done : ");
 	ft_putstr(name);
 	ft_putchar('\n');

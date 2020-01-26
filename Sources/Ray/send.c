@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*   Updated: 2020/01/16 00:02:28 by luwargni         ###   ########.fr       */
 =======
 /*   Updated: 2020/01/15 23:29:02 by lomasse          ###   ########.fr       */
 >>>>>>> bf594b0eec291cb4f467f4a85a9653fd6931d85e
+=======
+/*   Updated: 2020/01/25 18:19:21 by lomasse          ###   ########.fr       */
+>>>>>>> ec204c001aceed3ca63f4e18db94dcd8b8b39a69
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +35,26 @@ static void		low_quality(t_data *data, int *x, int *y)
 {
 	int		w;
 	int		pxl;
+	int		pos;
 
-	w = 0;
+	w = -1;
 	pxl = 0;
-	while (w < data->window.x)
+	pos = (*x - 1) + ((*y) * data->window.x);
+	while (++w < data->window.x)
 	{
-		pxl = 0;
-		while (pxl < ((data->flag.pixel) * 2))
+		pxl = -1;
+		while (++pxl < ((data->flag.pixel) * 2) && (*y + pxl) < data->window.y)
 		{
-			((unsigned int *)data->window.pxl)[(*x) +
-					((*y + pxl) * data->window.x) + w] =
-				((unsigned int *)data->window.pxl)[*x +
-						((*y - 1) * data->window.x) + w];
-			pxl++;
+			((unsigned int *)data->window.pxl)[pos + w + (pxl * data->window.x)] =
+			((unsigned int *)data->window.pxl)[pos + w + ((pxl - 1) * data->window.x)];
 		}
-		w++;
 	}
 	(*y) += (data->flag.pixel);
 }
 
 static void		low_pixel_x(t_data *data, int *x, int y)
 {
-	while (*x % (data->flag.pixel + 1))
+	while (*x % (data->flag.pixel + 1) && *x < data->window.x)
 	{
 		((unsigned int *)data->window.pxl)[*x + 1 +
 			(y * data->window.x)] =
@@ -60,12 +62,6 @@ static void		low_pixel_x(t_data *data, int *x, int y)
 			[*x + (y * data->window.x)];
 		*x += 1;
 	}
-}
-
-static void		setup_ray(t_data *data, int x, int y)
-{
-	data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
-	data->ray.direction = normalize(find_dir(data, x, y));
 }
 
 int				start_ray(t_data *data)
@@ -79,9 +75,7 @@ int				start_ray(t_data *data)
 		x = -1;
 		while (++x < data->window.x)
 		{
-			setup_ray(data, x, y);
-			((unsigned int *)data->window.pxl)[x + (y * data->window.x)] =
-					send_ray(data, data->ray, data->bounce);
+			super_sample(data, x, y); //antialiasing
 			low_pixel_x(data, &x, y);
 		}
 		data->flag.pixel ? low_quality(data, &x, &y) : 0;

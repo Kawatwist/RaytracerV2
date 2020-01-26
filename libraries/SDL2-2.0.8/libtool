@@ -2,7 +2,7 @@
 
 # libtool - Provide generalized library-building support services.
 # Generated automatically by config.status () 
-# Libtool was configured on host e3r11p3.42.fr:
+# Libtool was configured on host e1r11p3.42.fr:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 #   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,
@@ -75,13 +75,13 @@ PATH_SEPARATOR=":"
 
 # The host system.
 host_alias=
-host=x86_64-apple-darwin18.6.0
-host_os=darwin18.6.0
+host=x86_64-apple-darwin18.7.0
+host_os=darwin18.7.0
 
 # The build system.
 build_alias=
-build=x86_64-apple-darwin18.6.0
-build_os=darwin18.6.0
+build=x86_64-apple-darwin18.7.0
+build_os=darwin18.7.0
 
 # A sed program that does not truncate output.
 SED="/usr/bin/sed"
@@ -167,7 +167,7 @@ lock_old_archive_extraction=yes
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-g -O2 -Iinclude -I/Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/include -idirafter /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/khronos "
+LTCFLAGS="-g -O2 -Iinclude -I/Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/include -idirafter /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/khronos "
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([BCDEGRST][BCDEGRST]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"

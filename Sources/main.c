@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/15 15:58:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/26 22:46:39 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ int		main(int argc, char *argv[])
 		return (stop_main_execute("Error Initalize : ", &data, value));
 	if ((value = parsing(&data, argc, argv)) != 0)
 		return (stop_main_execute("Error Parsing : ", &data, value));
+	if ((value = check_parse(&data)) != 0)
+		return (stop_main_execute("Error Parsing : ", &data, value));
 	if ((value = initialize_sdl(&data)) != 0)
 		return (value);
 	if ((value = loop(data)) != 0 && value != 50)
-		return (stop_main_execute("Error in Runing : ", &data, value));
+		return (stop_main_execute("Error in Parse Check : ", &data, value));
+	clear_memory(&data);
 	ft_putstr("See you soon !\n");
 	return (0);
 }

@@ -6,54 +6,23 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/16 00:00:14 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/26 22:47:09 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "error.h"
 
 static char		*find_error(int error_value)
 {
-	if (error_value == 1)
-		return ("\nMemory allocation failed\n");
-	if (error_value == 2)
-		return ("\nCan't Create SDL_Window\n");
-	if (error_value == 3)
-		return ("\nCan't Create SDL_Surface\n");
-	if (error_value == 4)
-		return ("\nSDL_Texture Error\n");
-	if (error_value == 5)
-		return ("\nSDL_Render Failed\n");
-	if (error_value == 6)
-		return ("\nKeyboards Input Error\n");
-	if (error_value == 7)
-		return ("\nMouse Input Error\n");
-	if (error_value == 10)
-		return ("\nEmpty map\n");
-	if (error_value == 11)
-		return ("\nIncorrect Path name\n");
-	if (error_value == 12) //faire
-		return ("\nIncorrect Header\n");
-	if (error_value == 13)
-		return ("\nIncorrect Nb_types\n");
-	if (error_value == 14)
-		return ("\nIncorrect path name\n");
-	if (error_value == 15)
-		return ("\nIncorrect path name\n");
-	if (error_value == 16)
-		return ("\nIncorrect path name\n");
-	if (error_value == 17)
-		return ("\nIncorrect path name\n");
-	if (error_value == 18)
-		return ("\nIncorrect path name\n");
-	if (error_value == 19)
-		return ("\nIncorrect path name\n");
-	if (error_value == 20)
-		return ("\nIncorrect path name\n");
+	static char *err[] = {NULL, ERR_MALLOC, ERR_WINDOW, ERR_SURFACE, ERR_TXT,
+			ERR_RENDER, ERR_KEYBOARD, ERR_MOUSE, ERR_EMPTY, ERR_PATH,
+			ERR_HEADER, ERR_NB_TYPE, ERR_TEXTURES, ERR_IN_LIGHT, ERR_IN_CAM,
+			ERR_IN_OBJ, ERR_NAME, ERR_TYPE, ERR_UNINDEXED};
 
-	if (error_value > 11)
-		printf("\nC'est trop la !\n");
-	return ("\nUnindexed Error\n");
+	error_value >= 12 ? error_value = 12 : 0;//probablement pas necessaire
+	error_value < 0 ? error_value = 12 : 0;//probablement pas necessaire
+	return (err[error_value]);
 }
 
 /*
@@ -63,6 +32,7 @@ static char		*find_error(int error_value)
 void			stop_execute(char *error, t_data *data)
 {
 	(void)data;
+	ft_putstr("Critical Error : ");
 	ft_putstr(error);
 	exit(0);
 }
@@ -73,7 +43,6 @@ void			stop_execute(char *error, t_data *data)
 
 int				stop_main_execute(char *error, t_data *data, int error_value)
 {
-	(void)data;
 	ft_putstr(error);
 	ft_putstr("Erreur ");
 	ft_putnbr(error_value);
@@ -83,5 +52,6 @@ int				stop_main_execute(char *error, t_data *data, int error_value)
 		ft_putnbr(data->parse.error_line + 1);
 	}
 	ft_putstr(find_error(error_value));
+	clear_memory(data);
 	return (error_value);
 }

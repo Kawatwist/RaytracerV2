@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:11 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/14 21:35:59 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/16 20:25:05 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ int				create_texture(t_data *data)
 		img = load_tga(data->obj.texture[index]);
 		if (img == NULL)
 			img = load_tga("./Texture/Invalid.tga");
+		free(data->obj.texture[index]);
 		data->texture[index] = img;
 		index++;
 	}
+	free(data->obj.texture);
 	return (0);
 }
 
