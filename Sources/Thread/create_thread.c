@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 22:36:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/28 17:54:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int     start_thread(t_data *data)
         ((t_thread *)data->thread)[i].percent = data->percent;
         ((t_thread *)data->thread)[i].bounce = data->bounce;
         ((t_thread *)data->thread)[i].len = (data->window.x * data->window.y) >> 2;
+        ((t_thread *)data->thread)[i].pos = ((t_thread *)data->thread)[i].len * i;
         ((t_thread *)data->thread)[i].pxl = &(((unsigned char *)data->window.pxl)[(((t_thread *)data->thread)[i].len * i) << 2]);
        if ((err = pthread_create(&((t_thread*)data->thread)[i].thd, NULL, &thread_function, &((t_thread*)data->thread)[i])) != 0)
             return (err);

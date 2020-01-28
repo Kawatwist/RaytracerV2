@@ -1,8 +1,8 @@
 build/SDL_cocoavideo.lo: \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavideo.m \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../SDL_internal.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../dynapi/SDL_dynapi.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavideo.m \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../SDL_internal.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../dynapi/SDL_dynapi.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL.h include/SDL_main.h \
   include/SDL_stdinc.h include/SDL_assert.h include/SDL_atomic.h \
@@ -18,20 +18,20 @@ build/SDL_cocoavideo.lo: \
   include/SDL_log.h include/SDL_messagebox.h include/SDL_power.h \
   include/SDL_render.h include/SDL_shape.h include/SDL_system.h \
   include/SDL_timer.h include/SDL_version.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavideo.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavideo.h \
   include/SDL_opengl.h include/SDL_opengl_glext.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_sysvideo.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_vulkan_internal.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/.././khronos/vulkan/vulkan.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/.././khronos/vulkan/./vk_platform.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_sysvideo.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_vulkan_internal.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/.././khronos/vulkan/vulkan.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/.././khronos/vulkan/./vk_platform.h \
   include/SDL_vulkan.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaclipboard.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaevents.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoakeyboard.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoamodes.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoamouse.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaopengl.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoawindow.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoashape.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_shape_internals.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavulkan.h
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaclipboard.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaevents.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoakeyboard.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoamodes.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoamouse.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoaopengl.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoawindow.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoashape.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/../SDL_shape_internals.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/video/cocoa/SDL_cocoavulkan.h

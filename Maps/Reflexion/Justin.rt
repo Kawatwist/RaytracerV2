@@ -2,9 +2,9 @@
 #			Scene 42 : The Tri				#
 #############################################
 [header]
-	xscreen : 560
-	yscreen : 440
-	quality : 3
+	xscreen : 600
+	yscreen : 400
+	quality : 1
 	bounce : 0
 	camera : 2
 	object : 5

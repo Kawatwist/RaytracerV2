@@ -1,8 +1,8 @@
 build/SDL_render_d3d.lo: \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/SDL_render_d3d.c \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../SDL_internal.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../dynapi/SDL_dynapi.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/SDL_render_d3d.c \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../SDL_internal.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../dynapi/SDL_dynapi.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/render/direct3d/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL_render.h include/SDL_stdinc.h \
   include/SDL_rect.h include/SDL_error.h include/SDL_pixels.h \

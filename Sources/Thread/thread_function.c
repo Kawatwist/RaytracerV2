@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 21:48:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/01/28 18:01:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	*thread_function(void *arg)
 	curr = -1;
 	while (++curr < data->len)
 	{
-		y = (curr / data->y) + (data->pos / data->x);
+		y = (curr / data->x) + (data->pos / data->x);
 		x = curr % data->x;
 		if (curr < data->x || (!(x % ((data->flag.pixel * 2) + 1)) && !(y % ((data->flag.pixel * 2) + 1))))
 			((unsigned int *)data->pxl)[curr] = send_ray(data, setup_ray(data, x, y), data->bounce);
 		else
 		{
-			while ((x % ((data->flag.pixel * 2) + 1) || (y % ((data->flag.pixel * 2) + 1))) && curr < data->len && y == (curr / data->y) + (data->pos / data->x))
+			while ((x % ((data->flag.pixel * 2) + 1) || (y % ((data->flag.pixel * 2) + 1))) && curr < data->len && y == (curr / data->x) + (data->pos / data->x))
 			{
 				if (curr < data->x * ((data->flag.pixel * 2) + 1) || y <(y % ((data->flag.pixel * 2) + 1))) 
 					((unsigned int *)data->pxl)[curr] = ((unsigned int *)data->pxl)[x - (x % ((data->flag.pixel * 2) + 1))];

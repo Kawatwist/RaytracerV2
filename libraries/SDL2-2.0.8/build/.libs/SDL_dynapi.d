@@ -1,8 +1,8 @@
 build/SDL_dynapi.lo: \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi.c \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi.c \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi.h \
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi.h \
   include/SDL.h include/SDL_main.h include/SDL_stdinc.h \
   include/SDL_assert.h include/SDL_atomic.h include/SDL_audio.h \
   include/SDL_error.h include/SDL_endian.h include/SDL_mutex.h \
@@ -17,4 +17,4 @@ build/SDL_dynapi.lo: \
   include/SDL_messagebox.h include/SDL_power.h include/SDL_render.h \
   include/SDL_shape.h include/SDL_system.h include/SDL_timer.h \
   include/SDL_version.h include/SDL_syswm.h include/SDL_vulkan.h \
-  /Users/luwargni/projet/backups/rt2/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi_procs.h
+  /Users/lomasse/Projet/RaytracerV2/libraries/SDL2-2.0.8/src/dynapi/SDL_dynapi_procs.h
