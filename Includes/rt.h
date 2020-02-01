@@ -6,11 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/01/26 21:39:19 by luwargni         ###   ########.fr       */
-=======
-/*   Updated: 2020/01/25 18:20:23 by lomasse          ###   ########.fr       */
->>>>>>> 390cf4a58c5dcdd5f743f6ee86106b4e0b029b20
+/*   Updated: 2020/02/01 03:33:20 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +42,7 @@ struct			s_data
 	t_input				input;
 	t_object			obj;
 	t_scene				parse;
+	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
 	t_tga				**texture;
@@ -97,6 +94,7 @@ unsigned int	set_color(unsigned int base, unsigned int new, float percent, char 
 char			key_old(t_data data, int mask);
 char			key_check(t_data data, int mask);
 void			input(t_data *data);
+int				post_processing(t_data *data);
 int				loop(t_data data);
 void			super_sample(t_data *data, int x, int y);
 
@@ -189,5 +187,9 @@ int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 void			stop_execute(char *error, t_data *data);
 int				main(int argc, char *argv[]);
+
+int		init_hud(t_data *data);
+void		set_hud(t_data *data);
+int		DROP_THE_PICS_ON_THE_SCREEN(t_data *data);
 
 #endif

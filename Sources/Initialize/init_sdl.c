@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 22:47:00 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/01 03:51:15 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int			initialize_sdl(t_data *data)
 		return (4);
 	SDL_PollEvent(&data->input.ev);
 	SDL_RenderPresent(data->window.rend);
+	if (init_hud(data) != 0)
+		return (1);
 	return (0);
 }

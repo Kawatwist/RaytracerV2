@@ -2,6 +2,7 @@
 #			Scene 42 : Planete				#
 #############################################
 [header]
+	ambiant : 0xFF000000
 	xscreen : 600
 	yscreen : 400
 	quality : 3

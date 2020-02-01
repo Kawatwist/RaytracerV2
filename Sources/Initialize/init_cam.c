@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 22:13:15 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:18:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ int				initialize_cam(t_data *data)
 		base = fill_vec(0, 0, 1);
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);
-		// printf("avant\n");
 		base = normalize(fill_vec(1.9, 2.6, -1));
-		// printf("Base : %f\t\t%f\t%f\n", base.x, base.y, base.z);
-		// printf("       %f\t\t%f\t%f\n", direction.x, direction.y, direction.z);
-		// exit(0);
+		data->obj.camera[index].oldpos.origin = veccpy(data->obj.camera[index].pos.origin);
+		data->obj.camera[index].oldpos.direction = veccpy(data->obj.camera[index].pos.direction);
+		data->obj.camera[index].oldsc = veccpy(data->obj.camera[index].sc);
+		data->obj.camera[index].oldx = veccpy(data->obj.camera[index].x);
+		data->obj.camera[index].oldy = veccpy(data->obj.camera[index].y);
 		index++;
 	}
 	return (0);

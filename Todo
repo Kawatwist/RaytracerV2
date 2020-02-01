@@ -5,13 +5,33 @@
 changer le nom de la fenetre[x]
 
 
-mettre dans header filter de 1 a 3 par exemple et le chiffre definira une touche qui va etre soit gris soit sepia soit cartoon
+mettre dans header filter de 1 a 3 par exemple et le chiffre definira une touche qui va etre soit gris soit sepia soit cartoon[x]
 
 filters :
 	- 1 = gris[x]
 	- 2 = sepia[x]
 	- 3 = cartoon[x]
 
+pour l'effet cartoon dans une sphere on ne voit pas une autre sphere dans la 1ere sphere
+
+need touche reset cam[x]
+{
+	voir avec les inputs qui donnent le choix de prendre n'importe qu'elle obj ou cam
+	pour qu'on puisse refresh l'etat initiale d'un obj
+}
+
+
+
+
+faire la scene du system solaire sans prendre compte de la distance entre les planetes
+
 faire aussi une amelioration pour savoir sur quel obj dans la section ou on est
 
-need touche reset cam
+dans fichier auteur rajouter cosmin
+
+
+
+faire du code qui permet de prendre un certin nombres de screens a chaque images par frames
+
+si j'appuis sur une touche on active ou desactive la vu stereoscopique, si active je cree une 2 eme camera decaler pour avoir la stereoscopie
+camera gauche voit a droite et camera droite voit a gauche

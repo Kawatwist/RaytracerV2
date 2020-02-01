@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/25 22:42:19 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/01/28 20:20:44 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,23 @@ void		move_obj(t_data *data, void **obj)
 	ft_putchar('\n');
 }
 
+static void	refresh_cam(t_data *data, void **cam)
+{
+	if (key_old(*data, SDL_SCANCODE_J))
+	{
+		(*(t_camera **)cam)->pos.origin = veccpy((*(t_camera **)cam)->oldpos.origin);
+		(*(t_camera **)cam)->pos.direction = veccpy((*(t_camera **)cam)->oldpos.direction);
+		(*(t_camera **)cam)->sc = veccpy((*(t_camera **)cam)->oldsc);
+		(*(t_camera **)cam)->x = veccpy((*(t_camera **)cam)->oldx);
+		(*(t_camera **)cam)->y = veccpy((*(t_camera **)cam)->oldy);
+	}
+}
+
 void		move_cam(t_data *data, void **cam)
 {
 	t_point tmp;
 
+	refresh_cam(data, cam);
 	tmp = veccpy(data->obj.camera[data->obj.index[0]].pos.direction);
 	if (key_old(*data, SDL_SCANCODE_W))
 	{

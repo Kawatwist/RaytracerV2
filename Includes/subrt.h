@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 21:08:59 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/01 03:54:01 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 # define SUBRT_H
 
 # include "SDL2/SDL.h"
+
+# define CAM_TXT "./texture/Texture/jinx.tga"
+# define LIGHT_TXT "./texture/Texture/Up.tga"
+# define SPHERE_TXT "./texture/Texture/newjinx.tga"
+
+typedef enum		e_hud
+{
+	CAM_LOGO = 0,
+	LIGHT_LOGO = 1,
+	SPHERE_LOGO = 2,
+	PLAN_LOGO = 4,
+	CYLINDER_LOGO = 5,
+	CONE_LOGO = 6,
+	HUD = 7,
+	HOME_SCREEN = 8,
+	LOAD_SCREEN = 9,
+}					e_hud;
+
+typedef struct		s_hud
+{
+	SDL_Rect		ifquow[10];
+	SDL_Surface		*tmp;
+	SDL_Texture		*iqfow[10];
+}					t_hud;
 
 typedef struct		s_window
 {
@@ -53,6 +77,10 @@ typedef struct		s_camera
 	t_point			sc;
 	t_point			x;
 	t_point			y;
+	t_vec			oldpos;
+	t_point			oldsc;
+	t_point			oldx;
+	t_point			oldy;
 }					t_camera;
 
 typedef struct		s_object
