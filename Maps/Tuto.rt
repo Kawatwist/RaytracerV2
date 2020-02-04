@@ -7,12 +7,12 @@
 ##
 [header]
 	xscreen : 600
-	yscreen : 200
-	quality : 0
+	yscreen : 600
+	quality : 1
 	bounce : 0
-	refresh : 0
+	refresh : 1
 	camera : 1
-	object : 4
+	object : 6
 	light : 1
 	nb_normal : 1
 	nb_texture : 1
@@ -30,7 +30,7 @@
 ##  Nb_texture is the Numbers of Texture on the scene
 ##
 [light:BasicLight]
-	origin : {0 -0.5 1}
+	origin : {0 -0.5 -1}
 	color : 0xFFFFFF
 	distance : 10
 	intensity : 1
@@ -91,3 +91,11 @@
 	direction : {1 0 0}
 	color : 0x7F7F7F
 	angle : 30
+[object:triangle]
+	origin : {-0.5 -1.5 1.5}
+	direction : {0 0 1}
+	p2 : {1.5 -1.5 1.5}
+	p3 : {0.5 1 2}
+	color : 0x7F0000
+			refraction : 125
+			texture : 255
