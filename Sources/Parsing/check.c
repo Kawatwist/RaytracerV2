@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/21 21:02:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/04 23:45:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,15 @@ int				check_parse(t_data *data)
 
 	if ((val = check_effect(data->obj)) != 0)
 		return (val);
+	val = -1;
+	while (++val < data->obj.nb_item && data->obj.item[val] != NULL)
+	{
+		if (((t_base *)data->obj.item[val])->effect.type == TRIANGLE)
+		{
+			((t_triangle *)data->obj.item[val])->origin.origin.z *= -1;
+			((t_triangle *)data->obj.item[val])->p2.origin.z *= -1;
+			((t_triangle *)data->obj.item[val])->p3.origin.z *= -1;
+		}
+	}
 	return (0);
 }

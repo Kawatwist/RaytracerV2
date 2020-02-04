@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 23:02:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/02 03:57:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef enum		e_item
 	PLAN = 1,
 	CONE = 2,
 	CYLINDER = 3,
+	TRIANGLE = 4,
 	NONE,
 }					t_item;
 
@@ -97,5 +98,13 @@ typedef	struct		s_cylinder
 	t_effect		effect;
 	float			rayon;
 }					t_cylinder;
+
+typedef	struct		s_triangle
+{
+	t_vec			origin;
+	t_effect		effect;
+	t_vec			p2;
+	t_vec			p3;
+}					t_triangle;
 
 #endif

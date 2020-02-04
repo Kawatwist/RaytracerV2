@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 22:46:39 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:47:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int		main(int argc, char *argv[])
 		return (stop_main_execute("Error Parsing : ", &data, value));
 	if ((value = check_parse(&data)) != 0)
 		return (stop_main_execute("Error Parsing : ", &data, value));
+	/*
+	**	Cam x = Size De l'ecran demander
+	*/
 	if ((value = initialize_sdl(&data)) != 0)
 		return (value);
 	if ((value = loop(data)) != 0 && value != 50)

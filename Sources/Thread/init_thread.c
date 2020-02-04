@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 20:46:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/04 19:52:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ static void		setup_function(t_thread *tmp)
 	(*tmp).dist[1] = plane;
 	(*tmp).dist[2] = cone;
 	(*tmp).dist[3] = cylinder;
+	(*tmp).dist[4] = triangle;
 	(*tmp).txt[0] = texture_sphere;
 	(*tmp).txt[1] = texture_plan;
 	(*tmp).txt[2] = texture_cone;
 	(*tmp).txt[3] = texture_cylinder;
+	(*tmp).txt[4] = texture_plan;
 	(*tmp).move[0] = move_cam;
 	(*tmp).move[1] = move_obj;
 	(*tmp).move[2] = move_light;
@@ -97,8 +99,8 @@ static int		setup_struct(t_data *data, t_thread *tmp)
 
 static int		copy_item(t_object base, t_object *dest, int nb)
 {
-	static	size_t	tab[4] = {sizeof(t_sphere)
-			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)};
+	static	size_t	tab[5] = {sizeof(t_sphere)
+			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder), sizeof(t_triangle)};
 	int		i;
 
 	ft_bzero(dest->item, sizeof(void *) * nb + 1);
@@ -109,7 +111,7 @@ static int		copy_item(t_object base, t_object *dest, int nb)
 		{
 			if ((dest->item[i] = malloc(tab[(int)((t_base *)base.item[i])->effect.type])) == NULL)
 				return (1);
-			ft_memcpy(dest->item[i], base.item[i], tab[(int)((t_base *)base.item[i])->effect.type]); 
+			ft_memcpy(dest->item[i], base.item[i], tab[(int)((t_base *)base.item[i])->effect.type]);
 		}
 		else
 			dest->item[i] = NULL;

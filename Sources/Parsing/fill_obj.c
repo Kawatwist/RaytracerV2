@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/25 17:24:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/04 23:42:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int				find_type(char *type)
 			return (SPHERE);
 		else if (*(type + 1) == 'p')
 			return (PLAN);
+		else if (*(type + 1) == 't')
+			return (TRIANGLE);
 		else if (*(type + 1) == 'c')
 			return (*(type + 2) == 'o' ? CONE : CYLINDER);
 	}
@@ -29,8 +31,9 @@ int				find_type(char *type)
 
 int				create_type(t_data *data, int index, int type)
 {
-	static	size_t	tab[4] = {sizeof(t_sphere)
-			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)};
+	static	size_t	tab[5] = {sizeof(t_sphere)
+			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)
+			, sizeof(t_triangle)};
 	void			*item;
 
 	if ((item = malloc(tab[(int)type])) == NULL)
@@ -84,6 +87,17 @@ static int		fill_effect(t_effect *effect, char *line)
 	return (0);
 }
 
+int				add_tri_point(t_data *data, char **line, int index)
+{
+	if (!ft_strncmp("\tp2 : ", *line, 5))
+		((t_triangle *)data->obj.item[index])->p2.origin = get_point(*line);
+	else if (!ft_strncmp("\tp3 : ", *line, 5))
+		((t_triangle *)data->obj.item[index])->p3.origin = get_point(*line);
+	else
+		return (17);
+	return (0);
+}
+
 int				fill_obj(t_data *data, char **line, int index)
 {
 	if (!ft_strncmp("\torigin :", *line, 9))
@@ -108,6 +122,11 @@ int				fill_obj(t_data *data, char **line, int index)
 	}
 	else if (ft_strchr(*line, '#'))
 		;
+	else if (!ft_strncmp("\tp", *line, 2))
+	{
+		if (add_tri_point(data, line, index) != 0)
+			return (564); // ICI
+	}
 	else
 		return (17);
 	return (0);

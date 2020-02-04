@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_obj.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/24 22:17:52 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/04 21:53:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,46 @@ void	input_color_obj(t_data *data, void **obj, char ctrl)
 		((char *)&((*(t_base **)obj)->effect.color))[0] -= 1;
 }
 
-void	input_move_obj(t_data *data, void **obj)
+static void change_point(float *p1, float *p2, float *p3, float value)
+{
+	*p1 += value;
+	*p2 += value;
+	*p3 += value;
+}
+
+static void	mv_triangle(t_data *data, t_triangle **obj)
 {
 	if (key_old(*data, SDL_SCANCODE_SPACE))
-		(*(t_base **)obj)->origin.origin.y -= 0.1;
+		change_point(&(*obj)->origin.origin.y, &(*obj)->p2.origin.y, &(*obj)->p3.origin.y , -0.1);
 	if (key_old(*data, SDL_SCANCODE_LSHIFT))
-		(*(t_base **)obj)->origin.origin.y += 0.1;
+		change_point(&(*obj)->origin.origin.y, &(*obj)->p2.origin.y, &(*obj)->p3.origin.y , 0.1);
 	if (key_old(*data, SDL_SCANCODE_A))
-		(*(t_base **)obj)->origin.origin.x -= 0.1;
+		change_point(&(*obj)->origin.origin.x, &(*obj)->p2.origin.x, &(*obj)->p3.origin.x , -0.1);
 	if (key_old(*data, SDL_SCANCODE_D))
-		(*(t_base **)obj)->origin.origin.x += 0.1;
+		change_point(&(*obj)->origin.origin.x, &(*obj)->p2.origin.x, &(*obj)->p3.origin.x , 0.1);
 	if (key_old(*data, SDL_SCANCODE_W))
-		(*(t_base **)obj)->origin.origin.z += 0.1;
+		change_point(&(*obj)->origin.origin.z, &(*obj)->p2.origin.z, &(*obj)->p3.origin.z , -0.1);
 	if (key_old(*data, SDL_SCANCODE_S))
-		(*(t_base **)obj)->origin.origin.z -= 0.1;
+		change_point(&(*obj)->origin.origin.z, &(*obj)->p2.origin.z, &(*obj)->p3.origin.z , 0.1);
+}
+
+void	input_move_obj(t_data *data, void **obj)
+{
+	if ((*(t_base **)obj)->effect.type == TRIANGLE)
+		mv_triangle(data, (t_triangle **)obj);
+	else
+	{
+		if (key_old(*data, SDL_SCANCODE_SPACE))
+			(*(t_base **)obj)->origin.origin.y -= 0.1;
+		if (key_old(*data, SDL_SCANCODE_LSHIFT))
+			(*(t_base **)obj)->origin.origin.y += 0.1;
+		if (key_old(*data, SDL_SCANCODE_A))
+			(*(t_base **)obj)->origin.origin.x -= 0.1;
+		if (key_old(*data, SDL_SCANCODE_D))
+			(*(t_base **)obj)->origin.origin.x += 0.1;
+		if (key_old(*data, SDL_SCANCODE_W))
+			(*(t_base **)obj)->origin.origin.z += 0.1;
+		if (key_old(*data, SDL_SCANCODE_S))
+			(*(t_base **)obj)->origin.origin.z -= 0.1;
+	}
 }

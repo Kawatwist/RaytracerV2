@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 23:42:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/02 06:24:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ struct			s_data
 	t_vec				ray;
 	t_tga				**texture;
 	t_tga				**normal;
-	float				(*dist[4]) (void *obj, t_vec ray);
-	t_point				(*txt[4]) (void *data, void *obj, t_vec ray, int choose);
+	float				(*dist[5]) (void *obj, t_vec ray);
+	t_point				(*txt[5]) (void *data, void *obj, t_vec ray, int choose);
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
 	int					bounce;
@@ -59,6 +59,7 @@ float			sphere_depth(void *sphere, t_vec ray);
 /*
 **			Collide Object
 */
+float			triangle(void *tri, t_vec ray);
 float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);
 float			plane(void *plane, t_vec ray);

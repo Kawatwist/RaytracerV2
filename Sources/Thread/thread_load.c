@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/25 22:36:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/04 19:51:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	 load_modif(t_data *data, t_thread *tmp)
 {
-	static	size_t	tab[4] = {sizeof(t_sphere)
-			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)};
+	static	size_t	tab[5] = {sizeof(t_sphere)
+			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder), sizeof(t_triangle)};
 	int	 i;
 
 	i = -1;
