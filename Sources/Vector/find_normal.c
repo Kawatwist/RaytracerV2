@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/04 20:42:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 02:10:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_point			find_normal_triangle(t_triangle *t)
 {
 	t_point n;
 
-	n = cross_vec(sub_vec(t->origin.origin, t->p2.origin), sub_vec(t->origin.origin, t->p3.origin));
+	n = cross_vec(sub_vec(t->origin.origin, t->p2.origin),
+		sub_vec(t->origin.origin, t->p3.origin));
 	return (normalize(n));
 }
 

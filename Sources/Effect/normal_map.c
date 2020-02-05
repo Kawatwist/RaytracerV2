@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 01:26:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 01:41:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 }
 
 static t_point	get_uv(t_thread data, void *obj,
-					t_vec collide, t_point normal)
+					t_vec collide)
 {
 	t_point uv;
 
@@ -47,7 +47,7 @@ t_point			find_normal_texture(t_thread data, void *obj,
 	int				info;
 	t_point			uv;
 
-	uv = get_uv(data, obj, collide, normal);
+	uv = get_uv(data, obj, collide);
 	info = (((t_base *)obj)->effect.id_normal) << 16;
 	info += (data.normal[info >> 16]->w & 0xFFFF);
 	uv.x = uv.x + (((t_sphere *)obj)->effect.flag & MV ?

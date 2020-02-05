@@ -47,6 +47,8 @@ SRC				=	main.c										\
 					parse.c										\
 					header.c									\
 					parse_texture.c								\
+					fill_obj.c									\
+					type_tool.c									\
 					camera.c									\
 					object.c									\
 					light.c										\
@@ -78,6 +80,7 @@ SRC				=	main.c										\
 					refraction.c								\
 					rot_matrice.c								\
 					move_type.c									\
+					move_triangle.c								\
 					light_cursor.c								\
 					input_obj.c									\
 					input_light.c								\
@@ -85,7 +88,6 @@ SRC				=	main.c										\
 					input_textures.c							\
 					screenshot.c								\
 					create_type.c								\
-					fill_obj.c									\
 					shape_cartoon.c								\
 					antialiasing.c								\
 

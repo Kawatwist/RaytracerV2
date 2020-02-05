@@ -6,44 +6,11 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/04 23:42:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 01:52:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-int				find_type(char *type)
-{
-	type = ft_strchr(type, ':');
-	if (type != NULL)
-	{
-		if (*(type + 1) == 's')
-			return (SPHERE);
-		else if (*(type + 1) == 'p')
-			return (PLAN);
-		else if (*(type + 1) == 't')
-			return (TRIANGLE);
-		else if (*(type + 1) == 'c')
-			return (*(type + 2) == 'o' ? CONE : CYLINDER);
-	}
-	return (NONE);
-}
-
-int				create_type(t_data *data, int index, int type)
-{
-	static	size_t	tab[5] = {sizeof(t_sphere)
-			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)
-			, sizeof(t_triangle)};
-	void			*item;
-
-	if ((item = malloc(tab[(int)type])) == NULL)
-		return (1);
-	ft_bzero(&((t_base *)item)->effect, sizeof(t_effect));
-	ft_bzero(item, sizeof(item));
-	data->obj.item[index] = item;
-	((t_base *)data->obj.item[index])->effect.type = type;
-	return (0);
-}
 
 static t_point	add_rot(t_point mov, char *str)
 {
@@ -56,24 +23,31 @@ static t_point	add_rot(t_point mov, char *str)
 	return (mov);
 }
 
+static int		fill_effect_special(t_effect *effect, char *line)
+{
+	if (!ft_strncmp("\t\t\trefraction : ", line, 16))
+		effect->refraction = ft_atoi(line + 16);
+	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
+		effect->opacity = ft_atoi(line + 13);
+	else if (!ft_strncmp("\t\t\treflection : ", line, 15))
+		effect->reflection = ft_atoi(line + 15);
+	else if (!ft_strncmp("\t\t\ttransparancy : ", line, 18))
+		effect->transparancy = ft_atoi(line + 18);
+	else
+		return (20);
+	return (0);
+}
+
 static int		fill_effect(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\tmv : ", line, 8))
 		effect->flag += (ft_atoi(line + 8) > 0 ? MV : 0);
 	else if (!ft_strncmp("\t\t\tns : ", line, 8))
 		effect->flag += (ft_atoi(line + 8) > 0 ? NS : 0);
-	else if (!ft_strncmp("\t\t\trefraction : ", line, 16))
-		effect->refraction = ft_atoi(line + 16);
-	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
-		effect->opacity = ft_atoi(line + 13);
-	else if (!ft_strncmp("\t\t\treflection : ", line, 15))
-		effect->reflection = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t\trot :", line, 15))
 		effect->movement = add_rot(effect->movement, line + 3);
 	else if (!ft_strncmp("\t\t\ttexture : ", line, 13))
 		effect->texture = ft_atoi(line + 13);
-	else if (!ft_strncmp("\t\t\ttransparancy : ", line, 18))
-		effect->transparancy = ft_atoi(line + 18);
 	else if (!ft_strncmp("\t\t\tnormal : ", line, 12))
 		effect->normal = ft_atoi(line + 12);
 	else if (!ft_strncmp("\t\t\tid_texture : ", line, 16))
@@ -82,29 +56,31 @@ static int		fill_effect(t_effect *effect, char *line)
 		effect->id_normal = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t[effect]", line, 10))
 		return (0);
+	else if (!fill_effect_special(effect, line))
+		return (0);
 	else
 		return (20);
 	return (0);
 }
 
-int				add_tri_point(t_data *data, char **line, int index)
-{
-	if (!ft_strncmp("\tp2 : ", *line, 5))
-		((t_triangle *)data->obj.item[index])->p2.origin = get_point(*line);
-	else if (!ft_strncmp("\tp3 : ", *line, 5))
-		((t_triangle *)data->obj.item[index])->p3.origin = get_point(*line);
-	else
-		return (17);
-	return (0);
-}
-
-int				fill_obj(t_data *data, char **line, int index)
+int				add_point(t_data *data, char **line, int index)
 {
 	if (!ft_strncmp("\torigin :", *line, 9))
 		((t_base *)data->obj.item[index])->origin.origin = get_point(*line);
 	else if (!ft_strncmp("\tdirection :", *line, 12))
 		((t_base *)data->obj.item[index])->origin.direction = get_point(*line);
-	else if (!ft_strncmp("\tcolor :", *line, 8))
+	else if (!ft_strncmp("\tp2 : ", *line, 5))
+		((t_triangle *)data->obj.item[index])->p2.origin = get_point(*line);
+	else if (!ft_strncmp("\tp3 : ", *line, 5))
+		((t_triangle *)data->obj.item[index])->p3.origin = get_point(*line);
+	else
+		return (1);
+	return (0);
+}
+
+int				fill_obj(t_data *data, char **line, int index)
+{
+	if (!ft_strncmp("\tcolor :", *line, 8))
 		((t_base *)data->obj.item[index])->effect.color =
 		((ft_atoi_base(*line + 11, 16) & 0xFFFFFF) + (255 << 24));
 	else if (!ft_strncmp("\trayon : ", *line, 9) &&
@@ -114,19 +90,13 @@ int				fill_obj(t_data *data, char **line, int index)
 	else if (!ft_strncmp("\tangle : ", *line, 9) &&
 	(((t_base *)data->obj.item[index])->effect.type == CONE))
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
-	else if (!ft_strncmp("\t\t", *line, 2))
-	{
-		if (fill_effect(&(((t_base *)data->obj.item[index])->effect),
-			*line) == 20)
-			return (20);
-	}
-	else if (ft_strchr(*line, '#'))
-		;
-	else if (!ft_strncmp("\tp", *line, 2))
-	{
-		if (add_tri_point(data, line, index) != 0)
-			return (564); // ICI
-	}
+	else if (!add_point(data, line, index))
+		return (0);
+	else if (**line == (char)'#')
+		return (0);
+	else if (!fill_effect(&(((t_base *)data->obj.item[index])->effect),
+			*line))
+		return (0);
 	else
 		return (17);
 	return (0);

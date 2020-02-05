@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 01:14:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 02:00:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			move_cam(t_data *data, void **obj);
 void			input_move_cam(t_data *data, t_point tmp, void **cam);
 void			call_rot_cam(t_data *data);
 void			move_obj(t_data *data, void **obj);
+void			mv_triangle(t_data *data, t_triangle **obj);
 void			input_move_obj(t_data *data, void **obj);
 void			input_color_obj(t_data *data, void **obj, char ctrl);
 void			input_descartes_obj(t_data *data, void **obj, char ctrl);
