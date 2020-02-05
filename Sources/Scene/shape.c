@@ -6,65 +6,45 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/04 23:42:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 02:07:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-// static float	det(t_point a, t_point b, t_point c)
-// {
-// 	return ((a.x * b.y * c.z) + (a.y * b.z * c.x) + (a.z * b.x * c.y)
-// 		- (a.y * b.y * c.x) - (a.y * b.x * c.z) - (a.x * b.z * c.y));
-// }
+/*
+**	Usefull ?
+**
+**	else if (dot_product(neg_norm(t->origin.direction),
+**			cross_vec(edge0, C0)) > 0 &&
+**		dot_product(neg_norm(t->origin.direction), cross_vec(edge1, C1)) > 0 &&
+**		dot_product(neg_norm(t->origin.direction), cross_vec(edge2, C2)) > 0)
+**		return (f);
+*/
 
 float		triangle(void *tri, t_vec ray)
 {
 	t_triangle	*t;
+	t_point		pos;
 	float		d;
+	float		f;
 
 	t = (t_triangle *)tri;
 	t->origin.direction = find_normal_triangle(t);
 	d = dot_product(t->origin.direction, t->origin.origin);
-	float f = -((dot_product(t->origin.direction, ray.origin) + d) / dot_product(t->origin.direction, ray.direction));
-	t_point P = add_vec(ray.origin, mult_vec2(ray.direction, f));
-	t_point edge0 = sub_vec(t->p2.origin, t->origin.origin);
-	t_point edge1 = sub_vec(t->p3.origin, t->p2.origin);
-	t_point edge2 = sub_vec(t->origin.origin, t->p3.origin);
-	t_point C0 = sub_vec(P, t->origin.origin);
-	t_point C1 = sub_vec(P, t->p2.origin);
-	t_point C2 = sub_vec(P, t->p3.origin);
-	if (dot_product(t->origin.direction, cross_vec(edge0, C0)) > 0 &&
-    	dot_product(t->origin.direction, cross_vec(edge1, C1)) > 0 &&
-    	dot_product(t->origin.direction, cross_vec(edge2, C2)) > 0)
-		return (f);
-	else if (dot_product(neg_norm(t->origin.direction), cross_vec(edge0, C0)) > 0 &&
-    	dot_product(neg_norm(t->origin.direction), cross_vec(edge1, C1)) > 0 &&
-    	dot_product(neg_norm(t->origin.direction), cross_vec(edge2, C2)) > 0)
+	f = -((dot_product(t->origin.direction, ray.origin) + d) /
+		dot_product(t->origin.direction, ray.direction));
+	pos = add_vec(ray.origin, mult_vec2(ray.direction, f));
+	if (dot_product(t->origin.direction, cross_vec(sub_vec(t->p2.origin,
+			t->origin.origin), sub_vec(pos, t->origin.origin))) > 0 &&
+		dot_product(t->origin.direction, cross_vec(sub_vec(t->p3.origin,
+			t->p2.origin), sub_vec(pos, t->p2.origin))) > 0 &&
+		dot_product(t->origin.direction, cross_vec(sub_vec(t->origin.origin,
+			t->p3.origin), sub_vec(pos, t->p3.origin))) > 0)
 		return (f);
 	return (-1);
 }
-
-// float		triangle(void *tri, t_vec ray)
-// {
-// 	t_triangle *t;
-
-// 	t = (t_triangle *)tri;
-//     t_point v0v1 = sub_vec(t->p2.origin, t->origin.origin);
-//     t_point v0v2 = sub_vec(t->p3.origin, t->origin.origin);
-//     t_point pvec = cross_vec(ray.direction, v0v2);
-//     float invDet = 1 / dot_product(v0v1, pvec);
-// 	t_point tvec = sub_vec(ray.origin, t->origin.origin);
-//     float u = dot_product(tvec, pvec) * invDet;
-//     if (u < 0 || u > 1)
-// 		return (-1);
-//     t_point qvec = cross_vec(tvec, v0v1);
-//     float v = dot_product(ray.direction, qvec) * invDet;
-//     if (v < 0 || u + v > 1)
-// 		return (-1);
-//     return (dot_product(v0v2, qvec) * invDet);
-// }
 
 float		cone(void *coo, t_vec ray)
 {

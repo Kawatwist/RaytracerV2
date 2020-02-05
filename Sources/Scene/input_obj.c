@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/04 21:53:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 02:01:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,29 +76,6 @@ void	input_color_obj(t_data *data, void **obj, char ctrl)
 	if (key_old(*data, SDL_SCANCODE_KP_9) && ctrl &&
 	((*(t_base **)obj)->effect.color & 0xFF) > 0)
 		((char *)&((*(t_base **)obj)->effect.color))[0] -= 1;
-}
-
-static void change_point(float *p1, float *p2, float *p3, float value)
-{
-	*p1 += value;
-	*p2 += value;
-	*p3 += value;
-}
-
-static void	mv_triangle(t_data *data, t_triangle **obj)
-{
-	if (key_old(*data, SDL_SCANCODE_SPACE))
-		change_point(&(*obj)->origin.origin.y, &(*obj)->p2.origin.y, &(*obj)->p3.origin.y , -0.1);
-	if (key_old(*data, SDL_SCANCODE_LSHIFT))
-		change_point(&(*obj)->origin.origin.y, &(*obj)->p2.origin.y, &(*obj)->p3.origin.y , 0.1);
-	if (key_old(*data, SDL_SCANCODE_A))
-		change_point(&(*obj)->origin.origin.x, &(*obj)->p2.origin.x, &(*obj)->p3.origin.x , -0.1);
-	if (key_old(*data, SDL_SCANCODE_D))
-		change_point(&(*obj)->origin.origin.x, &(*obj)->p2.origin.x, &(*obj)->p3.origin.x , 0.1);
-	if (key_old(*data, SDL_SCANCODE_W))
-		change_point(&(*obj)->origin.origin.z, &(*obj)->p2.origin.z, &(*obj)->p3.origin.z , -0.1);
-	if (key_old(*data, SDL_SCANCODE_S))
-		change_point(&(*obj)->origin.origin.z, &(*obj)->p2.origin.z, &(*obj)->p3.origin.z , 0.1);
 }
 
 void	input_move_obj(t_data *data, void **obj)
