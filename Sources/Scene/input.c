@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/26 22:36:37 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/05 05:21:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,14 @@ void		input(t_data *data)
 	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
 		create_screenshot(data, data->window.pxl);
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
-	ft_memcpy(data->input.oldkey, data->input.key, 282);
+	ft_memcpy(data->input.oldkey, data->input.rkey, 282);
 	SDL_PollEvent(&data->input.ev);
+	ft_memcpy(data->input.rkey, data->input.key, 282);
 	if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 	if (key_check(*data, SDL_SCANCODE_R))
 		data->flag.refresh = (data->flag.refresh ? 0 : 1);
 	input_obj(data);
 	light_cursor(data);
-	input_filter(data);//ajout
+	input_filter(data);
 }

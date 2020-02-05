@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 23:22:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:31:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int				clear_memory(t_data *data)
 	data->obj.light != NULL ? free(data->obj.light) : 0;
 	SDL_DestroyTexture(data->window.txt);
 	SDL_DestroyWindow(data->window.window);
+	free(data->thread);
+	printf("NEED TO FREE THREAD\n");
 	return (0);
 }

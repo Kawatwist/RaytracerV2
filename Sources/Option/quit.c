@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 01:32:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:31:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 #include "error.h"
 
 static char		*find_error(int error_value)
@@ -31,8 +32,12 @@ static char		*find_error(int error_value)
 
 void			stop_execute(char *error, t_data *data)
 {
-	(void)data;
-	ft_putstr("Critical Error : ");
+	int		i;
+
+	i = -1;
+	while (++i < 4)
+		pthread_cancel(((t_thread *)data->thread)[i].thd);
+	clear_memory(data);
 	ft_putstr(error);
 	exit(0);
 }

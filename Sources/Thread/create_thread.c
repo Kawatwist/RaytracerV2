@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 04:46:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:22:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int				start_thread(t_data *data)
 	while (i < 4)
 	{
 		timeout.tv_sec = 0;
-		timeout.tv_nsec = 250;
+		timeout.tv_nsec = 0;
 		if (pthread_timedjoin_np(((t_thread *)data->thread)[i].thd, NULL, &timeout) == ETIMEDOUT)
 		{
 			if (SDL_QuitRequested())
-				stop_execute("Quit Requested before Thread_join finished\n/!\\  Caution  /!\\\nThis will do leaks if thread is not stop correctly (pthread_cancel => free_data)\n", data);
+				stop_execute("Yay ! We got one ~!\n", data);
 		}
 		else
 		{

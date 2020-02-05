@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/04 23:45:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:19:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ int				check_parse(t_data *data)
 			((t_triangle *)data->obj.item[val])->p3.origin.z *= -1;
 		}
 	}
+	if ((data->input.rkey = malloc(282)) == NULL)
+		return (1);
 	return (0);
 }

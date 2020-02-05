@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 04:09:42 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 04:44:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 04:58:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int pthread_timedjoin_np(pthread_t td, void **res, struct timespec *ts)
 		ret = pthread_cond_timedwait(&args.cond, &args.mtx, ts);
 		if ((SDL_GetTicks() - time) > ts->tv_nsec)
 			ret = ETIMEDOUT;
-		SDL_Delay(1);
 	}
 	pthread_mutex_unlock(&args.mtx);
 	pthread_cancel(tmp);

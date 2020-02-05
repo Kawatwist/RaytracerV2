@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/26 23:42:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 05:18:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_input
 {
 	SDL_Event		ev;
 	unsigned char	*key;
+	unsigned char	*rkey;
 	unsigned char	oldkey[282];
 	int				x;
 	int				y;

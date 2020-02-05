@@ -19,7 +19,7 @@ vertfonce=\033[0;32m
 vertclair=\033[1;32m
 rouge=\033[31m
 
-NAME			= rt
+NAME			= Raytracer
 
 HEADER 			= $(shell find Includes -type f) $(shell find libraries/include -type f 2>/dev/null || true)
 
@@ -121,8 +121,9 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "${vertclair}DONE${neutre}"
+	@echo "Need to Rename in rt"
 
 $(OBJ_PATH)/%.o: %.c $(HEADER) $(LIBFTA)
 	@mkdir -p $(OBJ_PATH)
