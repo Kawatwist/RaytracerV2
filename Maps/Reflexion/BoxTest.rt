@@ -4,18 +4,19 @@
 #														#
 #########################################################
 [header]
-	xscreen : 1000
-	yscreen : 1000
-	quality : 3
-	bounce : 1
-	refresh : 1
+	xscreen : 2560
+	yscreen : 1440
+	quality : 0
+	aa : 0
+	bounce : 10
+	refresh : 0
 	camera : 1
-	object : 7
+	object : 13
 	light : 3
 	nb_texture : 2
 	nb_normal : 1
 	textures : "./texture/texture/newjinx.tga"
-	textures : "./texture/normal/coussin.tga"
+	textures : "./texture/texture/jinx.tga"
 	normal : "./texture/normal/coussin.tga"
 ############################ Light #####################
 [light:1]
@@ -42,52 +43,82 @@
 	origin : {0 0 1}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
+			id_texture : 1
 			texture : 255
-			transparancy : 255
-			reflection : 255
 			mv : 1
 [object:plan]
 	origin : {0 0 -1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 0
-			normal : 0
 			reflection : 255
 [object:plan]
 	origin : {0.5 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 0
-			normal : 0
 			reflection : 255
 [object:plan]
 	origin : {-0.5 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 0
-			normal : 0
 			reflection : 255
 [object:plan]
 	origin : {0 0.5 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 0
-			normal : 0
 			reflection : 255
 [object:plan]
 	origin : {0 -0.5 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 0
-			normal : 0
 			reflection : 255
-[object:sphere]
-	origin : {0.5 0 0.5}
-	color : 0xFF00FF
-	rayon : 0.2
-			refraction : 255
+## Bas
+[object:triangle]
+	origin : {-0.5 0.5 0.75}
+	direction : {0 0 1}
+	p2 : {-0.3 0 0.75}
+	p3 : {-0.1 0.5 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+[object:triangle]
+	origin : {-0.1 0.5 0.75}
+	direction : {0 0 1}
+	p3 : {0 0 0.75}
+	p2 : {0.1 0.5 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+[object:triangle]
+	origin : {0.1 0.5 0.75}
+	direction : {0 0 1}
+	p2 : {0.3 0 0.75}
+	p3 : {0.5 0.5 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+## Haut
+[object:triangle]
+	origin : {-0.5 -0.5 0.75}
+	direction : {0 0 1}
+	p2 : {-0.3 -0.5 0.75}
+	p3 : {-0.5 -0.2 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+[object:triangle]
+	origin : {-0.3 -0.5 0.75}
+	direction : {0 0 1}
+	p2 : {-0.25 0 0.75}
+	p3 : {0 -0.5 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+[object:triangle]
+	origin : {0 -0.5 0.75}
+	direction : {0 0 1}
+	p2 : {0.3 -0.5 0.75}
+	p3 : {0.15 0 0.75}
+	color : 0x7F7F7F
+			reflection : 255
+[object:triangle]
+	origin : {0.3 -0.5 0.75}
+	direction : {0 0 1}
+	p2 : {0.5 -0.5 0.75}
+	p3 : {0.5 -0.2 0.75}
+	color : 0x7F7F7F
+			reflection : 255
