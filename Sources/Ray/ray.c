@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/28 18:27:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 01:55:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 	int				txt;
 	t_ray			r;
 
-	(void)bounce;
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
@@ -93,13 +92,14 @@ unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, ray, r.tmp, r.color[0]);
 	r.bounce = bounce;
-	if (r.bounce--)
-		bounce_effect(data, ray, &r);
-	if (((t_base *)r.obj)->effect.texture && ((unsigned char *)&(txt))[0] > 0 && ((t_base *)r.obj)->effect.transparancy)
+	r.bounce-- ? bounce_effect(data, ray, &r) : 0;
+	if (((t_base *)r.obj)->effect.texture && ((unsigned char *)&(txt))[0] > 0
+		&& ((t_base *)r.obj)->effect.transparancy)
 	{
 		r.tmp.origin = set_neworigin_op(ray, r.dist[0]);
 		r.tmp.direction = veccpy(ray.direction);
-		return(set_color(send_ray(data, r.tmp, bounce), r.color[0], ((255 - ((unsigned char *)&(txt))[0])) / 255.0, -1));
+		return (set_color(send_ray(data, r.tmp, bounce), r.color[0],
+			((255 - ((unsigned char *)&(txt))[0])) / 255.0, -1));
 	}
 	return (r.color[0] ? r.color[0] : 0xFF000000);
 }
