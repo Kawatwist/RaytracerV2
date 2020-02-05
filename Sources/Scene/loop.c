@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/02 03:47:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 03:57:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,25 @@ static int	looping(t_data *data)
 int			loop(t_data data)
 {
 	int		err;
+	int		asked;
 
 	data.obj.type_index = 0;
 	if ((err = init_thread_memory(&data)) != 0)
 		return (err);
-	if ((err = looping(&data)) != 0)
-		return (err);
+	asked = 1;
 	while (TRUE)
 	{
 		input(&data);
 		if (data.input.key[SDL_SCANCODE_ESCAPE] || SDL_QuitRequested())
 			break ;
-		if (data.flag.refresh)
+		if (data.input.key[SDL_SCANCODE_P])
+			asked = 1;
+		if (data.flag.refresh || asked)
 		{
 			ft_putstr("\nRefresh Mode Enable\n");
 			if ((err = looping(&data)) != 0)
 				return (err);
+			asked = 0;
 		}
 		else
 			SDL_Delay(16);

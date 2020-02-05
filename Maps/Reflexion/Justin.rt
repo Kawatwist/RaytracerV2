@@ -5,6 +5,7 @@
 	xscreen : 600
 	yscreen : 400
 	quality : 1
+	aa : 3
 	bounce : 0
 	camera : 2
 	object : 5

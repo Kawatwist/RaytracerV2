@@ -5,13 +5,13 @@
 	xscreen : 2560
 	yscreen : 1440
 	quality : 0
-	bounce : 10
+	bounce : 7
+	aa : 3
 	camera : 2
 	object : 16
 	light : 2
 	nb_texture : 2
 	nb_normal : 1
-	ambiant : 0xFF00FF
 	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
 	normal : "./texture/normal/coussin.tga"

@@ -66,6 +66,7 @@ SRC				=	main.c										\
 					init_thread.c								\
 					thread_function.c							\
 					thread_load.c								\
+					pthread_timedjoin.c							\
 					shape.c										\
 					tolight.c									\
 					init_vec.c									\

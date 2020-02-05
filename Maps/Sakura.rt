@@ -2,9 +2,10 @@
 #			Scene 42 : Sakura				#
 #############################################
 [header]
-	xscreen : 600
-	yscreen : 400
-	quality : 0
+	xscreen : 1200
+	yscreen : 1000
+	quality : 3
+	aa : 0
 	bounce : 0
 	camera : 2
 	object : 10
@@ -62,12 +63,12 @@
 [object:cylinder]
 	origin : {0.5 0 0.5}
 	direction : {0 1 0}
-	color : 0x7F007F
+	color : 0xFF000000
 	rayon : 0.1
 [object:sphere]
 	origin : {0.5 -0.25 0.40}
 	direction : {0 1 0}
-	color : 0x7F007F
+	color : 0x7F000F
 	rayon : 0.05
 [object:sphere]
 	origin : {0.5 -0.35 0.50}

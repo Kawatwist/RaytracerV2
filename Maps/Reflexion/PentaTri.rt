@@ -1,0 +1,160 @@
+#############################################
+#			Scene 42 : The Tri				#
+#############################################
+[header]
+	xscreen : 2560
+	yscreen : 1440
+	quality : 2
+	bounce : 0
+	aa : 0
+	camera : 2
+	object : 23
+	light : 2
+	nb_texture : 2
+	nb_normal : 1
+	textures : "./texture/HD2.tga"
+	textures : "./texture/planet/moon.tga"
+	normal : "./texture/normal/coussin.tga"
+############### Light ##################
+[light:1]
+	origin : {-0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+[light:1]
+	origin : {0.49 -0.40 0.45}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
+############### Object #################
+[object:plan]
+	origin : {0 0 -1}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {0 0 2}
+	direction : {1 0 -1}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {0 0 2}
+	direction : {-1 0 -1}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {1 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {-1 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {0 -1 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 200
+[object:plan]
+	origin : {0 1 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 200
+[object:sphere]
+	origin : {1 1 1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {-1 1 1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {1 -1 1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {-1 -1 1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {1 1 -1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {-1 1 -1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {1 -1 -1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:sphere]
+	origin : {-1 -1 -1}
+	color : 0x7F7F7F
+	rayon : 0.25
+			reflection : 255
+[object:cylinder]
+	origin : {0 0 2}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+	rayon : 0.25
+## Bas
+[object:triangle]
+	origin : {0 1 1}
+	direction : {0 0 1}
+	p2 : {0.2 0.5 1}
+	p3 : {0.4 1 1}
+	color : 0x7F7F7F
+[object:triangle]
+	origin : {0.4 1 1}
+	direction : {0 0 1}
+	p2 : {0.5 0.25 1}
+	p3 : {0.6 1 1}
+	color : 0x7F7F7F
+[object:triangle]
+	origin : {0.6 1 1}
+	direction : {0 0 1}
+	p2 : {0.8 0.5 1}
+	p3 : {1 1 1}
+	color : 0x7F7F7F
+## Haut
+[object:triangle]
+	origin : {0 0 1}
+	direction : {0 0 1}
+	p2 : {0.2 0 1}
+	p3 : {0 0.3 1}
+	color : 0x7F7F7F
+[object:triangle]
+	origin : {0.2 0 1}
+	direction : {0 0 1}
+	p2 : {0.5 0 1}
+	p3 : {0.35 0.5 1}
+	color : 0x7F7F7F
+[object:triangle]
+	origin : {0.5 0 1}
+	direction : {0 0 1}
+	p2 : {0.8 0 1}
+	p3 : {0.65 0.5 1}
+	color : 0x7F7F7F
+[object:triangle]
+	origin : {0.8 0 1}
+	direction : {0 0 1}
+	p2 : {1 0 1}
+	p3 : {1 0.3 1}
+	color : 0x7F7F7F

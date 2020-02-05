@@ -6,6 +6,7 @@
 	yscreen : 400
 	camera : 1
 	ambiant : 0xFF
+	aa : 3
 	object : 7
 	light : 3
 	nb_texture : 2

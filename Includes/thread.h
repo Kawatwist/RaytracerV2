@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 01:13:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 04:30:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include "subrt.h"
 # include <pthread.h>
 # include "rt.h"
+# define ETIMEDOUT 110
+
+typedef struct			s_args
+{
+	int					joined;
+	pthread_t			td;
+	pthread_mutex_t		mtx;
+	pthread_cond_t		cond;
+	void				**res;
+}						t_args;
 
 typedef	struct			s_thread
 {
@@ -38,7 +48,16 @@ typedef	struct			s_thread
 	int					len;
 	pthread_t			thd;
 }						t_thread;
-
+/*
+**			Special Function pthread
+**
+**		Doesn't exit on macos (only linux)
+**		Sources : https://kotaeta.com/54232697
+**
+**			Changed for the Norme
+*/
+int						pthread_timedjoin_np(pthread_t td, void **res,
+							struct timespec *ts);
 /*
 **			Special Effect
 */

@@ -7,8 +7,8 @@
 	xscreen : 2560
 	yscreen : 1440
 	quality : 0
-	aa : 0
-	bounce : 10
+	aa : 3
+	bounce : 25
 	refresh : 0
 	camera : 1
 	object : 13
