@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/02 06:24:11 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 01:14:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ struct			s_data
 	t_tga				**texture;
 	t_tga				**normal;
 	float				(*dist[5]) (void *obj, t_vec ray);
-	t_point				(*txt[5]) (void *data, void *obj, t_vec ray, int choose);
+	t_point				(*txt[5]) (void *data, void *obj,
+							t_vec ray, int choose);
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
 	int					bounce;
@@ -151,7 +152,7 @@ void			create_screenshot(t_data *data, void *pxl);
 */
 void			*thread_function(void	*arg);
 int				thread_poll(t_data *data);
-int     		start_thread(t_data *data);
+int				start_thread(t_data *data);
 void			reset_item(t_object base, t_object *dest);
 int				get_thread(t_data *data);
 int				init_thread_memory(t_data *data);
