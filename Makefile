@@ -43,6 +43,7 @@ SRC				=	main.c										\
 					check.c										\
 					quit.c										\
 					clear.c										\
+					clear_thread.c								\
 					get_point.c									\
 					parse.c										\
 					header.c									\

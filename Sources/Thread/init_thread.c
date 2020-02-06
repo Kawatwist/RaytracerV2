@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/04 19:52:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 03:46:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int		setup_txt_and_normal(t_data *data, t_thread *tmp)
 	int				j;
 	t_tga			*tgamp;
 
-	if ((tmp->texture = malloc(sizeof(t_tga **) * data->obj.nb_texture)) == NULL)
+	if ((tmp->texture = malloc(sizeof(void *) * data->obj.nb_texture)) == NULL)
 		return (1);
-	ft_bzero(tmp->texture, sizeof(t_tga **) * data->obj.nb_texture);
+	ft_bzero(tmp->texture, sizeof(void *) * data->obj.nb_texture);
 	j = -1;
 	while (++j < data->obj.nb_texture)
 	{
@@ -137,15 +137,16 @@ static int		setup_obj(t_data *data, t_thread *tmp)
 	{
 		if ((tmp[i].obj.light = malloc(sizeof(t_light) * data->obj.nb_light) + 1) == NULL)
 			return (1);
-		ft_memcpy(&(*tmp[i].obj.light), &(*data->obj.light), sizeof(t_light) * data->obj.nb_light);
+		ft_memcpy((tmp[i].obj.light), (data->obj.light), sizeof(t_light) * data->obj.nb_light);
 		tmp[i].obj.nb_light = data->obj.nb_light;
 	}
 	i = -1;
 	while (++i < 4)
 	{
+		printf("Malloc Camera [%d]\n", i);
 		if ((tmp[i].obj.camera = malloc(sizeof(t_camera) * data->obj.nb_camera) + 1) == NULL)
 			return (1);
-		ft_memcpy(&(*tmp[i].obj.camera), &(*data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
+		ft_memcpy((tmp[i].obj.camera), (data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
 		tmp[i].obj.nb_camera = data->obj.nb_camera;
 	}
 	i = -1;

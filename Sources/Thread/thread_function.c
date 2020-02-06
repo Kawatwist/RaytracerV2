@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/28 19:10:21 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 01:25:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 				(data->pos / data->x))
 		{
 			if (*curr < data->x * ((data->flag.pixel * 2) + 1) || *y < (*y %
-				((data->flag.pixel * 2) + 1))) 
+				((data->flag.pixel * 2) + 1)))
 				((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
 					[*x - (*x % ((data->flag.pixel * 2) + 1))];
 			else

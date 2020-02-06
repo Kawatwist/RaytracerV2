@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/04 19:47:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 04:12:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int		main(int argc, char *argv[])
 	if ((value = parsing(&data, argc, argv)) != 0)
 		return (stop_main_execute("Error Parsing : ", &data, value));
 	if ((value = check_parse(&data)) != 0)
-		return (stop_main_execute("Error Parsing : ", &data, value));
+		return (stop_main_execute("Error Parse Check : ", &data, value));
 	/*
 	**	Cam x = Size De l'ecran demander
 	*/
 	if ((value = initialize_sdl(&data)) != 0)
 		return (value);
 	if ((value = loop(data)) != 0 && value != 50)
-		return (stop_main_execute("Error in Parse Check : ", &data, value));
+		return (stop_main_execute("Run Stopped : ", &data, value));
 	clear_memory(&data);
 	ft_putstr("See you soon !\n");
 	return (0);

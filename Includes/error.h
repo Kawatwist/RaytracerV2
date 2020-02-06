@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:13:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/23 18:53:52 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/06 04:17:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define ERR_IN_OBJ "\nIncorrect Objet\n"
 # define ERR_NAME "\nIncorrect Name\n"
 # define ERR_TYPE "\nIncorrect Type\n"
+# define ERR_THREAD "Loading Stopped\n"
 # define ERR_UNINDEXED "\nUnindexed Error\n"
 
 #endif

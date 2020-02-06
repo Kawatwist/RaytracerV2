@@ -2,90 +2,142 @@
 #			Scene 42 : Planete				#
 #############################################
 [header]
-	xscreen : 600
-	yscreen : 400
+	ambiant : 0xFF000000
+	xscreen : 800
+	yscreen : 600
 	quality : 3
 	bounce : 0
 	camera : 1
-	object : 8
+	object : 10
 	light : 1
 	filter : 0
-	nb_texture : 3
-	textures : "./texture/planet/sun.tga"
-	textures : "./texture/Texture/Ground.tga"
+	nb_texture : 10
 	textures : "./texture/planet/stars.tga"
+	textures : "./texture/planet/sun.tga"
+	textures : "./texture/planet/mercury.tga"
+	textures : "./texture/planet/venus.tga"
+	textures : "./texture/planet/earth.tga"
+	textures : "./texture/planet/mars.tga"
+	textures : "./texture/planet/jupiter.tga"
+	textures : "./texture/planet/saturn.tga"
+	textures : "./texture/planet/uranus.tga"
+	textures : "./texture/planet/neptune.tga"
 ############### Light ##################
 [light:1]
-	origin : {0 0 -3}
+	origin : {0 -5 -5}
 	color : 0xFFFFFF
-	distance : 7
+	distance : 400
 	intensity : 1
 ############### Camera ##################
 [camera:1]
-	origin : {0 0 -5}
+	origin : {410 0 -30}
 	direction : {0 0 1}
-############### Object ##################
-############### Plan ####################
-[object:plan]
-	origin : {0 0 5}
-	direction : {0 0 -1}
-	color : 0x7F7F7F
-		[effect]
-			id_texture : 1
-			texture : 255
-[object:plan]
-	color : 0x7F6F7F
-	origin : {-2.5 -2.5 0}
-	direction : {0 1 0}
-		[effect]
-			id_texture : 1
-			texture : 255
-[object:plan]
-	color : 0x7F6F7F
-	origin : {-2.5 -2.5 0}
-	direction : {1 0 0}
-		[effect]
-			id_texture : 1
-			texture : 255
-[object:plan]
-	color : 0x6F7F7F
-	origin : {3.5 0 0}
-	direction : {-1 0 0}
-		[effect]
-			id_texture : 1
-			texture : 255
-[object:plan]
-	color : 0x7F7F8F
-	origin : {0 3.5 0}
-	direction : {0 -1 0}
-		[effect]
-			id_texture : 1
-			texture : 255
-[object:plan]
-	color : 0x7F8F7F
-	origin : {0 0 -5}
-	direction : {0 0 1}
-		[effect]
-			id_texture : 1
-			texture : 255
-############### Sphere ##################
+############### Univers #################
 [object:sphere]
-	color : 0xFFFF00
-	origin : {0 0 0}
+	color : 0x000000
+	origin : {0 0 3}
 	direction : {0 1 0}
-	rayon : 0.2
+	rayon : 500.0
 		[effect]
 			id_texture : 0
 			texture : 255
 			ns : 1
-			mv : 1
+############### Sun #####################
 [object:sphere]
 	color : 0xFFFF00
-	origin : {0 0 0}
+	origin : {0 0 3}
 	direction : {0 1 0}
-	rayon : 2.0
+	rayon : 75.0
 		[effect]
-			id_texture : 0
-			texture : 0
-			reflection : 0
-			ns : 0
+			id_texture : 1
+			texture : 255
+			ns : 1
+			mv : 0
+############### Mercury ###################
+[object:sphere]
+	color : 0x000000
+	origin : {96.5 0 0}
+	direction : {0 1 0}
+	rayon : 0.97
+		[effect]
+			id_texture : 2
+			texture : 255
+			ns : 1
+			mv : 1
+############### Venus ####################
+[object:sphere]
+	color : 0x000000
+	origin : {120 0 0}
+	direction : {0 1 0}
+	rayon : 2.42
+		[effect]
+			id_texture : 3
+			texture : 255
+			ns : 1
+			mv : 1
+############### Earth ####################
+[object:sphere]
+	color : 0x000000
+	origin : {150 0 0}
+	direction : {0 1 0}
+	rayon : 2.54
+		[effect]
+			id_texture : 4
+			texture : 255
+			ns : 1
+			mv : 1
+############### Mars ####################
+[object:sphere]
+	color : 0x000000
+	origin : {175 0 0}
+	direction : {0 1 0}
+	rayon : 1.35
+		[effect]
+			id_texture : 5
+			texture : 255
+			ns : 1
+			mv : 1
+############### Jupiter ####################
+[object:sphere]
+	color : 0x000000
+	origin : {225 0 0}
+	direction : {0 1 0}
+	rayon : 27.96
+		[effect]
+			id_texture : 6
+			texture : 255
+			ns : 1
+			mv : 0
+############### Saturne ####################
+[object:sphere]
+	color : 0x000000
+	origin : {320 0 0}
+	direction : {0 1 0}
+	rayon : 23.29
+		[effect]
+			id_texture : 7
+			texture : 255
+			ns : 1
+			mv : 0
+############### Uranus ####################
+[object:sphere]
+	color : 0x000000
+	origin : {370 0 0}
+	direction : {0 1 0}
+	rayon : 10.14
+		[effect]
+			id_texture : 8
+			texture : 255
+			ns : 1
+			mv : 1
+############### Neptune ####################
+[object:sphere]
+	color : 0x000000
+	origin : {410 0 0}
+	direction : {0 1 0}
+	rayon : 9.84
+		[effect]
+			id_texture : 9
+			texture : 255
+			ns : 1
+			mv : 1

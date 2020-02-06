@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 05:31:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 04:09:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ int				clear_memory(t_data *data)
 	clear_texture(data, data->texture);
 	clear_obj_item(data, data->obj);
 	clear_normal(data, data->normal);
-	data->obj.camera != NULL ? free(data->obj.camera) : 0;
-	data->obj.light != NULL ? free(data->obj.light) : 0;
+	ft_memdel((void **)&data->obj.camera);
+	ft_memdel((void **)&data->obj.light);
+	ft_memdel((void **)&data->input.rkey);
+	SDL_DestroyTexture(data->load);
 	SDL_DestroyTexture(data->window.txt);
 	SDL_DestroyWindow(data->window.window);
-	free(data->thread);
-	printf("NEED TO FREE THREAD\n");
+	clear_thread(data->thread);
+	ft_memdel(data->thread);
+	data = NULL;
 	return (0);
 }

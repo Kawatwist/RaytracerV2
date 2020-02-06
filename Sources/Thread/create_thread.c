@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 05:22:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 05:12:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,25 @@ static	t_point	find_dir(t_thread *data, int x, int y)
 	return (ret);
 }
 
+static void		loading(t_data *data, int p)
+{
+	SDL_Rect	pos;
+
+	pos.x = (p % 6) * 500;
+	pos.y = (p / 6) * 195;
+	pos.w = 500;
+	pos.h = 195;
+	SDL_RenderCopy(data->window.rend, data->load, &pos, NULL);
+	SDL_RenderPresent(data->window.rend);
+	SDL_Delay(64);
+}
+
 int				start_thread(t_data *data)
 {
 	struct timespec	timeout;
 	int				i;
 	int				err;
+	int				pos;
 
 	i = -1;
 	load_modif(data, data->thread);
@@ -43,6 +57,7 @@ int				start_thread(t_data *data)
 			return (err);
 	}
 	i = -1;
+	pos = 0;
 	while (i < 4)
 	{
 		timeout.tv_sec = 0;
@@ -50,7 +65,13 @@ int				start_thread(t_data *data)
 		if (pthread_timedjoin_np(((t_thread *)data->thread)[i].thd, NULL, &timeout) == ETIMEDOUT)
 		{
 			if (SDL_QuitRequested())
-				stop_execute("Yay ! We got one ~!\n", data);
+				return (stop_execute("", data));
+			if (data->flag.first == 0)
+			{
+				loading(data, pos);
+				pos += 1;
+				pos > 30 ? pos = 0 : 0;
+			}
 		}
 		else
 		{
@@ -60,5 +81,6 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
+	data->flag.first = 1;
 	return (0);
 }

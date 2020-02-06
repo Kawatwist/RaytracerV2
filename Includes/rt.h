@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 02:00:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/06 04:16:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_flag
 	Uint32		refresh : 1;
 	Uint32		filter : 2;
 	Uint32		antialiasing : 2;
+	Uint32		first : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -44,6 +45,7 @@ struct			s_data
 	t_scene				parse;
 	t_flag				flag;
 	t_vec				ray;
+	SDL_Texture			*load;
 	t_tga				**texture;
 	t_tga				**normal;
 	float				(*dist[5]) (void *obj, t_vec ray);
@@ -177,6 +179,6 @@ int				loop(t_data data);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
-void			stop_execute(char *error, t_data *data);
+int				stop_execute(char *error, t_data *data);
 
 #endif

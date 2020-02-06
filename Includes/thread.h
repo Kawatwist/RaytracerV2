@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 04:30:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/05 23:41:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray, int bounce);
 int						start_ray(t_thread *data);
+/*
+**			Memory
+*/
+int				clear_thread(t_thread *data);
 
 #endif
