@@ -35,3 +35,23 @@ faire du code qui permet de prendre un certin nombres de screens a chaque images
 
 si j'appuis sur une touche on active ou desactive la vu stereoscopique, si active je cree une 2 eme camera decaler pour avoir la stereoscopie
 camera gauche voit a droite et camera droite voit a gauche
+
+
+
+
+[HUD]
+{
+	scancode_h pour activer/descativer interface hud[]
+
+	mettre tous les icones[]
+
+	pouvoir swap les icones selon sur quelle section on est[]
+
+	mettre une sorte d'indice pour savoir sur qu'elle obj on est[]
+
+	mettre la transparence sur l'icone de la cam[]
+
+	mettre une variable dans hud qui fait que si elle est vrai on l'active et si on met 1 dans header sur hud elle sera activer de base[]
+}
+
+faire filter negatif

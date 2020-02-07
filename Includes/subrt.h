@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/01 03:54:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/07 22:47:58 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "SDL2/SDL.h"
 
-# define CAM_TXT "./texture/Texture/jinx.tga"
-# define LIGHT_TXT "./texture/Texture/Up.tga"
-# define SPHERE_TXT "./texture/Texture/newjinx.tga"
+# define CAM_TXT "./texture/Texture/cam.tga"
+# define SPHERE_TXT "./texture/Texture/sphere.tga"
+# define LIGHT_TXT "./texture/Texture/light.tga"
+# define HUD_TXT "./texture/Texture/overlay.tga"
 
 typedef enum		e_hud
 {
@@ -32,11 +33,19 @@ typedef enum		e_hud
 	LOAD_SCREEN = 9,
 }					e_hud;
 
+typedef struct		s_c33
+{
+	Uint32			color;
+	Uint32			flag : 1;
+}					t_c33;
+
 typedef struct		s_hud
 {
-	SDL_Rect		ifquow[10];
+	SDL_Rect		pos[10];
 	SDL_Surface		*tmp;
-	SDL_Texture		*iqfow[10];
+	SDL_Texture		*texture[10];
+	int				flag_icon;
+	int				color_obj;
 }					t_hud;
 
 typedef struct		s_window
@@ -46,8 +55,8 @@ typedef struct		s_window
 	SDL_Texture		*txt;
 	void			*pxl;
 	int				pitch;
-	int				x;
-	int				y;
+	unsigned int	x;
+	unsigned int	y;
 }					t_window;
 
 typedef struct		s_calc

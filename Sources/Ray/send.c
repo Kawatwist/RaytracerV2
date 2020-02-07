@@ -3,18 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2020/01/16 00:02:28 by luwargni         ###   ########.fr       */
-=======
-/*   Updated: 2020/01/15 23:29:02 by lomasse          ###   ########.fr       */
->>>>>>> bf594b0eec291cb4f467f4a85a9653fd6931d85e
-=======
-/*   Updated: 2020/01/25 18:19:21 by lomasse          ###   ########.fr       */
->>>>>>> ec204c001aceed3ca63f4e18db94dcd8b8b39a69
+/*   Updated: 2020/02/05 23:45:08 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +23,11 @@ static	t_point	find_dir(t_data *data, int x, int y)
 	return (ret);
 }
 
-static void		low_quality(t_data *data, int *x, int *y)
+static void		low_quality(t_data *data, unsigned int *x, unsigned int *y)
 {
-	int		w;
-	int		pxl;
-	int		pos;
+	unsigned int	w;
+	unsigned int	pxl;
+	int				pos;
 
 	w = -1;
 	pxl = 0;
@@ -52,7 +44,7 @@ static void		low_quality(t_data *data, int *x, int *y)
 	(*y) += (data->flag.pixel);
 }
 
-static void		low_pixel_x(t_data *data, int *x, int y)
+static void		low_pixel_x(t_data *data, unsigned int *x, unsigned int y)
 {
 	while (*x % (data->flag.pixel + 1) && *x < data->window.x)
 	{
@@ -66,8 +58,8 @@ static void		low_pixel_x(t_data *data, int *x, int y)
 
 int				start_ray(t_data *data)
 {
-	int		x;
-	int		y;
+	unsigned int	x;
+	unsigned int	y;
 
 	y = -1;
 	while (++y < data->window.y)

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/01 03:51:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/07 04:39:31 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->flag.refresh += 0b100000;
+	data->hud.color_obj = 1;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;

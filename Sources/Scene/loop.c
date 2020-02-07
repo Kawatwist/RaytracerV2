@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/01 03:37:31 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/07 03:36:54 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static int	looping(t_data *data)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	DROP_THE_PICS_ON_THE_SCREEN(data);
+	if (data->hud.flag_icon)//possibiliter ternaire
+		pics_on_screen(data);
+	init_hud(data);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }

@@ -88,6 +88,8 @@ SRC				=	main.c										\
 					init_hud.c									\
 					place_hud.c									\
 					set_hud.c									\
+					input_hud.c									\
+					input_filter.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
