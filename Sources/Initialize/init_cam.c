@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/28 17:12:51 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:08:58 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ int				initialize_cam(t_data *data)
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);
 		base = normalize(fill_vec(1.9, 2.6, -1));
+		data->obj.camera[index].oldpos.origin = veccpy(data->obj.camera[index].pos.origin);
+		data->obj.camera[index].oldpos.direction = veccpy(data->obj.camera[index].pos.direction);
+		data->obj.camera[index].oldsc = veccpy(data->obj.camera[index].sc);
+		data->obj.camera[index].oldx = veccpy(data->obj.camera[index].x);
+		data->obj.camera[index].oldy = veccpy(data->obj.camera[index].y);
 		index++;
 	}
 	return (0);

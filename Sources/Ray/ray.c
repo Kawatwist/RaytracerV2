@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 01:54:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:10:27 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 	int				txt;
 	t_ray			r;
 
-	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || (r.dist[0] == -1 || r.dist[0] >= 1000))
+	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1 || r.dist[0] >= 1000)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);

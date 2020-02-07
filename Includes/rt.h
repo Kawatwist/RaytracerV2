@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 04:16:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:16:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct			s_data
 	t_input				input;
 	t_object			obj;
 	t_scene				parse;
+	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
 	SDL_Texture			*load;
@@ -138,6 +139,8 @@ void			input_move_cam(t_data *data, t_point tmp, void **cam);
 void			call_rot_cam(t_data *data);
 void			move_obj(t_data *data, void **obj);
 void			mv_triangle(t_data *data, t_triangle **obj);
+void			input_hud(t_data *data);
+void			input_filter(t_data *data);
 void			input_move_obj(t_data *data, void **obj);
 void			input_color_obj(t_data *data, void **obj, char ctrl);
 void			input_descartes_obj(t_data *data, void **obj, char ctrl);
@@ -180,5 +183,9 @@ void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 int				stop_execute(char *error, t_data *data);
+int			post_processing(t_data *data);
+int		init_hud(t_data *data);
+void		set_hud(t_data *data);
+int		pics_on_screen(t_data *data);
 
 #endif

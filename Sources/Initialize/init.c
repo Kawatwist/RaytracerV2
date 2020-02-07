@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/02 03:58:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:09:12 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->flag.refresh += 0b100000;
+	data->hud.color_obj = 1;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;
@@ -32,5 +33,6 @@ int		initialize(t_data *data)
 	data->move[0] = move_cam;
 	data->move[1] = move_obj;
 	data->move[2] = move_light;
+	data->ambiant = 0xFF000000;
 	return (0);
 }

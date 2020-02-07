@@ -86,12 +86,18 @@ SRC				=	main.c										\
 					light_cursor.c								\
 					input_obj.c									\
 					input_light.c								\
-					input_cam.c									\
+					input_move_cam.c							\
 					input_textures.c							\
 					screenshot.c								\
 					create_type.c								\
 					shape_cartoon.c								\
 					antialiasing.c								\
+					filters.c									\
+					init_hud.c									\
+					place_hud.c									\
+					set_hud.c									\
+					input_hud.c									\
+					input_filter.c								\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
@@ -108,7 +114,7 @@ vpath %.c $(foreach dir, $(SRC_PATH), $(dir):)
 
 IFLAG			= $(foreach dir, $(INC_PATH), -I$(dir) )
 
-CFLAG 			= -Wall -Wextra -Werror -pthread
+CFLAG 			= -Wall -Wextra -Werror -pthread -Ofast -flto -march=native -g0
 
 LFLAG 			= $(foreach dir, $(LIB_PATH), -L $(dir) ) $(foreach lib, $(LIBS), -l$(lib) ) $(foreach fmw, $(FRAMEWORK), -framework $(fmw) )
 

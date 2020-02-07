@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/05 05:21:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:11:30 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-void		input_filter(t_data *data)
-{
-	if (key_check(*data, SDL_SCANCODE_1))
-		data->flag.filter = (data->flag.filter == 0) ? 1 : 0;
-	if (key_check(*data, SDL_SCANCODE_2))
-		data->flag.filter = (data->flag.filter == 0) ? 2 : 0;
-	if (key_check(*data, SDL_SCANCODE_3))
-		data->flag.filter = (data->flag.filter == 0) ? 3 : 0;
-}
 
 static void	stay_in_case(t_data *data)
 {
@@ -82,21 +72,40 @@ static void	input_obj(t_data *data)
 	data->move[data->obj.type_index](data, obj);
 }
 
-void		input(t_data *data)
+static void	get_input(t_data *data)
 {
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
-	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-		create_screenshot(data, data->window.pxl);
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.rkey, 282);
 	SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 282);
+}
+
+void		input(t_data *data)
+{
+	static t_c33	adad = {.color = 0, .flag = 1};
+
+	get_input(data);
+	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
+		create_screenshot(data, data->window.pxl);
 	if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 	if (key_check(*data, SDL_SCANCODE_R))
 		data->flag.refresh = (data->flag.refresh ? 0 : 1);
+	if (adad.flag == 0 && data->hud.color_obj)
+		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
+		adad.color;
 	input_obj(data);
 	light_cursor(data);
 	input_filter(data);
+	input_hud(data);
+	if (data->hud.color_obj)
+	{
+		adad.color =
+		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color;
+		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
+		0xFFFFFF;
+		adad.flag = 0;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 05:18:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/07 23:08:02 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,39 @@
 
 # include "SDL2/SDL.h"
 
+# define CAM_TXT "./texture/Texture/cam.tga"
+# define SPHERE_TXT "./texture/Texture/sphere.tga"
+# define LIGHT_TXT "./texture/Texture/light.tga"
+# define HUD_TXT "./texture/Texture/overlay.tga"
+
+typedef enum		e_hud
+{
+	CAM_LOGO = 0,
+	LIGHT_LOGO = 1,
+	SPHERE_LOGO = 2,
+	PLAN_LOGO = 4,
+	CYLINDER_LOGO = 5,
+	CONE_LOGO = 6,
+	HUD = 7,
+	HOME_SCREEN = 8,
+	LOAD_SCREEN = 9,
+}					e_hud;
+
+typedef struct		s_c33
+{
+	Uint32			color;
+	Uint32			flag : 1;
+}					t_c33;
+
+typedef struct		s_hud
+{
+	SDL_Rect		pos[10];
+	SDL_Surface		*tmp;
+	SDL_Texture		*texture[10];
+	int				flag_icon;
+	int				color_obj;
+}					t_hud;
+
 typedef struct		s_window
 {
 	SDL_Window		*window;
@@ -22,8 +55,8 @@ typedef struct		s_window
 	SDL_Texture		*txt;
 	void			*pxl;
 	int				pitch;
-	int				x;
-	int				y;
+	unsigned int	x;
+	unsigned int	y;
 }					t_window;
 
 typedef struct		s_calc
@@ -54,6 +87,10 @@ typedef struct		s_camera
 	t_point			sc;
 	t_point			x;
 	t_point			y;
+	t_vec			oldpos;
+	t_point			oldsc;
+	t_point			oldx;
+	t_point			oldy;
 }					t_camera;
 
 typedef struct		s_object
