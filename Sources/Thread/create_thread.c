@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 08:58:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 09:15:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void		loading_sc(t_data *data, int p)
 	SDL_Rect	screen;
 	SDL_Rect	lolz;
 
-	pos.x = (p % 7) * 100;
-	pos.y = (p / 7) * 100;
+	pos.x = (p % 6) * 100;
+	pos.y = (p / 6) * 100;
 	pos.w = 100;
 	pos.h = 100;
 	setup_rect(data, &og, &screen, &lolz);
@@ -107,7 +107,7 @@ int				start_thread(t_data *data)
 			{
 				loading_sc(data, pos);
 				pos += 1;
-				pos > 36 ? pos = 0 : 0;
+				pos > 34 ? pos = 0 : 0;
 			}
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 23:41:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 07:35:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef	struct			s_thread
 	t_point				(*txt[5]) (void *data, void *obj, t_vec ray,
 							int choose);
 	void				(*move[3]) (t_data *data, void **obj);
-	float				ambiant;
+	int					ambiant;
 	int					pos;
 	int					percent;
 	int					bounce;
@@ -104,6 +104,8 @@ int						start_ray(t_thread *data);
 /*
 **			Memory
 */
-int				clear_thread(t_thread *data);
+int						setup_txt_and_normal(t_data *data, t_thread *tmp);
+int						setup_obj(t_data *data, t_thread *tmp);
+int						clear_thread(t_thread *data);
 
 #endif

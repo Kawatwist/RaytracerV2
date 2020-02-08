@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:46:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 07:12:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 21:31:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static SDL_Texture	*get_loading(t_data *data, char *path)
 
 int					loading(t_data *data)
 {
-	if ((data->load = get_loading(data, "./texture/load.tga")) == NULL)
+	if ((data->load = get_loading(data, "./texture/mayload.tga")) == NULL)
 		return (1);
 	if ((data->loading = get_loading(data, "./texture/loading.tga")) == NULL)
 		return (1);

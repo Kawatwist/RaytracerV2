@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 04:27:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 05:51:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ struct			s_data
 	t_flag				flag;
 	t_vec				ray;
 	SDL_Texture			*load;
+	SDL_Texture			*lolz;
+	SDL_Texture			*loading;
 	t_tga				**texture;
 	t_tga				**normal;
 	float				(*dist[5]) (void *obj, t_vec ray);
@@ -178,12 +180,16 @@ int				initialize(t_data *data);
 /*
 **			Basic
 */
+int				real_time_icon(t_data *data);
+int				set_icone(t_data *data);
+int				loading(t_data *data);
 int				main(int argc, char *argv[]);
 int				loop(t_data data);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 int				stop_execute(char *error, t_data *data);
+
 int			post_processing(t_data *data);
 int		init_hud(t_data *data);
 void		set_hud(t_data *data);
