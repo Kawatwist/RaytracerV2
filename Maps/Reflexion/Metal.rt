@@ -4,12 +4,12 @@
 #														#
 #########################################################
 [header]
-	xscreen : 400;
-	yscreen : 400;
+	xscreen : 2560
+	yscreen : 1440
 	camera : 1
 	quality : 0
-	aa : 0
-	bounce : 1
+	aa : 3
+	bounce : 10
 	object : 9
 	light : 4
 	nb_texture : 3
@@ -19,7 +19,7 @@
 ############################ Light #####################
 [light:1]
 	origin : {-0.49 -0.40 0.5}
-	color : 0xFF0000 
+	color : 0xFF0000
 	distance : 1.5
 	intensity : 0.75
 [light:1]
@@ -55,28 +55,33 @@
 	origin : {0 0 -1}
 	direction : {0 0 1}
 	color : 0x7F7F7F
+			reflection : 255
 [object:plan]
 	origin : {0.5 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
+			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:plan]
 	origin : {-0.5 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
+			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:plan]
 	origin : {0 0.5 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
+			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:plan]
 	origin : {0 -0.5 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
+			reflection : 255
 			texture : 255
 			id_texture : 1
 [object:sphere]
