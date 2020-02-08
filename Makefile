@@ -38,9 +38,11 @@ SRC				=	main.c										\
 					uncompress.c								\
 					init.c										\
 					init_sdl.c									\
+					icon.c										\
 					init_cam.c									\
 					rot_init_cam.c								\
 					check.c										\
+					loading.c									\
 					quit.c										\
 					clear.c										\
 					clear_thread.c								\
@@ -65,6 +67,8 @@ SRC				=	main.c										\
 					loop.c										\
 					create_thread.c								\
 					init_thread.c								\
+					init_thread_obj.c							\
+					init_thread_txt.c							\
 					thread_function.c							\
 					thread_load.c								\
 					pthread_timedjoin.c							\
@@ -128,7 +132,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
 	@echo "${vertclair}DONE${neutre}"
 	@echo "Need to Rename in rt"
 
