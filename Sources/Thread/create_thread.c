@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 05:12:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 04:43:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,22 @@ static	t_point	find_dir(t_thread *data, int x, int y)
 static void		loading(t_data *data, int p)
 {
 	SDL_Rect	pos;
+	SDL_Rect	og;
 
-	pos.x = (p % 6) * 500;
-	pos.y = (p / 6) * 195;
-	pos.w = 500;
-	pos.h = 195;
-	SDL_RenderCopy(data->window.rend, data->load, &pos, NULL);
+	pos.x = (p % 7) * 100;
+	pos.y = (p / 7) * 100;
+	pos.w = 100;
+	pos.h = 100;
+	og.x = (data->window.x) - 150;
+	og.y = (data->window.y) - 150;
+	og.w = 100;
+	og.h = 100;
+	if (data->flag.first == 0)
+		SDL_RenderClear(data->window.rend);
+	SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
+	SDL_RenderCopy(data->window.rend, data->load, &pos, &og);
 	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(64);
+	SDL_Delay(48);
 }
 
 int				start_thread(t_data *data)
@@ -66,11 +74,11 @@ int				start_thread(t_data *data)
 		{
 			if (SDL_QuitRequested())
 				return (stop_execute("", data));
-			if (data->flag.first == 0)
+			if (data->flag.first == 0 || data->flag.time)
 			{
 				loading(data, pos);
 				pos += 1;
-				pos > 30 ? pos = 0 : 0;
+				pos > 36 ? pos = 0 : 0;
 			}
 		}
 		else
@@ -81,6 +89,7 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
+	SDL_RenderClear(data->window.rend);
 	data->flag.first = 1;
 	return (0);
 }

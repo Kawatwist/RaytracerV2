@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:16:25 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:27:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_flag
 	Uint32		filter : 2;
 	Uint32		antialiasing : 2;
 	Uint32		first : 1;
+	Uint32		time : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;

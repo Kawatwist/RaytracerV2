@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:09:08 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:43:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ int			initialize_sdl(t_data *data)
 	data->window.txt = SDL_CreateTexture(data->window.rend,
 		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
 		data->window.y);
-	if (data->window.txt == NULL)
-		return (4);
+	data->window.oldtxt = SDL_CreateTexture(data->window.rend,
+		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
+		data->window.y);
+	if (data->window.txt == NULL || data->window.oldtxt == NULL)
+		return (4); // Return Useless ?!
 	SDL_PollEvent(&data->input.ev);
 	SDL_RenderPresent(data->window.rend);
 /*

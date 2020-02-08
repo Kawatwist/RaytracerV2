@@ -4,9 +4,9 @@
 [header]
 	xscreen : 2560
 	yscreen : 1440
-	quality : 2
-	bounce : 0
-	aa : 0
+	quality : 0
+	bounce : 30
+	aa : 3
 	camera : 2
 	object : 23
 	light : 2
@@ -28,11 +28,11 @@
 	intensity : 1
 ############### Camera ################
 [camera:1]
-	origin : {0 0 -0.5}
-	direction : {0 0 1}
-[camera:1]
 	origin : {0 1 0.1}
 	direction : {0 1 0}
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
 ############### Object #################
 [object:plan]
 	origin : {0 0 -1}

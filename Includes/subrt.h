@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:08:02 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/08 04:37:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct		s_window
 {
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
+	SDL_Texture		*oldtxt;
 	SDL_Texture		*txt;
 	void			*pxl;
 	int				pitch;

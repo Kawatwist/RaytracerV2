@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/28 19:39:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 00:47:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 static char	*findname(char *name)
 {
-	int		len;
+	int		nb;
 	char	*fake;
 
 	fake = ft_strjoin(name, ".tga");
 	while (access(fake, F_OK) == 0)
 	{
-		len = ft_strlen(name);
-		if (name[len - 1] < '9')
-			name[len - 1] += 1;
-		else
-			name = ft_strjoin(name, "0\0");
-		free(fake);
-		fake = ft_strjoin(name, ".tga");
+		nb = ft_atoi(ft_strchr(fake, '_') + 1);
+		nb += 1;
+		*(ft_strchr(fake, '_') + 1) = '\0';
+		fake = ft_strjoinfree(fake, ft_itoa(nb), 3);
+		fake = ft_strjoinfree(fake, ".tga", 1);
 	}
+	free(name);
+	name = ft_strdup(fake);
 	free(fake);
 	return (name);
 }
@@ -78,7 +78,6 @@ void		create_screenshot(t_data *data, void *pxl)
 
 	name = ft_strdup("./Screenshot/screenshot_0\0");
 	name = findname(name);
-	name = ft_strjoinfree(name, ".tga", 1);
 	fd = creat(name, S_IRUSR | S_IRGRP | S_IROTH);
 	init_head(data, &header);
 	ft_putnstr_fd(header, 18, fd);
