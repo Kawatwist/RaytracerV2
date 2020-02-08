@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 01:25:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 06:17:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,30 @@ static t_vec		setup_ray(t_thread *data, int x, int y)
 {
 	data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
 	data->ray.direction = normalize(find_dir(data, x, y));
-
 	return (data->ray);
+}
+
+static void			quality(t_thread *data, int *x, int *y, int *curr)
+{
+	while ((*x % ((data->flag.pixel * 2) + 1) || (*y % ((data->flag.pixel * 2)
+			+ 1))) && *curr < data->len && *y == (*curr / data->x) +
+			(data->pos / data->x))
+	{
+		if (*curr < data->x * ((data->flag.pixel * 2) + 1) || *y < (*y %
+			((data->flag.pixel * 2) + 1)))
+			((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
+				[*x - (*x % ((data->flag.pixel * 2) + 1))];
+		else
+			((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
+				[*curr - (*x % ((data->flag.pixel * 2) + 1) + ((*y %
+					((data->flag.pixel * 2) + 1) * data->x)))];
+		if (*x % (data->flag.pixel * 2) + 1)
+			*curr += 1;
+		else
+			break ;
+		*x = *curr % data->x;
+	}
+	*curr -= 1;
 }
 
 static void			basic_render(t_thread *data, int *x, int *y, int *curr)
@@ -41,27 +63,7 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 		((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, *x,
 				*y), data->bounce);
 	else
-	{
-		while ((*x % ((data->flag.pixel * 2) + 1) || (*y % ((data->flag.pixel * 2)
-				+ 1))) && *curr < data->len && *y == (*curr / data->x) +
-				(data->pos / data->x))
-		{
-			if (*curr < data->x * ((data->flag.pixel * 2) + 1) || *y < (*y %
-				((data->flag.pixel * 2) + 1)))
-				((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
-					[*x - (*x % ((data->flag.pixel * 2) + 1))];
-			else
-				((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
-					[*curr - (*x % ((data->flag.pixel * 2) + 1) + ((*y %
-						((data->flag.pixel * 2) + 1) * data->x)))];
-			if (*x % (data->flag.pixel * 2) + 1)
-				*curr += 1;
-			else
-				break;
-			*x = *curr % data->x;
-		}
-		*curr -= 1;
-	}
+		quality(data, x, y, curr);
 }
 
 void	*thread_function(void *arg)

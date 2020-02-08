@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/07 23:11:30 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/08 08:16:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void		input(t_data *data)
 	if (adad.flag == 0 && data->hud.color_obj)
 		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
 		adad.color;
+	// light_cursor(data);
 	input_obj(data);
-	light_cursor(data);
 	input_filter(data);
 	input_hud(data);
 	if (data->hud.color_obj)

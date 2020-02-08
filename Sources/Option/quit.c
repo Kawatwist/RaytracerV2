@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 04:20:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 06:23:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		*find_error(int error_value)
 **	Can't Stop the Program properly
 */
 
-int			stop_execute(char *error, t_data *data)
+int				stop_execute(char *error, t_data *data)
 {
 	int		i;
 

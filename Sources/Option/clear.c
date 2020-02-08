@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/06 04:09:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 05:07:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int				clear_memory(t_data *data)
 	ft_memdel((void **)&data->obj.light);
 	ft_memdel((void **)&data->input.rkey);
 	SDL_DestroyTexture(data->load);
+	SDL_DestroyTexture(data->loading);
 	SDL_DestroyTexture(data->window.txt);
 	SDL_DestroyWindow(data->window.window);
 	clear_thread(data->thread);

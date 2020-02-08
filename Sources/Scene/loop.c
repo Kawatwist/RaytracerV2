@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/08 04:45:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 06:32:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,10 @@ static int	looping(t_data *data)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	if (data->hud.flag_icon)//possibiliter ternaire
+	if (data->hud.flag_icon)
 		pics_on_screen(data);
 	init_hud(data);
 	SDL_RenderPresent(data->window.rend);
-	return (0);
-}
-
-int			real_time_icon(t_data *data)
-{
-	unsigned int		i;
-
-	i = -1;
-	while (++i < data->window.x * data->window.y)
-		((unsigned char *)data->window.pxl)[(i * 4) + 3] = 20 * (((unsigned char *)data->window.pxl)[(i * 4) + 1] +
-									((unsigned char *)data->window.pxl)[(i * 4) + 2] +
-									((unsigned char *)data->window.pxl)[(i * 4)]) > 255 ? 255 :
-									 10 * (((unsigned char *)data->window.pxl)[(i * 4) + 1] +
-									((unsigned char *)data->window.pxl)[(i * 4) + 2] +
-									((unsigned char *)data->window.pxl)[(i * 4)]);
-	SDL_Surface  *icon = SDL_CreateRGBSurfaceFrom(&(data->window.pxl[0]), data->window.x, data->window.y, 32,
-	data->window.x * 4, 0xFF0000, 0xFF00, 0xFF, 0xFF000000);
-	// SECURITY
-	SDL_SetWindowIcon(data->window.window, icon);
-	SDL_FreeSurface(icon);
 	return (0);
 }
 
@@ -57,14 +37,15 @@ void		check_time(t_data *data)
 {
 	static Uint32	post = 0;
 	static char		cycle = 0;
-	Uint32				i;
+	Uint32			i;
 	void			*pxl;
-
 
 	if (data->flag.first == 0)
 		post = SDL_GetTicks();
-	if (cycle > 0 && SDL_GetTicks() - post > 1000)
+	if (SDL_GetTicks() - post > 1000)
 		data->flag.time = 1;
+	else
+		data->flag.time = 0;
 	cycle += 1;
 	if (data->flag.time == 1)
 	{
@@ -83,7 +64,6 @@ void		check_time(t_data *data)
 
 int			loop(t_data data)
 {
-
 	int		err;
 	int		asked;
 

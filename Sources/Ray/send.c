@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   send.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:10:48 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/08 06:28:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-// Useless File
+
+//Need to Be Delete

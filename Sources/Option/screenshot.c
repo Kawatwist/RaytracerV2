@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 00:47:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/08 07:29:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void		create_screenshot(t_data *data, void *pxl)
 	ft_putstr("Screenshot Done : ");
 	ft_putstr(name);
 	ft_putchar('\n');
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Screenshot Done", name, data->window.window);
 	free(name);
 }
