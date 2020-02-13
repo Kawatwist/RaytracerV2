@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:05:28 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 08:16:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/11 02:32:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ static int		setup_cam_light(t_data *data, t_thread *tmp)
 	while (++i < 4)
 	{
 		if ((tmp[i].obj.light = malloc(sizeof(t_light) *
-			data->obj.nb_light) + 1) == NULL)
+			data->obj.nb_light + 1)) == NULL)
 			return (1);
 		ft_memcpy((tmp[i].obj.light), (data->obj.light),
 			sizeof(t_light) * data->obj.nb_light);
-		tmp[i].obj.nb_light = data->obj.nb_light - 1;
+		tmp[i].obj.nb_light = data->obj.nb_light;
+		tmp[i].obj.light[data->obj.nb_light].color = 0;
 	}
 	i = -1;
 	while (++i < 4)

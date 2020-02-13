@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 04:37:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/13 02:44:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ typedef struct		s_hud
 	int				flag_icon;
 	int				color_obj;
 }					t_hud;
+
+typedef struct		s_load
+{
+	SDL_Texture		*load;
+	SDL_Texture		*loading;
+	SDL_Texture		*lolz;
+}					t_load;
 
 typedef struct		s_window
 {

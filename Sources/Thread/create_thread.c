@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 09:15:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/13 04:47:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,27 @@ static void		loading_sc(t_data *data, int p)
 	pos.w = 100;
 	pos.h = 100;
 	setup_rect(data, &og, &screen, &lolz);
+	printf("Load[1]\n");
+	SDL_RenderClear(data->window.rend);
 	if (data->flag.first == 0)
-	{
-		SDL_RenderClear(data->window.rend);
-		SDL_RenderCopy(data->window.rend, data->loading, &screen, NULL);
-	}
+		SDL_RenderCopy(data->window.rend, data->load.loading, &screen, NULL);
 	else
 	{
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 		if (data->hud.flag_icon)
 		{
 			pics_on_screen(data);
-			SDL_RenderCopy(data->window.rend, data->lolz, NULL, &lolz);
+			SDL_RenderCopy(data->window.rend, data->load.lolz, NULL, &lolz);
 		}
 	}
-	SDL_RenderCopy(data->window.rend, data->load, &pos, &og);
-	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(48);
+	printf("Load[2]\n");
+	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
+	SDL_Delay(24);
+	printf("Load[3]\n");
+	if (data->window.rend != NULL)
+		SDL_RenderPresent(data->window.rend);
+	printf("Load[4]\n");
+	SDL_Delay(24);
 }
 
 int				start_thread(t_data *data)
@@ -80,7 +84,9 @@ int				start_thread(t_data *data)
 	static int		pos = 0;
 
 	i = -1;
+	printf("Thread[1]\n");
 	load_modif(data, data->thread);
+	printf("Thread[2]\n");
 	while (++i < 4)
 	{
 		((t_thread *)data->thread)[i].percent = data->percent;
@@ -91,8 +97,10 @@ int				start_thread(t_data *data)
 		if ((err = pthread_create(&((t_thread*)data->thread)[i].thd, NULL, &thread_function, &((t_thread*)data->thread)[i])) != 0)
 			return (err);
 	}
+	printf("Thread[3]\n");
 	time = SDL_GetTicks();
 	i = -1;
+	printf("Thread[4]\n");
 	while (i < 4)
 	{
 		timeout.tv_sec = 0;
@@ -101,11 +109,15 @@ int				start_thread(t_data *data)
 		{
 			if (!data->flag.time && SDL_GetTicks() - time > 1000)
 				data->flag.time = 1;
+			printf("Thread[4.3]\n");
 			if (SDL_QuitRequested())
 				return (stop_execute("", data));
+			printf("Thread[4.4]\n");
 			if (data->flag.first == 0 || data->flag.time)
 			{
+				printf("Thread[4.5]\n");
 				loading_sc(data, pos);
+				printf("Thread[4.6]\n");
 				pos += 1;
 				pos > 34 ? pos = 0 : 0;
 			}
@@ -118,7 +130,9 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
+	printf("Thread[5]\n");
 	SDL_RenderClear(data->window.rend);
 	data->flag.first = 1;
+	printf("Thread[6]\n");
 	return (0);
 }

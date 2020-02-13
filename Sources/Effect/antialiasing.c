@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/02/05 01:19:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/09 02:21:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static t_vec		setup_ray(t_thread *data, float x, float y)
 	return (data->ray);
 }
 
-static int			uniformize_color(unsigned int curr_pixel[16], int max)
+static int			uniformize_color(unsigned int curr_pixel[64], int max)
 {
-	unsigned int	colors[4];
-	int				i;
+	unsigned long int	colors[4];
+	int					i;
 
 	colors[0] = 0;
 	colors[1] = 0;
@@ -55,16 +55,18 @@ static int			uniformize_color(unsigned int curr_pixel[16], int max)
 
 void				aa_render(t_thread *data, int *x, int *y, int *curr)
 {
-	unsigned int	color[5];
+	unsigned int	color[64];
 	int				i;
+	static	int		aa;
 
+	aa = 1 << (data->flag.antialiasing * 2);
 	*y = (*curr / data->x) + (data->pos / data->x);
 	*x = *curr % data->x;
 	i = -1;
-	while (++i < data->flag.antialiasing + 1)
+	while (++i < aa)
 		color[i] = send_ray(data, setup_ray(data,
 			*x + (((rand() % 100) - 50) / 200.0),
 			*y + (((rand() % 100) - 50) / 200.0)), data->bounce);
 	((unsigned int *)data->pxl)[*curr] =
-		uniformize_color(color, data->flag.antialiasing);
+		uniformize_color(color, aa);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 07:35:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/09 02:42:29 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_point					find_reflexion(void *obj, t_vec ray, t_thread data);
 /*
 **			Textures
 */
+int						find_damier(t_thread *data, void *obj, t_vec ray);
 t_point					find_normal_with_txt(t_thread data, void *object,
 							t_vec collide);
 int						find_size(t_thread data, void *obj, int choose);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 05:51:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/13 04:18:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ struct			s_data
 	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
-	SDL_Texture			*load;
-	SDL_Texture			*lolz;
-	SDL_Texture			*loading;
+	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
 	float				(*dist[5]) (void *obj, t_vec ray);
@@ -76,6 +74,7 @@ float			sphere(void *sphere, t_vec ray);
 */
 int				parsing_light(t_data *data, char **old, char *line);
 t_point			get_point(char *str);
+t_point			get_point_y(char *str);
 int				parsing_files(t_data *data, char *line);
 int				create_light(t_data *data);
 int				create_camera(t_data *data);

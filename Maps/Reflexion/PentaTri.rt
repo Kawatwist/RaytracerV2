@@ -2,10 +2,10 @@
 #			Scene 42 : The Tri				#
 #############################################
 [header]
-	xscreen : 500
-	yscreen : 500
+	xscreen : 2560
+	yscreen : 1440
 	quality : 0
-	bounce : 30
+	bounce : 0
 	aa : 3
 	camera : 2
 	object : 24
@@ -28,11 +28,11 @@
 	intensity : 1
 ############### Camera ################
 [camera:1]
-	origin : {0 1 0.1}
-	direction : {0 1 0}
-[camera:1]
 	origin : {0 0 -0.5}
 	direction : {0 0 1}
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
 ############### Object #################
 [object:plan]
 	origin : {0 0 -1}

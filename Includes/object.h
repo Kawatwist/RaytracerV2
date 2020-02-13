@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/02 03:57:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/12 03:01:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef	struct		s_cylinder
 
 typedef	struct		s_triangle
 {
-	t_vec			origin;
+	t_vec			p1;
 	t_effect		effect;
 	t_vec			p2;
 	t_vec			p3;
