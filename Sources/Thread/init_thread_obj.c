@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:05:28 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/11 02:32:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/15 14:17:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		copy_item(t_object base, t_object *dest, int nb)
 
 	ft_bzero(dest->item, sizeof(void *) * nb + 1);
 	i = -1;
-	while (++i < base.nb_item)
+	while (++i < nb)
 	{
 		if (base.item[i] != NULL)
 		{
@@ -71,10 +71,10 @@ int			setup_obj(t_data *data, t_thread *tmp)
 {
 	int	i;
 
-	ft_memcpy(&tmp->obj, &data->obj, sizeof(t_object));
 	i = -1;
 	while (++i < 4)
 	{
+		ft_memcpy(&tmp[i].obj, &data->obj, sizeof(t_object));
 		if ((tmp[i].obj.item = malloc(sizeof(void *) *
 			data->obj.nb_item + 1)) == NULL)
 			return (1);

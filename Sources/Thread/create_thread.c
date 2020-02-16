@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/13 04:47:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/16 11:03:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
+	for (int i = 0; i < 4; i++)
+		pthread_kill(((t_thread *)data->thread)[i].thd, SIGTERM);
 	printf("Thread[5]\n");
 	SDL_RenderClear(data->window.rend);
 	data->flag.first = 1;

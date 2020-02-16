@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/09 03:49:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/15 14:15:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray, int
 unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 {
 	Uint32	colortmp;
-	int		txt;
 
 	if (!(((t_base *)obj)->effect.texture))
 		return (((t_base *)obj)->effect.color);
-	txt = ((t_base *)obj)->effect.id_texture > data->obj.nb_texture ? 255 : ((t_base *)obj)->effect.id_texture;
-	if (txt < 255)
-		colortmp = find_texture_color(data, obj, ray, txt);
+	if (((t_base *)obj)->effect.id_texture < data->obj.nb_texture)
+		colortmp = find_texture_color(data, obj, ray, ((t_base *)obj)->effect.id_texture);
 	else
 		colortmp = find_damier(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
