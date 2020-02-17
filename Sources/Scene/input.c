@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/15 16:38:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:04:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void		input(t_data *data)
 		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
 		adad.color;
 	printf("Input [6]\n");
-	// light_cursor(data);
+	light_cursor(data);
 	input_obj(data);
 	printf("Input [7]\n");
 	input_filter(data);

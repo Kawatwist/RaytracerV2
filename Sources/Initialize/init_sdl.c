@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/16 14:47:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 11:23:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			initialize_sdl(t_data *data)
 	if (data->window.window == NULL)
 		return (2);
 	if ((data->window.rend = SDL_CreateRenderer(data->window.window,
-			-1, SDL_RENDERER_ACCELERATED)) == NULL);
+			-1, SDL_RENDERER_ACCELERATED)) == NULL)
 		return (5);
 	initialize_sdl_txt(data);
 	if (data->window.txt == NULL || data->window.oldtxt == NULL)

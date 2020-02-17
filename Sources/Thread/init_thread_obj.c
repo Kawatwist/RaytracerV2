@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:05:28 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/15 14:17:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:03:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int		setup_cam_light(t_data *data, t_thread *tmp)
 			data->obj.nb_light + 1)) == NULL)
 			return (1);
 		ft_memcpy((tmp[i].obj.light), (data->obj.light),
-			sizeof(t_light) * data->obj.nb_light);
+			sizeof(t_light) * data->obj.nb_light + 1);
 		tmp[i].obj.nb_light = data->obj.nb_light;
 		tmp[i].obj.light[data->obj.nb_light].color = 0;
 	}
@@ -58,10 +58,10 @@ static int		setup_cam_light(t_data *data, t_thread *tmp)
 	while (++i < 4)
 	{
 		if ((tmp[i].obj.camera = malloc(sizeof(t_camera) *
-			data->obj.nb_camera)) == NULL)
+			data->obj.nb_camera + 1)) == NULL)
 			return (1);
 		ft_memcpy((tmp[i].obj.camera), (data->obj.camera),
-			sizeof(t_camera) * data->obj.nb_camera);
+			sizeof(t_camera) * data->obj.nb_camera + 1);
 		tmp[i].obj.nb_camera = data->obj.nb_camera;
 	}
 	return (0);

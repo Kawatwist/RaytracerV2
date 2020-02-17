@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/15 16:58:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 16:45:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int			loop(t_data data)
 	printf("Loop [6]\n");
 		input(&data);
 	printf("Loop [7]\n");
-		if (data.input.key[SDL_SCANCODE_ESCAPE] || SDL_QuitRequested())
+		if (SDL_QuitRequested() || data.input.key[SDL_SCANCODE_ESCAPE])
 			break ;
 	printf("Loop [8]\n");
 		if (data.input.key[SDL_SCANCODE_P])

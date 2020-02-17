@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/13 04:04:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 12:05:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static void		clear_normal(t_data *data, t_tga **tofree)
 static void		destroy_text(SDL_Texture *t)
 {
 	if (t != NULL)
+	{
 		SDL_DestroyTexture(t);
+		t = NULL;
+	}
 }
 
 int				clear_memory(t_data *data)

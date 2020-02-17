@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/16 11:03:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 14:02:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int				start_thread(t_data *data)
 			if (!data->flag.time && SDL_GetTicks() - time > 1000)
 				data->flag.time = 1;
 			printf("Thread[4.3]\n");
+			printf("Thread[4.35]\n");
 			if (SDL_QuitRequested())
 				return (stop_execute("", data));
 			printf("Thread[4.4]\n");
