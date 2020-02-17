@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/05 23:37:41 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:55:30 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,26 @@ static void	filter_cartoon(t_data *data, unsigned int i)
 
 	while (++i < data->window.x * data->window.y)
 	{
-		tr = (((unsigned char *)data->window.pxl)[(i << 2) + 2] - ((((unsigned char *)data->window.pxl)[(i << 2) + 2] % 60)));
-		tg = (((unsigned char *)data->window.pxl)[(i << 2) + 1] - ((((unsigned char *)data->window.pxl)[(i << 2) + 1] % 60)));
-		tb = (((unsigned char *)data->window.pxl)[(i << 2) + 0] - ((((unsigned char *)data->window.pxl)[(i << 2) + 0] % 60)));
+		tr = (((unsigned char *)data->window.pxl)[(i << 2) + 2] - ((((unsigned char *)data->window.pxl)[(i << 2) + 2] % 32)));
+		tg = (((unsigned char *)data->window.pxl)[(i << 2) + 1] - ((((unsigned char *)data->window.pxl)[(i << 2) + 1] % 32)));
+		tb = (((unsigned char *)data->window.pxl)[(i << 2) + 0] - ((((unsigned char *)data->window.pxl)[(i << 2) + 0] % 32)));
 		((unsigned int *)data->window.pxl)[i] = ((0xFF << 24) + (tr << 16) + (tg << 8) + tb);
+	}
+	i = -1;
+	while (++i < (data->window.x - 1) * (data->window.y - 1))
+	{
+		tr = (((unsigned char *)data->window.pxl)[(i << 2) + 2] - ((((unsigned char *)data->window.pxl)[((i + 1) << 2) + 2])));
+		tg = (((unsigned char *)data->window.pxl)[(i << 2) + 2] - ((((unsigned char *)data->window.pxl)[((i + data->window.x) << 2) + 2])));
+		if (tr > 32 || tr < -32 || tg > 32 || tg < -32)
+			((unsigned int *)data->window.pxl)[i] = 0xFF000000;
+		tr = (((unsigned char *)data->window.pxl)[(i << 2) + 1] - ((((unsigned char *)data->window.pxl)[((i + 1) << 2) + 1])));
+		tg = (((unsigned char *)data->window.pxl)[(i << 2) + 1] - ((((unsigned char *)data->window.pxl)[((i + data->window.x) << 2) + 1])));
+		if (tr > 32 || tr < -32 || tg > 32 || tg < -32)
+			((unsigned int *)data->window.pxl)[i] = 0xFF000000;
+		tr = (((unsigned char *)data->window.pxl)[i << 2] - ((((unsigned char *)data->window.pxl)[(i + 1) << 2])));
+		tg = (((unsigned char *)data->window.pxl)[i << 2] - ((((unsigned char *)data->window.pxl)[(i + data->window.x) << 2])));
+		if (tr > 32 || tr < -32 || tg > 32 || tg < -32)
+			((unsigned int *)data->window.pxl)[i] = 0xFF000000;
 	}
 }
 

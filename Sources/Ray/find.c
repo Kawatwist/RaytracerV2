@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 06:27:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 16:01:43 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void		*check_object(t_thread *data, t_vec ray, float *dist)
 		}
 		index++;
 	}
-	if (close != NULL && data->flag.filter == 3 &&
-		((t_base *)close)->effect.type == SPHERE)
-		if (sphere_depth(close, ray) < 1)
-			return (NULL);
+	//if (close != NULL && data->flag.filter == 3 &&
+	//	((t_base *)close)->effect.type == SPHERE)
+	//	if (sphere_depth(close, ray) < 1)
+	//		return (NULL);
 	return (*dist < 4000 ? close : NULL);
 }
