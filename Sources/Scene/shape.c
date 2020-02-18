@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/13 00:48:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/17 12:44:18 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,3 +206,25 @@ float		plane(void *plane, t_vec ray)
 	t = -dot_product(sub_vec(p.origin.origin, ray.origin), p.origin.direction);
 	return (t / (-div));
 }
+
+/**
+float		cap_cylinder(void *cyl, t_vec ray)
+{
+	float t;
+	float a;
+	t_plan bottom;
+	t_plan top;
+
+	if (((t_cylinder*)cyl)->hauteur > 0)
+		return cylinder(cyl, ray);
+	else
+	{
+		bottom.origin.origin = ((t_cylinder*)cyl)->origin.origin;
+		bottom.origin.direction = ((t_cylinder*)cyl)->origin.direction;
+		top.origin.origin =
+		bottom.effect = ((t_cylinder*)cyl)->effect;
+		t = cylinder(cyl, ray);
+		a = plane(bottom,)
+	}
+}
+**/
