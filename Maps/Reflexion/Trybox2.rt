@@ -2,9 +2,10 @@
 #			Scene 42 : The Box				#
 #############################################
 [header]
-	xscreen : 400
-	yscreen : 400
-	quality : 2
+	xscreen : 1000
+	yscreen : 1000
+	quality : 0
+	aa : 0
 	bounce : 0
 	camera : 2
 	object : 13

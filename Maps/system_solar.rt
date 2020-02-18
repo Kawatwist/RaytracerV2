@@ -3,13 +3,13 @@
 #############################################
 [header]
 	ambiant : 0xFF000000
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 900
+	yscreen : 900
 	quality : 3
 	bounce : 0
 	camera : 1
 	object : 11
-	light : 1
+	light : 2
 	filter : 0
 	flag_icon : 1
 	nb_texture : 11
@@ -30,6 +30,11 @@
 	color : 0xFFFFFF
 	distance : 400
 	intensity : 1
+[light:1]
+	origin : {0 -5 -5}
+	color : 0xFFFFFF
+	distance : 400
+	intensity : 1
 ############### Camera ##################
 [camera:1]
 	origin : {205 0 30}
@@ -44,6 +49,7 @@
 	rayon : 800.0
 		[effect]
 			id_texture : 0
+			reflection : 255
 			texture : 255
 			ns : 1
 ############### Sun #####################
@@ -51,7 +57,7 @@
 	color : 0xFFFF00
 	origin : {0 0 3}
 	direction : {0 1 0}
-	rayon : 135.0
+	rayon : 80.0
 		[effect]
 			id_texture : 1
 			texture : 255

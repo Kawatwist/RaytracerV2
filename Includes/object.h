@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/17 09:36:44 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/02/18 15:38:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ typedef struct		s_base
 typedef struct		s_light
 {
 	t_point			origin;
+	t_point			direction;
 	int				color;
 	float			distance;
+	float			ang;
 	float			intensity;
+	char			type;
 }					t_light;
 
 typedef	struct		s_sphere

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 22:33:38 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/19 22:33:39 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:59:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ long long tmp, int *flag)
 	(*nbr2) /= tmp;
 }
 
-double			ft_atof(const char *nptr)
+float			ft_atof(const char *nptr)
 {
 	double		nbr;
 	double		nbr2;
@@ -89,5 +89,5 @@ double			ft_atof(const char *nptr)
 	nbr = nbr + nbr2;
 	if (flag & 0x1000000)
 		nbr *= -1;
-	return (nbr);
+	return ((float)nbr);
 }

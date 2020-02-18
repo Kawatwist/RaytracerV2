@@ -8,6 +8,7 @@
 	object : 1
 	light : 2
 	nb_texture : 1
+	ambiant : 0x7F7F7F
 	textures : "./texture/HD2.tga"
 ############### Light ##################
 [light:1]

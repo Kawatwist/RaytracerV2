@@ -23,7 +23,10 @@
 	distance : 3
 	intensity : 1
 [light:1]
-	origin : {0 0.40 0.9}
+	origin : {0 0 0.5}
+	direction : {0 0 1}
+	spot : 1
+	ang : -0.8
 	color : 0xFF0000
 	distance : 3
 	intensity : 1
@@ -42,7 +45,7 @@
 	color : 0x7F7F7F
 			mv : 1
 			id_texture : 5
-			texture : 255
+			texture : 1
 ############### Object #################
 [object:plan]
 	origin : {0 0 -1}
