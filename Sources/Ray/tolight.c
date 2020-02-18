@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/17 21:16:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:16:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ unsigned int		ray_to_light(t_thread *data, t_vec tmp,
 	(void)tmp;
 	index = -1;
 	color = data->ambiant;
-	while (++index < data->obj.nb_light)
+	while (++index < data->obj.nb_light + 1)
 	{
 		if (dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(ray.origin, data->obj.light[index].origin))) > data->obj.light[index].ang && data->obj.light[index].type == 1)
 			;

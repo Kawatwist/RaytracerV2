@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:56:33 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/08 08:18:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 15:32:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void		set_hud(t_data *data)//l'emplacement des icones
 	data->hud.pos[3].h = data->window.y;
 }
 	// data->hud.pos[1].x = 8;
-	// printf("%d\n", data->hud.pos[1].x);
 	// data->hud.pos[1].y = 454;
 	// data->hud.pos[1].w = 30;
 	// data->hud.pos[1].h = 30;
 
 	// data->hud.pos[1].x = 16;
-	// printf("%d\n", data->hud.pos[1].x);
 	// data->hud.pos[1].y = 908;
 	// data->hud.pos[1].w = 60;
 	// data->hud.pos[1].h = 60;

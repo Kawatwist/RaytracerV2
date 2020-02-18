@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:19:41 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/17 21:25:57 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:16:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void			light_cursor(t_data *data)
 	i = -1;
 	if (data->input.button & SDL_BUTTON_LEFT)
 		while (++i < 4)
-			add_light(data, &(((t_thread *)data->thread)[i].obj.light[data->obj.nb_light + 1]),
+			add_light(data, &(((t_thread *)data->thread)[i].obj.light[data->obj.nb_light]),
 				data->input.x, data->input.y);
 	else
 		while (++i < 4)
-			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light + 1].color = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].color = 0;
 }

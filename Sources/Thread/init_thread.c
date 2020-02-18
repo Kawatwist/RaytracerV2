@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/11 23:37:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:52:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,12 @@ static int		setup_struct(t_data *data, t_thread *tmp)
 
 int		init_thread_memory(t_data *data)
 {
-	t_thread	*tmp;
-
 	if ((data->thread = malloc(sizeof(t_thread) * 4)) == NULL)
 		return (1);
-	tmp = data->thread;
 	ft_bzero(&(*data->thread), sizeof(t_thread) * 4);
-	if (setup_struct(data, tmp))
+	if (setup_struct(data, data->thread))
 		return (1);
-	if (setup_obj(data, tmp))
+	if (setup_obj(data, data->thread))
 		return (1);
 	return (0);
 }

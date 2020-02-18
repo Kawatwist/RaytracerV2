@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/12 02:48:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:52:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,6 @@ int				add_point(t_data *data, char **line, int index)
 		((t_triangle *)data->obj.item[index])->p3.origin = get_point_y(*line);
 	else
 		return (1);
-	// if (((t_base *)data->obj.item[index])->effect.color != (int)0xFF0000FF)
-	// {
-	// 	printf("OG : %f\t%f\t%f\n", ((t_triangle *)data->obj.item[index])->origin.origin.x, ((t_triangle *)data->obj.item[index])->origin.origin.y, ((t_triangle *)data->obj.item[index])->origin.origin.z);
-	// 	printf("P2 : %f\t%f\t%f\n", ((t_triangle *)data->obj.item[index])->p2.origin.x, ((t_triangle *)data->obj.item[index])->p2.origin.y, ((t_triangle *)data->obj.item[index])->p2.origin.z);
-	// 	printf("P3 : %f\t%f\t%f\n", ((t_triangle *)data->obj.item[index])->p3.origin.x, ((t_triangle *)data->obj.item[index])->p3.origin.y, ((t_triangle *)data->obj.item[index])->p3.origin.z);
-	// }
 	return (0);
 }
 

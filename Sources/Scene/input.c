@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/17 21:04:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:52:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,10 @@ static void	input_obj(t_data *data)
 
 static void	get_input(t_data *data)
 {
-	printf("Input [1]\n");
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
-	printf("Input [2]\n");
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.rkey, 250);
-	printf("Input [3]\n");
 	// SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
@@ -89,29 +86,20 @@ void		input(t_data *data)
 {
 	static t_c33	adad = {.color = 0, .flag = 1};
 
-	printf("Input [1]\n");
 	get_input(data);
-	printf("Input [2]\n");
 	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
 		create_screenshot(data, data->window.pxl);
-	printf("Input [3]\n");
 	if (key_check(*data, SDL_SCANCODE_V))
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-	printf("Input [4]\n");
 	if (key_check(*data, SDL_SCANCODE_R))
 		data->flag.refresh = (data->flag.refresh ? 0 : 1);
-	printf("Input [5]\n");
 	if (adad.flag == 0 && data->hud.color_obj)
 		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
 		adad.color;
-	printf("Input [6]\n");
 	light_cursor(data);
 	input_obj(data);
-	printf("Input [7]\n");
 	input_filter(data);
-	printf("Input [8]\n");
 	input_hud(data);
-	printf("Input [9]\n");
 	if (data->hud.color_obj)
 	{
 		adad.color =
@@ -120,7 +108,6 @@ void		input(t_data *data)
 		0xFFFFFF;
 		adad.flag = 0;
 	}
-	printf("Input [10]\n");
 	if (key_check(*data, SDL_SCANCODE_O))
 		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
 }

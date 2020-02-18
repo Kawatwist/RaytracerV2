@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/11 02:32:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:52:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void		move_obj(t_data *data, void **obj)
 
 	if (key_old(*data, SDL_SCANCODE_LCTRL))
 		ctrl = 1;
-	printf("%d\n", data->hud.color_obj);
-	printf("%d\n", data->obj.index[1]);
 
 	// if ((*(t_base **)obj)->effect.color != 0xFFFFFF)
 	// 	tmp = (*(t_base **)obj)->effect.color;
