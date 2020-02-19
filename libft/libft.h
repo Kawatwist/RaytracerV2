@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 22:40:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/19 22:41:28 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:59:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ char				*ft_realloc(char *s, size_t n);
 char				*ft_strjoinfree(char const *dst, char const *src, size_t n);
 
 long long			ft_atol(const char *nptr);
-double				ft_atof(const char *nptr);
+float				ft_atof(const char *nptr);
 #endif

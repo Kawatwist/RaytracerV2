@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 12:00:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:21:46 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,8 @@ int			loop(t_data data)
 		}
 		else
 			SDL_Delay(16);
-		printf("avant input\n");
-		input(&data);//bcp de segfault ici
-		printf("apres input\n");
-		if (data.input.key[SDL_SCANCODE_ESCAPE] || SDL_QuitRequested())// segfault ici probable si c'est pas les thread qui font qu'on croit que c'est ici
+		input(&data);
+		if (SDL_QuitRequested() || data.input.key[SDL_SCANCODE_ESCAPE])
 			break ;
 		if (data.input.key[SDL_SCANCODE_P])
 			asked = 1;

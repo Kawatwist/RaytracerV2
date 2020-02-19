@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 17:08:25 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:19:43 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_flag
 	Uint32		antialiasing : 2;
 	Uint32		first : 1;
 	Uint32		time : 1;
+	Uint32		flare : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -47,9 +48,7 @@ struct			s_data
 	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
-	SDL_Texture			*load;
-	SDL_Texture			*lolz;
-	SDL_Texture			*loading;
+	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
 	float				(*dist[5]) (void *obj, t_vec ray);
@@ -76,6 +75,7 @@ float			sphere(void *sphere, t_vec ray);
 */
 int				parsing_light(t_data *data, char **old, char *line);
 t_point			get_point(char *str);
+t_point			get_point_y(char *str);
 int				parsing_files(t_data *data, char *line);
 int				create_light(t_data *data);
 int				create_camera(t_data *data);

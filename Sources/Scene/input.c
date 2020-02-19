@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 16:33:16 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:20:55 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ static void	get_input(t_data *data)
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
-	ft_memcpy(data->input.oldkey, data->input.rkey, 282);
-	SDL_PollEvent(&data->input.ev);
-	ft_memcpy(data->input.rkey, data->input.key, 282);
+	ft_memcpy(data->input.oldkey, data->input.rkey, 250);
+	// SDL_PollEvent(&data->input.ev);
+	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
 
 void		input(t_data *data)
@@ -97,7 +97,7 @@ void		input(t_data *data)
 	if (adad.flag == 0 && data->hud.color_obj)
 		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
 		adad.color;
-	// light_cursor(data);
+	light_cursor(data);
 	input_obj(data);
 	input_filter(data);
 	input_hud(data);
@@ -109,4 +109,6 @@ void		input(t_data *data)
 		0xFFFFFF;
 		adad.flag = 0;
 	}
+	if (key_check(*data, SDL_SCANCODE_O))
+		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
 }

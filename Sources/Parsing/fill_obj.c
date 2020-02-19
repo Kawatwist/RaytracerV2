@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/07 23:24:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:52:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,12 @@ int				add_point(t_data *data, char **line, int index)
 		((t_base *)data->obj.item[index])->origin.origin = get_point(*line);
 	else if (!ft_strncmp("\tdirection :", *line, 12))
 		((t_base *)data->obj.item[index])->origin.direction = get_point(*line);
+	else if (!ft_strncmp("\tp1 :", *line, 5))
+		((t_base *)data->obj.item[index])->origin.origin = get_point_y(*line);
 	else if (!ft_strncmp("\tp2 : ", *line, 5))
-		((t_triangle *)data->obj.item[index])->p2.origin = get_point(*line);
+		((t_triangle *)data->obj.item[index])->p2.origin = get_point_y(*line);
 	else if (!ft_strncmp("\tp3 : ", *line, 5))
-		((t_triangle *)data->obj.item[index])->p3.origin = get_point(*line);
+		((t_triangle *)data->obj.item[index])->p3.origin = get_point_y(*line);
 	else
 		return (1);
 	return (0);

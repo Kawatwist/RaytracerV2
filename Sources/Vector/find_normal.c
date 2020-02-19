@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 02:10:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/12 03:02:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 
 t_point			find_normal_triangle(t_triangle *t)
 {
-	t_point n;
+	t_point n1;
+	t_point n2;
+	t_point ret;
 
-	n = cross_vec(sub_vec(t->origin.origin, t->p2.origin),
-		sub_vec(t->origin.origin, t->p3.origin));
-	return (normalize(n));
+	n1 = cross_vec(sub_vec(t->p1.origin, t->p2.origin),
+		sub_vec(t->p1.origin, t->p3.origin));
+	n2 = cross_vec(sub_vec(t->p3.origin, t->p1.origin),
+		sub_vec(t->p3.origin, t->p2.origin));
+	ret = div_vec2(add_vec(n1, n2), 2.0);
+	return (normalize(ret));
 }
 
 static t_point	cylinder_normal(t_cylinder c, t_vec collide)

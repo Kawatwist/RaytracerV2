@@ -28,11 +28,11 @@
 	intensity : 1
 ############### Camera ################
 [camera:1]
-	origin : {0 0 -0.5}
-	direction : {0 0 1}
-[camera:1]
 	origin : {0 1 0.1}
 	direction : {0 1 0}
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
 ############### Object #################
 [object:plan]
 	origin : {0 0 -1}

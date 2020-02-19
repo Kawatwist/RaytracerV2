@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 05:07:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:53:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ static void		clear_normal(t_data *data, t_tga **tofree)
 		free(data->obj.normal);
 }
 
+static void		destroy_text(SDL_Texture *t)
+{
+	if (t != NULL)
+	{
+		SDL_DestroyTexture(t);
+		t = NULL;
+	}
+}
+
 int				clear_memory(t_data *data)
 {
 	clear_texture(data, data->texture);
@@ -59,10 +68,12 @@ int				clear_memory(t_data *data)
 	ft_memdel((void **)&data->obj.camera);
 	ft_memdel((void **)&data->obj.light);
 	ft_memdel((void **)&data->input.rkey);
-	SDL_DestroyTexture(data->load);
-	SDL_DestroyTexture(data->loading);
-	SDL_DestroyTexture(data->window.txt);
-	SDL_DestroyWindow(data->window.window);
+	destroy_text(data->load.load);
+	destroy_text(data->load.loading);
+	destroy_text(data->load.lolz);
+	destroy_text(data->window.txt);
+	if (data->window.window != NULL)
+		SDL_DestroyWindow(data->window.window);
 	clear_thread(data->thread);
 	ft_memdel(data->thread);
 	data = NULL;

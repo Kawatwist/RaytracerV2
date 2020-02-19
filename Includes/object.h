@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/02 03:57:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 15:38:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ typedef struct		s_base
 typedef struct		s_light
 {
 	t_point			origin;
+	t_point			direction;
 	int				color;
 	float			distance;
+	float			ang;
 	float			intensity;
+	char			type;
 }					t_light;
 
 typedef	struct		s_sphere
@@ -97,11 +100,12 @@ typedef	struct		s_cylinder
 	t_vec			origin;
 	t_effect		effect;
 	float			rayon;
+	float			hauteur;
 }					t_cylinder;
 
 typedef	struct		s_triangle
 {
-	t_vec			origin;
+	t_vec			p1;
 	t_effect		effect;
 	t_vec			p2;
 	t_vec			p3;

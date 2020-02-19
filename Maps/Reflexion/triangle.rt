@@ -1,0 +1,134 @@
+[header]
+	xscreen : 600
+	yscreen : 600
+	quality : 3
+	bounce : 0
+	aa : 0
+	camera : 2
+	object : 1
+	light : 2
+	nb_texture : 1
+	ambiant : 0x7F7F7F
+	textures : "./texture/HD2.tga"
+############### Light ##################
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 15
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
+############### Object #################
+## Front
+# [object:triangle]
+# 	origin : {-0.125 -0.5 1}
+# 	direction : {0 0 -1}
+# 	p3 : {0.125 -0.5 1}
+# 	p2 : {0 -0.75 1}
+# 	color : 0xF4B558
+# 			ns : 1
+# 			texture : 0
+# [object:triangle]
+# 	origin : {-0.25 -0.25 1}
+# 	direction : {0 0 -1}
+# 	p3 : {0 -0.25 1}
+# 	p2 : {-0.125 -0.5 1}
+# 	color : 0xF4B558
+# 			ns : 1
+# 			texture : 0
+# [object:triangle]
+# 	origin : {0.125 -0.5 1}
+# 	direction : {0 0 -1}
+# 	p3 : {0.375 -0.5 1}
+# 	p2 : {0.25 -0.75 1}
+# 	color : 0xFF0000
+# 			ns : 1
+# 			texture : 0
+# # Back
+# [object:triangle]
+# 	origin : {-0.125 -0.5 1.1}
+# 	direction : {0 0 -1}
+# 	p3 : {0.125 -0.5 1.1}
+# 	p2 : {0 -0.75 1.1}
+# 	color : 0xF4B558
+# 			ns : 1
+# 			texture : 0
+# [object:triangle]
+# 	origin : {-0.25 -0.25 1.1}
+# 	direction : {0 0 -1}
+# 	p3 : {0 -0.25 1.1}
+# 	p2 : {-0.125 -0.5 1.1}
+# 	color : 0xF4B558
+# 			ns : 1
+# 			texture : 0
+# [object:triangle]
+# 	origin : {0 0 1.1}
+# 	direction : {0 0 -1}
+# 	p3 : {0 0.5 1.1}
+# 	p2 : {0.125 0 1.1}
+# 	color : 0xF4B558
+# 			ns : 1
+# 			texture : 0
+# Ah ?
+# X
+[object:triangle]
+	p1 : {0 1 1}
+	direction : {0 0 1}
+	p2 : {0.5 0.5 1}
+	p3 : {-0.5 0.5 1}
+	color : 0xFFFFFF
+			ns : 1
+# # Y
+# [object:triangle]
+# 	p1 : {-0.25 0.5 1}
+# 	direction : {0 0 1}
+# 	p2 : {0 0 1}
+# 	p3 : {-0.5 0 1}
+# 	color : 0xFFFFFF
+# 			ns : 1
+# # Z
+# [object:triangle]
+# 	p1 : {0.25 0.5 1}
+# 	direction : {0 0 1}
+# 	p2 : {0 0 1}
+# 	p3 : {0.5 0 1}
+# 	color : 0xFFFFFF
+# 			ns : 1
+# # BACK
+# [object:triangle]
+# 	origin : {0 1 0.5}
+# 	p3 : {0.25 0.5 0.5}
+# 	p2 : {-0.25 0.5 0.5}
+# 	color : 0xFFFFFF
+# 			ns : 1
+# # Y
+# [object:triangle]
+# 	origin : {-0.25 0.5 0.5}
+# 	p2 : {0 0 0.5}
+# 	p3 : {-0.5 0 0.5}
+# 	color : 0xFFFFFF
+# 			ns : 1
+# # Z
+# [object:triangle]
+# 	origin : {0.25 0.5 0.5}
+# 	p2 : {0 0 0.5}
+# 	p3 : {0.5 0 0.5}
+# 	color : 0xFFFFFF
+# 			ns : 1
+# # SIDE
+# [object:triangle]
+# 	origin : {0 -0.5 0.5}
+# 	p3 : {0.25 0 0}
+# 	p2 : {-0.25 0 -0.5}
+# 	color : 0xFF00FF
+# 			ns : 1

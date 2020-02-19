@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:18 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/24 20:14:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/12 02:48:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ static char	*strcpy_between_2c(char *src, char c1, char c2)
 		str[j++] = src[++i];
 	str[j] = '\0';
 	return (str);
+}
+
+t_point		get_point_y(char *str)
+{
+	t_point		pointf;
+	char		*line;
+
+	line = strcpy_between_2c(str, '{', '}');
+	pointf.x = -ft_atof(line);
+	pointf.y = -ft_atof(ft_strchr(line, ' ') + 1);
+	pointf.z = ft_atof(ft_strrchr(line, ' ') + 1);
+	free(line);
+	return (pointf);
 }
 
 t_point		get_point(char *str)

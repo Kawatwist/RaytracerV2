@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 12:00:03 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:22:29 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ static void		loading_sc(t_data *data, int p)
 	pos.w = 100;
 	pos.h = 100;
 	setup_rect(data, &og, &screen, &lolz);
+	SDL_RenderClear(data->window.rend);
 	if (data->flag.first == 0)
-	{
-		SDL_RenderClear(data->window.rend);
-		SDL_RenderCopy(data->window.rend, data->loading, &screen, NULL);
-	}
+		SDL_RenderCopy(data->window.rend, data->load.loading, &screen, NULL);
 	else
 	{
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 		if (data->hud.flag_hud)
 		{
 			pics_on_screen(data);
-			SDL_RenderCopy(data->window.rend, data->lolz, NULL, &lolz);
+			SDL_RenderCopy(data->window.rend, data->load.lolz, NULL, &lolz);
 		}
 	}
-	SDL_RenderCopy(data->window.rend, data->load, &pos, &og);
-	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(48);
+	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
+	SDL_Delay(24);
+	if (data->window.rend != NULL)
+		SDL_RenderPresent(data->window.rend);
+	SDL_Delay(24);
 }
 
 int				start_thread(t_data *data)
@@ -118,6 +118,8 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
+	for (int i = 0; i < 4; i++)
+		pthread_kill(((t_thread *)data->thread)[i].thd, SIGTERM);
 	SDL_RenderClear(data->window.rend);
 	data->flag.first = 1;
 	return (0);

@@ -105,6 +105,7 @@ SRC				=	main.c										\
 					input_filter.c								\
 					set_section.c								\
 					hud_obj.c									\
+					damier.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
@@ -135,7 +136,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
 	@echo "${vertclair}DONE${neutre}"
 	@echo "Need to Rename in rt"
 

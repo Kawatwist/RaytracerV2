@@ -1,0 +1,135 @@
+[header]
+	xscreen : 560
+	yscreen : 440
+	quality : 0
+	bounce : 0
+	aa : 0
+	camera : 2
+	object : 16
+	light : 2
+	nb_texture : 1
+	textures : "./texture/HD2.tga"
+############### Light ##################
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 1
+[light:1]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	distance : 15
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+[camera:1]
+	origin : {0 1 0.1}
+	direction : {0 1 0}
+############### Object #################
+##	Front ##
+[object:plan]
+	origin : {0 0 2}
+	direction : {1 0 -1}
+	color : 0x7F7F7F
+			reflection : 150
+[object:plan]
+	origin : {0 0 2}
+	direction : {-1 0 -1}
+	color : 0x7F7F7F
+			reflection : 150
+[object:plan]
+	origin : {0 0 2}
+	direction : {0 1 -1}
+	color : 0x7F7F7F
+			reflection : 150
+[object:plan]
+	origin : {0 0 2}
+	direction : {0 -1 -1}
+	color : 0x7F7F7F
+			reflection : 150
+# Box
+[object:plan]
+	origin : {0 0 -1}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 100
+[object:plan]
+	origin : {1 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 100
+[object:plan]
+	origin : {-1 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 100
+[object:plan]
+	origin : {0 -1 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 100
+[object:plan]
+	origin : {0 1 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 100
+## Front 8
+[object:triangle]
+	direction : {0 0 -1}
+	p1 : {-0.125 -0.5 1}
+	p2 : {0.125 -0.5 1}
+	p3 : {0 -0.75 1}
+	color : 0xFF
+			ns : 1
+			texture : 0
+[object:triangle]
+	p1 : {-0.25 -0.25 1}
+	direction : {0 0 -1}
+	p2 : {0 -0.25 1}
+	p3 : {-0.125 -0.5 1}
+	color : 0xF4B558
+			ns : 1
+			texture : 0
+[object:triangle]
+	p1 : {0.25 -0.25 1}
+	direction : {0 0 -1}
+	p2 : {0 -0.25 1}
+	p3 : {0.125 -0.5 1}
+	color : 0xF4B558
+			ns : 1
+			texture : 0
+## Back
+[object:triangle]
+	p1 : {-0.125 -0.5 1.1}
+	direction : {0 0 -1}
+	p2 : {0.125 -0.5 1.1}
+	p3 : {0 -0.75 1.1}
+	color : 0xF4B558
+			ns : 1
+			texture : 0
+[object:triangle]
+	p1 : {-0.25 -0.25 1.1}
+	direction : {0 0 -1}
+	p2 : {0 -0.25 1.1}
+	p3 : {-0.125 -0.5 1.1}
+	color : 0xF4B558
+			ns : 1
+			texture : 0
+[object:triangle]
+	p1 : {0.25 -0.25 1.1}
+	direction : {0 0 -1}
+	p2 : {0 -0.25 1.1}
+	p3 : {0.125 -0.5 1.1}
+	color : 0xF4B558
+			ns : 1
+			texture : 0
+## Side R
+[object:triangle]
+	p1 : {0 -0.75 1}
+	direction : {1 -1 0}
+	p2 : {0.25 -0.35 1.1}
+	p3 : {0 -0.75 1.1}
+	color : 0xFF00
+			ns : 1

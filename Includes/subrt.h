@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 15:06:33 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:19:59 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ typedef struct		s_hud
 	int				color_obj;
 	int				type_obj;
 }					t_hud;
+
+typedef struct		s_load
+{
+	SDL_Texture		*load;
+	SDL_Texture		*loading;
+	SDL_Texture		*lolz;
+}					t_load;
 
 typedef struct		s_window
 {

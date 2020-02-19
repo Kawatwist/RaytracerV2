@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/18 17:41:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 13:14:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ int		parsing_light(t_data *data, char **old, char *line)
 		data->parse.error_line += 1;
 		if (!ft_strncmp("\torigin : ", line, 10))
 			data->obj.light[index].origin = get_point(line);
+		else if (!ft_strncmp("\tdirection : ", line, 13))
+			data->obj.light[index].direction = get_point(line);
+		else if (!ft_strncmp("\tspot : ", line, 8))
+			data->obj.light[index].type = ft_atoi(line + 8);
+		else if (!ft_strncmp("\tang : ", line, 7))
+			data->obj.light[index].ang = ft_atof(line + 7);
 		else if (!ft_strncmp("\tcolor : ", line, 9))
 			data->obj.light[index].color = ft_atoi_base(line + 9, 16);
 		else if (!ft_strncmp("\tdistance : ", line, 12))

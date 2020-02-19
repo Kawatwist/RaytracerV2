@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:09:48 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/15 14:15:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	return (ret);
 }
 
-static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray)
+static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray, int index)
 {
 	t_point			uv;
 	unsigned int	ret;
-	int				index;
 
-	index = ((t_base *)obj)->effect.id_texture;
 	uv = data->txt[(int)((t_base *)obj)->effect.type](data, obj, ray, 1);
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ?
 			((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
@@ -67,7 +65,10 @@ unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 
 	if (!(((t_base *)obj)->effect.texture))
 		return (((t_base *)obj)->effect.color);
-	colortmp = find_texture_color(data, obj, ray);
+	if (((t_base *)obj)->effect.id_texture < data->obj.nb_texture)
+		colortmp = find_texture_color(data, obj, ray, ((t_base *)obj)->effect.id_texture);
+	else
+		colortmp = find_damier(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
 		((t_base *)obj)->effect.texture / 255, ((char *)&colortmp)[0]));
 }

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 19:06:14 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:24:23 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int			main(int argc, char *argv[])
 	int			value;
 	t_data		data;
 
+	if (argc != 2)
+	{
+		ft_putendl("Usage : ./rt [Map.rt]");
+		return (0);
+	}
 	if ((value = initialize(&data)) != 0)
 		return (stop_main_execute("Error Initalize : ", &data, value));
 	if ((value = parsing(&data, argc, argv)) != 0)
@@ -38,6 +43,5 @@ int			main(int argc, char *argv[])
 		return (stop_main_execute("Run Stopped : ", &data, value));
 	clear_memory(&data);
 	ft_putstr("See you soon !\n");
-	while (1);
 	return (0);
 }

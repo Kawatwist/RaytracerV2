@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:08:24 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 06:12:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/15 13:57:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			setup_txt_and_normal(t_data *data, t_thread *tmp)
 			tgamp->h = data->texture[j]->h;
 			ft_memcpy((tgamp->data), (data->texture[j]->data),
 				((size_t)(data->texture[j]->w * data->texture[j]->h) * 4));
-			(*tmp).texture[j] = tgamp;
+			tmp->texture[j] = tgamp;
 		}
 	}
 	setup_normal(data, tmp, tgamp);
