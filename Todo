@@ -23,35 +23,55 @@ need touche reset cam[x]
 
 
 
-faire la scene du system solaire sans prendre compte de la distance entre les planetes
+faire la scene du system solaire sans prendre compte de la distance entre les planetes[x]
 
-faire aussi une amelioration pour savoir sur quel obj dans la section ou on est
+faire aussi une amelioration pour savoir sur quel obj dans la section ou on est[\]
 
 dans fichier auteur rajouter cosmin
 
 
 
-faire du code qui permet de prendre un certin nombres de screens a chaque images par frames
+faire du code qui permet de prendre un certain nombres de screens a chaque images par frames[]
+
+
 
 si j'appuis sur une touche on active ou desactive la vu stereoscopique, si active je cree une 2 eme camera decaler pour avoir la stereoscopie
 camera gauche voit a droite et camera droite voit a gauche
 
+je dois faire :
+
+- 2 cameras qui regarde en louchant
+- input vision croise = sdl_scan_code_0
+- lors de l'ajout de la camera placer la deuxieme camera selon la premiere et deplacer la 1 ere
 
 
 
+
+
+
+
+faire filter negatif[x]
 [HUD]
 {
-	scancode_h pour activer/descativer interface hud[]
+	scancode_h pour activer/descativer interface hud[x]
 
-	mettre tous les icones[]
+	mettre tous les icones[x]
 
-	pouvoir swap les icones selon sur quelle section on est[]
+	pouvoir swap les icones selon sur quelle section on est[x]
 
-	mettre une sorte d'indice pour savoir sur qu'elle obj on est[]
-
-	mettre la transparence sur l'icone de la cam[]
-
-	mettre une variable dans hud qui fait que si elle est vrai on l'active et si on met 1 dans header sur hud elle sera activer de base[]
+	mettre une sorte d'indice pour savoir sur qu'elle obj on est[/]   | marchait avant un git pull
 }
 
-faire filter negatif
+
+
+faire un type fill_obj qui recupere dans un fichier avec un code en 3d dedans pour triangle
+fichier type *.obj
+
+
+
+
+norme de :
+
+- interface[x]
+-
+

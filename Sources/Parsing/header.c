@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:09:43 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:02:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ static int	parsing_head_v3(t_data *data, char *line)
 		data->flag.refresh = (ft_atoi(&(line[11])) & 0b1);
 	else if (!ft_strncmp("\tnb_normal : ", line, 13))
 		data->obj.nb_normal = ft_atoi(&(line[13]));
-	else if (!ft_strncmp("\tflag_icon : ", line, 13))
-		data->hud.flag_icon = ft_atoi(&(line[13]));
+	else if (!ft_strncmp("\tflag_hud : ", line, 11))
+		data->hud.flag_hud = ft_atoi(&(line[11]));
 	else if (parsing_head_v4(data, line))
 		return (1);
 	return (0);

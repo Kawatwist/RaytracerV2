@@ -6,11 +6,17 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/05 23:37:41 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/12 01:52:01 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static void	filter_negatif(t_data *data, unsigned int i)
+{
+	while (++i < data->window.x * data->window.y)
+		 ((unsigned int *)data->window.pxl)[i] *= -1;
+}
 
 static void	filter_cartoon(t_data *data, unsigned int i)
 {
@@ -78,5 +84,7 @@ int			post_processing(t_data *data)
 		filter_sepia(data, i);
 	else if (data->flag.filter == 3)
 		filter_cartoon(data, i);
+	else if (data->flag.filter == 4)
+		filter_negatif(data, i);
 	return (0);
 }

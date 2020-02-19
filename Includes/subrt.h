@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 04:37:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 15:06:33 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # define SPHERE_TXT "./texture/Texture/sphere.tga"
 # define LIGHT_TXT "./texture/Texture/light.tga"
 # define HUD_TXT "./texture/Texture/overlay.tga"
+# define CYLINDER_TXT "./texture/Texture/cylinder.tga"
+# define TRINITY_TXT "./texture/Texture/trinity.tga"
+# define CONE_TXT "./texture/Texture/cone.tga"
+# define PLAN_TXT "./texture/Texture/plan.tga"
+# define OEIL_TXT "./texture/Texture/oeil.tga"
 
 typedef enum		e_hud
 {
@@ -41,11 +46,13 @@ typedef struct		s_c33
 
 typedef struct		s_hud
 {
-	SDL_Rect		pos[10];
+	SDL_Rect		pos[12];
 	SDL_Surface		*tmp;
-	SDL_Texture		*texture[10];
-	int				flag_icon;
+	SDL_Texture		*texture[12];
+	SDL_Texture		*rgb[3];
+	int				flag_hud;
 	int				color_obj;
+	int				type_obj;
 }					t_hud;
 
 typedef struct		s_window

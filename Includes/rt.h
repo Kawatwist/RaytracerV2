@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 05:51:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 17:08:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_flag
 	Uint32		perspective : 1;
 	Uint32		bounce : 1;
 	Uint32		refresh : 1;
-	Uint32		filter : 2;
+	Uint32		filter : 3;
 	Uint32		antialiasing : 2;
 	Uint32		first : 1;
 	Uint32		time : 1;
@@ -191,8 +191,15 @@ int				stop_main_execute(char *error, t_data *data, int error_value);
 int				stop_execute(char *error, t_data *data);
 
 int			post_processing(t_data *data);
-int		init_hud(t_data *data);
+void		create_rgb_txt(t_data *data);
+int			init_hud(t_data *data);
 void		set_hud(t_data *data);
-int		pics_on_screen(t_data *data);
+int			pics_on_screen(t_data *data);
+void		set_section(t_data *data);
+void		hud_triangle(t_data *data);
+void		hud_cylinder(t_data *data);
+void		hud_cone(t_data *data);
+void		hud_plan(t_data *data);
+void		hud_sphere(t_data *data);
 
 #endif

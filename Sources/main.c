@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 06:33:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 19:06:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 /*
 **	Cam x = Size De l'ecran demander
@@ -37,5 +38,6 @@ int			main(int argc, char *argv[])
 		return (stop_main_execute("Run Stopped : ", &data, value));
 	clear_memory(&data);
 	ft_putstr("See you soon !\n");
+	while (1);
 	return (0);
 }

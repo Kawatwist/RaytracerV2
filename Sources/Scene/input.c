@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/08 08:16:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 16:33:16 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 static void	stay_in_case(t_data *data)
 {
@@ -86,7 +87,7 @@ void		input(t_data *data)
 {
 	static t_c33	adad = {.color = 0, .flag = 1};
 
-	get_input(data);
+	get_input(data);//segfault ici
 	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
 		create_screenshot(data, data->window.pxl);
 	if (key_check(*data, SDL_SCANCODE_V))

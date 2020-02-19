@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 09:15:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 12:00:03 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void		loading_sc(t_data *data, int p)
 	else
 	{
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
-		if (data->hud.flag_icon)
+		if (data->hud.flag_hud)
 		{
 			pics_on_screen(data);
 			SDL_RenderCopy(data->window.rend, data->lolz, NULL, &lolz);
