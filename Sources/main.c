@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/02/21 17:17:25 by lomasse          ###   ########.fr       */
+=======
+/*   Updated: 2020/02/19 19:24:23 by luwargni         ###   ########.fr       */
+>>>>>>> d1764d4c27891501798fc70bbeb0496308ffe52d
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 /*
 **		Resize Screen ?

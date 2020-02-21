@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 16:41:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 19:02:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,9 @@ void		move_light(t_data *data, void **light)
 void		move_obj(t_data *data, void **obj)
 {
 	static char ctrl = 0;
-	// static int	tmp = 0;
 
 	if (key_old(*data, SDL_SCANCODE_LCTRL))
 		ctrl = 1;
-
-	// if ((*(t_base **)obj)->effect.color != 0xFFFFFF)
-	// 	tmp = (*(t_base **)obj)->effect.color;
-
-	// (*(t_base **)obj)->effect.color = tmp;// trouver le moyen d'avoir la couleur de base
-	// if ((data->hud.color_obj && data->obj.index[1] == 0) || (data->obj.index[1] && data->hud.color_obj))
-	// 	(*(t_base **)obj)->effect.color = 0xFFFFFF;
-
 	if (*obj != NULL)
 		input_move_obj(data, obj);
 	input_color_obj(data, obj, ctrl);

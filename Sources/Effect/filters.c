@@ -6,11 +6,17 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 18:58:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 19:00:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static void	filter_negatif(t_data *data, unsigned int i)
+{
+	while (++i < data->window.x * data->window.y)
+		 ((unsigned int *)data->window.pxl)[i] *= -1;
+}
 
 static void	filter_cartoon(t_data *data, unsigned int i)
 {
@@ -94,6 +100,7 @@ int			post_processing(t_data *data)
 		filter_sepia(data, i);
 	else if (data->flag.filter == 3)
 		filter_cartoon(data, i);
-	// perlin_noise(data);
+	else if (data->flag.filter == 4)
+		filter_negatif(data, i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 15:40:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 19:01:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		loading_sc(t_data *data, int p)
 	else
 	{
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
-		if (data->hud.flag_icon)
+		if (data->hud.flag_hud)
 		{
 			pics_on_screen(data);
 			SDL_RenderCopy(data->window.rend, data->load.lolz, NULL, &lolz);

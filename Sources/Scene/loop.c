@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/21 17:19:51 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 19:02:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static int	looping(t_data *data)
 
 	SDL_LockTexture(data->window.txt, NULL,
 			&data->window.pxl, &data->window.pitch);
-	if ((err = start_thread(data)))
+	printf("avant start_thread\n");
+	if ((err = start_thread(data)))//segfault
 		return (err);
 	post_processing(data);
 	data->percent++;
@@ -26,9 +27,9 @@ static int	looping(t_data *data)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	if (data->hud.flag_icon)
+	printf("avant pics_on_screen\n");
+	if (data->hud.flag_hud)
 		pics_on_screen(data);
-	init_hud(data);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }

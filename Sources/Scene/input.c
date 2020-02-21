@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/21 15:59:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 19:00:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		input(t_data *data)
 {
 	static t_c33	select = {.color = 0, .flag = 1};
 
-	get_input(data);
+	get_input(data);//segfault ici
 	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
 		create_screenshot(data, data->window.pxl);
 	if (key_check(*data, SDL_SCANCODE_V))

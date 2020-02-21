@@ -99,9 +99,12 @@ SRC				=	main.c										\
 					filters.c									\
 					init_hud.c									\
 					place_hud.c									\
+					rgb_hud.c									\
 					set_hud.c									\
 					input_hud.c									\
 					input_filter.c								\
+					set_section.c								\
+					hud_obj.c									\
 					damier.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
@@ -119,7 +122,7 @@ vpath %.c $(foreach dir, $(SRC_PATH), $(dir):)
 
 IFLAG			= $(foreach dir, $(INC_PATH), -I$(dir) )
 
-CFLAG 			= -Wall -Wextra -Werror -pthread -Ofast -flto -march=native -g0
+CFLAG 			= -Wall -Wextra -Werror -pthread -Ofast -flto -march=native -g3
 
 LFLAG 			= $(foreach dir, $(LIB_PATH), -L $(dir) ) $(foreach lib, $(LIBS), -l$(lib) ) $(foreach fmw, $(FRAMEWORK), -framework $(fmw) )
 
@@ -133,7 +136,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
 	@echo "${vertclair}DONE${neutre}"
 	@echo "Need to Rename in rt"
 
