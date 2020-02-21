@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:52:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 16:41:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void		move_obj(t_data *data, void **obj)
 	// if ((data->hud.color_obj && data->obj.index[1] == 0) || (data->obj.index[1] && data->hud.color_obj))
 	// 	(*(t_base **)obj)->effect.color = 0xFFFFFF;
 
-
-	input_move_obj(data, obj);
+	if (*obj != NULL)
+		input_move_obj(data, obj);
 	input_color_obj(data, obj, ctrl);
 	if (key_old(*data, KEY_O) && !ctrl &&
 	((*(t_base **)obj)->effect.type == SPHERE ||

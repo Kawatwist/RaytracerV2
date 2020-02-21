@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:54:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 17:19:51 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,67 @@ void		check_time(t_data *data)
 	post = SDL_GetTicks();
 }
 
-int			loop(t_data data)
+static void			parse_line(t_data *data, char *line)
+{
+	char *ret;
+
+	if ((ret = ft_strstr(line, "o =")) != NULL)
+		data->flag.antialiasing = ft_atoi(ret + 4) & 0x2;
+}
+
+static int			signals(t_data *data)
+{
+	char *line;
+
+	line = NULL;
+	if (data->input.key[SDL_SCANCODE_ESCAPE])
+		return (1);
+	if (data->input.key[SDL_SCANCODE_LCTRL] && data->input.key[SDL_SCANCODE_C])
+	{
+		ft_putstr("^C");
+		return (1);
+	}
+	if (data->input.key[SDL_SCANCODE_LCTRL] && data->input.key[SDL_SCANCODE_Y])
+	{
+		get_next_line(1, &line);
+		parse_line(data, line);
+		free(line);
+	}
+	return (0);
+}
+
+int			loop(t_data *data)
 {
 	int		err;
 	int		asked;
 
-	data.obj.type_index = 0;
-	if ((err = init_thread_memory(&data)) != 0)
+	data->obj.type_index = 0;
+	if ((err = init_thread_memory(data)) != 0)
 		return (err);
 	asked = 1;
 	while (TRUE)
 	{
-		check_time(&data);
-		if (data.flag.refresh || asked)
+		check_time(data);
+		if (data->flag.refresh || asked)
 		{
 			ft_putstr("\nRefresh Mode Enable\n");
-			if ((err = looping(&data)) != 0)
+			if ((err = looping(data)) != 0)
 				return (err);
 			asked = 0;
 		}
 		else
 			SDL_Delay(16);
-		input(&data);
-		if (SDL_QuitRequested() || data.input.key[SDL_SCANCODE_ESCAPE])
-			break ;
-		if (data.input.key[SDL_SCANCODE_P])
+		if (SDL_QuitRequested())
+		{
+			printf("Red Cross\n");
+			break;
+		}
+		input(data);
+		if (signals(data))
+			break;
+		if (data->input.key[SDL_SCANCODE_P])
 			asked = 1;
-		real_time_icon(&data);
+		real_time_icon(data);
 	}
 	return (0);
 }

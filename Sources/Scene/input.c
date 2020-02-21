@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:52:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 15:59:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
 static void	stay_in_case(t_data *data)
 {
@@ -22,6 +23,8 @@ static void	stay_in_case(t_data *data)
 	? data->obj.index[1] = 0 : 0;
 	data->obj.index[1] < 0 ? data->obj.index[1] =
 	data->obj.nb_item - 1 : 0;
+	if (((t_base *)data->obj.item[data->obj.index[1]]) == NULL)
+		data->obj.index[1] = 0;
 	data->obj.index[2] >= data->obj.nb_light
 	? data->obj.index[2] = 0 : 0;
 	data->obj.index[2] < 0 ? data->obj.index[2] =
@@ -81,10 +84,25 @@ static void	get_input(t_data *data)
 	// SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
+// REMOVE
+void		check_mutex(t_data *data)
+{
+	int i = -1;
+	if (key_check(*data, SDL_SCANCODE_G))
+	{
+		while (++i < 4)
+		{
+			while (pthread_mutex_trylock(&((t_thread *)(data)->thread)[i].mutex))
+				;
+			((t_thread *)(data)->thread)[i].signal = SIGTSTP;
+			pthread_mutex_unlock(&((t_thread *)(data)->thread)[i].mutex);
+		}
+	}
+}
 
 void		input(t_data *data)
 {
-	static t_c33	adad = {.color = 0, .flag = 1};
+	static t_c33	select = {.color = 0, .flag = 1};
 
 	get_input(data);
 	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
@@ -93,21 +111,31 @@ void		input(t_data *data)
 		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 	if (key_check(*data, SDL_SCANCODE_R))
 		data->flag.refresh = (data->flag.refresh ? 0 : 1);
-	if (adad.flag == 0 && data->hud.color_obj)
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-		adad.color;
+
+	if (select.flag == 0 && data->hud.color_obj)
+	{
+		for (int i = 0; i < 4; i ++)
+			((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
+				select.color;
+		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = select.color;
+	}
 	light_cursor(data);
 	input_obj(data);
 	input_filter(data);
 	input_hud(data);
 	if (data->hud.color_obj)
 	{
-		adad.color =
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color;
+		select.color =
+		((t_base *)(((t_thread *)data->thread)[0].obj.item[data->obj.index[1]]))->effect.color;
+		for (int i = 0; i < 4; i ++)
+		((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
+			0xF3DA75;
 		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-		0xFFFFFF;
-		adad.flag = 0;
+			0xF3DA75;
+		select.flag = 0;
 	}
+
 	if (key_check(*data, SDL_SCANCODE_O))
 		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
+	check_mutex(data);
 }

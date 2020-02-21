@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:08:24 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/15 13:57:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/20 15:22:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 static int		setup_normal(t_data *data, t_thread *tmp, t_tga *tgamp)
 {
 	int		j;
-
-	if (((*tmp).normal = malloc(sizeof(t_tga **)
+	if ((tmp->normal = malloc(sizeof(void *)
 		* data->obj.nb_normal)) == NULL)
 		return (1);
-	ft_bzero(tmp->normal, sizeof(t_tga **) * data->obj.nb_normal);
+	ft_bzero(tmp->normal, sizeof(void *) * data->obj.nb_normal);
 	j = -1;
 	while (++j < data->obj.nb_normal)
 	{
@@ -31,11 +30,11 @@ static int		setup_normal(t_data *data, t_thread *tmp, t_tga *tgamp)
 			if ((tgamp->data = malloc(((size_t)(data->normal[j]->w *
 				data->normal[j]->h) * 4))) == NULL)
 				return (1);
-			tgamp->w = data->texture[j]->w;
-			tgamp->h = data->texture[j]->h;
+			tgamp->w = data->normal[j]->w;
+			tgamp->h = data->normal[j]->h;
 			ft_memcpy((tgamp->data), (data->normal[j]->data),
 				((size_t)(data->normal[j]->w * data->normal[j]->h) * 4));
-			(*tmp).normal[j] = tgamp;
+			tmp->normal[j] = tgamp;
 		}
 	}
 	return (0);

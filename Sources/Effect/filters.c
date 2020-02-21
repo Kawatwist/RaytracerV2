@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/17 15:55:30 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/02/19 18:58:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int			post_processing(t_data *data)
 		filter_sepia(data, i);
 	else if (data->flag.filter == 3)
 		filter_cartoon(data, i);
+	// perlin_noise(data);
 	return (0);
 }

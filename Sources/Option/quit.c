@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/08 06:23:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 17:18:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,25 @@ static char		*find_error(int error_value)
 }
 
 /*
-**	Can't Stop the Program properly
+**	Can't Wait The Thread
 */
 
-int				stop_execute(char *error, t_data *data)
+int				stop_execute(char *error, t_data **data)
 {
 	int		i;
 
 	i = -1;
 	while (++i < 4)
-		pthread_cancel(((t_thread *)data->thread)[i].thd);
+	{
+		while (pthread_mutex_trylock(&((t_thread *)(*data)->thread)[i].mutex))
+			;
+		((t_thread *)(*data)->thread)[i].signal = SIGTERM;
+		pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
+	}
+	i = -1;
+	while (++i < 4)
+		while (pthread_join(((t_thread *)(*data)->thread)[i].thd, NULL))
+			;
 	ft_putstr(error);
 	return (18);
 }

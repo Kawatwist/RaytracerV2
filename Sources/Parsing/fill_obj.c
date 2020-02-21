@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:52:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/19 13:47:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int		fill_effect_special(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\trefraction : ", line, 16))
 		effect->refraction = ft_atoi(line + 16);
+	else if (!ft_strncmp("\t\t\tid_refraction : ", line, 19))
+		effect->id_refraction = ft_atoi(line + 19);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
 		effect->opacity = ft_atoi(line + 13);
 	else if (!ft_strncmp("\t\t\treflection : ", line, 15))

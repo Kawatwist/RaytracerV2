@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/17 20:43:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/18 16:02:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@ static int		check_effect(t_object obj)
 
 	index = -1;
 	while (++index < obj.nb_item && obj.item[index] != NULL)
-	{
-		// if (((t_base *)obj.item[index])->effect.id_texture > obj.nb_texture)
-		// 	return (4);
 		if (((t_base *)obj.item[index])->effect.id_normal > obj.nb_normal)
 			return (4);
-	}
 	return (0);
 }
 

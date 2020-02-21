@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:52:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 15:57:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		setup_function(t_thread *tmp)
 
 static int		setup_struct(t_data *data, t_thread *tmp)
 {
+	static pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 	int	i;
 
 	i = -1;
@@ -51,6 +52,9 @@ static int		setup_struct(t_data *data, t_thread *tmp)
 		tmp[i].bounce = data->bounce;
 		tmp[i].ambiant = data->ambiant;
 		tmp[i].pos = i * ((data->window.y * data->window.x) >> 2);
+		tmp[i].signal = 0;
+		tmp[i].mutex = mut;
+		// pthread_mutex_init(tmp[i].mutex, NULL);
 	}
 	return (0);
 }
