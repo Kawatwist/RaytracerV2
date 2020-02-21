@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:29:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/20 17:33:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,15 +184,18 @@ int				real_time_icon(t_data *data);
 int				set_icone(t_data *data);
 int				loading(t_data *data);
 int				main(int argc, char *argv[]);
-int				loop(t_data data);
+int				loop(t_data *data);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
-int				stop_execute(char *error, t_data *data);
-
-int			post_processing(t_data *data);
-int		init_hud(t_data *data);
-void		set_hud(t_data *data);
-int		pics_on_screen(t_data *data);
+int				stop_execute(char *error, t_data **data);
+/*
+**			Post Processing
+*/
+void			perlin_noise(t_data *data);
+int				post_processing(t_data *data);
+int				init_hud(t_data *data);
+void			set_hud(t_data *data);
+int				pics_on_screen(t_data *data);
 
 #endif

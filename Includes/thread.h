@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/09 02:42:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 15:55:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef	struct			s_thread
 	int					percent;
 	int					bounce;
 	int					len;
+	pthread_mutex_t		mutex;
+	char				signal;
 	pthread_t			thd;
 }						t_thread;
 /*
