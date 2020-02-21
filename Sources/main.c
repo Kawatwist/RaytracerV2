@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/02/21 17:17:25 by lomasse          ###   ########.fr       */
-=======
-/*   Updated: 2020/02/19 19:24:23 by luwargni         ###   ########.fr       */
->>>>>>> d1764d4c27891501798fc70bbeb0496308ffe52d
+/*   Updated: 2020/02/21 19:03:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "thread.h"
 
 /*
 **		Resize Screen ?
@@ -53,7 +48,6 @@ int			main(int argc, char *argv[])
 		return (stop_main_execute("Icon Not Setup Correctly : ", &data, value));
 	if ((value = loop(&data)) != 0 && value != 50)
 		return (stop_main_execute("Run Stopped : ", &data, value));
-	printf("Ici\n");
 	clear_memory(&data);
 	ft_putstr("See you soon !\n");
 	return (0);
