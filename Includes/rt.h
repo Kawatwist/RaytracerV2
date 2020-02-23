@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 19:06:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/23 15:19:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "subrt.h"
 
 # define TRUE 1
+# define PATH "./Texture/\0"
 # define XSCREEN 1000
 # define YSCREEN 1000
 
@@ -39,6 +40,14 @@ typedef struct	s_flag
 
 typedef struct s_data	t_data;
 
+typedef struct	s_font
+{
+	SDL_Texture	*font_maj;
+	SDL_Texture	*font;
+	SDL_Rect	pos;
+	char		*str;
+}				t_font;
+
 struct			s_data
 {
 	t_window			window;
@@ -48,6 +57,7 @@ struct			s_data
 	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
+	t_font				font;
 	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
@@ -178,8 +188,15 @@ int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize(t_data *data);
 /*
+**			Font
+*/
+int				print_text(t_data *data, int x, int y, int size);
+SDL_Rect		set_font_pos(char a);
+int				init_font(t_data *data);
+/*
 **			Basic
 */
+void			resize(t_data *data);
 int				real_time_icon(t_data *data);
 int				set_icone(t_data *data);
 int				loading(t_data *data);
@@ -197,15 +214,15 @@ int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);
 
-void		create_rgb_txt(t_data *data);
-int			init_hud(t_data *data);
-void		set_hud(t_data *data);
-int			pics_on_screen(t_data *data);
-void		set_section(t_data *data);
-void		hud_triangle(t_data *data);
-void		hud_cylinder(t_data *data);
-void		hud_cone(t_data *data);
-void		hud_plan(t_data *data);
-void		hud_sphere(t_data *data);
+void			create_rgb_txt(t_data *data);
+int				init_hud(t_data *data);
+void			set_hud(t_data *data);
+int				pics_on_screen(t_data *data);
+void			set_section(t_data *data);
+void			hud_triangle(t_data *data);
+void			hud_cylinder(t_data *data);
+void			hud_cone(t_data *data);
+void			hud_plan(t_data *data);
+void			hud_sphere(t_data *data);
 
 #endif

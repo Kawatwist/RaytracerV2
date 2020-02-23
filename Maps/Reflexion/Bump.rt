@@ -4,8 +4,8 @@
 #														#
 #########################################################
 [header]
-	xscreen : 560
-	yscreen : 440
+	xscreen : 581
+	yscreen : 896
 	camera : 1
 	quality : 0
 	aa : 0
@@ -46,14 +46,12 @@
 	direction : {-1 0 0}
 	color : 0x7F7F7F
 			texture : 255
-			transparancy : 125
 			normal : 255
 [object:plan]
 	origin : {-1 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
 			texture : 255
-			transparancy : 125
 			normal : 255
 [object:plan]
 	origin : {0 0.5 0}

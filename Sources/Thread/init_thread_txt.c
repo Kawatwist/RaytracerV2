@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:08:24 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/20 15:22:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/22 22:25:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			setup_txt_and_normal(t_data *data, t_thread *tmp)
 	int				j;
 	t_tga			*tgamp;
 
-	if (!(tmp->texture = malloc(sizeof(void *) * data->obj.nb_texture)))
+	if (!(tmp->texture = ft_memalloc(sizeof(void *) * data->obj.nb_texture)))
 		return (1);
 	ft_bzero(tmp->texture, sizeof(void *) * data->obj.nb_texture);
 	j = -1;

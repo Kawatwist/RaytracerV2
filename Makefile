@@ -39,6 +39,7 @@ SRC				=	main.c										\
 					init.c										\
 					init_sdl.c									\
 					icon.c										\
+					init_font.c									\
 					init_cam.c									\
 					rot_init_cam.c								\
 					check.c										\
@@ -93,6 +94,7 @@ SRC				=	main.c										\
 					input_move_cam.c							\
 					input_textures.c							\
 					screenshot.c								\
+					resize_screen.c								\
 					create_type.c								\
 					shape_cartoon.c								\
 					antialiasing.c								\

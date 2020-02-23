@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 17:18:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/23 12:57:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int				stop_execute(char *error, t_data **data)
 		pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
 	}
 	i = -1;
+	printf("I'll Kill\n");
 	while (++i < 4)
 		while (pthread_join(((t_thread *)(*data)->thread)[i].thd, NULL))
 			;
+	printf("Join Done\n");
 	ft_putstr(error);
 	return (18);
 }

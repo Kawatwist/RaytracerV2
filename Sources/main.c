@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 19:12:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/22 18:37:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 **		Check Leaks
 */
 
-void	__attribute__((destructor)) lost();
+// void	__attribute__((destructor)) lost();
 
-void		lost()
-{
-	while(1);
-}
+// void		lost()
+// {
+// 	while(1);
+// }
 
 int			main(int argc, char *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 19:13:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/23 14:53:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int			initialize_sdl(t_data *data)
 	if (loading(data) != 0)
 		return (1);
 	if (init_hud(data) != 0)
+		return (1);
+	if (init_font(data))
 		return (1);
 	return (0);
 }
