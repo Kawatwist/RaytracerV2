@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:55 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 18:56:50 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	input_obj(t_data *data)
 	data->move[data->obj.type_index](data, obj);
 }
 
-static void	get_input(t_data *data)
+void	get_input(t_data *data)
 {
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
@@ -86,29 +86,31 @@ static void	get_input(t_data *data)
 void		input(t_data *data)
 {
 	static t_c33	adad = {.color = 0, .flag = 1};
+	void			*tmp;
 
+	tmp = data->obj.item[data->obj.index[1]];
 	get_input(data);//segfault ici
-	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-		create_screenshot(data, data->window.pxl);
-	if (key_check(*data, SDL_SCANCODE_V))
-		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-	if (key_check(*data, SDL_SCANCODE_R))
-		data->flag.refresh = (data->flag.refresh ? 0 : 1);
-	if (adad.flag == 0 && data->hud.color_obj)
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-		adad.color;
-	light_cursor(data);
-	input_obj(data);
-	input_filter(data);
-	input_hud(data);
-	if (data->hud.color_obj)
+	if (data->screen.interface == RUN)
 	{
-		adad.color =
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color;
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-		0xFFFFFF;
-		adad.flag = 0;
+		if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
+			create_screenshot(data, data->window.pxl);
+		if (key_check(*data, SDL_SCANCODE_V))
+			data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
+		if (key_check(*data, SDL_SCANCODE_R))
+			data->flag.refresh = (data->flag.refresh ? 0 : 1);
+		if (adad.flag == 0 && data->hud.color_obj)
+			((t_base *)(tmp))->effect.color = adad.color;
+		light_cursor(data);
+		input_obj(data);
+		input_filter(data);
+		input_hud(data);
+		if (data->hud.color_obj)
+		{
+			adad.color = ((t_base *)(tmp))->effect.color;
+			((t_base *)(tmp))->effect.color = 0xFFFFFF;
+			adad.flag = 0;
+		}
+		if (key_check(*data, SDL_SCANCODE_O))
+			data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
 	}
-	if (key_check(*data, SDL_SCANCODE_O))
-		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
 }

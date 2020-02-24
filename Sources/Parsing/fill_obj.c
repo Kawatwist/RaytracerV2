@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:52:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 13:51:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				fill_obj(t_data *data, char **line, int index)
 	((t_base *)data->obj.item[index])->effect.type == CYLINDER))
 		((t_sphere *)data->obj.item[index])->rayon = ft_atof(*line + 9);
 	else if (!ft_strncmp("\tangle : ", *line, 9) &&
-	(((t_base *)data->obj.item[index])->effect.type == CONE))
+	(((t_base *)data->obj.item[index])->effect.type == CONE))//lol
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
 	else if (!add_point(data, line, index))
 		return (0);

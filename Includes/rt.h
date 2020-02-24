@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 19:19:43 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/23 15:14:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_flag
 	Uint32		perspective : 1;
 	Uint32		bounce : 1;
 	Uint32		refresh : 1;
+	Uint32		asked : 1;
 	Uint32		filter : 3;
 	Uint32		antialiasing : 2;
 	Uint32		first : 1;
@@ -39,9 +40,17 @@ typedef struct	s_flag
 
 typedef struct s_data	t_data;
 
+typedef struct		s_interface
+{
+	SDL_Texture		*(scenetxt[4]);
+	char			interface;
+	int				(*screen[4]) (t_data *data);
+}					t_interface;
+
 struct			s_data
 {
 	t_window			window;
+	t_interface			screen;
 	t_input				input;
 	t_object			obj;
 	t_scene				parse;
@@ -176,6 +185,7 @@ void			rot_init_cam_z(t_data *data, t_point *base,
 					t_point *direction, int index);
 int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
+int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
 /*
 **			Basic
@@ -189,17 +199,27 @@ void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 int				stop_execute(char *error, t_data *data);
-
-int			post_processing(t_data *data);
-void		create_rgb_txt(t_data *data);
-int			init_hud(t_data *data);
-void		set_hud(t_data *data);
-int			pics_on_screen(t_data *data);
-void		set_section(t_data *data);
-void		hud_triangle(t_data *data);
-void		hud_cylinder(t_data *data);
-void		hud_cone(t_data *data);
-void		hud_plan(t_data *data);
-void		hud_sphere(t_data *data);
+/*
+**			Interface
+*/
+void			get_input(t_data *data);
+int				home_screen(t_data *data);
+int				info_screen(t_data *data);
+int				sub_loop(t_data *data);
+/*
+**			Run
+*/
+int				looping(t_data *data);
+int				post_processing(t_data *data);
+void			create_rgb_txt(t_data *data);
+int				init_hud(t_data *data);
+void			set_hud(t_data *data);
+int				pics_on_screen(t_data *data);
+void			set_section(t_data *data);
+void			hud_triangle(t_data *data);
+void			hud_cylinder(t_data *data);
+void			hud_cone(t_data *data);
+void			hud_plan(t_data *data);
+void			hud_sphere(t_data *data);
 
 #endif

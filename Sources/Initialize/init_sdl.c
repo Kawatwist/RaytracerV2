@@ -6,11 +6,52 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:17 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/23 12:56:12 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+int				initialize_scene(t_data *data)
+{
+	t_tga		*txt;
+	SDL_Surface	*tmp;
+
+	tmp = NULL;
+	if ((txt = load_tga("./texture/home.tga")) == NULL)
+		return (1);
+	if ((tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
+			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)) == NULL)
+		return (5);
+	if ((data->screen.scenetxt[0] =
+		SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
+		exit(0);
+	SDL_FreeSurface(tmp);
+	free_tga(txt);
+	if ((txt = load_tga("./texture/Invalid.tga")) == NULL)
+		return (1);
+	if ((tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
+			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)) == NULL)
+		return (5);
+	if ((data->screen.scenetxt[3] =
+		SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
+		exit(0);
+	SDL_FreeSurface(tmp);
+	free_tga(txt);
+	return (0);
+}
+
+static int	init_sub(t_data *data)
+{
+	data->screen.interface = HOME;
+	data->screen.screen[HOME] = home_screen;
+	// data->screen->screen[NOFILE] = path_screen;
+	data->screen.screen[RUN] = sub_loop;
+	data->screen.screen[INFO] = info_screen;
+	if (initialize_scene(data))
+		return (5);
+	return (0);
+}
+
 
 static int	initialize_sdl_txt(t_data *data)
 {
@@ -37,12 +78,16 @@ int			initialize_sdl(t_data *data)
 	initialize_sdl_txt(data);
 	if (data->window.txt == NULL || data->window.oldtxt == NULL)
 		return (4);
-    SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
+	SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
 	SDL_PollEvent(&data->input.ev);
+	data->input.key = (Uint8 *)SDL_GetKeyboardState(NULL);
+	ft_bzero(data->input.oldkey, 282);
 	SDL_RenderPresent(data->window.rend);
 	if (loading(data) != 0)
 		return (1);
 	if (init_hud(data) != 0)
 		return (1);
+	if ((init_sub(data)) != 0)
+		return (5);
 	return (0);
 }

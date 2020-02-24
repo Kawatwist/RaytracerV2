@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 19:22:11 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/21 19:16:48 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void		move_obj(t_data *data, void **obj)
 		ctrl = 1;
 	input_move_obj(data, obj);
 	input_color_obj(data, obj, ctrl);
-	if (key_old(*data, KEY_O) && !ctrl &&
+	if (key_old(*data, KEY_G) && !ctrl &&
 	((*(t_base **)obj)->effect.type == SPHERE ||
 	(*(t_base **)obj)->effect.type == CYLINDER))
 		(*(t_sphere **)obj)->rayon < 100.0
 		? (*(t_sphere **)obj)->rayon += 0.1 : 0.0;
-	else if (key_old(*data, KEY_O) && ctrl)
+	else if (key_old(*data, KEY_G) && ctrl)
 		(*(t_sphere **)obj)->rayon > 0.1
 		? (*(t_sphere **)obj)->rayon -= 0.1 : 0.0;
 	input_descartes_obj(data, obj, ctrl);

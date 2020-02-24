@@ -6,13 +6,13 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 19:21:46 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:39:11 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int	looping(t_data *data)
+int			looping(t_data *data)
 {
 	int		err;
 
@@ -63,35 +63,44 @@ void		check_time(t_data *data)
 	post = SDL_GetTicks();
 }
 
+int			sub_loop(t_data *data)
+{
+	int err;
+
+	if (data->flag.refresh || data->flag.asked)
+	{
+		ft_putstr("\nRefresh Mode Enable\n");
+		printf("avant looping\n");
+		if ((err = looping(data)) != 0)// souvent segfault
+			return (err);
+		data->flag.asked = 0;
+	}
+	else
+		SDL_Delay(16);
+	real_time_icon(data);
+	return (0);
+}
+
 int			loop(t_data data)
 {
 	int		err;
-	int		asked;
 
 	data.obj.type_index = 0;
 	if ((err = init_thread_memory(&data)) != 0)
 		return (err);
-	asked = 1;
+	data.flag.asked = 1;
 	while (TRUE)
 	{
 		check_time(&data);
-		if (data.flag.refresh || asked)
-		{
-			ft_putstr("\nRefresh Mode Enable\n");
-			printf("avant looping\n");
-			if ((err = looping(&data)) != 0)// souvent segfault
-				return (err);
-			asked = 0;
-		}
-		else
-			SDL_Delay(16);
+		data.screen.screen[data.screen.interface & 0xFF](&data);
 		input(&data);
-		if (SDL_QuitRequested() || data.input.key[SDL_SCANCODE_ESCAPE])
+		SDL_PumpEvents();
+		if (data.input.key[SDL_SCANCODE_ESCAPE])
 			break ;
 		if (data.input.key[SDL_SCANCODE_P])
-			asked = 1;
-		printf("avant real_time_icon\n");
-		real_time_icon(&data);
+			data.flag.asked = 1;
+		if (key_check(data, SDL_SCANCODE_BACKSPACE))
+		data.screen.interface = HOME;
 	}
 	return (0);
 }

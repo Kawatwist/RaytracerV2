@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 19:19:59 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/21 17:59:35 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # define CONE_TXT "./texture/Texture/cone.tga"
 # define PLAN_TXT "./texture/Texture/plan.tga"
 # define OEIL_TXT "./texture/Texture/oeil.tga"
+
+typedef enum		e_lol
+{
+	HOME,
+	NOFILE,
+	RUN,
+	INFO,
+}					t_lol;
 
 typedef enum		e_hud
 {

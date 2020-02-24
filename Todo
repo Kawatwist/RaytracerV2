@@ -75,3 +75,31 @@ norme de :
 - interface[x]
 -
 
+
+- dans home_screen faire que si on click avec la souris sur un endroit dans la
+	fenetre on ouvre ce sur quoi on a clique[]
+
+- faire une page info[]
+
+- ensuite pouvoir faire un click sur soit run ou info lors du menu pour lancer la page correspondante[]
+
+-
+
+505 420
+
+[											]
+[											]
+[											]
+[											]
+[	  65;370 /460		   505;845/420		] [65; 460]              [370; 460]
+[		[ Run ]				[ Info ]		]
+[	  65;370 /715		   505;845/715		] [65; 715]              [370; 715]
+[											]
+[											]
+[											]
+
+petit probleme avec le rafraichissement losque que l'on entre dans le programme (RUN) et qu'on retourne au menu et que on retourne dans le RUN l'image n'apparait pas quand le refraiche est activer[x]
+	//surement parce que lorsque je rentre dans RUN c'est la que le refresh a une valeur et c'est pour ca que quand je reviens mon image change pas
+
+changer le nom de la static dans : []
+	void		input(t_data *data)

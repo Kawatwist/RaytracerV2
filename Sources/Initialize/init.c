@@ -6,14 +6,14 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/07 23:09:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/22 16:37:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-int		initialize(t_data *data)
+int			initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->flag.refresh += 0b100000;
@@ -24,7 +24,7 @@ int		initialize(t_data *data)
 	data->dist[1] = plane;
 	data->dist[2] = cone;
 	data->dist[3] = cylinder;
-	data->dist[3] = triangle;
+	data->dist[4] = triangle;
 	data->txt[0] = texture_sphere;
 	data->txt[1] = texture_plan;
 	data->txt[2] = texture_cone;
