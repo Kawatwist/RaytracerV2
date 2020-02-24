@@ -6,19 +6,18 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/24 13:39:11 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 20:00:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int			looping(t_data *data)
+static int	looping(t_data *data)
 {
 	int		err;
 
 	SDL_LockTexture(data->window.txt, NULL,
 			&data->window.pxl, &data->window.pitch);
-	printf("avant start_thread\n");
 	if ((err = start_thread(data)))//segfault
 		return (err);
 	post_processing(data);
@@ -27,9 +26,10 @@ int			looping(t_data *data)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	printf("avant pics_on_screen\n");
 	if (data->hud.flag_hud)
 		pics_on_screen(data);
+	data->font.str = ft_strdup("Ok boomer\0");
+	print_text(data, 0, 0, 30);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
@@ -81,26 +81,72 @@ int			sub_loop(t_data *data)
 	return (0);
 }
 
-int			loop(t_data data)
+static void			parse_line(t_data *data, char *line)
+{
+	char *ret;
+
+	if ((ret = ft_strstr(line, "o =")) != NULL)
+		data->flag.antialiasing = ft_atoi(ret + 4) & 0x2;
+}
+
+static int			signals(t_data *data)
+{
+	char *line;
+
+	line = NULL;
+	if (data->input.key[SDL_SCANCODE_ESCAPE])
+		return (1);
+	if (data->input.key[SDL_SCANCODE_LCTRL] && data->input.key[SDL_SCANCODE_C])
+	{
+		ft_putstr("^C");
+		return (1);
+	}
+	if (data->input.key[SDL_SCANCODE_LCTRL] && data->input.key[SDL_SCANCODE_Y])
+	{
+		get_next_line(1, &line);
+		parse_line(data, line);
+		free(line);
+	}
+	return (0);
+}
+
+int			loop(t_data *data)
 {
 	int		err;
 
-	data.obj.type_index = 0;
-	if ((err = init_thread_memory(&data)) != 0)
+	data->obj.type_index = 0;
+	if ((err = init_thread_memory(data)) != 0)
 		return (err);
-	data.flag.asked = 1;
+	data->flag.asked = 1;
 	while (TRUE)
 	{
-		check_time(&data);
-		data.screen.screen[data.screen.interface & 0xFF](&data);
-		input(&data);
+		check_time(data);
+		data->screen.screen[data->screen.interface & 0xFF](data);
 		SDL_PumpEvents();
-		if (data.input.key[SDL_SCANCODE_ESCAPE])
+		if (data->input.key[SDL_SCANCODE_ESCAPE])
 			break ;
-		if (data.input.key[SDL_SCANCODE_P])
-			data.flag.asked = 1;
-		if (key_check(data, SDL_SCANCODE_BACKSPACE))
-		data.screen.interface = HOME;
+		if (data->input.key[SDL_SCANCODE_P])
+			data->flag.asked = 1;
+		if (key_check(*data, SDL_SCANCODE_BACKSPACE))
+			data->screen.interface = HOME;
+		resize(data);
+		if (data->flag.refresh || data->flag.asked)
+		{
+			ft_putstr("\nRefresh Mode Enable\n");
+			if ((err = looping(data)) != 0)
+				return (err);
+			data->flag.asked = 0;
+		}
+		else
+			SDL_Delay(16);
+		if (SDL_QuitRequested())
+			break;
+		input(data);
+		if (signals(data))
+			break;
+		// if (data->input.key[SDL_SCANCODE_P])
+		// 	data->flag.asked = 1;
+		// real_time_icon(data);
 	}
 	return (0);
 }

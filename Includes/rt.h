@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/23 15:14:14 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:56:17 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "subrt.h"
 
 # define TRUE 1
+# define PATH "./Texture/\0"
 # define XSCREEN 1000
 # define YSCREEN 1000
 
@@ -47,6 +48,14 @@ typedef struct		s_interface
 	int				(*screen[4]) (t_data *data);
 }					t_interface;
 
+typedef struct	s_font
+{
+	SDL_Texture		*font_maj;
+	SDL_Texture		*font;
+	SDL_Rect		pos;
+	char			*str;
+}				t_font;
+
 struct			s_data
 {
 	t_window			window;
@@ -57,6 +66,7 @@ struct			s_data
 	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
+	t_font				font;
 	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
@@ -188,17 +198,24 @@ int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
 /*
+**			Font
+*/
+int				print_text(t_data *data, int x, int y, int size);
+SDL_Rect		set_font_pos(char a);
+int				init_font(t_data *data);
+/*
 **			Basic
 */
+void			resize(t_data *data);
 int				real_time_icon(t_data *data);
 int				set_icone(t_data *data);
 int				loading(t_data *data);
 int				main(int argc, char *argv[]);
-int				loop(t_data data);
+int				loop(t_data *data);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);
-int				stop_execute(char *error, t_data *data);
+int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
@@ -209,11 +226,15 @@ int				sub_loop(t_data *data);
 /*
 **			Run
 */
-int				looping(t_data *data);
+/*
+**			Post Processing
+*/
+void			perlin_noise(t_data *data);
 int				post_processing(t_data *data);
-void			create_rgb_txt(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);
+
+void			create_rgb_txt(t_data *data);
 int				pics_on_screen(t_data *data);
 void			set_section(t_data *data);
 void			hud_triangle(t_data *data);

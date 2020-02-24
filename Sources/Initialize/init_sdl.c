@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/23 12:56:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:41:24 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			initialize_sdl(t_data *data)
 	if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER))
 		return (1);
 	data->window.window = SDL_CreateWindow("RT", 500, 500, data->window.x,
-		data->window.y, SDL_WINDOW_SHOWN);
+		data->window.y, SDL_WINDOW_RESIZABLE);
 	if (data->window.window == NULL)
 		return (2);
 	if ((data->window.rend = SDL_CreateRenderer(data->window.window,
@@ -89,5 +89,7 @@ int			initialize_sdl(t_data *data)
 		return (1);
 	if ((init_sub(data)) != 0)
 		return (5);
+	if (init_font(data))
+		return (1);
 	return (0);
 }

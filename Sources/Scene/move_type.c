@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/21 19:16:48 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 20:00:14 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void		move_obj(t_data *data, void **obj)
 
 	if (key_old(*data, SDL_SCANCODE_LCTRL))
 		ctrl = 1;
-	input_move_obj(data, obj);
+	if (*obj != NULL)
+		input_move_obj(data, obj);
 	input_color_obj(data, obj, ctrl);
 	if (key_old(*data, KEY_G) && !ctrl &&
 	((*(t_base **)obj)->effect.type == SPHERE ||

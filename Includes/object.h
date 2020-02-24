@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 19:16:10 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:37:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_effect
 	int				id_texture;
 	int				id_normal;
 	int				id_rotation;
+	float			id_refraction;
 	char			type;
 	unsigned char	reflection;
 	unsigned char	opacity;

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:14:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 20:09:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int				initialize_cam(t_data *data)
 		base = fill_vec(0, 0, 1);
 		preset_cam(data, index);
 		apply_rot(data, base, direction, index);
-		base = normalize(fill_vec(1.9, 2.6, -1));
 		data->obj.camera[index].oldpos.origin =
 			veccpy(data->obj.camera[index].pos.origin);
 		data->obj.camera[index].oldpos.direction =

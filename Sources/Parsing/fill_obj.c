@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/24 13:51:40 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 20:00:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int		fill_effect_special(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\trefraction : ", line, 16))
 		effect->refraction = ft_atoi(line + 16);
+	else if (!ft_strncmp("\t\t\tid_refraction : ", line, 19))
+		effect->id_refraction = ft_atoi(line + 19);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
 		effect->opacity = ft_atoi(line + 13);
 	else if (!ft_strncmp("\t\t\treflection : ", line, 15))
@@ -90,7 +92,7 @@ int				fill_obj(t_data *data, char **line, int index)
 	((t_base *)data->obj.item[index])->effect.type == CYLINDER))
 		((t_sphere *)data->obj.item[index])->rayon = ft_atof(*line + 9);
 	else if (!ft_strncmp("\tangle : ", *line, 9) &&
-	(((t_base *)data->obj.item[index])->effect.type == CONE))//lol
+	(((t_base *)data->obj.item[index])->effect.type == CONE))
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
 	else if (!add_point(data, line, index))
 		return (0);

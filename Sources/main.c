@@ -6,18 +6,24 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 18:59:53 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:40:52 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#include "thread.h"
 
 /*
-**	Cam x = Size De l'ecran demander
+**		Resize Screen ?
 **
-**	Could we destroy window to resize ?
+**		Check Leaks
 */
+
+// void	__attribute__((destructor)) lost();
+
+// void		lost()
+// {
+// 	while(1);
+// }
 
 int			main(int argc, char *argv[])
 {
@@ -39,7 +45,7 @@ int			main(int argc, char *argv[])
 		return (stop_main_execute("Error Initialize SDL : ", &data, value));
 	if ((value = set_icone(&data)) != 0)
 		return (stop_main_execute("Icon Not Setup Correctly : ", &data, value));
-	if ((value = loop(data)) != 0 && value != 50)
+	if ((value = loop(&data)) != 0 && value != 50)
 		return (stop_main_execute("Run Stopped : ", &data, value));
 	clear_memory(&data);
 	ft_putstr("See you soon !\n");

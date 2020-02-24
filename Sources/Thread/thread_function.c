@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:14:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/21 17:15:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 		quality(data, x, y, curr);
 }
 
+int		quitrequested(t_thread *data)
+{
+	int 	value;
+
+	value = 0;
+	while (pthread_mutex_trylock(&data->mutex))
+		;
+	value = data->signal;
+	pthread_mutex_unlock(&data->mutex);
+	return (value);
+}
+
 void	*thread_function(void *arg)
 {
 	t_thread 		*data;
@@ -75,14 +87,13 @@ void	*thread_function(void *arg)
 
 	data = arg;
 	curr = -1;
-	if (data->flag.antialiasing == 0)
+	while (++curr < data->len)
 	{
-		while (++curr < data->len)
+		if (quitrequested(data))
+			pthread_exit(NULL);
+		if (data->flag.antialiasing == 0)
 			basic_render(data, &x, &y, &curr);
-	}
-	else
-	{
-		while (++curr < data->len)
+		else
 			aa_render(data, &x, &y, &curr);
 	}
 	return (arg);

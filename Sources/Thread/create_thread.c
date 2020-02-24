@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 17:19:58 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:57:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int				start_thread(t_data *data)
 			return (err);
 	}
 	time = SDL_GetTicks();
-	i = -1;
+	i = 0;
 	while (i < 4)
 	{
 		timeout.tv_sec = 0;
@@ -101,8 +101,8 @@ int				start_thread(t_data *data)
 		{
 			if (!data->flag.time && SDL_GetTicks() - time > 1000)
 				data->flag.time = 1;
-			// if (SDL_QuitRequested())
-			// 	return (stop_execute("", data));
+			if (SDL_QuitRequested())
+				return (stop_execute("", &data));
 			if (data->flag.first == 0 || data->flag.time)
 			{
 				loading_sc(data, pos);
@@ -118,8 +118,6 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
-	for (int i = 0; i < 4; i++)
-		pthread_kill(((t_thread *)data->thread)[i].thd, SIGTERM);
 	SDL_RenderClear(data->window.rend);
 	data->flag.first = 1;
 	return (0);
