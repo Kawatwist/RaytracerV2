@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 17:15:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 17:08:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int		quitrequested(t_thread *data)
 	while (pthread_mutex_trylock(&data->mutex))
 		;
 	value = data->signal;
+	if (value == THREAD_SIG)
+		data->signal = NOTHREAD;
 	pthread_mutex_unlock(&data->mutex);
 	return (value);
 }
@@ -87,14 +89,18 @@ void	*thread_function(void *arg)
 
 	data = arg;
 	curr = -1;
+	data->signal = THREAD_ALIVE;
 	while (++curr < data->len)
 	{
-		if (quitrequested(data))
+		if (quitrequested(data) == THREAD_SIG)
 			pthread_exit(NULL);
 		if (data->flag.antialiasing == 0)
 			basic_render(data, &x, &y, &curr);
 		else
 			aa_render(data, &x, &y, &curr);
+		if (!(curr % 1000))
+			SDL_Delay(2);
 	}
+	data->signal = NOTHREAD;
 	return (arg);
 }

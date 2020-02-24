@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/23 12:57:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:56:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char		*find_error(int error_value)
 **	Can't Wait The Thread
 */
 
-int				stop_execute(char *error, t_data **data)
+int				send_thread_signal(t_data **data)
 {
 	int		i;
 
@@ -39,15 +39,46 @@ int				stop_execute(char *error, t_data **data)
 	{
 		while (pthread_mutex_trylock(&((t_thread *)(*data)->thread)[i].mutex))
 			;
-		((t_thread *)(*data)->thread)[i].signal = SIGTERM;
+		if (((t_thread *)(*data)->thread)[i].signal == THREAD_ALIVE)
+			((t_thread *)(*data)->thread)[i].signal = THREAD_SIG;
 		pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
 	}
-	i = -1;
-	printf("I'll Kill\n");
-	while (++i < 4)
-		while (pthread_join(((t_thread *)(*data)->thread)[i].thd, NULL))
+	return (0);
+}
+
+int				wait_thread(t_data **data)
+{
+	int		i;
+	struct timespec	timeout;
+
+	i = 0;
+	timeout.tv_nsec = ETIMEDOUT;
+	timeout.tv_sec = 0;
+	while (i < 4)
+	{
+		while (pthread_mutex_trylock(&((t_thread *)(*data)->thread)[i].mutex))
 			;
-	printf("Join Done\n");
+		if (((t_thread *)(*data)->thread)[i].signal == THREAD_SIG)
+			pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
+		else if (((t_thread *)(*data)->thread)[i].signal == THREAD_ALIVE)
+		{
+			pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
+			return (1);
+		}
+		else
+		{
+			pthread_mutex_unlock(&((t_thread *)(*data)->thread)[i].mutex);
+			i++;
+		}
+	}
+	return (0);
+}
+
+int				stop_execute(char *error, t_data **data)
+{
+	send_thread_signal(data);
+	while (wait_thread(data))
+		send_thread_signal(data);
 	ft_putstr(error);
 	return (18);
 }
