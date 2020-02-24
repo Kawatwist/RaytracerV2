@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/23 15:20:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:19:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ static int	looping(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 	if (data->hud.flag_hud)
 		pics_on_screen(data);
-	data->font.str = ft_strdup("Ok boomer\0");
+	if (data->obj.type_index == 0)
+		data->font.str = ft_strjoinfree("Current Cam :\0", ft_itoa(data->obj.index[0]), 2);
+	else if (data->obj.type_index == 1)
+		data->font.str = ft_strjoinfree("Current Obj :\0", ft_itoa(data->obj.index[1]), 2);
+	else
+		data->font.str = ft_strjoinfree("Current Light :\0", ft_itoa(data->obj.index[2]), 2);
 	print_text(data, 0, 0, 30);
 	SDL_RenderPresent(data->window.rend);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/23 15:19:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:31:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 # define TRUE 1
 # define PATH "./Texture/\0"
+# define THREAD_SIG SIGTERM
+# define THREAD_ALIVE 1
+# define NOTHREAD 0
 # define XSCREEN 1000
 # define YSCREEN 1000
 

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/23 15:22:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/24 15:39:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,24 @@ SDL_Rect			set_font_pos(char a)
 	pos.h = 0;
 	if (a >= 'A' && a <= 'Z')
 	{
-		pos.w = 95;
-		pos.h = 100;
+		pos.w = 110;
+		pos.h = 115;
 		pos.x = ((a - 'A') % 9) * pos.w;
 		pos.y = ((a - 'A') / 9) * pos.h;
 	}
 	else if (a >= 'a' && a <= 'z')
 	{
-		pos.w = 95;
-		pos.h = 100;
+		pos.w = 110;
+		pos.h = 115;
 		pos.x = ((a - 'a') % 9) * pos.w;
-		pos.y = ((a - 'a') / 9) * pos.h;
+		pos.y = 385 + (((a - 'a') / 9) * pos.h);
+	}
+	else if (a >= '0' && a <= '9')
+	{
+		pos.w = 110;
+		pos.h = 115;
+		pos.x = ((a - '0') % 9) * pos.w;
+		pos.y = 765 + (((a - '0') / 9) * pos.h);
 	}
 	return (pos);
 }
@@ -50,10 +57,7 @@ int			print_text(t_data *data, int x, int y, int size)
 		pos.h = size;
 		pos.x = x + ((pos.w - (size / 3)) * i);
 		pos.y = y;
-		if (data->font.str[i] < 'a')
-			SDL_RenderCopy(data->window.rend, data->font.font_maj, &data->font.pos, &pos);
-		else
-			SDL_RenderCopy(data->window.rend, data->font.font, &data->font.pos, &pos);
+		SDL_RenderCopy(data->window.rend, data->font.font_maj, &data->font.pos, &pos);
 	}
 	if (data->font.str)
 		free(data->font.str);
@@ -84,9 +88,7 @@ static SDL_Texture	*load_txt(t_data *data, char *path)
 
 int					init_font(t_data *data)
 {
-	if ((data->font.font_maj = load_txt(data, "./texture/maj.tga")) == NULL)
-		return (1);
-	if ((data->font.font = load_txt(data, "./texture/low.tga")) == NULL)
+	if ((data->font.font_maj = load_txt(data, "./texture/Letter.tga")) == NULL)
 		return (1);
 	return (0);
 }
