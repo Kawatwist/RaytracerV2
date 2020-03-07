@@ -1,0 +1,78 @@
+#############################################
+#			Scene 42 : Billard				#
+#############################################
+[header]
+	ambiant : 0x7f007f
+	xscreen : 1000
+	yscreen : 1000
+	refresh : 1
+	quality : 1
+	bounce : 1
+	camera : 1
+	object : 6
+	light : 1
+	filter : 0
+	flag_hud : 0
+	nb_texture : 1
+	textures : "texture/Texture/oeil.tga"
+############### Light ##################
+[light:1]
+	origin : {10.0 -10.0 -20.0}
+	color : 0xFFFFe6
+	distance : 50
+	intensity : 1
+############### Camera ##################
+[camera:1]
+	origin : {0 0 -30.0}
+	direction : {0 0 1}
+############### Object ##################
+############### Sphere ##################
+############### Univers #################
+[object:sphere]
+	color : 0xfdbb2c
+	origin : {0.0 0.0 0.0}
+	direction : {0.0 0.0 0.0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255
+[object:sphere]
+	color : 0xfb6621
+	origin : {3.0 -5.0 0.0}
+	direction : {0 0 0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255
+[object:sphere]
+	color : 0xfdc02d
+	origin : {-3.0 -5.0 0.0}
+	direction : {0 0 0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255
+[object:sphere]
+	color : 0x033232
+	origin : {6.0 -10.0 0.0}
+	direction : {0 0 0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255
+[object:sphere]
+	color : 0x48040f
+	origin : {-6.0 -10.0 0.0}
+	direction : {0 0 0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255
+[object:sphere]
+	color : 0xFFFFFF
+	origin : {0.0 -10.0 0.0}
+	direction : {0 0 0}
+	rayon : 3
+			reflection : 25
+			mv : 1
+			texture : 255

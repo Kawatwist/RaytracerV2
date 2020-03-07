@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:16:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/07 00:46:57 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ static float		dist(t_thread *data, t_vec ray, int index, float *obj)
 	return (obj[0]);
 }
 
-unsigned int		ray_to_light(t_thread *data, t_vec tmp,
-				t_vec ray, int base)
+unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
 	int		color;
 	int		index;
@@ -87,27 +86,29 @@ unsigned int		ray_to_light(t_thread *data, t_vec tmp,
 	float	len;
 	float	dot;
 
-	(void)tmp;
 	index = -1;
 	color = data->ambiant;
 	while (++index < data->obj.nb_light + 1)
 	{
-		if (dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(ray.origin, data->obj.light[index].origin))) > data->obj.light[index].ang && data->obj.light[index].type == 1)
+		if (dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin))) > data->obj.light[index].ang && data->obj.light[index].type == 1)
 			;
 		else
 		{
-			dot = -(((1 - dot_product(normalize(sub_vec(ray.origin,
+			dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 				data->obj.light[index].origin)),
-				normalize(ray.direction))) * -1) / 2.0);
-			len = data->obj.light[index].distance - length(sub_vec(ray.origin,
+				normalize(neg_norm(r.tmp.direction))))));
+			len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
 				data->obj.light[index].origin));
-			obj[1] = stop_light(data, data->obj.light[index], ray);
-			obj[0] = dist(data, ray, index, obj);
+			obj[1] = stop_light(data, data->obj.light[index], r.tmp);
+			obj[0] = (dist(data, r.tmp, index, obj));
 			len > 1 ? len = 1 : 0;
 			len < 0 ? len = 0 : 0;
+			dot > 1 ? dot = 1 : 0;
+			dot < 0 ? dot = 0 : 0;
 			dot *= data->obj.light[index].intensity;
-			color = add_color(color, light_color(base, set_color(0,
-				data->obj.light[index].color, (dot * len) * obj[0], -1)));
+			color = create_specular(data, color, &r, dot);
+			color = add_color(color, light_color(r.color[0], set_color(0,
+				data->obj.light[index].color, (dot * obj[0] * len), -1)));
 		}
 	}
 	return (color);

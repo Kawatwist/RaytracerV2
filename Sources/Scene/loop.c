@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/24 20:14:34 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/25 18:14:07 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,33 +125,17 @@ int			loop(t_data *data)
 	data->flag.asked = 1;
 	while (TRUE)
 	{
-		check_time(data);
-		data->screen.screen[data->screen.interface & 0xFF](data);
-		SDL_PumpEvents();
-		if (data->input.key[SDL_SCANCODE_ESCAPE])
-			break ;
-		if (data->input.key[SDL_SCANCODE_P])
-			data->flag.asked = 1;
 		if (key_check(*data, SDL_SCANCODE_BACKSPACE))
 			data->screen.interface = HOME;
-		resize(data);
-		if (data->flag.refresh || data->flag.asked)
-		{
-			ft_putstr("\nRefresh Mode Enable\n");
-			if ((err = looping(data)) != 0)
-				return (err);
-			data->flag.asked = 0;
-		}
-		else
-			SDL_Delay(16);
+		check_time(data);
 		if (SDL_QuitRequested())
 			break;
+		data->screen.screen[data->screen.interface & 0xFF](data);
 		input(data);
 		if (signals(data))
 			break;
-		// if (data->input.key[SDL_SCANCODE_P])
-		// 	data->flag.asked = 1;
-		// real_time_icon(data);
+		if (data->input.key[SDL_SCANCODE_P])
+			data->flag.asked = 1;
 	}
 	return (0);
 }

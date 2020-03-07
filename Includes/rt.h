@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 20:14:48 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/05 21:15:09 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct		s_interface
 	SDL_Texture		*(scenetxt[4]);
 	char			interface;
 	int				(*screen[4]) (t_data *data);
+	unsigned int	page;
 }					t_interface;
 
 typedef struct	s_font
@@ -245,5 +246,15 @@ void			hud_cylinder(t_data *data);
 void			hud_cone(t_data *data);
 void			hud_plan(t_data *data);
 void			hud_sphere(t_data *data);
+
+void			info_book(t_data *data, SDL_Rect *pos);
+void			first_page(t_data *data);
+void			second_page(t_data *data);
+void			third_page(t_data *data);
+void			fourth_page(t_data *data);
+int				hitbox(int	x, int	y, SDL_Rect *pos);//mettre autre part
+
+
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 16:42:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/07 00:41:21 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ t_point					texture_cone(void *data,
 /*
 **			Light
 */
-unsigned int			ray_to_light(t_thread *data, t_vec ray,
-							t_vec tmp, int base);
+int						create_specular(t_thread *data, int color, t_ray *r, float dot);
+unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist);
 void					*check_object(t_thread *data, t_vec ray,

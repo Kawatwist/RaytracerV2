@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_cursor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:19:41 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:16:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/02 19:16:23 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,19 @@ void			light_cursor(t_data *data)
 	i = -1;
 	if (data->input.button & SDL_BUTTON_LEFT)
 		while (++i < 4)
+		{
 			add_light(data, &(((t_thread *)data->thread)[i].obj.light[data->obj.nb_light]),
 				data->input.x, data->input.y);
+		}
 	else
 		while (++i < 4)
+		{
 			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].color = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].distance = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].intensity = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].type = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].ang = 0;
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].origin = fill_vec(0, 0, 0);
+			((t_thread *)data->thread)[i].obj.light[data->obj.nb_light].direction = fill_vec(0, 0, 0);
+		}
 }

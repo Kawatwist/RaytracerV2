@@ -109,6 +109,12 @@ SRC				=	main.c										\
 					set_section.c								\
 					hud_obj.c									\
 					damier.c									\
+					info_book.c									\
+					first_page.c								\
+					second_page.c								\
+					third_page.c								\
+					fourth_page.c								\
+					create_specular.c							\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

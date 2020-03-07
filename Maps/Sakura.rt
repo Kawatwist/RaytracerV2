@@ -9,18 +9,12 @@
 	bounce : 0
 	camera : 2
 	object : 10
-	light : 2
-	flag_icon : 0
+	light : 1
 	refresh : 1
 ############### Light ##################
 [light:1]
 	origin : {-0.49 -0.40 0.45}
 	color : 0xFF00FF
-	distance : 5
-	intensity : 1
-[light:1]
-	origin : {0.49 -0.40 0.45}
-	color : 0xFF00AFAF
 	distance : 5
 	intensity : 1
 ############### Camera ################

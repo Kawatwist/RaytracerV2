@@ -3,23 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 15:39:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/02/28 20:27:03 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+static void			special_characters(char a, SDL_Rect *pos)
+{
+	unsigned int count;
+
+	count = (a == '"') ? 1 : 2;
+	if (a == '.')
+		count = 0;
+	pos->w = 110;
+	pos->h = 115;
+	pos->x = ((58 + count - '9') % 9) * pos->w;
+	pos->y = 880 + (((58 + count - '9') / 9) * pos->h);
+}
+
 SDL_Rect			set_font_pos(char a)
 {
 	SDL_Rect	pos;
 
-	pos.x = 0;
-	pos.y = 0;
-	pos.w = 0;
-	pos.h = 0;
+	ft_bzero(&pos, sizeof(SDL_Rect));
 	if (a >= 'A' && a <= 'Z')
 	{
 		pos.w = 110;
@@ -41,10 +51,12 @@ SDL_Rect			set_font_pos(char a)
 		pos.x = ((a - '0') % 9) * pos.w;
 		pos.y = 765 + (((a - '0') / 9) * pos.h);
 	}
+	else if (a == '.' || a == '"' || a == '*')
+		special_characters(a, &pos);
 	return (pos);
 }
 
-int			print_text(t_data *data, int x, int y, int size)
+int					print_text(t_data *data, int x, int y, int size)
 {
 	int		i;
 	SDL_Rect pos;
@@ -88,7 +100,7 @@ static SDL_Texture	*load_txt(t_data *data, char *path)
 
 int					init_font(t_data *data)
 {
-	if ((data->font.font_maj = load_txt(data, "./texture/Letter.tga")) == NULL)
+	if ((data->font.font_maj = load_txt(data, "./texture/Letter2.tga")) == NULL)
 		return (1);
 	return (0);
 }

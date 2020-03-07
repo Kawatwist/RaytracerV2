@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 19:41:24 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/28 16:52:10 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				initialize_scene(t_data *data)
 		exit(0);
 	SDL_FreeSurface(tmp);
 	free_tga(txt);
-	if ((txt = load_tga("./texture/Invalid.tga")) == NULL)
+	if ((txt = load_tga("./texture/Grimoire.tga")) == NULL)
 		return (1);
 	if ((tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
 			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)) == NULL)

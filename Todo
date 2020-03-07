@@ -76,12 +76,9 @@ norme de :
 -
 
 
-- dans home_screen faire que si on click avec la souris sur un endroit dans la
-	fenetre on ouvre ce sur quoi on a clique[]
+- faire une page info[x]
 
-- faire une page info[]
-
-- ensuite pouvoir faire un click sur soit run ou info lors du menu pour lancer la page correspondante[]
+- ensuite pouvoir faire un click sur soit run ou info lors du menu pour lancer la page correspondante[x]
 
 -
 
@@ -98,8 +95,25 @@ norme de :
 [											]
 [											]
 
-petit probleme avec le rafraichissement losque que l'on entre dans le programme (RUN) et qu'on retourne au menu et que on retourne dans le RUN l'image n'apparait pas quand le refraiche est activer[x]
-	//surement parce que lorsque je rentre dans RUN c'est la que le refresh a une valeur et c'est pour ca que quand je reviens mon image change pas
+
+faire la nouvelle terre derriere le grimoire[x]
+
+need ajout de caractere "*" "." "icone de tourne page"
+
+need incementation du rayon du cone
 
 changer le nom de la static dans : []
 	void		input(t_data *data)
+
+POUR LE SPECULAR :
+
+	- probablement avoir besoin de la pos de la light
+	- specular color =
+	-
+
+
+
+
+need enlever oeil_txt et mettre a la place invalid.tga
+
+quand il n'y a pas -fsanitize=address dans le grimoire il ny a pas le texte

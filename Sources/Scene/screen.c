@@ -6,15 +6,16 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 15:48:39 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/24 20:01:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/02/28 12:45:01 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		hitbox(int	x, int	y, SDL_Rect *pos)//surement mettre autre part
+int		hitbox(int	x, int	y, SDL_Rect *pos)//mettre autre part
 {
-	if (x >= pos->x && y >= pos->y && x <= pos->x + pos->w && y <= pos->y + pos->h)
+	if (x >= pos->x && y >= pos->y &&
+		x <= pos->x + pos->w && y <= pos->y + pos->h)
 		return (1);
 	return (0);
 }
@@ -41,9 +42,14 @@ static void		mouse_get_run(t_data *data, SDL_Rect *pos)
 
 int				info_screen(t_data *data)
 {
+	SDL_Rect		pos;
+
 	if (key_check(*data, SDL_SCANCODE_BACKSPACE))
 		data->screen.interface = HOME;
-	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[3], NULL, NULL);
+	get_input(data);
+	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[3],
+		NULL, NULL);
+	info_book(data, &pos);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
@@ -52,18 +58,19 @@ int				 home_screen(t_data *data)
 {
 	SDL_Rect	pos;
 
-	printf("%d || %d\n", data->input.x, data->input.y);
 	if (data->flag.refresh == 0)
 		data->flag.asked = 1;
 	get_input(data);
-	if ((data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y)) == 1)
+	if ((data->input.button =
+		(int)SDL_GetMouseState(&data->input.x, &data->input.y)) == 1)
 	{
 		mouse_get_run(data, &pos);
 		mouse_get_info(data, &pos);
 	}
 	if (key_check(*data, SDL_SCANCODE_RETURN))
 		data->screen.interface = RUN;
-	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[0], NULL, NULL);
+	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[0],
+		NULL, NULL);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
