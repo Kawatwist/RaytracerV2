@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/05 21:15:09 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/08 00:58:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ struct			s_data
 	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
-	float				(*dist[5]) (void *obj, t_vec ray);
-	t_point				(*txt[5]) (void *data, void *obj,
+	float				(*dist[6]) (void *obj, t_vec ray);
+	t_point				(*txt[6]) (void *data, void *obj,
 							t_vec ray, int choose);
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
@@ -88,6 +88,7 @@ float			sphere_depth(void *sphere, t_vec ray);
 /*
 **			Collide Object
 */
+float			disk(void *di, t_vec ray);
 float			triangle(void *tri, t_vec ray);
 float			cone(void *coo, t_vec ray);
 float			cylinder(void *cylinder, t_vec ray);

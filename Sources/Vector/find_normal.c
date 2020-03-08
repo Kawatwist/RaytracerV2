@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 15:58:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/08 01:30:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_point			find_normal(void *object, t_vec collide)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == CYLINDER)
 		normal = cylinder_normal(*((t_cylinder *)object), collide);
+	else if ((((t_base *)object)->effect.type) == DISK)
+		normal = veccpy(((t_plan *)object)->origin.direction);
 	else
 		normal = cone_normal(*((t_cone *)object), collide);
 	return (normalize(normal));

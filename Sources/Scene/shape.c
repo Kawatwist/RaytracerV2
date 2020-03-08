@@ -3,15 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/17 12:44:18 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/03/08 01:56:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
+
+float		disk(void *di, t_vec ray)
+{
+	t_disk	d;
+	float	t;
+	float	div;
+
+	d = *(t_disk *)di;
+	div = dot_product(ray.direction, d.origin.direction);
+	if (div >= 0)
+		return (-1);
+	t = -dot_product(sub_vec(d.origin.origin, ray.origin), d.origin.direction);
+	if (length(sub_vec(d.origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, t / (-div))))) > d.rayon)
+		return (-1);
+	return (t / (-div));
+}
 
 /*	Barycentre Triangle	*/
 
@@ -115,6 +131,14 @@ float		triangle(void *tri, t_vec ray)
 // 	return (-1);
 // }
 
+static float		find_t(t_calc d)
+{
+	if (d.t0 > 0 && d.t1 > 0)
+		return (d.t1 > d.t0 ? d.t0 : d.t1);
+	else if (d.t0 > 0 || d.t1 > 0)
+		return (d.t0 > 0 ? d.t0 : d.t1);
+	return (-1);
+}
 
 float		cone(void *coo, t_vec ray)
 {
@@ -137,12 +161,12 @@ float		cone(void *coo, t_vec ray)
 	c.delta = (c.b * c.b) - (4 * c.a * c.c);
 	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
 	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
-	if (c.t0 > 0 && c.t1 > 0)
-		return (c.t1 > c.t0 ? c.t0 : c.t1);
-	else if (c.t0 > 0 || c.t1 > 0)
-		return (c.t0 > 0 ? c.t0 : c.t1);
-	return (-1);
+	c.t0 = find_t(c);
+	if (c.t0 != -1 && cone->high != -1 && length(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0)))) > cone->high)
+		return (-1);
+	return (c.t0);
 }
+
 
 float		cylinder(void *cylinder, t_vec ray)
 {
@@ -164,11 +188,10 @@ float		cylinder(void *cylinder, t_vec ray)
 	d.sqt = sqrtf(d.delta);
 	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);
 	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
-	if (d.t0 > 0 && d.t1 > 0)
-		return (d.t1 > d.t0 ? d.t0 : d.t1);
-	else if (d.t0 > 0 || d.t1 > 0)
-		return (d.t0 > 0 ? d.t0 : d.t1);
-	return (-1);
+	d.t0 = find_t(d);
+	if (d.t0 != -1 && c.hauteur != -1 && length(sub_vec(c.origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0)))) > c.hauteur)
+		return (-1);
+	return (d.t0);
 }
 
 float		sphere(void *sphere, t_vec ray)

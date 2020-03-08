@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:05:28 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 13:53:21 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/08 00:53:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static int		copy_item(t_object base, t_object *dest, int nb)
 {
-	static	size_t	tab[5] = {sizeof(t_sphere),
+	static	size_t	tab[NONE] = {sizeof(t_sphere),
 								sizeof(t_plan), sizeof(t_cone),
-								sizeof(t_cylinder), sizeof(t_triangle)};
+								sizeof(t_cylinder), sizeof(t_triangle), sizeof(t_disk)};
 	int				i;
 
 	ft_bzero(dest->item, sizeof(void *) * (nb + 1));

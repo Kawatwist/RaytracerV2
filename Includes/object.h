@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 19:37:40 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/08 01:34:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum		e_item
 	CONE = 2,
 	CYLINDER = 3,
 	TRIANGLE = 4,
+	DISK = 5,
 	NONE,
 }					t_item;
 
@@ -94,6 +95,7 @@ typedef	struct		s_cone
 	t_vec			origin;
 	t_effect		effect;
 	float			ang;
+	float			high;
 }					t_cone;
 
 typedef	struct		s_cylinder
@@ -111,5 +113,12 @@ typedef	struct		s_triangle
 	t_vec			p2;
 	t_vec			p3;
 }					t_triangle;
+
+typedef	struct		s_disk
+{
+	t_vec			origin;
+	t_effect		effect;
+	float			rayon;
+}					t_disk;
 
 #endif
