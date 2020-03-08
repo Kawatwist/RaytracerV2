@@ -9,7 +9,7 @@
 	quality : 1
 	bounce : 1
 	camera : 1
-	object : 2
+	object : 6
 	light : 1
 	filter : 0
 	flag_hud : 0
@@ -26,7 +26,7 @@
 ############### Light ##################
 [light:1]
 	origin : {10.0 -10.0 -20.0}
-	color : 0xFFFFe6
+	color : 0xFFFFFF
 	distance : 50
 	intensity : 1
 ############### Camera ##################
@@ -37,7 +37,7 @@
 ############### Sphere ##################
 ############### Univers #################
 [object:sphere]
-	color : 0xfdbb2c
+	color : 0x000000
 	origin : {0.0 0.0 0.0}
 	direction : {0.0 0.0 0.0}
 	rayon : 3
@@ -46,7 +46,7 @@
 			texture : 255
 			id_texture : 0
 [object:sphere]
-	color : 0xfb6621
+	color : 0xFFFF00
 	origin : {3.0 -5.0 0.0}
 	direction : {0 0 0}
 	rayon : 3
@@ -55,7 +55,7 @@
 			texture : 255
 			id_texture : 1
 [object:sphere]
-	color : 0xfdc02d
+	color : 0x0000FF
 	origin : {-3.0 -5.0 0.0}
 	direction : {0 0 0}
 	rayon : 3
@@ -64,7 +64,7 @@
 			texture : 255
 			id_texture : 2
 [object:sphere]
-	color : 0x033232
+	color : 0xFF0000
 	origin : {6.0 -10.0 0.0}
 	direction : {0 0 0}
 	rayon : 3
@@ -73,7 +73,7 @@
 			texture : 255
 			id_texture : 3
 [object:sphere]
-	color : 0x48040f
+	color : 0x03224C
 	origin : {-6.0 -10.0 0.0}
 	direction : {0 0 0}
 	rayon : 3
@@ -82,9 +82,9 @@
 			texture : 255
 			id_texture : 4
 [object:sphere]
-	color : 0xFFFFFF
-	origin : {0.0 0.0 -25.0}
-	direction : {0 1 0}
+	color : 0xFF7F00
+	origin : {0.0 -10.0 0.0}
+	direction : {0 0 0}
 	rayon : 3
 			reflection : 25
 			mv : 1

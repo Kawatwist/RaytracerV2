@@ -5,21 +5,34 @@
 	xscreen : 1000
 	yscreen : 1000
 	camera : 1
+	ambiant : 0xFF00FF
 	aa : 0
 	bounce : 0
-	quality : 2
+	quality : 0
 	object : 7
-	light : 1
+	light : 3
 	nb_texture : 2
 	nb_normal : 1
-	refresh : 1
 	textures : "./texture/HD2.tga"
 	textures : "./texture/planet/moon.tga"
 	normal : "./texture/normal/coussin.tga"
 ############### Light ##################
 [light:1]
 	origin : {-0.49 -0.40 0.9}
-	color : 0xFFFFFF
+	color : 0xFF
+	distance : 3
+	intensity : 1
+[light:1]
+	origin : {0 0 0.5}
+	direction : {0 0 1}
+	spot : 1
+	ang : -0.8
+	color : 0xFF0000
+	distance : 3
+	intensity : 1
+[light:1]
+	origin : {0.49 -0.40 0.9}
+	color : 0xFF
 	distance : 3
 	intensity : 1
 ############### Camera ################
@@ -63,6 +76,6 @@
 			reflection : 255
 [object:sphere]
 	origin : {0.3 0.3 0.5}
-	color : 0xFF0000
+	color : 0xFF00FF
 	rayon : 0.2
 			refraction : 255

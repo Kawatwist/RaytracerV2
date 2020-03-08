@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/07 00:46:57 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/08 22:46:45 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,10 @@ unsigned int		ray_to_light(t_thread *data, t_ray r)
 			dot > 1 ? dot = 1 : 0;
 			dot < 0 ? dot = 0 : 0;
 			dot *= data->obj.light[index].intensity;
-			color = create_specular(data, color, &r, dot);
 			color = add_color(color, light_color(r.color[0], set_color(0,
 				data->obj.light[index].color, (dot * obj[0] * len), -1)));
+			r.color[0] = color;
+			color = create_specular(data, color, &r, dot);
 		}
 	}
 	return (color);
