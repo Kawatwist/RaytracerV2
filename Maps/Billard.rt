@@ -13,8 +13,16 @@
 	light : 1
 	filter : 0
 	flag_hud : 0
-	nb_texture : 1
-	textures : "texture/Texture/oeil.tga"
+	nb_texture : 9
+	textures : "texture/Texture/boule/noir.tga"
+	textures : "texture/Texture/boule/jaune.tga"
+	textures : "texture/Texture/boule/bleue.tga"
+	textures : "texture/Texture/boule/rouge.tga"
+	textures : "texture/Texture/boule/bleue fonce.tga"
+	textures : "texture/Texture/boule/orange.tga"
+	textures : "texture/Texture/boule/vert.tga"
+	textures : "texture/Texture/boule/pourpre.tga"
+	textures : "texture/Texture/boule/noir.tga"
 ############### Light ##################
 [light:1]
 	origin : {10.0 -10.0 -20.0}
@@ -36,6 +44,7 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 0
 [object:sphere]
 	color : 0xfb6621
 	origin : {3.0 -5.0 0.0}
@@ -44,6 +53,7 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 1
 [object:sphere]
 	color : 0xfdc02d
 	origin : {-3.0 -5.0 0.0}
@@ -52,6 +62,7 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 2
 [object:sphere]
 	color : 0x033232
 	origin : {6.0 -10.0 0.0}
@@ -60,6 +71,7 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 3
 [object:sphere]
 	color : 0x48040f
 	origin : {-6.0 -10.0 0.0}
@@ -68,6 +80,7 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 4
 [object:sphere]
 	color : 0xFFFFFF
 	origin : {0.0 -10.0 0.0}
@@ -76,3 +89,4 @@
 			reflection : 25
 			mv : 1
 			texture : 255
+			id_texture : 5
