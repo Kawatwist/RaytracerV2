@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/08 06:24:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/08 08:19:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,28 @@ static float		find_t(t_calc d)
 	return (-1);
 }
 
+static float		close_cone(t_cone *c, t_vec ray, float rayon)
+{
+	float	dot;
+	t_disk	dor;
+
+	dot = dot_product(ray.direction, c->origin.direction);
+	dor.rayon = rayon;
+	if (dot > 0)
+	{
+		dor.origin.origin = add_vec(c->origin.origin, mult_vec2(c->origin.direction, -(c->high)));
+		dor.origin.direction = neg_norm(c->origin.direction);
+	}
+	else if (dot < 0)
+	{
+		dor.origin.origin = add_vec(c->origin.origin, mult_vec2(c->origin.direction, (c->high)));
+		dor.origin.direction = veccpy(c->origin.direction);
+	}
+	else
+		return (-1);
+	return (disk(&dor, ray));
+}
+
 float		cone(void *coo, t_vec ray)
 {
 	t_calc	c;
@@ -147,6 +169,8 @@ float		cone(void *coo, t_vec ray)
 	t_point oc;
 	double	k;
 	float	dot;
+	float	len;
+	float	rayon;
 
 	cone = coo;
 	oc = sub_vec(ray.origin, cone->origin.origin);
@@ -163,11 +187,17 @@ float		cone(void *coo, t_vec ray)
 	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
 	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
 	c.t0 = find_t(c);
-	dot = dot_product(ray.direction, cone->origin.direction);
-	if (cone->side != 0 && ((cone->side > 0 && dot < 0) || (cone->side < 0 && dot > 0)))
+	if (c.t0 != -1 && cone->high != -1)
+	{
+		len = length(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0))));
+		rayon = dot_product(neg_norm(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0)))), cone->origin.direction);
+		rayon = length(sub_vec(add_vec(cone->origin.origin, mult_vec2(cone->origin.direction, rayon)), add_vec(ray.origin, mult_vec2(ray.direction, c.t0))));
+	}
+	dot = dot_product(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0))), cone->origin.direction);
+	if (cone->side != 0 && ((cone->side >= 1 && dot > 0) || (cone->side <= -1 && dot < 0)))
 		return (-1);
-	if (c.t0 != -1 && cone->high != -1 && (length(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0)))) > cone->high || dot_product(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0))), cone->origin.direction) < 0))
-		return (-1);
+	if (c.t0 != -1 && cone->high != -1 && dot_product(sub_vec(cone->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, c.t0))), cone->origin.direction) > (cone->high))
+		return (close_cone(cone, ray, rayon));
 	return (c.t0);
 }
 

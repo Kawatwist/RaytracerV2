@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 06:12:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/08 06:28:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef	struct		s_cone
 	t_effect		effect;
 	float			ang;
 	float			high;
-	char			side;
+	int				side;
 }					t_cone;
 
 typedef	struct		s_cylinder
