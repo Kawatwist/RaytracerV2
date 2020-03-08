@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/08 01:50:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/08 06:18:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int				fill_obj(t_data *data, char **line, int index)
 	((t_base *)data->obj.item[index])->effect.type == CYLINDER ||
 	((t_base *)data->obj.item[index])->effect.type == DISK))
 		((t_sphere *)data->obj.item[index])->rayon = ft_atof(*line + 9);
+	else if (!ft_strncmp("\tside : ", *line, 8 && ((t_base *)data->obj.item[index])->effect.type == CONE))
+		((t_cone *)data->obj.item[index])->side = ft_atoi(*line + 8);
 	else if (!ft_strncmp("\tangle : ", *line, 9) &&
 	(((t_base *)data->obj.item[index])->effect.type == CONE))
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
