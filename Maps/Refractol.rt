@@ -1,10 +1,10 @@
 [header]
-	xscreen : 2560
-	yscreen : 1440
+	xscreen : 560
+	yscreen : 440
 	camera : 1
 	ambiant : 0xFFFFFF
-	aa : 1
-	bounce : 4
+	aa : 0
+	bounce : 1
 	quality : 0
 	object : 4
 	light : 0
@@ -42,4 +42,4 @@
 	direction : {0 -1 0}
 	color : 0xFFFFFF
 			reflection : 255
-			normal : 255
+			normal : 125

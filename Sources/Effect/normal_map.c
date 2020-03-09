@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/19 12:37:23 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/09 07:17:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,43 @@
 static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 					float percent)
 {
+	t_point	base;
 	t_point	ret;
-
+	t_point	rot;
 
 	// ret = normalize(div_vec2(fill_vec(color[1], color[2], -color[3]), 255.0));
 	// ret = normalize(add_vec(normal, mult_vec2(ret,
 	// 	dot_product(normal, normalize(ret)) * (percent / 2.0))));
 
 /** Not Bad **/
-
-	ret = normalize(div_vec2(fill_vec(color[1], color[2], color[3]), 255.0));
+	base = normalize(normal);
+	ret = normalize(div_vec2(fill_vec(color[0], color[1], color[2]), 255.0));
+	(void)percent;
+	if (ret.y != base.y && ret.z != base.z)
+	{
+		rot.x = (ang(acos(dot_product(fill_vec(0, ret.y, ret.z),
+			fill_vec(0, base.y, base.z)))));
+		normal = rotx(normal, rot.x);
+		ret = rotx(ret, rot.x);
+	}
+	if (ret.x != base.x && ret.z != base.z)
+	{
+		rot.y = (ang(acos(dot_product(fill_vec(ret.x, 0, ret.z),
+			fill_vec(base.x, 0, base.z)))));
+		normal = roty(normal, rot.y);
+		ret = rotx(ret, rot.y);
+	}
+	if (ret.x != base.x && ret.y != base.y)
+	{
+		rot.z = (ang(acos(dot_product(fill_vec(ret.x, ret.y, 0),
+			fill_vec(base.x, base.y, 0)))));
+		normal = rotz(normal, rot.z);
+	}
+	// ret = rotx(ret, rot.z);
+	/*
 	ret = normalize(add_vec(normal, mult_vec2(neg_norm(ret),
-		dot_product(normal, normalize(ret)) * (percent / 2.0))));
-	return (ret);
+		dot_product(normal, normalize(ret)) * (percent / 2.0))));*/
+	return (normal);
 }
 
 static t_point	get_uv(t_thread data, void *obj,
@@ -68,6 +92,6 @@ t_point			find_normal_texture(t_thread data, void *obj,
 	normal = convert_normalrgb(normal, (unsigned char *)
 		((Uint32*)&(data.normal[(info >> 16)]->data[(((int)uv.x +
 		((int)uv.y * (info & 0xFFFF))) << 2) + 3])),
-		((t_base *)obj)->effect.normal / 255.0);
+		((t_base *)obj)->effect.normal / 260.0);
 	return (normalize(normal));
 }
