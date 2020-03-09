@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 16:02:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/09 03:21:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static int		check_effect(t_object obj)
 	while (++index < obj.nb_item && obj.item[index] != NULL)
 		if (((t_base *)obj.item[index])->effect.id_normal > obj.nb_normal)
 			return (4);
+	index = -1;
+	while (++index < obj.nb_light)
+	{
+		obj.light[index].distancesave = obj.light[index].distance;
+		obj.light[index].intensitysave = obj.light[index].intensity;
+	}
 	return (0);
 }
 

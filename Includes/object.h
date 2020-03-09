@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 06:28:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/09 03:07:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ typedef struct		s_light
 	t_point			direction;
 	int				color;
 	float			distance;
+	float			distancesave;
 	float			ang;
 	float			intensity;
+	float			intensitysave;
+	float			variance;
 	char			type;
 }					t_light;
 

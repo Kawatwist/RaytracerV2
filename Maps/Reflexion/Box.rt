@@ -7,7 +7,7 @@
 	camera : 1
 	ambiant : 0xFF00FF
 	aa : 0
-	bounce : 0
+	bounce : 2
 	quality : 0
 	object : 7
 	light : 3
@@ -19,22 +19,24 @@
 ############### Light ##################
 [light:1]
 	origin : {-0.49 -0.40 0.9}
-	color : 0xFF
+	color : 0xFF00FF
 	distance : 3
 	intensity : 1
+	variance : 20
 [light:1]
 	origin : {0 0 0.5}
 	direction : {0 0 1}
 	spot : 1
 	ang : -0.8
-	color : 0xFF0000
-	distance : 3
-	intensity : 1
+	color : 0xFF00FF
+	distance : 0
+	intensity : 0
 [light:1]
 	origin : {0.49 -0.40 0.9}
-	color : 0xFF
+	color : 0xFF00FF
 	distance : 3
 	intensity : 1
+	variance : 20
 ############### Camera ################
 [camera:1]
 	origin : {0 0 -0.5}
@@ -52,6 +54,7 @@
 	direction : {0 0 1}
 	color : 0x7F7F7F
 			reflection : 255
+			normal : 255
 [object:plan]
 	origin : {0.5 0 0}
 	direction : {-1 0 0}
@@ -78,4 +81,5 @@
 	origin : {0.3 0.3 0.5}
 	color : 0xFF00FF
 	rayon : 0.2
-			refraction : 255
+			reflection : 125
+			refraction : 125

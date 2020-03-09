@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/18 13:14:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/09 02:13:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int		parsing_light(t_data *data, char **old, char *line)
 			data->obj.light[index].distance = ft_atof(line + 12);
 		else if (!ft_strncmp("\tintensity : ", line, 13))
 			data->obj.light[index].intensity = ft_atof(line + 13);
+		else if (!ft_strncmp("\tvariance : ", line, 12))
+			data->obj.light[index].variance = ft_atof(line + 12);
 		else if (ft_strchr(line, '#'))
 			;
 		else

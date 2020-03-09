@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 22:46:45 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/09 02:13:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ float				stop_light(t_thread *data, t_light light, t_vec ray)
 static float		dist(t_thread *data, t_vec ray, int index, float *obj)
 {
 	if (obj[1] > 0.0 && !(obj[1] >= length(sub_vec(
-		data->obj.light[index].origin, ray.origin))))
+		ray.origin, data->obj.light[index].origin))))
 		obj[0] = obj[1] / length(sub_vec(data->obj.light[index].origin,
 			ray.origin));
 	else
@@ -78,39 +78,65 @@ static float		dist(t_thread *data, t_vec ray, int index, float *obj)
 	return (obj[0]);
 }
 
+unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
+{
+	float	obj[2];
+	float	len;
+	float	dot;
+
+	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
+	if (dot > data->obj.light[index].ang)
+		;
+	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
+		data->obj.light[index].origin));
+	obj[1] = stop_light(data, data->obj.light[index], r.tmp);
+	obj[0] = (dist(data, r.tmp, index, obj));
+	len > 1 ? len = 1 : 0;
+	len < 0 ? len = 0 : 0;
+	dot > 1 ? dot = 1 : 0;
+	dot < 0 ? dot = 0 : 0;
+	dot *= data->obj.light[index].intensity;
+	return (add_color(color, light_color(r.color[0], set_color(0,
+		data->obj.light[index].color, (dot * obj[0] * len), -1))));
+}
+
+unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
+{
+	float				obj[2];
+	float				len;
+	float				dot;
+
+	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
+		data->obj.light[index].origin)),
+		normalize(neg_norm(r.tmp.direction))))));
+	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
+		data->obj.light[index].origin));
+	obj[1] = stop_light(data, data->obj.light[index], r.tmp);
+	obj[0] = (dist(data, r.tmp, index, obj));
+	len > 1 ? len = 1 : 0;
+	len < 0 ? len = 0 : 0;
+	dot > 1 ? dot = 1 : 0;
+	dot < 0 ? dot = 0 : 0;
+	dot *= data->obj.light[index].intensity;
+	color = add_color(color, light_color(r.color[0], set_color(0,
+		data->obj.light[index].color, (dot * obj[0] * len), -1)));
+	r.color[0] = color;
+	return (create_specular(data, color, &r, dot));
+}
+
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
 	int		color;
 	int		index;
-	float	obj[2];
-	float	len;
-	float	dot;
 
 	index = -1;
 	color = data->ambiant;
 	while (++index < data->obj.nb_light + 1)
 	{
-		if (dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin))) > data->obj.light[index].ang && data->obj.light[index].type == 1)
-			;
+		if (data->obj.light[index].type == 1)
+			color = spot(data, r, color, index);
 		else
-		{
-			dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
-				data->obj.light[index].origin)),
-				normalize(neg_norm(r.tmp.direction))))));
-			len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
-				data->obj.light[index].origin));
-			obj[1] = stop_light(data, data->obj.light[index], r.tmp);
-			obj[0] = (dist(data, r.tmp, index, obj));
-			len > 1 ? len = 1 : 0;
-			len < 0 ? len = 0 : 0;
-			dot > 1 ? dot = 1 : 0;
-			dot < 0 ? dot = 0 : 0;
-			dot *= data->obj.light[index].intensity;
-			color = add_color(color, light_color(r.color[0], set_color(0,
-				data->obj.light[index].color, (dot * obj[0] * len), -1)));
-			r.color[0] = color;
-			color = create_specular(data, color, &r, dot);
-		}
+			color = omni(data, r, color, index);
 	}
 	return (color);
 }

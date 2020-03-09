@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/25 18:14:07 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/09 05:10:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	looping(t_data *data)
 {
 	int		err;
 
+	resize(data);
 	SDL_LockTexture(data->window.txt, NULL,
 			&data->window.pxl, &data->window.pitch);
 	if ((err = start_thread(data)))//segfault

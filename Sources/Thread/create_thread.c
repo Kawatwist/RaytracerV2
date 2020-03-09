@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 20:14:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/09 05:08:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,39 @@ static void		loading_sc(t_data *data, int p)
 	SDL_Delay(24);
 }
 
+static void		light_variance(t_data *data, t_thread *thd)
+{
+	float	tmp;
+	float	change;
+
+	for (int i = 0; i < data->obj.nb_light; i++)
+	{
+		if (data->obj.light[i].variance != 0)
+		{
+
+			change = data->obj.light[i].variance * ((((rand() % 10) - 5.0) / 500.0));
+			tmp = data->obj.light[i].intensity + (change / 2);
+			tmp > data->obj.light[i].intensitysave + data->obj.light[i].variance ? tmp = data->obj.light[i].intensitysave + data->obj.light[i].variance : 0;
+			tmp < data->obj.light[i].intensitysave - data->obj.light[i].variance ? tmp = data->obj.light[i].intensitysave - data->obj.light[i].variance : 0;
+
+			thd[0].obj.light[i].intensity = tmp;
+			thd[1].obj.light[i].intensity = tmp;
+			thd[2].obj.light[i].intensity = tmp;
+			thd[3].obj.light[i].intensity = tmp;
+			tmp < 0 ? tmp = 0 : 0;
+
+			tmp = data->obj.light[i].distance + change;
+			tmp > data->obj.light[i].distancesave + data->obj.light[i].variance ? tmp = data->obj.light[i].distancesave + data->obj.light[i].variance : 0;
+			tmp < data->obj.light[i].distancesave - data->obj.light[i].variance ? tmp = data->obj.light[i].distancesave - data->obj.light[i].variance : 0;
+			tmp < 0 ? tmp = 0 : 0;
+			thd[0].obj.light[i].distance = tmp;
+			thd[1].obj.light[i].distance = tmp;
+			thd[2].obj.light[i].distance = tmp;
+			thd[3].obj.light[i].distance = tmp;
+		}
+	}
+}
+
 int				start_thread(t_data *data)
 {
 	Uint32			time;
@@ -81,6 +114,7 @@ int				start_thread(t_data *data)
 
 	i = -1;
 	load_modif(data, data->thread);
+	light_variance(data, data->thread);
 	while (++i < 4)
 	{
 		((t_thread *)data->thread)[i].percent = data->percent;
