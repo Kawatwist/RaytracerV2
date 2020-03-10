@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 01:14:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 07:59:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef	struct			s_thread
 	t_vec				ray;
 	t_tga				**texture;
 	t_tga				**normal;
-	float				(*dist[6]) (void *obj, t_vec ray);
-	t_point				(*txt[5]) (void *data, void *obj, t_vec ray,
+	float				(*dist[7]) (void *obj, t_vec ray);
+	t_point				(*txt[7]) (void *data, void *obj, t_vec ray,
 							int choose);
 	void				(*move[3]) (t_data *data, void **obj);
 	int					ambiant;
@@ -46,6 +46,7 @@ typedef	struct			s_thread
 	int					percent;
 	int					bounce;
 	int					len;
+	int					max_dist;
 	pthread_mutex_t		mutex;
 	char				signal;
 	pthread_t			thd;

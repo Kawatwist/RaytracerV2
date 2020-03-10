@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/29 21:54:07 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/10 08:00:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static int	parsing_head_v4(t_data *data, char *line)
 		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
 	else if (!ft_strncmp("\taa : ", line, 6))
 		data->flag.antialiasing = ((unsigned int)ft_atoi(&(line[6])) & 0b11);
+	else if (!ft_strncmp("\topti : ", line, 8))
+		data->max_dist = ft_atoi(&(line[8]));
 	else
 		return (1);
 	return (0);

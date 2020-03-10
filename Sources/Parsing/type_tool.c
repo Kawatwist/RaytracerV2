@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:33:09 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 00:45:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/09 22:58:29 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int				find_type(char *type)
 			return (TRIANGLE);
 		else if (*(type + 1) == 'd')
 			return (DISK);
+		else if (*(type + 1) == 'o')
+			return (OBJ);
 		else if (*(type + 1) == 'c')
 			return (*(type + 2) == 'o' ? CONE : CYLINDER);
 	}
@@ -35,7 +37,7 @@ int				create_type(t_data *data, int index, int type)
 {
 	static	size_t	tab[NONE] = {sizeof(t_sphere)
 			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)
-			, sizeof(t_triangle), sizeof(t_disk)};
+			, sizeof(t_triangle), sizeof(t_disk), sizeof(t_obj)};
 	void			*item;
 
 	if ((item = malloc(tab[(int)type])) == NULL)

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 05:08:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 07:58:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int				start_thread(t_data *data)
 	light_variance(data, data->thread);
 	while (++i < 4)
 	{
+		((t_thread *)data->thread)[i].max_dist = data->max_dist;
 		((t_thread *)data->thread)[i].percent = data->percent;
 		((t_thread *)data->thread)[i].bounce = data->bounce;
 		((t_thread *)data->thread)[i].len = (data->window.x * data->window.y) >> 2;
@@ -152,7 +153,7 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
-	SDL_RenderClear(data->window.rend);
+	SDL_RenderClear(data->window.rend); // Dosnt need ?
 	data->flag.first = 1;
 	return (0);
 }

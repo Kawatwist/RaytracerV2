@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/08 08:19:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 06:29:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,31 @@ float		disk(void *di, t_vec ray)
 */
 
 /*	Moller Version */
-float		triangle(void *tri, t_vec ray)
-{
-	t_triangle	*t;
-	t_point		tmp[5];
-	double		var[4];
+// float		triangle(void *tri, t_vec ray)
+// {
+// 	t_triangle	*t;
+// 	t_point		tmp[5];
+// 	double		var[4];
 
-	t = (t_triangle *)tri;
-	tmp[0] = sub_vec(t->p2.origin, t->p1.origin);
-	tmp[1] = sub_vec(t->p3.origin, t->p1.origin);
-	tmp[2] = cross_vec(neg_norm(ray.direction), tmp[1]);
-	var[0] = dot_product(tmp[0], tmp[2]);
-	if (fabs(var[0]) < 0.0001)
-		return (-1);
-	var[1] = 1.0 / var[0];
-	tmp[3] = sub_vec(fill_vec(ray.origin.x, -ray.origin.y, ray.origin.z), t->p1.origin);
-	var[2] = dot_product(tmp[3], tmp[2]) * var[1];
-	if (var[2] < 0.0 || var[2] > 1.0)
-		return (-1);
-	tmp[4] = cross_vec(tmp[3], tmp[0]);
-	var[3] = dot_product(neg_norm(ray.direction), tmp[4]) * var[1];
-	if (var[3] < 0.0 || var[2] + var[3] > 1.0)
-		return (-1);
-	var[0] = dot_product(tmp[1], tmp[4]) * var[1];
-	return (var[0] > 0.0001 ? var[0] : -1);
-}
+// 	t = (t_triangle *)tri;
+// 	tmp[0] = sub_vec(t->p2.origin, t->p1.origin);
+// 	tmp[1] = sub_vec(t->p3.origin, t->p1.origin);
+// 	tmp[2] = cross_vec(neg_norm(ray.direction), tmp[1]);
+// 	var[0] = dot_product(tmp[0], tmp[2]);
+// 	if (fabs(var[0]) < 0.0001)
+// 		return (-1);
+// 	var[1] = 1.0 / var[0];
+// 	tmp[3] = sub_vec(fill_vec(ray.origin.x, -ray.origin.y, ray.origin.z), t->p1.origin);
+// 	var[2] = dot_product(tmp[3], tmp[2]) * var[1];
+// 	if (var[2] < 0.0 || var[2] > 1.0)
+// 		return (-1);
+// 	tmp[4] = cross_vec(tmp[3], tmp[0]);
+// 	var[3] = dot_product(neg_norm(ray.direction), tmp[4]) * var[1];
+// 	if (var[3] < 0.0 || var[2] + var[3] > 1.0)
+// 		return (-1);
+// 	var[0] = dot_product(tmp[1], tmp[4]) * var[1];
+// 	return (var[0] > 0.0001 ? var[0] : -1);
+// }
 
 // float		triangle(void *tri, t_vec ray)
 // {
@@ -108,28 +108,128 @@ float		triangle(void *tri, t_vec ray)
 // 	return (-1);
 // }
 
-// static float		triangle_v1(void *tri, t_vec ray)
-// {
-// 	t_triangle	*t;
-// 	t_point		pos;
-// 	float		d;
-// 	float		f;
+static float max(float a, float b)
+{
+	return (a < b ? b : a);
+}
 
-// 	t = (t_triangle *)tri;
-// 	t->origin.direction = find_normal_triangle(t);
-// 	d = dot_product(t->origin.direction, t->origin.origin);
-// 	f = -((dot_product(t->origin.direction, ray.origin) - d) /
-// 		dot_product(t->origin.direction, ray.direction));
-// 	pos = add_vec(ray.origin, mult_vec2(ray.direction, f));
-// 	if (dot_product(t->origin.direction, cross_vec(sub_vec(t->p2.origin,
-// 			t->origin.origin), sub_vec(pos, t->origin.origin))) > 0 &&
-// 		dot_product(t->origin.direction, cross_vec(sub_vec(t->p3.origin,
-// 			t->p2.origin), sub_vec(pos, t->p2.origin))) > 0 &&
-// 		dot_product(t->origin.direction, cross_vec(sub_vec(t->origin.origin,
-// 			t->p3.origin), sub_vec(pos, t->p3.origin))) > 0)
-// 		return (f);
-// 	return (-1);
-// }
+static float min(float a, float b)
+{
+	return (a < b ? a : b);
+}
+
+float		box(t_plan p, t_vec ray, float x, float y, float z)
+{
+	float t;
+	t_point dir;
+	t_point pos;
+
+	(void)z;
+	float div;
+	dir = veccpy(p.origin.direction);
+	div = dot_product(ray.direction, dir);
+	if (div >= 0)
+	{
+		dir = neg_norm(dir);
+		div = dot_product(ray.direction, dir);
+	}
+	t = (-dot_product(sub_vec(p.origin.origin, ray.origin), dir) / -div);
+	if (t != -1)
+	{
+		pos = add_vec(ray.origin, mult_vec2(ray.direction, t));
+		if (pos.z == 0)
+		{
+			if (pos.x - p.origin.origin.x > 0 && pos.x - p.origin.origin.x < x &&
+				pos.y - p.origin.origin.y > 0 && pos.y - p.origin.origin.y < y)
+				return (t);
+		}
+		else if (pos.y == 0)
+		{
+			if (pos.x - p.origin.origin.x > 0 && pos.x - p.origin.origin.x < x &&
+				pos.z - p.origin.origin.z > 0 && pos.z - p.origin.origin.z < y)
+				return (t);
+		}
+		else
+		{
+			if (pos.y - p.origin.origin.y > 0 && pos.y - p.origin.origin.y < x &&
+				pos.z - p.origin.origin.z > 0 && pos.z - p.origin.origin.z < y)
+				return (t);
+		}
+	}
+	return (-1);
+}
+
+float		obj(void	*obj, t_vec ray)
+{
+	float	t;
+	float	save;
+	char	count;
+	t_obj	o;
+	t_point	low;
+	t_point	high;
+
+	o = *((t_obj *)obj);
+	count = 0;
+	save = -1;
+	t = -1;
+	low = fill_vec(min(o.origin.origin.x, o.destination.origin.x), min(o.origin.origin.y, o.destination.origin.y), min(o.origin.origin.z, o.destination.origin.z));
+	high = fill_vec(max(o.origin.origin.x, o.destination.origin.x), max(o.origin.origin.y, o.destination.origin.y), max(o.origin.origin.z, o.destination.origin.z));
+
+	t_plan p;
+	p.origin.origin = veccpy(o.origin.origin);
+	p.origin.direction = fill_vec(0, 0, 1);
+	if ((t = box(p, ray, high.x - low.x, high.y - low.y, 0)) != -1)
+	{
+		save = t;
+		count++;
+	}
+	p.origin.origin = fill_vec(o.origin.origin.x, o.origin.origin.y, o.destination.origin.z);
+	p.origin.direction = fill_vec(0, 0, -1);
+	if ((t = box(p, ray, (high.x - low.x), (high.y - low.y), 0)) != -1)
+	{
+		save < t ? save = t: 0;
+		count++;
+	}
+
+	p.origin.origin = veccpy(o.origin.origin);
+	p.origin.direction = fill_vec(0, 1, 0);
+	if ((t = box(p, ray, high.x - low.x, 0, high.z - low.z)) != -1)
+	{
+		save = t;
+		count++;
+	}
+	p.origin.origin = fill_vec(o.origin.origin.x, o.destination.origin.y, o.origin.origin.z);
+	p.origin.direction = fill_vec(0, -1, 0);
+	if ((t = box(p, ray, 0, high.y - low.y, high.z - low.z)) != -1)
+	{
+		save < t ? save = t: 0;
+		count++;
+	}
+	return (count < 1 ? -1 : save);
+}
+
+float		triangle(void *tri, t_vec ray)
+{
+	t_triangle	*t;
+	t_point		pos;
+	float		d;
+	float		f;
+
+	t = (t_triangle *)tri;
+	t->p1.direction = find_normal_triangle(t);
+	d = dot_product(t->p1.direction, t->p1.origin);
+	f = -((dot_product(t->p1.direction, ray.origin) - d) /
+		dot_product(t->p1.direction, ray.direction));
+	pos = add_vec(ray.origin, mult_vec2(ray.direction, f));
+	if (dot_product(t->p1.direction, cross_vec(sub_vec(t->p2.origin,
+			t->p1.origin), sub_vec(pos, t->p1.origin))) > 0 &&
+		dot_product(t->p1.direction, cross_vec(sub_vec(t->p3.origin,
+			t->p2.origin), sub_vec(pos, t->p2.origin))) > 0 &&
+		dot_product(t->p1.direction, cross_vec(sub_vec(t->p1.origin,
+			t->p3.origin), sub_vec(pos, t->p3.origin))) > 0)
+		return (f);
+	return (-1);
+}
 
 static float		find_t(t_calc d)
 {
@@ -277,15 +377,13 @@ float		sphere(void *sphere, t_vec ray)
 float		plane(void *plane, t_vec ray)
 {
 	t_plan	p;
-	float	t;
 	float	div;
 
 	p = *(t_plan *)plane;
 	div = dot_product(ray.direction, p.origin.direction);
 	if (div >= 0)
 		return (-1);
-	t = -dot_product(sub_vec(p.origin.origin, ray.origin), p.origin.direction);
-	return (t / (-div));
+	return (-dot_product(sub_vec(p.origin.origin, ray.origin), p.origin.direction) / -div);
 }
 
 /**

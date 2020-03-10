@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 00:57:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 03:30:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		setup_function(t_thread *tmp)
 	(*tmp).dist[3] = cylinder;
 	(*tmp).dist[4] = triangle;
 	(*tmp).dist[5] = disk;
+	(*tmp).dist[6] = obj;
 	(*tmp).txt[0] = texture_sphere;
 	(*tmp).txt[1] = texture_plan;
 	(*tmp).txt[2] = texture_cone;

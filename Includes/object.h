@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 03:07:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 00:24:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum		e_item
 	CYLINDER = 3,
 	TRIANGLE = 4,
 	DISK = 5,
+	OBJ = 6,
 	NONE,
 }					t_item;
 
@@ -101,6 +102,13 @@ typedef	struct		s_cone
 	float			high;
 	int				side;
 }					t_cone;
+
+typedef	struct		s_obj
+{
+	t_vec			origin;
+	t_effect		effect;
+	t_vec			destination;
+}					t_obj;
 
 typedef	struct		s_cylinder
 {

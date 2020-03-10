@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/28 13:59:03 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/10 03:30:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			initialize(t_data *data)
 	data->dist[2] = cone;
 	data->dist[3] = cylinder;
 	data->dist[4] = triangle;
+	data->dist[5] = disk;
+	data->dist[6] = obj;
 	data->txt[0] = texture_sphere;
 	data->txt[1] = texture_plan;
 	data->txt[2] = texture_cone;

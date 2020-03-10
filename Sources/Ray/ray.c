@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 01:07:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 08:28:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
+	if (data->max_dist && length(sub_vec(r.tmp.origin, ray.origin)) > data->max_dist)
+		return (data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	txt = r.color[0];
@@ -101,5 +103,5 @@ unsigned int		send_ray(t_thread *data, t_vec ray, int bounce)
 		return (set_color(send_ray(data, r.tmp, bounce), r.color[0],
 			((255 - ((unsigned char *)&(txt))[0])) / 255.0, -1));
 	}
-	return (r.color[0] ? r.color[0] : 0xFF000000);
+	return (r.color[0] ? r.color[0] : data->ambiant);
 }

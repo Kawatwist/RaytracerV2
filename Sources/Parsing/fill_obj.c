@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/08 07:08:57 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/10 00:26:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int				add_point(t_data *data, char **line, int index)
 		((t_base *)data->obj.item[index])->origin.origin = get_point(*line);
 	else if (!ft_strncmp("\tdirection :", *line, 12))
 		((t_base *)data->obj.item[index])->origin.direction = get_point(*line);
+	else if (!ft_strncmp("\tdestination :", *line, 14) && ((t_base *)data->obj.item[index])->effect.type)
+		((t_obj *)data->obj.item[index])->destination.origin = get_point(*line);
 	else if (!ft_strncmp("\tp1 :", *line, 5))
 		((t_base *)data->obj.item[index])->origin.origin = get_point_y(*line);
 	else if (!ft_strncmp("\tp2 : ", *line, 5))
