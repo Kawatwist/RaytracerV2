@@ -120,3 +120,9 @@ quand il n'y a pas -fsanitize=address dans le grimoire il ny a pas le texte
 
 
 bmp
+
+
+
+
+
+rasjouter le caracterer "-" pour les point d'origines des obj et tout

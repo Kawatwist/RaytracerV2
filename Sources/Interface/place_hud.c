@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:56:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 19:20:31 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/10 00:14:28 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		pics_on_screen(t_data *data)
 {
-	set_hud(data);
 	if (data->obj.type_index == 0)
 		SDL_RenderCopy(data->window.rend, data->hud.texture[0],
 			NULL, &(data->hud.pos[0]));
@@ -32,5 +31,6 @@ int		pics_on_screen(t_data *data)
 		NULL, &data->hud.pos[9]);
 	SDL_RenderCopy(data->window.rend, data->hud.texture[8],
 		NULL, &(data->hud.pos[8]));
+	set_hud(data);
 	return (0);
 }

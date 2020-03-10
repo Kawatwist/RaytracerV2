@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/08 22:55:43 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/09 23:02:26 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 static int	set_specular(t_thread *data, int color, unsigned int specobj, float dot)
 {
-	color = (((int)(((data->obj.light[0].color & 0xFF000000) >> 24) * dot) << 24) +
-			((int)(((data->obj.light[0].color & 0xFF0000) >> 16) * dot) << 16) +
-			((int)(((data->obj.light[0].color & 0xFF00) >> 8) * dot) << 8) +
-			((int)(((data->obj.light[0].color & 0xFF) >> 0) * dot) << 0) +
+	color = (((int)(((data->obj.light[0].color & 0xFF000000) >> 24) * dot) << 24) +//surement pas bon
+			((int)(((data->obj.light[0].color & 0xFF0000) >> 16) * dot) << 16) +//surement pas bon
+			((int)(((data->obj.light[0].color & 0xFF00) >> 8) * dot) << 8) +//surement pas bon
+			((int)(((data->obj.light[0].color & 0xFF) >> 0) * dot) << 0) +//surement pas bon
 			((int)(((specobj & 0xFF000000) >> 24) * (1.0 - dot)) << 24) +
 			((int)(((specobj & 0xFF0000) >> 16) * (1.0 - dot)) << 16) +
 			((int)(((specobj & 0xFF00) >> 8) * (1.0 - dot)) << 8) +
@@ -44,6 +44,6 @@ int			create_specular(t_thread *data, int color, t_ray *r, float dot)
 			color = set_specular(data, color, r->color[0], dot);
 	}
 	else if (dot > 0.9998)
-		color = data->obj.light[data->obj.index[2]].color;
+		color = data->obj.light[data->obj.index[2]].color;//surement pas bon
 	return (color);
 }
