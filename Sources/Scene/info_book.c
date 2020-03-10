@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 19:48:38 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/28 17:19:54 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/09 22:58:38 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void		page_turned(t_data *data, SDL_Rect *pos)
 				data->screen.page--;
 		}
 		data->screen.interface = INFO;
+		if (key_check(*data, SDL_SCANCODE_BACKSPACE))
+			data->screen.interface = HOME;
 	}
 }
 
