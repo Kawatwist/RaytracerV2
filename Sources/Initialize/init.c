@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 03:30:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 11:24:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			initialize(t_data *data)
 	data->txt[2] = texture_cone;
 	data->txt[3] = texture_cylinder;
 	data->txt[4] = texture_plan;
+	data->txt[5] = texture_plan;
+	data->txt[6] = texture_obj;
 	data->move[0] = move_cam;
 	data->move[1] = move_obj;
 	data->move[2] = move_light;

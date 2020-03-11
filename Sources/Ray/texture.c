@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/15 14:33:21 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 11:26:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,30 @@ int			find_size(t_thread data, void *obj, int choose)
 		index = (((t_sphere *)obj)->effect.id_normal);
 		return (((data.normal[index])->w << 16) + (data.normal[index])->h);
 	}
+}
+
+t_point		texture_obj(void *data, void *obj, t_vec ray, int choose)
+{
+	int		wh;
+	t_point ontexture;
+	t_point u;
+	t_point v;
+
+	wh = find_size(*(t_thread *)data, obj, choose);
+	u = ((t_obj *)obj)->origin.direction;
+	u = fill_vec(u.y, u.z, -u.x);
+	v = cross_vec(u, ((t_obj *)obj)->origin.direction);
+	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF) +
+		((wh & 0xFFFF) >> 1);
+	ontexture.x = dot_product(ray.origin, v) * (wh >> 16) + ((wh >> 16) >> 1);
+	while (ontexture.x < 0 || ontexture.x >= (wh >> 16))
+		ontexture.x += (ontexture.x < 0 ? (wh >> 16) - 1 : -(wh >> 16) - 1);
+	while (ontexture.y < 0 || ontexture.y >= (wh & 0xFFFF))
+		ontexture.y += (ontexture.y < 0 ?
+			(wh & 0xFFFF) - 1 : -(wh & 0xFFFF) - 1);
+	// if (((t_obj *)obj)->face == 2)
+	// 	printf("%f || %f\n", ontexture.x,ontexture.y);
+	return (ontexture);
 }
 
 t_point		texture_plan(void *data, void *obj, t_vec ray, int choose)

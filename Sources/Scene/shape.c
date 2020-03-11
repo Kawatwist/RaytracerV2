@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/10 06:29:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 11:18:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,51 +108,38 @@ float		disk(void *di, t_vec ray)
 // 	return (-1);
 // }
 
-static float max(float a, float b)
-{
-	return (a < b ? b : a);
-}
-
-static float min(float a, float b)
-{
-	return (a < b ? a : b);
-}
-
-float		box(t_plan p, t_vec ray, float x, float y, float z)
+float		box(t_plan p, t_vec ray, t_point diff, Uint8 side)
 {
 	float t;
 	t_point dir;
 	t_point pos;
 
-	(void)z;
 	float div;
 	dir = veccpy(p.origin.direction);
 	div = dot_product(ray.direction, dir);
 	if (div >= 0)
 	{
-		dir = neg_norm(dir);
-		div = dot_product(ray.direction, dir);
+		// dir = neg_norm(dir);
+		// div = dot_product(ray.direction, dir);
+		return (-1);
 	}
 	t = (-dot_product(sub_vec(p.origin.origin, ray.origin), dir) / -div);
 	if (t != -1)
 	{
-		pos = add_vec(ray.origin, mult_vec2(ray.direction, t));
-		if (pos.z == 0)
+		pos = sub_vec(add_vec(ray.origin, mult_vec2(ray.direction, t)), p.origin.origin);
+		if (side < 2)
 		{
-			if (pos.x - p.origin.origin.x > 0 && pos.x - p.origin.origin.x < x &&
-				pos.y - p.origin.origin.y > 0 && pos.y - p.origin.origin.y < y)
+			if (pos.x > 0 && pos.x < diff.x && pos.y > 0 && pos.y < diff.y)
 				return (t);
 		}
-		else if (pos.y == 0)
+		else if (side < 4)
 		{
-			if (pos.x - p.origin.origin.x > 0 && pos.x - p.origin.origin.x < x &&
-				pos.z - p.origin.origin.z > 0 && pos.z - p.origin.origin.z < y)
+			if (pos.x > 0 && pos.x < diff.x && pos.z > 0 && pos.z < diff.z)
 				return (t);
 		}
 		else
 		{
-			if (pos.y - p.origin.origin.y > 0 && pos.y - p.origin.origin.y < x &&
-				pos.z - p.origin.origin.z > 0 && pos.z - p.origin.origin.z < y)
+			if (pos.y > 0 && pos.y < diff.y && pos.z > 0 && pos.z < diff.z)
 				return (t);
 		}
 	}
@@ -163,49 +150,33 @@ float		obj(void	*obj, t_vec ray)
 {
 	float	t;
 	float	save;
-	char	count;
-	t_obj	o;
-	t_point	low;
-	t_point	high;
+	t_plan	p;
+	t_obj	*o;
+	Uint8	side;
 
-	o = *((t_obj *)obj);
-	count = 0;
-	save = -1;
+	o = ((t_obj *)obj);
 	t = -1;
-	low = fill_vec(min(o.origin.origin.x, o.destination.origin.x), min(o.origin.origin.y, o.destination.origin.y), min(o.origin.origin.z, o.destination.origin.z));
-	high = fill_vec(max(o.origin.origin.x, o.destination.origin.x), max(o.origin.origin.y, o.destination.origin.y), max(o.origin.origin.z, o.destination.origin.z));
-
-	t_plan p;
-	p.origin.origin = veccpy(o.origin.origin);
-	p.origin.direction = fill_vec(0, 0, 1);
-	if ((t = box(p, ray, high.x - low.x, high.y - low.y, 0)) != -1)
+	side = -1;
+	save = 99999;
+	while (++side < 6)
 	{
-		save = t;
-		count++;
+		p.origin.origin = veccpy(o->low);
+		p.origin.direction = normalize(normal_face(side));
+		if (side == 1)
+			p.origin.origin.z = o->high.z;
+		else if (side == 3)
+			p.origin.origin.y = o->high.y;
+		else if (side == 5)
+			p.origin.origin.x = o->high.x;
+		if ((t = box(p, ray, o->diff, side)) != -1)
+		{
+			save > t ? o->face = side : 0;
+			save > t ? save = t: 0;
+		}
 	}
-	p.origin.origin = fill_vec(o.origin.origin.x, o.origin.origin.y, o.destination.origin.z);
-	p.origin.direction = fill_vec(0, 0, -1);
-	if ((t = box(p, ray, (high.x - low.x), (high.y - low.y), 0)) != -1)
-	{
-		save < t ? save = t: 0;
-		count++;
-	}
-
-	p.origin.origin = veccpy(o.origin.origin);
-	p.origin.direction = fill_vec(0, 1, 0);
-	if ((t = box(p, ray, high.x - low.x, 0, high.z - low.z)) != -1)
-	{
-		save = t;
-		count++;
-	}
-	p.origin.origin = fill_vec(o.origin.origin.x, o.destination.origin.y, o.origin.origin.z);
-	p.origin.direction = fill_vec(0, -1, 0);
-	if ((t = box(p, ray, 0, high.y - low.y, high.z - low.z)) != -1)
-	{
-		save < t ? save = t: 0;
-		count++;
-	}
-	return (count < 1 ? -1 : save);
+	if (save != 99999)
+		o->origin.direction = normal_face(o->face);
+	return (save == 99999 ? -1 : save);
 }
 
 float		triangle(void *tri, t_vec ray)

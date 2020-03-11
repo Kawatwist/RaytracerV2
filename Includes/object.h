@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 00:24:23 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 07:35:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,6 @@ typedef	struct		s_cone
 	int				side;
 }					t_cone;
 
-typedef	struct		s_obj
-{
-	t_vec			origin;
-	t_effect		effect;
-	t_vec			destination;
-}					t_obj;
-
 typedef	struct		s_cylinder
 {
 	t_vec			origin;
@@ -132,5 +125,16 @@ typedef	struct		s_disk
 	t_effect		effect;
 	float			rayon;
 }					t_disk;
+
+typedef	struct		s_obj
+{
+	t_vec			origin;
+	t_effect		effect;
+	t_vec			destination;
+	t_point			low;
+	t_point			high;
+	t_point			diff;
+	Uint8			face;
+}					t_obj;
 
 #endif

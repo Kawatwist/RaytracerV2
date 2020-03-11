@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 03:30:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 11:23:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void		setup_function(t_thread *tmp)
 	(*tmp).txt[2] = texture_cone;
 	(*tmp).txt[3] = texture_cylinder;
 	(*tmp).txt[4] = texture_plan;
+	(*tmp).txt[5] = texture_plan;
+	(*tmp).txt[6] = texture_obj;
 	(*tmp).move[0] = move_cam;
 	(*tmp).move[1] = move_obj;
 	(*tmp).move[2] = move_light;

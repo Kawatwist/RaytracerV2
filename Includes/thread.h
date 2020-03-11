@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 07:59:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 02:03:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_point					find_normal_with_txt(t_thread data, void *object,
 int						find_size(t_thread data, void *obj, int choose);
 t_point					find_normal_texture(t_thread data, void *obj,
 							t_vec collide, t_point normal);
+t_point					texture_obj(void *data,
+							void *obj, t_vec ray, int choose);
 t_point					texture_plan(void *data,
 							void *obj, t_vec ray, int choose);
 t_point					texture_sphere(void *data,

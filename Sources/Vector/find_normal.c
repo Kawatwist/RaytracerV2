@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 01:30:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 09:46:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ static t_point	cone_normal(t_cone c, t_vec collide)
 	return (normalize(ret));
 }
 
+t_point			normal_face(Uint8 face)
+{
+	if (face == 0)
+		return (fill_vec(0, 0, -1));
+	else if (face == 1)
+		return (fill_vec(0, 0, 1));
+	else if (face == 2)
+		return (fill_vec(0, -1, 0));
+	else if (face == 3)
+		return (fill_vec(0, 1, 0));
+	else if (face == 4)
+		return (fill_vec(-1, 0, 0));
+	else if (face == 5)
+		return (fill_vec(1, 0, 0));
+	return (fill_vec(0, 0, 1));
+}
+
 t_point			find_normal(void *object, t_vec collide)
 {
 	t_point normal;
@@ -71,6 +88,8 @@ t_point			find_normal(void *object, t_vec collide)
 		normal = cylinder_normal(*((t_cylinder *)object), collide);
 	else if ((((t_base *)object)->effect.type) == DISK)
 		normal = veccpy(((t_plan *)object)->origin.direction);
+	else if ((((t_base *)object)->effect.type) == OBJ)
+		normal = normal_face(((t_obj *)object)->face);
 	else
 		normal = cone_normal(*((t_cone *)object), collide);
 	return (normalize(normal));

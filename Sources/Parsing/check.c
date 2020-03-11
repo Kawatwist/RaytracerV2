@@ -6,11 +6,32 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 03:21:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 07:38:29 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static float max(float a, float b)
+{
+	return (a < b ? b : a);
+}
+
+static float min(float a, float b)
+{
+	return (a < b ? a : b);
+}
+
+static void		setup_obj(t_obj *obj)
+{
+	obj->low = fill_vec(min(obj->origin.origin.x, obj->destination.origin.x),
+			min(obj->origin.origin.y, obj->destination.origin.y),
+			min(obj->origin.origin.z, obj->destination.origin.z));
+	obj->high = fill_vec(max(obj->origin.origin.x, obj->destination.origin.x),
+			max(obj->origin.origin.y, obj->destination.origin.y),
+			max(obj->origin.origin.z, obj->destination.origin.z));
+	obj->diff = fill_vec(obj->high.x - obj->low.x, obj->high.y - obj->low.y, obj->high.z - obj->low.z);
+}
 
 static int		check_effect(t_object obj)
 {
@@ -18,8 +39,12 @@ static int		check_effect(t_object obj)
 
 	index = -1;
 	while (++index < obj.nb_item && obj.item[index] != NULL)
+	{
+		if (((t_base *)obj.item[index])->effect.type == OBJ)
+			setup_obj(obj.item[index]);
 		if (((t_base *)obj.item[index])->effect.id_normal > obj.nb_normal)
 			return (4);
+	}
 	index = -1;
 	while (++index < obj.nb_light)
 	{

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 07:58:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 02:19:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int				parsing_head(t_data *data, char **line);
 int				parsing(t_data *data, int nb, char *arg[]);
 int				check_parse(t_data *data);
 int				fill_texture(t_data *data, char *line);
+t_point			normal_face(Uint8 face);
 int				fill_normal(t_data *data, char *line);
 /*
 **			Event's

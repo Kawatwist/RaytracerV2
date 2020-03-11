@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 07:17:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 11:02:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static t_point	get_uv(t_thread data, void *obj,
 		uv = texture_plan(&data, obj, collide, 0);
 	else if ((((t_sphere *)obj)->effect.type) == SPHERE)
 		uv = texture_sphere(&data, obj, collide, 0);
+	else if ((((t_sphere *)obj)->effect.type) == OBJ)
+		uv = texture_obj(&data, obj, collide, 0);
 	else
 		uv = (((t_sphere *)obj)->effect.type) == CONE ?
 			texture_cone(&data, obj, collide, 0) :

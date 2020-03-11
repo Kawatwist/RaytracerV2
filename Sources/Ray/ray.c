@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 08:28:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/11 10:43:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static t_vec		setup_reflection(t_thread *data, void *obj,
 	tmp.origin = set_neworigin_neg(ray, dist);
 	tmp.direction = veccpy(ray.direction);
 	tmp.direction = find_reflexion(obj, tmp, *data);
-	data->ray.direction = veccpy(tmp.direction);
-	data->ray.origin = veccpy(tmp.origin);
 	return (tmp);
 }
 
