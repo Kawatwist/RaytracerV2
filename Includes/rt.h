@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 02:19:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 08:09:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_flag
 	Uint32		antialiasing : 2;
 	Uint32		first : 1;
 	Uint32		time : 1;
+	Uint32		diapo : 1;
 	Uint32		flare : 1;
 }				t_flag;
 
@@ -137,6 +138,7 @@ t_point			set_neworigin(t_vec ray, float distance);
 t_point			veccpy(t_point pnt);
 t_vec			create_vec(t_point origin, t_point direction);
 t_point			fill_vec(float x, float y, float z);
+t_point			add_vec2(t_point v1, float sub);
 t_point			add_vec(t_point v1, t_point v2);
 t_point			sub_vec2(t_point v1, float sub);
 t_point			sub_vec(t_point v1, t_point v2);
@@ -167,6 +169,7 @@ float			square(float f);
 void			move_cam(t_data *data, void **obj);
 void			input_move_cam(t_data *data, t_point tmp, void **cam);
 void			call_rot_cam(t_data *data);
+void			mv_obj(t_data *data, t_obj **obj);
 void			move_obj(t_data *data, void **obj);
 void			mv_triangle(t_data *data, t_triangle **obj);
 void			input_hud(t_data *data);
@@ -181,7 +184,8 @@ void			input_move_light(t_data *data, void **light);
 void			input_color_light(t_data *data, void **light, char ctrl);
 void			input_distance_light(t_data *data, void **light, char ctrl);
 void			input_intensity_light(t_data *data, void **light, char ctrl);
-void			light_cursor(t_data *data);
+void			light_cursor(t_data *data);void			create_screenshot(t_data *data, void *pxl);
+void			create_screenshot_bmp(t_data *data, void *pxl);
 void			create_screenshot(t_data *data, void *pxl);
 /*
 **			Thread

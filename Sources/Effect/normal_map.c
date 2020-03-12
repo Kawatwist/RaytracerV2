@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 11:02:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 05:28:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 	t_point	ret;
 	t_point	rot;
 
-	// ret = normalize(div_vec2(fill_vec(color[1], color[2], -color[3]), 255.0));
-	// ret = normalize(add_vec(normal, mult_vec2(ret,
-	// 	dot_product(normal, normalize(ret)) * (percent / 2.0))));
-
-/** Not Bad **/
+	/** Not Bad **/
 	base = normalize(normal);
 	ret = normalize(div_vec2(fill_vec(color[0], color[1], color[2]), 255.0));
 	(void)percent;
@@ -48,10 +44,6 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 			fill_vec(base.x, base.y, 0)))));
 		normal = rotz(normal, rot.z);
 	}
-	// ret = rotx(ret, rot.z);
-	/*
-	ret = normalize(add_vec(normal, mult_vec2(neg_norm(ret),
-		dot_product(normal, normalize(ret)) * (percent / 2.0))));*/
 	return (normal);
 }
 

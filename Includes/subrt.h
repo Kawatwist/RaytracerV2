@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 17:59:35 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/12 06:58:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct		s_object
 	int				nb_normal;
 	int				index[3];
 	int				type_index;
+	Uint32			color_find[2];
 }					t_object;
 
 typedef struct		s_ray

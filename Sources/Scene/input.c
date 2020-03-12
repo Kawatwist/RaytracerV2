@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/02 18:09:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/12 08:09:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,25 @@ void		check_mutex(t_data *data)
 	}
 }
 
+void		ask_screenshot(t_data *data)
+{
+	const SDL_MessageBoxButtonData buttons[] = {{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "TGA" },
+			{ 0, 1, "BMP" },{ SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 2, "Cancel" },};
+	const SDL_MessageBoxColorScheme colorScheme = {{{255, 0, 0},
+			{0, 255, 0}, {255, 255, 0}, {0, 0, 255}, {255,   0, 255}}};
+	const SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION, NULL, "Screenshot", "Select a format :", SDL_arraysize(buttons), buttons, &colorScheme};
+	int buttonid;
+
+	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
+	{
+		SDL_Log("error displaying message box");
+	}
+	if (buttonid == 0)
+		create_screenshot(data, data->window.pxl);
+	else if (buttonid == 1)
+		create_screenshot_bmp(data, data->window.pxl);
+}
+
 void		input(t_data *data)
 {
 	static t_c33	adad = {.color = 0, .flag = 1};
@@ -110,7 +129,7 @@ void		input(t_data *data)
 	if (data->screen.interface == RUN)
 	{
 		if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-			create_screenshot(data, data->window.pxl);
+			ask_screenshot(data);
 		if (key_check(*data, SDL_SCANCODE_V))
 			data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 		if (key_check(*data, SDL_SCANCODE_R))

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 10:43:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 06:21:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 	if (((t_base *)r->obj)->effect.refraction)
 	{
 		tmp = setup_refraction(*data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[1] = send_ray(data, tmp, r->bounce + 1);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.refraction / 255.0, -1);
 	}
 	if (((t_base *)r->obj)->effect.opacity)
 	{
 		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[1] = send_ray(data, tmp, r->bounce + 1);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.opacity / 255.0, -1);
 	}

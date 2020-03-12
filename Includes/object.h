@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 07:35:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 02:52:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,9 @@ typedef	struct		s_obj
 	t_point			low;
 	t_point			high;
 	t_point			diff;
+	float			size;
 	Uint8			face;
+	Uint8			id_texture[6];
 }					t_obj;
 
 #endif

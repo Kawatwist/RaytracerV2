@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/19 16:59:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 01:58:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	input_move_obj(t_data *data, void **obj)
 {
 	if ((*(t_base **)obj)->effect.type == TRIANGLE)
 		mv_triangle(data, (t_triangle **)obj);
+	else if ((*(t_base **)obj)->effect.type == OBJ)
+		mv_obj(data, (t_obj **)obj);
 	else
 	{
 		if (key_old(*data, SDL_SCANCODE_SPACE))

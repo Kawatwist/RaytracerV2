@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:33:09 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 22:58:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 03:13:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,8 @@ int				create_type(t_data *data, int index, int type)
 	ft_bzero(item, sizeof(item));
 	data->obj.item[index] = item;
 	((t_base *)data->obj.item[index])->effect.type = type;
+	if (type == OBJ)
+		for (int i = 0; i < 6; i++)
+			((t_obj *)data->obj.item[index])->id_texture[i] = 255;
 	return (0);
 }

@@ -89,6 +89,7 @@ SRC				=	main.c										\
 					rot_matrice.c								\
 					move_type.c									\
 					move_triangle.c								\
+					move_obj.c									\
 					light_cursor.c								\
 					input_obj.c									\
 					input_light.c								\

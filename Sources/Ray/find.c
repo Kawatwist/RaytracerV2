@@ -6,23 +6,27 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/08 01:36:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 07:25:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-void		*check_object_light(t_thread *data, t_vec ray, float *dist)
+void		*check_object_light(t_thread *data, t_vec ray, float *dist, float max_dist)
 {
 	void	*close;
 	int		index;
+	int		index2;
 	float	value;
 
 	*dist = -1;
 	value = -1;
 	close = NULL;
 	index = 0;
+	index2 = 0;
+
+(void)max_dist;
 	(void)ray;
 	while (data->obj.item[index])
 	{
@@ -30,9 +34,18 @@ void		*check_object_light(t_thread *data, t_vec ray, float *dist)
 		{
 			value = data->dist[(int)((t_base *)data->obj.item[index])
 				->effect.type](data->obj.item[index], ray);
-			if ((value > 0 && *dist == -1) || (value > 0 && value < *dist))
+			if ((value > 0 && value < max_dist))
 			{
-				*dist = value;
+				if (*dist == -1 || value < *dist)
+					*dist = value;
+				if (data->flag.diapo && data->obj.color_find[0])
+				{
+					if (index == 0)
+						data->obj.color_find[0] = light_color(data->obj.color_find[1], set_color(0, find_color(data, ((t_base *)data->obj.item[index]), ray), ((t_base *)data->obj.item[index])->effect.opacity / 255.0, -1));
+					else
+						data->obj.color_find[0] = light_color(data->obj.color_find[0], set_color(0, find_color(data, ((t_base *)data->obj.item[index]), ray), ((t_base *)data->obj.item[index])->effect.opacity / 255.0, -1));
+					index2++;
+				}
 				close = data->obj.item[index];
 			}
 		}

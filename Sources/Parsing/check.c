@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 07:38:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 06:56:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,23 @@ static float min(float a, float b)
 
 static void		setup_obj(t_obj *obj)
 {
+
 	obj->low = fill_vec(min(obj->origin.origin.x, obj->destination.origin.x),
 			min(obj->origin.origin.y, obj->destination.origin.y),
 			min(obj->origin.origin.z, obj->destination.origin.z));
 	obj->high = fill_vec(max(obj->origin.origin.x, obj->destination.origin.x),
 			max(obj->origin.origin.y, obj->destination.origin.y),
 			max(obj->origin.origin.z, obj->destination.origin.z));
+	if (obj->size)
+	{
+		obj->low = sub_vec2(obj->origin.origin, obj->size / 2.0);
+		obj->high = add_vec2(obj->origin.origin, obj->size / 2.0);
+	}
 	obj->diff = fill_vec(obj->high.x - obj->low.x, obj->high.y - obj->low.y, obj->high.z - obj->low.z);
+
 }
 
-static int		check_effect(t_object obj)
+static int		check_effect(t_data *data, t_object obj)
 {
 	int	index;
 
@@ -44,6 +51,8 @@ static int		check_effect(t_object obj)
 			setup_obj(obj.item[index]);
 		if (((t_base *)obj.item[index])->effect.id_normal > obj.nb_normal)
 			return (4);
+		if (((t_base *)obj.item[index])->effect.opacity)
+			data->flag.diapo = 1;
 	}
 	index = -1;
 	while (++index < obj.nb_light)
@@ -58,7 +67,7 @@ int				check_parse(t_data *data)
 {
 	int	val;
 
-	if ((val = check_effect(data->obj)) != 0)
+	if ((val = check_effect(data, data->obj)) != 0)
 		return (val);
 	if ((data->input.rkey = malloc(282)) == NULL)
 		return (1);

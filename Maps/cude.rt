@@ -1,5 +1,5 @@
 #############################################
-#			Scene 42 : The Box				#
+#			Scene 42 : AWh MAN				#
 #############################################
 [header]
 	xscreen : 1000
@@ -9,46 +9,82 @@
 	aa : 0
 	bounce : 2
 	quality : 0
-	object : 4
+	object : 6
 	light : 2
 	opti : 1000
-	nb_texture : 1
-	textures : "./texture/icon.tga"
+	nb_texture : 4
+	textures : "./texture/Minecraft/creeper_head.tga"
+	textures : "./texture/Minecraft/creeper.tga"
+	textures : "./texture/Minecraft/MinecraftSkyDay.tga"
+	textures : "./texture/Minecraft/Dirt.tga"
 ############### Light ##################
 [light:1]
-	origin : {-1.5 -1.5 -1.5}
+	origin : {0.5 0 -2}
 	color : 0xFFFFFF
 	distance : 10000
 	intensity : 1
-	variance : 0
 [light:1]
-	origin : {-1.5 1.5 -1.5}
+	origin : {0.5 0 4}
 	color : 0xFFFFFF
 	distance : 10000
 	intensity : 1
-	variance : 0
 ############### Camera ################
 [camera:1]
-	origin : {1 -1 0}
+	origin : {0 0 -5}
 	direction : {0 0 1}
-############### OBJ ################
+############### Creeper ###############
 [object:obj]
-	origin : {-0.5 -0.5 -0.5}
-	destination : {0.5 0.5 0.5}
+	origin : {0.5 1.5 0.25}
+	size : 1
 	color : 0xff5fff
+			t0 : 0
+			t1 : 1
+			t2 : 1
+			t3 : 1
+			t4 : 1
+			t5 : 1
+			id_texture : 0
 			texture : 255
+			ns : 1
 [object:obj]
-	origin : {-0.5 -0.5 -1.5}
-	destination : {0.5 0.5 1.5}
+	origin : {0 1.5 0}
+	destination : {1 4 0.5}
 	color : 0xff5fff
+	size : 0
+			id_texture : 1
 			texture : 255
+			ns : 1
 [object:obj]
-	origin : {-0.5 -0.5 -2.5}
-	destination : {0.5 0.5 2.5}
+	origin : {0 4 0.5}
+	destination : {1 4.7 1.3}
 	color : 0xff5fff
+	size : 0
+			id_texture : 1
 			texture : 255
+			mv : 1
+			ns : 1
 [object:obj]
-	origin : {-0.5 -0.5 -3.5}
-	destination : {0.5 0.5 3.5}
+	origin : {0 4 -0.7}
+	destination : {1 4.7 0}
 	color : 0xff5fff
+	size : 0
+			id_texture : 1
 			texture : 255
+			mv : 1
+			ns : 1
+[object:sphere]
+	origin : {0 0 0}
+	color : 0xff5fff
+	rayon : 25
+			id_texture : 2
+			texture : 255
+			mv : 1
+			ns : 1
+[object:plan]
+	origin : {1 4.7 0}
+	direction : {0 -1 0}
+	color : 0xff5fff
+			id_texture : 3
+			texture : 255
+			reflection : 125
+			ns : 1

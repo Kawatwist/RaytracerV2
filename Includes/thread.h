@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 02:03:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 07:07:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ t_point					texture_cone(void *data,
 /*
 **			Light
 */
+
+int						light_color(unsigned int color, unsigned int newcolor);
 int						create_specular(t_thread *data, int color, t_ray *r, float dot);
 unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
-							t_vec ray, float *dist);
+							t_vec ray, float *dist, float max_dist);
 void					*check_object(t_thread *data, t_vec ray,
 							float *dist);
 /*

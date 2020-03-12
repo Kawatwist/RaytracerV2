@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 11:26:23 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 02:26:23 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,14 @@ t_point		texture_obj(void *data, void *obj, t_vec ray, int choose)
 	u = ((t_obj *)obj)->origin.direction;
 	u = fill_vec(u.y, u.z, -u.x);
 	v = cross_vec(u, ((t_obj *)obj)->origin.direction);
-	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF) +
+	ontexture.y = dot_product(sub_vec(((t_obj *)obj)->origin.origin, ray.origin), u) * (wh & 0xFFFF) +
 		((wh & 0xFFFF) >> 1);
-	ontexture.x = dot_product(ray.origin, v) * (wh >> 16) + ((wh >> 16) >> 1);
+	ontexture.x = dot_product(sub_vec(((t_obj *)obj)->origin.origin, ray.origin), v) * (wh >> 16) + ((wh >> 16) >> 1);
 	while (ontexture.x < 0 || ontexture.x >= (wh >> 16))
 		ontexture.x += (ontexture.x < 0 ? (wh >> 16) - 1 : -(wh >> 16) - 1);
 	while (ontexture.y < 0 || ontexture.y >= (wh & 0xFFFF))
 		ontexture.y += (ontexture.y < 0 ?
 			(wh & 0xFFFF) - 1 : -(wh & 0xFFFF) - 1);
-	// if (((t_obj *)obj)->face == 2)
-	// 	printf("%f || %f\n", ontexture.x,ontexture.y);
 	return (ontexture);
 }
 

@@ -6,11 +6,21 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:27:25 by lomasse           #+#    #+#             */
-/*   Updated: 2020/01/13 18:27:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 00:58:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+t_point		add_vec2(t_point v1, float sub)
+{
+	t_point ret;
+
+	ret.x = v1.x + sub;
+	ret.y = v1.y + sub;
+	ret.z = v1.z + sub;
+	return (ret);
+}
 
 t_point		sub_vec2(t_point v1, float sub)
 {

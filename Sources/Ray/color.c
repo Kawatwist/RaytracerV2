@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 11:50:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 05:31:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray, int
 	return (ret);
 }
 
+static int			find_index(void *obj)
+{
+	if (((t_base *)obj)->effect.type == OBJ && ((t_obj *)obj)->face < 6 && ((t_obj *)obj)->id_texture[((t_obj *)obj)->face] != 255)
+		return (((t_obj *)obj)->id_texture[((t_obj *)obj)->face]);
+	return (((t_base *)obj)->effect.id_texture);
+}
+
 unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 {
 	Uint32	colortmp;
@@ -66,7 +73,7 @@ unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 	if (!(((t_base *)obj)->effect.texture))
 		return (((t_base *)obj)->effect.color);
 	if (((t_base *)obj)->effect.id_texture < data->obj.nb_texture)
-		colortmp = find_texture_color(data, obj, ray, ((t_base *)obj)->effect.id_texture);
+		colortmp = find_texture_color(data, obj, ray, find_index(obj));
 	else
 		colortmp = find_damier(data, obj, ray);
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
