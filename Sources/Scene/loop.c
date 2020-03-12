@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/10 00:14:23 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/03/12 14:36:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,14 @@ int			sub_loop(t_data *data)
 {
 	int err;
 
-	if (data->flag.refresh || data->flag.asked)
+	if (data->flag.refresh || data->flag.asked || data->flag.video)
 	{
 		ft_putstr("\nRefresh Mode Enable\n");
 		printf("avant looping\n");
 		if ((err = looping(data)) != 0)// souvent segfault
 			return (err);
 		data->flag.asked = 0;
+		data->flag.video ? data->flag.video -=1 : 0;
 	}
 	else
 		SDL_Delay(16);
@@ -116,6 +117,14 @@ static int			signals(t_data *data)
 	return (0);
 }
 
+static void			effect(t_data *data)
+{
+	if (data->flag.video)
+	{
+		rot_cam_video(data, &data->obj.camera[data->obj.index[0]]);
+	}
+}
+
 int			loop(t_data *data)
 {
 	int		err;
@@ -133,6 +142,7 @@ int			loop(t_data *data)
 			break;
 		data->screen.screen[data->screen.interface & 0xFF](data);
 		input(data);
+		effect(data);
 		if (signals(data))
 			break;
 		if (data->input.key[SDL_SCANCODE_P])

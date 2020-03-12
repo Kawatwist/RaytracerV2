@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 08:09:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 14:34:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,8 @@ void		input(t_data *data)
 			data->flag.refresh = (data->flag.refresh ? 0 : 1);
 		if (adad.flag == 0 && data->hud.color_obj)
 			((t_base *)(tmp))->effect.color = adad.color;
-		// if (data->obj.light[data->obj.nb_light].color)
+		if (key_check(*data, SDL_SCANCODE_L))
+			data->flag.video = 31;
 		light_cursor(data);
 		input_obj(data);
 		input_filter(data);

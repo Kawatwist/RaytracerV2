@@ -86,6 +86,7 @@ SRC				=	main.c										\
 					ang.c										\
 					reflexion.c									\
 					refraction.c								\
+					rot_cam.c									\
 					rot_matrice.c								\
 					move_type.c									\
 					move_triangle.c								\

@@ -3,10 +3,10 @@
 #############################################
 [header]
 	ambiant : 0x7f007f
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 200
+	yscreen : 200
 	refresh : 1
-	quality : 1
+	quality : 2
 	bounce : 1
 	camera : 1
 	object : 7

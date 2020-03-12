@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 08:09:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/03/12 14:34:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_flag
 	Uint32		time : 1;
 	Uint32		diapo : 1;
 	Uint32		flare : 1;
+	Uint32		video : 5;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -129,6 +130,7 @@ void			input(t_data *data);
 /*
 **			Move Vec
 */
+void			rot_cam_video(t_data *data, t_camera *cam);
 t_point			rotx(t_point origin, float ang);
 t_point			roty(t_point origin, float ang);
 t_point			rotz(t_point origin, float ang);
