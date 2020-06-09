@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 05:31:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 19:30:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ unsigned int		set_color(unsigned int base, unsigned int new,
 	return (ret);
 }
 
-static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray, int index)
+static unsigned int	find_texture_color(t_thread *data, void *obj,
+		t_vec ray, int index)
 {
 	t_point			uv;
 	unsigned int	ret;
@@ -61,7 +62,8 @@ static unsigned int	find_texture_color(t_thread *data, void *obj, t_vec ray, int
 
 static int			find_index(void *obj)
 {
-	if (((t_base *)obj)->effect.type == OBJ && ((t_obj *)obj)->face < 6 && ((t_obj *)obj)->id_texture[((t_obj *)obj)->face] != 255)
+	if (((t_base *)obj)->effect.type == OBJ && ((t_obj *)obj)->face < 6 &&
+		((t_obj *)obj)->id_texture[((t_obj *)obj)->face] != 255)
 		return (((t_obj *)obj)->id_texture[((t_obj *)obj)->face]);
 	return (((t_base *)obj)->effect.id_texture);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 01:33:09 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 03:13:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 19:27:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ int				find_type(char *type)
 
 int				create_type(t_data *data, int index, int type)
 {
+	void			*item;
+	int				i;
 	static	size_t	tab[NONE] = {sizeof(t_sphere)
 			, sizeof(t_plan), sizeof(t_cone), sizeof(t_cylinder)
 			, sizeof(t_triangle), sizeof(t_disk), sizeof(t_obj)};
-	void			*item;
 
 	if ((item = malloc(tab[(int)type])) == NULL)
 		return (1);
@@ -47,7 +48,10 @@ int				create_type(t_data *data, int index, int type)
 	data->obj.item[index] = item;
 	((t_base *)data->obj.item[index])->effect.type = type;
 	if (type == OBJ)
-		for (int i = 0; i < 6; i++)
+	{
+		i = -1;
+		while (++i < 6)
 			((t_obj *)data->obj.item[index])->id_texture[i] = 255;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 05:28:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 18:19:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	filter_negatif(t_data *data, unsigned int i)
 {
 	while (++i < data->window.x * data->window.y)
-		 ((unsigned int *)data->window.pxl)[i] *= -1;
+		((unsigned int *)data->window.pxl)[i] *= -1;
 }
 
 static void	filter_cartoon(t_data *data, unsigned int i)

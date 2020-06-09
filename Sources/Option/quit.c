@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/24 16:56:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 18:51:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				send_thread_signal(t_data **data)
 
 int				wait_thread(t_data **data)
 {
-	int		i;
+	int				i;
 	struct timespec	timeout;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 17:29:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 19:37:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 void		set_color_light(t_thread *data, t_vec ray, int index, float dist)
 {
-	// t_vec	tmp;
-
 	(void)dist;
-	// tmp.origin = veccpy(ray.origin);
-	// tmp.direction = add_vec(ray.origin, mult_vec2(ray.direction, dist));
 	if (index == 0)
 		data->obj.color_find[0] = light_color(data->obj.color_find[1],
 			set_color(0, find_color(data, ((t_base *)data->obj.item[index]),
@@ -43,8 +39,7 @@ void		*check_object_light(t_thread *data, t_vec ray, float *dist, float max_dist
 	index = 0;
 	index2 = 0;
 
-(void)max_dist;
-	(void)ray;
+	(void)max_dist;
 	while (data->obj.item[index])
 	{
 		if (!(((t_base *)data->obj.item[index])->effect.flag & NS))
@@ -89,9 +84,5 @@ void		*check_object(t_thread *data, t_vec ray, float *dist)
 		}
 		index++;
 	}
-	//if (close != NULL && data->flag.filter == 3 &&
-	//	((t_base *)close)->effect.type == SPHERE)
-	//	if (sphere_depth(close, ray) < 1)
-	//		return (NULL);
 	return (*dist < 4000 ? close : NULL);
 }

@@ -97,6 +97,7 @@ SRC				=	main.c										\
 					input_move_cam.c							\
 					input_textures.c							\
 					screenshot.c								\
+					screenshot_bmp.c							\
 					resize_screen.c								\
 					create_type.c								\
 					shape_cartoon.c								\

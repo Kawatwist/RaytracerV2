@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 02:47:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 19:05:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,23 @@ static int		fill_effect(t_effect *effect, char *line)
 
 int				add_texture_face(t_data *data, char **line, int index)
 {
+	t_obj		*ptr;
+
 	if (((t_base *)data->obj.item[index])->effect.type == OBJ)
 	{
+		ptr = ((t_obj *)data->obj.item[index]);
 		if (!ft_strncmp("\t\t\tt0 :", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[0] = ft_atoi(*line + 7);
+			ptr->id_texture[0] = ft_atoi(*line + 7);
 		else if (!ft_strncmp("\t\t\tt1 : ", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[1] = ft_atoi(*line + 7);
+			ptr->id_texture[1] = ft_atoi(*line + 7);
 		else if (!ft_strncmp("\t\t\tt2 :", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[2] = ft_atoi(*line + 7);
+			ptr->id_texture[2] = ft_atoi(*line + 7);
 		else if (!ft_strncmp("\t\t\tt3 :", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[3] = ft_atoi(*line + 7);
+			ptr->id_texture[3] = ft_atoi(*line + 7);
 		else if (!ft_strncmp("\t\t\tt4 :", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[4] = ft_atoi(*line + 7);
+			ptr->id_texture[4] = ft_atoi(*line + 7);
 		else if (!ft_strncmp("\t\t\tt5 : ", *line, 7))
-			((t_obj *)data->obj.item[index])->id_texture[5] = ft_atoi(*line + 7);
+			ptr->id_texture[5] = ft_atoi(*line + 7);
 		else
 			return (1);
 	}
@@ -95,7 +98,8 @@ int				add_point(t_data *data, char **line, int index)
 		((t_base *)data->obj.item[index])->origin.origin = get_point(*line);
 	else if (!ft_strncmp("\tdirection :", *line, 12))
 		((t_base *)data->obj.item[index])->origin.direction = get_point(*line);
-	else if (!ft_strncmp("\tdestination :", *line, 14) && ((t_base *)data->obj.item[index])->effect.type)
+	else if (!ft_strncmp("\tdestination :", *line, 14) &&
+		((t_base *)data->obj.item[index])->effect.type)
 		((t_obj *)data->obj.item[index])->destination.origin = get_point(*line);
 	else if (!ft_strncmp("\tp1 :", *line, 5))
 		((t_base *)data->obj.item[index])->origin.origin = get_point_y(*line);
@@ -108,6 +112,24 @@ int				add_point(t_data *data, char **line, int index)
 	return (0);
 }
 
+static int		other(t_data *data, char **line, int index)
+{
+	if (!add_point(data, line, index))
+		return (0);
+	else if (!ft_strncmp("\thauteur : ", *line, 11) &&
+	((((t_base *)data->obj.item[index])->effect.type == CONE) ||
+		(((t_base *)data->obj.item[index])->effect.type == CYLINDER)))
+		((t_cone *)data->obj.item[index])->high = ft_atof(*line + 11);
+	else if (!add_texture_face(data, line, index))
+		return (0);
+	else if (**line == (char)'#')
+		return (0);
+	else if (!fill_effect(&(((t_base *)data->obj.item[index])->effect),
+			*line))
+		return (0);
+	return (17);
+}
+
 int				fill_obj(t_data *data, char **line, int index)
 {
 	if (!ft_strncmp("\tcolor :", *line, 8))
@@ -118,26 +140,16 @@ int				fill_obj(t_data *data, char **line, int index)
 	((t_base *)data->obj.item[index])->effect.type == CYLINDER ||
 	((t_base *)data->obj.item[index])->effect.type == DISK))
 		((t_sphere *)data->obj.item[index])->rayon = ft_atof(*line + 9);
-	else if (!ft_strncmp("\tsize : ", *line, 8) && ((t_base *)data->obj.item[index])->effect.type == OBJ)
+	else if (!ft_strncmp("\tsize : ", *line, 8) &&
+		((t_base *)data->obj.item[index])->effect.type == OBJ)
 		((t_obj *)data->obj.item[index])->size = ft_atof(*line + 8);
-	else if (!ft_strncmp("\tside : ", *line, 8) && ((t_base *)data->obj.item[index])->effect.type == CONE)
+	else if (!ft_strncmp("\tside : ", *line, 8) &&
+		((t_base *)data->obj.item[index])->effect.type == CONE)
 		((t_cone *)data->obj.item[index])->side = ft_atoi(*line + 8);
 	else if (!ft_strncmp("\tangle : ", *line, 9) &&
 	(((t_base *)data->obj.item[index])->effect.type == CONE))
 		((t_cone *)data->obj.item[index])->ang = ft_atof(*line + 9);
-	else if (!ft_strncmp("\thauteur : ", *line, 11) &&
-	((((t_base *)data->obj.item[index])->effect.type == CONE) || (((t_base *)data->obj.item[index])->effect.type == CYLINDER)))
-		((t_cone *)data->obj.item[index])->high = ft_atof(*line + 11);
-	else if (!add_point(data, line, index))
-		return (0);
-	else if (!add_texture_face(data, line, index))
-		return (0);
-	else if (**line == (char)'#')
-		return (0);
-	else if (!fill_effect(&(((t_base *)data->obj.item[index])->effect),
-			*line))
-		return (0);
 	else
-		return (17);
+		return (other(data, line, index));
 	return (0);
 }

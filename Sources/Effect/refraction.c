@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:23:08 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 10:42:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 18:19:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ t_point		find_refraction(t_thread data, void *obj, t_vec ray)
 	t_point	ret;
 
 	normal = normalize(find_normal_with_txt(data, obj, ray));
-	indice = ((t_base *)obj)->effect.id_refraction != 0 ? ((t_base *)obj)->effect.id_refraction : 2.0;
+	indice = ((t_base *)obj)->effect.id_refraction != 0 ?
+		((t_base *)obj)->effect.id_refraction : 2.0;
 	angle = dot_product(ray.direction, normal);
-	ret = sub_vec(mult_vec2(ray.direction, indice), mult_vec2(normal, -angle + indice * angle));
+	ret = sub_vec(mult_vec2(ray.direction, indice),
+		mult_vec2(normal, -angle + indice * angle));
 	return (normalize(ret));
 }
 

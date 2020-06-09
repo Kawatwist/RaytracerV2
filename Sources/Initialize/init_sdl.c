@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/28 16:52:10 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/09 19:07:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
 int				initialize_scene(t_data *data)
 {
 	t_tga		*txt;
@@ -19,8 +20,8 @@ int				initialize_scene(t_data *data)
 	tmp = NULL;
 	if ((txt = load_tga("./texture/home.tga")) == NULL)
 		return (1);
-	if ((tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
-			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)) == NULL)
+	if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
+			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
 		return (5);
 	if ((data->screen.scenetxt[0] =
 		SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
@@ -29,8 +30,8 @@ int				initialize_scene(t_data *data)
 	free_tga(txt);
 	if ((txt = load_tga("./texture/Grimoire.tga")) == NULL)
 		return (1);
-	if ((tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
-			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)) == NULL)
+	if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
+			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
 		return (5);
 	if ((data->screen.scenetxt[3] =
 		SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
@@ -52,7 +53,6 @@ static int	init_sub(t_data *data)
 	return (0);
 }
 
-
 static int	initialize_sdl_txt(t_data *data)
 {
 	data->window.txt = SDL_CreateTexture(data->window.rend,
@@ -64,11 +64,19 @@ static int	initialize_sdl_txt(t_data *data)
 	return (0);
 }
 
+static void	initialize_event(t_data *data)
+{
+	SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
+	SDL_PollEvent(&data->input.ev);
+	data->input.key = (Uint8 *)SDL_GetKeyboardState(NULL);
+	ft_bzero(data->input.oldkey, 282);
+}
+
 int			initialize_sdl(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER))
 		return (1);
-	data->window.window = SDL_CreateWindow("RT", 500, 500, data->window.x,
+	data->window.window = SDL_CreateWindow("RT", 0, 0, data->window.x,
 		data->window.y, SDL_WINDOW_RESIZABLE);
 	if (data->window.window == NULL)
 		return (2);
@@ -78,14 +86,9 @@ int			initialize_sdl(t_data *data)
 	initialize_sdl_txt(data);
 	if (data->window.txt == NULL || data->window.oldtxt == NULL)
 		return (4);
-	SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
-	SDL_PollEvent(&data->input.ev);
-	data->input.key = (Uint8 *)SDL_GetKeyboardState(NULL);
-	ft_bzero(data->input.oldkey, 282);
+	initialize_event(data);
 	SDL_RenderPresent(data->window.rend);
-	if (loading(data) != 0)
-		return (1);
-	if (init_hud(data) != 0)
+	if (loading(data) || init_hud(data))
 		return (1);
 	if ((init_sub(data)) != 0)
 		return (5);

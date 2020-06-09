@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/22 22:30:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 18:50:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static void		destroy_text(SDL_Texture *t)
 	}
 }
 
+//
+/*
+**	Destroy Window ?
+*/
+
 int				clear_memory(t_data *data)
 {
 	clear_texture(data, data->texture);
@@ -77,14 +82,6 @@ int				clear_memory(t_data *data)
 	destroy_text(data->load.load);
 	destroy_text(data->load.loading);
 	destroy_text(data->load.lolz);
-	// destroy_text(data->window.txt);
-	// printf("window\n");
-	// if (data->window.window != NULL)
-	// {
-	// 	printf("I'll destroy the window\n");
-	// 	// SDL_DestroyWindow(data->window.window);
-	// 	data->window.window = NULL;
-	// }
 	clear_thread((t_thread *)data->thread);
 	return (0);
 }

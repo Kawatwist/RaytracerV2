@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/28 20:27:03 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/09 18:21:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,20 @@ SDL_Rect			set_font_pos(char a)
 	SDL_Rect	pos;
 
 	ft_bzero(&pos, sizeof(SDL_Rect));
+	pos.w = 110;
+	pos.h = 115;
 	if (a >= 'A' && a <= 'Z')
 	{
-		pos.w = 110;
-		pos.h = 115;
 		pos.x = ((a - 'A') % 9) * pos.w;
 		pos.y = ((a - 'A') / 9) * pos.h;
 	}
 	else if (a >= 'a' && a <= 'z')
 	{
-		pos.w = 110;
-		pos.h = 115;
 		pos.x = ((a - 'a') % 9) * pos.w;
 		pos.y = 385 + (((a - 'a') / 9) * pos.h);
 	}
 	else if (a >= '0' && a <= '9')
 	{
-		pos.w = 110;
-		pos.h = 115;
 		pos.x = ((a - '0') % 9) * pos.w;
 		pos.y = 765 + (((a - '0') / 9) * pos.h);
 	}
@@ -58,8 +54,8 @@ SDL_Rect			set_font_pos(char a)
 
 int					print_text(t_data *data, int x, int y, int size)
 {
-	int		i;
-	SDL_Rect pos;
+	int			i;
+	SDL_Rect	pos;
 
 	i = -1;
 	while (data->font.str[++i])
@@ -69,7 +65,8 @@ int					print_text(t_data *data, int x, int y, int size)
 		pos.h = size;
 		pos.x = x + ((pos.w - (size / 3)) * i);
 		pos.y = y;
-		SDL_RenderCopy(data->window.rend, data->font.font_maj, &data->font.pos, &pos);
+		SDL_RenderCopy(data->window.rend, data->font.font_maj,
+			&data->font.pos, &pos);
 	}
 	if (data->font.str)
 		free(data->font.str);
@@ -78,7 +75,7 @@ int					print_text(t_data *data, int x, int y, int size)
 
 static SDL_Texture	*load_txt(t_data *data, char *path)
 {
-	t_tga 		*load;
+	t_tga		*load;
 	SDL_Surface	*s;
 	SDL_Texture	*ret;
 

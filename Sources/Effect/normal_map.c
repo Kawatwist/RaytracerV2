@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 05:28:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 18:18:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 	t_point	ret;
 	t_point	rot;
 
-	/** Not Bad **/
 	base = normalize(normal);
 	ret = normalize(div_vec2(fill_vec(color[0], color[1], color[2]), 255.0));
 	(void)percent;

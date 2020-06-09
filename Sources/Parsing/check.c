@@ -6,25 +6,24 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 14:18:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/09 19:13:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static float max(float a, float b)
+static float	max(float a, float b)
 {
 	return (a < b ? b : a);
 }
 
-static float min(float a, float b)
+static float	min(float a, float b)
 {
 	return (a < b ? a : b);
 }
 
 static void		setup_obj(t_obj *obj)
 {
-
 	obj->low = fill_vec(min(obj->origin.origin.x, obj->destination.origin.x),
 			min(obj->origin.origin.y, obj->destination.origin.y),
 			min(obj->origin.origin.z, obj->destination.origin.z));
@@ -36,8 +35,8 @@ static void		setup_obj(t_obj *obj)
 		obj->low = sub_vec2(obj->origin.origin, obj->size / 2.0);
 		obj->high = add_vec2(obj->origin.origin, obj->size / 2.0);
 	}
-	obj->diff = fill_vec(obj->high.x - obj->low.x, obj->high.y - obj->low.y, obj->high.z - obj->low.z);
-
+	obj->diff = fill_vec(obj->high.x - obj->low.x, obj->high.y - obj->low.y,
+		obj->high.z - obj->low.z);
 }
 
 static int		check_effect(t_data *data, t_object obj)
