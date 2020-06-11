@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:23:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 20:39:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		((unsigned char *)&(data->tmp_color))[0] > 0
 		&& ((t_base *)r.obj)->effect.transparancy)
 		send_ray_txt(&r, data, &ray, &bounce);
-	return (r.color[0] ? r.color[0] : data->ambiant);
+	return (r.color[0]);
 }

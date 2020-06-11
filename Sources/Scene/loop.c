@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 14:36:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 20:42:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,14 @@ static int	looping(t_data *data)
 	if (data->hud.flag_hud)
 		pics_on_screen(data);
 	if (data->obj.type_index == 0)
-		data->font.str = ft_strjoinfree("Current Cam :\0", ft_itoa(data->obj.index[0]), 2);
+		data->font.str = ft_strjoinfree("Current Cam :\0",
+			ft_itoa(data->obj.index[0]), 2);
 	else if (data->obj.type_index == 1)
-		data->font.str = ft_strjoinfree("Current Obj :\0", ft_itoa(data->obj.index[1]), 2);
+		data->font.str = ft_strjoinfree("Current Obj :\0",
+			ft_itoa(data->obj.index[1]), 2);
 	else
-		data->font.str = ft_strjoinfree("Current Light :\0", ft_itoa(data->obj.index[2]), 2);
+		data->font.str = ft_strjoinfree("Current Light :\0",
+			ft_itoa(data->obj.index[2]), 2);
 	print_text(data, 0, 0, 30);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
@@ -80,7 +83,7 @@ int			sub_loop(t_data *data)
 		if ((err = looping(data)) != 0)// souvent segfault
 			return (err);
 		data->flag.asked = 0;
-		data->flag.video ? data->flag.video -=1 : 0;
+		data->flag.video ? data->flag.video -= 1 : 0;
 	}
 	else
 		SDL_Delay(16);
@@ -139,12 +142,12 @@ int			loop(t_data *data)
 			data->screen.interface = HOME;
 		check_time(data);
 		if (SDL_QuitRequested())
-			break;
+			break ;
 		data->screen.screen[data->screen.interface & 0xFF](data);
 		input(data);
 		effect(data);
 		if (signals(data))
-			break;
+			break ;
 		if (data->input.key[SDL_SCANCODE_P])
 			data->flag.asked = 1;
 	}

@@ -10,6 +10,7 @@
 	light : 2
 	camera : 1
 	ambiant : 0x7F007F
+	bounce : 1
 [camera:1]
 	origin : {0.5 0 -1}
 	direction : {0 0 1}
@@ -23,10 +24,11 @@
 	distance : 5
 	intensity : 1
 	color : 0xFFFFFF
-[object:cone]
-	color : 0x6F000F
-	origin : {0 0 0}
-	direction : {1 0 0}
-	angle : 30
-	hauteur : 100
-			ns : 0
+[object:plan]
+	origin : {1 4.7 0}
+	direction : {0 -1 0}
+	color : 0xffffff
+			id_texture : 255
+			texture : 255
+			opacity : 0
+			ns : 1

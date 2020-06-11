@@ -101,7 +101,7 @@
 			refraction : 125
 [object:cylinder]
 	origin : {0 2 -2.5}
-	direction : {0.5 1 0}
+	direction : {0 1 0}
 	color : 0xffffff
 	rayon : 0.5
 	hauteur : 2.5
