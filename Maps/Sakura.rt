@@ -25,10 +25,11 @@
 	origin : {0 1 0.1}
 	direction : {0 1 0}
 ############### Object #################
-[object:plan]
+[object:cylinder]
 	origin : {0 0 0.5}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
+	hauteur : 2
 			reflection : 255
 [object:plan]
 	origin : {0 0 -0.5}

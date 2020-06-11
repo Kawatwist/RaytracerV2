@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 06:58:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 18:23:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SUBRT_H
 
 # include "SDL2/SDL.h"
+# include <object.h>
 
 # define CAM_TXT "./texture/Texture/cam.tga"
 # define SPHERE_TXT "./texture/Texture/sphere.tga"

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 11:10:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 18:40:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned int	add_color(unsigned int base, unsigned int new)
 	return (*((int *)color));
 }
 
-int			light_color(unsigned int color, unsigned int newcolor)
+int					light_color(unsigned int color, unsigned int newcolor)
 {
 	unsigned char	value[4];
 	int				tmp;
@@ -52,7 +52,8 @@ int			light_color(unsigned int color, unsigned int newcolor)
 	return (*(int*)(value));
 }
 
-float				stop_light(t_thread *data, t_light light, t_vec ray, float max_dist)
+float				stop_light(t_thread *data, t_light light,
+		t_vec ray, float max_dist)
 {
 	float	intersect;
 	void	*obj;
@@ -84,7 +85,8 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	float	len;
 	float	dot;
 
-	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)), normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
+	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)),
+		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
 	if (dot > data->obj.light[index].ang)
 		;
 	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
@@ -97,11 +99,11 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	dot > 1 ? dot = 1 : 0;
 	dot < 0 ? dot = 0 : 0;
 	dot *= data->obj.light[index].intensity;
-	if (data->flag.diapo)
-		return (add_color(color, light_color(r.color[0], set_color(data->obj.color_find[0],
+	return (data->flag.diapo ? add_color(color, light_color(r.color[0],
+			set_color(data->obj.color_find[0],
+			data->obj.color_find[0], (dot * obj[0] * len), -1))) :
+			add_color(color, light_color(r.color[0], set_color(0,
 			data->obj.color_find[0], (dot * obj[0] * len), -1))));
-	return (add_color(color, light_color(r.color[0], set_color(0,
-		data->obj.color_find[0], (dot * obj[0] * len), -1))));
 }
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
@@ -121,10 +123,10 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	len > 1 ? len = 1 : 0;
 	len < 0 ? len = 0 : 0;
 	dot > 1 ? dot = 1 : 0;
-	dot < 0 ? dot = 0 : 0;
-	dot *= data->obj.light[index].intensity;
+	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
 	if (data->flag.diapo)
-		color = add_color(color, light_color(r.color[0], set_color(data->obj.color_find[0],
+		color = add_color(color, light_color(r.color[0],
+			set_color(data->obj.color_find[0],
 			data->obj.color_find[0], (dot * obj[0] * len), -1)));
 	else
 		color = add_color(color, light_color(r.color[0], set_color(0,

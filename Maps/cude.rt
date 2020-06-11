@@ -82,10 +82,10 @@
 	origin : {1 4.7 0}
 	direction : {0 -1 0}
 	color : 0xffffff
-# id_texture : 255
-# texture : 255
-# reflection : 125
-# ns : 1
+			id_texture : 255
+			texture : 255
+			reflection : 125
+			ns : 1
 [object:sphere]
 	origin : {0 2.7 3.3}
 	color : 0xffffff
@@ -101,7 +101,7 @@
 			refraction : 125
 [object:cylinder]
 	origin : {0 2 -2.5}
-	direction : {0 1 0}
+	direction : {0.5 1 0}
 	color : 0xffffff
 	rayon : 0.5
 	hauteur : 2.5

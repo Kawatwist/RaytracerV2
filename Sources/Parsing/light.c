@@ -6,13 +6,13 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/09 19:18:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 15:30:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int	sub_light(t_data *data, char **old, char *line, int index)
+static int	sub_light(t_data *data, char *line, int index)
 {
 	if (!ft_strncmp("\tdirection : ", line, 13))
 		data->obj.light[index].direction = get_point(line);
@@ -43,7 +43,7 @@ int			parsing_light(t_data *data, char **old, char *line)
 			data->obj.light[index].intensity = ft_atof(line + 13);
 		else if (!ft_strncmp("\tvariance : ", line, 12))
 			data->obj.light[index].variance = ft_atof(line + 12);
-		else if (ft_strchr(line, '#') || !sub_light(data, old, line, index))
+		else if (ft_strchr(line, '#') || !sub_light(data, line, index))
 			;
 		else
 			break ;

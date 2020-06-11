@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/09 19:05:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 16:00:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ static int		other(t_data *data, char **line, int index)
 	else if (!fill_effect(&(((t_base *)data->obj.item[index])->effect),
 			*line))
 		return (0);
-	return (17);
+	else
+		return (17);
+	return (0);
 }
 
 int				fill_obj(t_data *data, char **line, int index)

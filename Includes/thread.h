@@ -6,14 +6,15 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 07:07:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/11 18:23:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREAD_H
 # define THREAD_H
 
-# include "subrt.h"
+# include <subrt.h>
+# include <object.h>
 # include <pthread.h>
 # include "rt.h"
 # define ETIMEDOUT 110
@@ -50,6 +51,7 @@ typedef	struct			s_thread
 	pthread_mutex_t		mutex;
 	char				signal;
 	pthread_t			thd;
+	int					tmp_color;
 }						t_thread;
 /*
 **			Special Function pthread
@@ -99,6 +101,9 @@ void					*check_object(t_thread *data, t_vec ray,
 /*
 **			Ray Setup
 */
+t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
+t_vec		setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
+t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
 unsigned int			set_ambiant(unsigned int base);
 int						load_modif(t_data *data, t_thread *tmp);

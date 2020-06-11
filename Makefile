@@ -62,6 +62,7 @@ SRC				=	main.c										\
 					color.c										\
 					texture.c									\
 					ray.c										\
+					setup_ray_effect.c							\
 					send.c										\
 					input.c										\
 					input_tool.c								\
