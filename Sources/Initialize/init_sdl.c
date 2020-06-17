@@ -6,11 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 19:07:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:32:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include <rt.h>
+#include <path.h>
 
 int				initialize_scene(t_data *data)
 {
@@ -18,7 +19,7 @@ int				initialize_scene(t_data *data)
 	SDL_Surface	*tmp;
 
 	tmp = NULL;
-	if ((txt = load_tga("./texture/home.tga")) == NULL)
+	if ((txt = load_tga(PATH_HOME)) == NULL)
 		return (1);
 	if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
 			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
@@ -28,7 +29,7 @@ int				initialize_scene(t_data *data)
 		exit(0);
 	SDL_FreeSurface(tmp);
 	free_tga(txt);
-	if ((txt = load_tga("./texture/Grimoire.tga")) == NULL)
+	if ((txt = load_tga(PATH_GRIMOIRE)) == NULL)
 		return (1);
 	if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
 			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
@@ -76,8 +77,8 @@ int			initialize_sdl(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER))
 		return (1);
-	data->window.window = SDL_CreateWindow("RT", 0, 0, data->window.x,
-		data->window.y, SDL_WINDOW_RESIZABLE);
+	data->window.window = SDL_CreateWindow("RT", 0, 0, data->window.x + 200,
+		data->window.y + 30, SDL_WINDOW_RESIZABLE);
 	if (data->window.window == NULL)
 		return (2);
 	if ((data->window.rend = SDL_CreateRenderer(data->window.window,

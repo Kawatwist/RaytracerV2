@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 06:36:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:44:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int		quitrequested(t_thread *data)
 	value = 0;
 	while (pthread_mutex_trylock(&data->mutex))
 		;
+	data->loading =  (char)(((float)data->current / (float)data->len) * 25.0);
+	// printf("Load = %d | %d\n", data->current, data->len);
 	value = data->signal;
 	if (value == THREAD_SIG)
 		data->signal = NOTHREAD;
@@ -92,6 +94,7 @@ void	*thread_function(void *arg)
 	data->signal = THREAD_ALIVE;
 	while (++curr < data->len)
 	{
+		data->current = curr;
 		if (quitrequested(data) == THREAD_SIG)
 			pthread_exit(NULL);
 		if (data->flag.antialiasing == 0)

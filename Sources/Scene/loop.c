@@ -6,11 +6,23 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/11 20:42:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 20:30:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static int	texture_on_screen(t_data *data)
+{
+	SDL_Rect	pos;
+
+	pos.x = 200;
+	pos.y = 30;
+	pos.w = data->window.x - 200;
+	pos.h = data->window.y - 30;
+	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, &pos); // Secu ?
+	return (0);
+}
 
 static int	looping(t_data *data)
 {
@@ -26,7 +38,7 @@ static int	looping(t_data *data)
 	if (data->percent > 99)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
-	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+	texture_on_screen(data);
 	if (data->hud.flag_hud)
 		pics_on_screen(data);
 	if (data->obj.type_index == 0)

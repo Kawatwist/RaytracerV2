@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:23:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:44:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef	struct			s_thread
 	char				signal;
 	pthread_t			thd;
 	int					tmp_color;
+	char				loading;
+	int				current;
 }						t_thread;
 /*
 **			Special Function pthread

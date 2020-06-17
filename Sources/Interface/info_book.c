@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info_book.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 19:48:38 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/09 22:58:38 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/17 18:22:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void			info_book(t_data *data, SDL_Rect *pos)
 		if (key_check(*data, SDL_SCANCODE_RIGHT))
 			data->screen.page++;
 	}
-	printf("[%d]|| [%d]\n", data->input.x, data->input.y);
 	if ((data->input.button = (int)SDL_GetMouseState(&data->input.x,
-	&data->input.y)) == 1 || data->screen.page == 1)
+		&data->input.y)) == 1 || data->screen.page == 1)
 		page_turned(data, pos);
 }

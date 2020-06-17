@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 14:34:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:26:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ struct			s_data
 							t_vec ray, int choose);
 	void				(*move[3]) (t_data *data, void **obj);
 	int					percent;
+	char				loading;
 	int					bounce;
 	int					ambiant;
 	void				*thread;

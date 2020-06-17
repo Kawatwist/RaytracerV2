@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/10 07:58:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:58:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,29 @@ static void		loading_sc(t_data *data, int p)
 	pos.y = (p / 6) * 100;
 	pos.w = 100;
 	pos.h = 100;
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		while (pthread_mutex_trylock(&((t_thread *)data->thread)[i].mutex))
+			;
+		i++;
+	}
+	data->loading = ((t_thread *)data->thread)[0].loading + ((t_thread *)data->thread)[1].loading + ((t_thread *)data->thread)[2].loading + ((t_thread *)data->thread)[3].loading;
+	printf("%d%%\n", data->loading);
+	printf("THD 1 : %d%%\n", ((t_thread *)data->thread)[0].loading * 4);
+	printf("THD 2 : %d%%\n", ((t_thread *)data->thread)[1].loading * 4);
+	printf("THD 3 : %d%%\n", ((t_thread *)data->thread)[2].loading * 4);
+	printf("THD 4 : %d%%\n", ((t_thread *)data->thread)[3].loading * 4);
+	i = 0;
+	while (i < 4)
+	{
+		pthread_mutex_unlock(&((t_thread *)data->thread)[i].mutex);
+		i++;
+	}
 	setup_rect(data, &og, &screen, &lolz);
+	og.h = data->loading;
 	SDL_RenderClear(data->window.rend);
 	if (data->flag.first == 0)
 		SDL_RenderCopy(data->window.rend, data->load.loading, &screen, NULL);
@@ -68,7 +90,7 @@ static void		loading_sc(t_data *data, int p)
 	SDL_Delay(24);
 	if (data->window.rend != NULL)
 		SDL_RenderPresent(data->window.rend);
-	SDL_Delay(24);
+	SDL_Delay(240);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)

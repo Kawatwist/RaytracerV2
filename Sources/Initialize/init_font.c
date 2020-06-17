@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:21:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/17 18:25:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int					print_text(t_data *data, int x, int y, int size)
 		SDL_RenderCopy(data->window.rend, data->font.font_maj,
 			&data->font.pos, &pos);
 	}
+	printf("data->font.str = %s\n", data->font.str);
 	if (data->font.str)
 		free(data->font.str);
 	return (0);
