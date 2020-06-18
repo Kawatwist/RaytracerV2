@@ -6,8 +6,8 @@
 	xscreen : 200
 	yscreen : 200
 	refresh : 1
-	quality : 2
-	bounce : 1
+	quality : 0
+	bounce : 0
 	camera : 1
 	object : 7
 	light : 1
@@ -40,7 +40,7 @@
 	direction : {0.0 0.0 0.0}
 	rayon : 3
 			opacity : 255
-			mv : 1
+			mv : 0
 			texture : 255
 			id_texture : 0
 [object:sphere]
@@ -49,7 +49,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 1
+			mv : 0
 			texture : 255
 			id_texture : 1
 [object:sphere]
@@ -58,7 +58,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 1
+			mv : 0
 			texture : 255
 			id_texture : 2
 [object:sphere]
@@ -67,7 +67,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 1
+			mv : 0
 			texture : 255
 			id_texture : 3
 [object:sphere]
@@ -89,6 +89,6 @@
 			texture : 255
 			id_texture : 5
 [object:plan]
-	color : 0xFFFFFF
+	color : 0xffffff
 	origin : {0.0 0.0 1.0}
 	direction : {0 0 -1}

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/17 18:58:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/18 20:22:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,54 @@ static void		setup_rect(t_data *data, SDL_Rect *og, SDL_Rect *screen, SDL_Rect *
 	lolz->h = 200;
 }
 
+static void		thread_loading_bar(t_data *data)
+{
+	SDL_Rect	load;
+	int			i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		load.x = 300 + (i * 25);
+		load.y = data->window.y - 35 - (((t_thread *)data->thread)[i].loading * 4);
+		load.w = 20;
+		load.h = ((t_thread *)data->thread)[i].loading * 4;
+		SDL_SetRenderDrawColor(data->window.rend, (25 - ((t_thread *)data->thread)[i].loading) * 10, (((t_thread *)data->thread)[i].loading) * 10, 0, 0); /*! ATTENTION LOADING VAR */
+		SDL_RenderFillRect(data->window.rend, &load);
+	}
+	SDL_SetRenderDrawColor(data->window.rend, 0, 0, 0, 0);
+}
+
+static void		loading_bar(t_data *data)
+{
+	SDL_Rect	load;
+
+	SDL_SetRenderDrawColor(data->window.rend, (100 - data->loading) * 2.5, (data->loading) * 2.5, 0, 0);
+	load.x = 300;
+	load.y = data->window.y - 30;
+	load.w = data->loading;
+	load.h = 20;
+	SDL_RenderFillRect(data->window.rend, &load);
+	thread_loading_bar(data);
+	SDL_SetRenderDrawColor(data->window.rend, 0, 0, 0, 0);
+}
+
+static void		show_hud_loading(t_data *data)
+{
+	SDL_Rect	pos;
+
+	pos.x = 200;
+	pos.y = 30;
+	pos.w = data->window.x - 200;
+	pos.h = data->window.y - 30;
+
+	if (data->flag.first == 0 || data->window.oldtxt == NULL)
+		SDL_RenderCopy(data->window.rend, data->load.loading, &pos, &pos);
+	else
+		SDL_RenderCopy(data->window.rend, data->window.oldtxt, &pos, &pos);
+	/* Place Hud There */
+}
+
 static void		loading_sc(t_data *data, int p)
 {
 	SDL_Rect	pos;
@@ -66,6 +114,9 @@ static void		loading_sc(t_data *data, int p)
 	printf("THD 2 : %d%%\n", ((t_thread *)data->thread)[1].loading * 4);
 	printf("THD 3 : %d%%\n", ((t_thread *)data->thread)[2].loading * 4);
 	printf("THD 4 : %d%%\n", ((t_thread *)data->thread)[3].loading * 4);
+	// SDL_UnlockTexture(data->window.txt);
+	// SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+	// SDL_LockTexture(data->window.txt, NULL, &data->window.pxl, &data->window.pitch);
 	i = 0;
 	while (i < 4)
 	{
@@ -73,24 +124,19 @@ static void		loading_sc(t_data *data, int p)
 		i++;
 	}
 	setup_rect(data, &og, &screen, &lolz);
-	og.h = data->loading;
 	SDL_RenderClear(data->window.rend);
-	if (data->flag.first == 0)
-		SDL_RenderCopy(data->window.rend, data->load.loading, &screen, NULL);
+	if (data->hud.flag_hud)
+		show_hud_loading(data);
+	else if (data->flag.first == 0 || data->window.oldtxt == NULL)
+		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
 	else
-	{
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
-		if (data->hud.flag_hud)
-		{
-			pics_on_screen(data);
-			SDL_RenderCopy(data->window.rend, data->load.lolz, NULL, &lolz);
-		}
-	}
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
-	SDL_Delay(24);
+	loading_bar(data);
+	SDL_Delay(32);
 	if (data->window.rend != NULL)
 		SDL_RenderPresent(data->window.rend);
-	SDL_Delay(240);
+	SDL_Delay(32);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)

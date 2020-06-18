@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/17 20:30:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/18 19:32:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ static int	texture_on_screen(t_data *data)
 {
 	SDL_Rect	pos;
 
+	/*If Hud*/
 	pos.x = 200;
 	pos.y = 30;
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
-	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, &pos); // Secu ?
+	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
 	return (0);
 }
 
@@ -39,8 +40,8 @@ static int	looping(t_data *data)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
 	texture_on_screen(data);
-	if (data->hud.flag_hud)
-		pics_on_screen(data);
+	//if (data->hud.flag_hud)
+	//	pics_on_screen(data);
 	if (data->obj.type_index == 0)
 		data->font.str = ft_strjoinfree("Current Cam :\0",
 			ft_itoa(data->obj.index[0]), 2);
