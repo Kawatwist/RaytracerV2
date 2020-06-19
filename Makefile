@@ -99,6 +99,7 @@ SRC				=	main.c										\
 					input_textures.c							\
 					screenshot.c								\
 					screenshot_bmp.c							\
+					screenshot_framed.c							\
 					resize_screen.c								\
 					create_type.c								\
 					shape_cartoon.c								\

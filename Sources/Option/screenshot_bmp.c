@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:55:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/19 20:51:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,30 @@ static char	*findname_bmp(char *name)
 	return (name);
 }
 
-void		create_screenshot_bmp(t_data *data, void *pxl)
+void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 {
 	char			*name;
 	SDL_Surface		*tobmp;
 
-	name = ft_strdup("./Screenshot/screenshot_0\0");
+	name = ft_strdup(*path);
 	name = findname_bmp(name);
 	tobmp = SDL_CreateRGBSurfaceWithFormatFrom(pxl, data->window.x,
 		data->window.y, 32, data->window.x * 4, SDL_PIXELFORMAT_BGRA32);
-	SDL_SaveBMP(tobmp, name);
+	printf("Screenshot : %d\n", SDL_SaveBMP(tobmp, name));
+    printf("Screenshot error: %s\n", SDL_GetError());
 	if (tobmp != NULL)
 		SDL_FreeSurface(tobmp);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-		"Screenshot Done", name, data->window.window);
-	free(name);
+	if (mode == 1)
+	{
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+			"Screenshot Done", name, data->window.window);
+		free(name);
+	}
+	else
+	{
+		// if (path)
+		// 	free(path);
+		*path = name;
+		(ft_strchr(*path, 'b'))[-1] = '\0';
+	}
 }

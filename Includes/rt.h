@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/17 18:26:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/19 20:32:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,10 @@ void			input_move_light(t_data *data, void **light);
 void			input_color_light(t_data *data, void **light, char ctrl);
 void			input_distance_light(t_data *data, void **light, char ctrl);
 void			input_intensity_light(t_data *data, void **light, char ctrl);
-void			light_cursor(t_data *data);void			create_screenshot(t_data *data, void *pxl);
-void			create_screenshot_bmp(t_data *data, void *pxl);
+void			light_cursor(t_data *data);
+void			create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
+void			framed(t_data *data);
 /*
 **			Thread
 */
