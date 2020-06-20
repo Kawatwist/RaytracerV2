@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:23:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 19:25:14 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,10 @@ typedef struct		s_scene
 	int				fd;
 	unsigned int	error_line;
 }					t_scene;
+
+typedef struct	s_menu
+{
+	SDL_Texture		*background;
+}				t_menu;
 
 #endif

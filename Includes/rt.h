@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/19 20:32:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:27:06 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "tga_reader.h"
 # include "object.h"
 # include "subrt.h"
+# include "menu.h"
 
 # define TRUE 1
 # define PATH "./Texture/\0"
@@ -69,6 +70,7 @@ struct			s_data
 	t_input				input;
 	t_object			obj;
 	t_scene				parse;
+	t_menu				menu;
 	t_hud				hud;
 	t_flag				flag;
 	t_vec				ray;
@@ -239,6 +241,8 @@ void			get_input(t_data *data);
 int				home_screen(t_data *data);
 int				info_screen(t_data *data);
 int				sub_loop(t_data *data);
+void			draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color);
+void			create_menu_texture(t_data *data);
 /*
 **			Run
 */

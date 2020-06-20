@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/18 20:27:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:37:01 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,32 @@
 static int	texture_on_screen(t_data *data)
 {
 	SDL_Rect	pos;
-
+	SDL_Rect	dst;
+	
 	/*If Hud*/
 	pos.x = 200;
 	pos.y = 30;
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
+	SDL_SetRenderDrawColor(data->window.rend, 51, 51, 51, 00);
+	SDL_RenderClear(data->window.rend);
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
+	
+	dst.x = 100;
+	dst.y = 100;
+	dst.w = 100;
+	dst.h = 100;
+	draw_rect(data, dst, 0xFFFF00FF);
+	/*
+	dst.x = 0;
+	dst.y = 400;
+	dst.w = 50;
+	dst.h = 50;
+	draw_rect(data, dst, 0x00FFF0FF);
+	*/
+	dst.x = 50;
+    dst.y = 50;
+	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
 	return (0);
 }
 
@@ -149,6 +168,7 @@ int			loop(t_data *data)
 	if ((err = init_thread_memory(data)) != 0)
 		return (err);
 	data->flag.asked = 1;
+	create_menu_texture(data);
 	while (TRUE)
 	{
 		if (key_check(*data, SDL_SCANCODE_BACKSPACE))

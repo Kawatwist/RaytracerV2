@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   loading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:46:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:51:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 19:40:39 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static	void		*clear(SDL_Surface *s, t_tga *v)
+static	void		*clear_(SDL_Surface *s, t_tga *v)
 {
 	SDL_FreeSurface(s);
 	free_tga(v);
@@ -31,7 +31,7 @@ static SDL_Texture	*get_loading(t_data *data, char *path)
 		0xFF00, 0xFF0000, 0xFF000000, 0xFF)) == NULL)
 		return (free_tga(v));
 	if ((t = SDL_CreateTextureFromSurface(data->window.rend, s)) == NULL)
-		return (clear(s, v));
+		return (clear_(s, v));
 	SDL_FreeSurface(s);
 	free_tga(v);
 	return (t);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:12:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:32:36 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,21 @@ static int				init_cam(t_data *data)
 	return (0);
 }
 
+
+/*
+**		À déplacer dans le fichier adéquat
+*/
+
+void		create_menu_texture(t_data *data)
+{
+	data->menu.background = SDL_CreateTexture(data->window.rend,
+	SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, 300, data->window.y); 
+
+    /*
+	** A protéger avec le bon code erreur
+	*/
+}
+
 void		resize(t_data *data)
 {
 	static int	x = 0;
@@ -80,6 +95,7 @@ void		resize(t_data *data)
 		}
 		data->window.x = check[0];
 		data->window.y = check[1];
+		create_menu_texture(data);
 		SDL_DestroyTexture(data->window.txt);
 		SDL_DestroyTexture(data->window.oldtxt);
 		data->window.txt = SDL_CreateTexture(data->window.rend,

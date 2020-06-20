@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/11 11:18:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 19:27:48 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ float		disk(void *di, t_vec ray)
 // 	return (-1);
 // }
 
-float		box(t_plan p, t_vec ray, t_point diff, Uint8 side)
+float		box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
 {
 	float t;
 	t_point dir;
@@ -168,7 +168,7 @@ float		obj(void	*obj, t_vec ray)
 			p.origin.origin.y = o->high.y;
 		else if (side == 5)
 			p.origin.origin.x = o->high.x;
-		if ((t = box(p, ray, o->diff, side)) != -1)
+		if ((t = box_(p, ray, o->diff, side)) != -1)
 		{
 			save > t ? o->face = side : 0;
 			save > t ? save = t: 0;
