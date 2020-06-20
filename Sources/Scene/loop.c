@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/18 20:27:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:42:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	texture_on_screen(t_data *data)
 	pos.y = 30;
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
+	SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
+	SDL_RenderClear(data->window.rend);
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
 	return (0);
 }
@@ -39,7 +41,10 @@ static int	looping(t_data *data)
 	if (data->percent > 99)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
-	texture_on_screen(data);
+	if (data->hud.flag_hud)
+		texture_on_screen(data);
+	else
+		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 	//if (data->hud.flag_hud)
 	//	pics_on_screen(data);
 	if (data->obj.type_index == 0)
@@ -97,10 +102,19 @@ int			sub_loop(t_data *data)
 			return (err);
 		data->flag.asked = 0;
 		data->flag.video ? data->flag.video -= 1 : 0;
+		real_time_icon(data);
 	}
 	else
 		SDL_Delay(16);
-	real_time_icon(data);
+	if (data->hud.flag_hud != data->hud.last_hud)
+	{
+		if (data->hud.flag_hud)
+			texture_on_screen(data);
+		else
+			SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+		data->hud.last_hud = data->hud.flag_hud;
+		SDL_RenderPresent(data->window.rend);
+	}
 	return (0);
 }
 

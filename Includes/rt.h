@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/19 20:32:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:06:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct	s_flag
 	Uint32		time : 1;
 	Uint32		diapo : 1;
 	Uint32		flare : 1;
-	Uint32		video : 5;
+	Uint32		video : 12;
+	Uint32		nb_video : 12;
+	Uint32		show : 1;
+	Uint32		save : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -191,6 +194,7 @@ void			light_cursor(t_data *data);
 void			create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
 void			framed(t_data *data);
+void			show_framed(t_data *data);
 /*
 **			Thread
 */

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/18 20:57:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 19:48:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,8 @@ static void		loading_sc(t_data *data, int p)
 	}
 	data->loading = ((t_thread *)data->thread)[0].loading + ((t_thread *)data->thread)[1].loading + ((t_thread *)data->thread)[2].loading + ((t_thread *)data->thread)[3].loading;
 	printf("%d%%\n", data->loading);
-	printf("THD 1 : %d%%\n", ((t_thread *)data->thread)[0].loading * 4);
-	printf("THD 2 : %d%%\n", ((t_thread *)data->thread)[1].loading * 4);
-	printf("THD 3 : %d%%\n", ((t_thread *)data->thread)[2].loading * 4);
-	printf("THD 4 : %d%%\n", ((t_thread *)data->thread)[3].loading * 4);
+	if (data->flag.video)
+		printf("%d%% Rendu (%d/%d)\n", data->flag.video / data->flag.nb_video, (data->flag.nb_video - data->flag.video),  data->flag.nb_video);
 	// SDL_UnlockTexture(data->window.txt);
 	// SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 	// SDL_LockTexture(data->window.txt, NULL, &data->window.pxl, &data->window.pitch);
@@ -133,10 +131,10 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
-	SDL_Delay(32);
+	SDL_Delay(240);
 	if (data->window.rend != NULL)
 		SDL_RenderPresent(data->window.rend);
-	SDL_Delay(32);
+	SDL_Delay(240);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)

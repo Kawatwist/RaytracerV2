@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:23:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 20:15:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ typedef struct		s_hud
 	SDL_Surface		*tmp;
 	SDL_Texture		*texture[12];
 	SDL_Texture		*rgb[3];
-	int				flag_hud;
 	int				color_obj;
 	int				type_obj;
+	Uint8			flag_hud : 1;
+	Uint8			last_hud : 1;
 }					t_hud;
 
 typedef struct		s_load
