@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:12:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/19 20:42:08 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		preset_cam(t_data *data, int index)
 	}
 }
 
-static int				init_cam(t_data *data)
+static int		init_cam(t_data *data)
 {
 	int			index;
 	t_point		direction;
@@ -62,11 +62,12 @@ static int				init_cam(t_data *data)
 	return (0);
 }
 
-void		resize(t_data *data)
+void			resize(t_data *data)
 {
-	static int	x = 0;
-	static int	y = 0;
-	int		check[2];
+	static int	x;
+	static int	y;
+	int			check[2];
+	int			i;
 
 	x = data->window.x;
 	y = data->window.y;
@@ -75,7 +76,8 @@ void		resize(t_data *data)
 	{
 		if (check[1] % 4)
 		{
-			SDL_SetWindowSize(data->window.window, check[0], check[1] + (4 - (check[1] % 4)));
+			SDL_SetWindowSize(data->window.window, check[0],
+				check[1] + (4 - (check[1] % 4)));
 			check[1] = check[1] + (4 - (check[1] % 4));
 		}
 		data->window.x = check[0];
@@ -89,12 +91,13 @@ void		resize(t_data *data)
 			SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
 			data->window.y);
 		init_cam(data);
-		for (int i= 0; i < 4; i++)
+		i = -1;
+		while (++i < 4)
 		{
 			((t_thread *)data->thread)[i].x = check[0];
 			((t_thread *)data->thread)[i].y = check[1];
-			ft_memcpy((((t_thread *)data->thread)[i].obj.camera), (data->obj.camera),
-				sizeof(t_camera) * data->obj.nb_camera);
+			ft_memcpy((((t_thread *)data->thread)[i].obj.camera),
+				(data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
 			((t_thread *)data->thread)[i].obj.nb_camera = data->obj.nb_camera;
 		}
 	}

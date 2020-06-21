@@ -6,28 +6,18 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 15:48:39 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/28 12:45:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/20 20:29:10 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		hitbox(int	x, int	y, SDL_Rect *pos)//mettre autre part
+int		hitbox(int	x, int	y, SDL_Rect *pos)
 {
 	if (x >= pos->x && y >= pos->y &&
 		x <= pos->x + pos->w && y <= pos->y + pos->h)
 		return (1);
 	return (0);
-}
-
-static void		mouse_get_info(t_data *data, SDL_Rect *pos)
-{
-	pos->x = (data->window.x / 500.0) * 280;
-	pos->y = (data->window.y / 500.0) * 233;
-	pos->w = (data->window.x / 500.0) * 189;
-	pos->h = (data->window.x / 500.0) * 164;
-	if ((hitbox(data->input.x, data->input.y, pos)) == 1)
-		data->screen.interface = INFO;
 }
 
 static void		mouse_get_run(t_data *data, SDL_Rect *pos)
@@ -42,14 +32,11 @@ static void		mouse_get_run(t_data *data, SDL_Rect *pos)
 
 int				info_screen(t_data *data)
 {
-	SDL_Rect		pos;
-
 	if (key_check(*data, SDL_SCANCODE_BACKSPACE))
 		data->screen.interface = HOME;
 	get_input(data);
 	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[3],
 		NULL, NULL);
-	info_book(data, &pos);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
@@ -65,7 +52,6 @@ int				 home_screen(t_data *data)
 		(int)SDL_GetMouseState(&data->input.x, &data->input.y)) == 1)
 	{
 		mouse_get_run(data, &pos);
-		mouse_get_info(data, &pos);
 	}
 	if (key_check(*data, SDL_SCANCODE_RETURN))
 		data->screen.interface = RUN;

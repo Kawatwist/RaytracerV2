@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 14:34:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 19:47:47 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct		s_interface
 	SDL_Texture		*(scenetxt[4]);
 	char			interface;
 	int				(*screen[4]) (t_data *data);
-	unsigned int	page;
 }					t_interface;
 
 typedef struct	s_font
@@ -244,6 +243,7 @@ int				sub_loop(t_data *data);
 **			Post Processing
 */
 void			perlin_noise(t_data *data);
+void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);
@@ -257,11 +257,6 @@ void			hud_cone(t_data *data);
 void			hud_plan(t_data *data);
 void			hud_sphere(t_data *data);
 
-void			info_book(t_data *data, SDL_Rect *pos);
-void			first_page(t_data *data);
-void			second_page(t_data *data);
-void			third_page(t_data *data);
-void			fourth_page(t_data *data);
 int				hitbox(int	x, int	y, SDL_Rect *pos);//mettre autre part
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 14:34:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 18:29:29 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ static void	input_obj(t_data *data)
 	data->move[data->obj.type_index](data, obj);
 }
 
-void	get_input(t_data *data)
+void		get_input(t_data *data)
 {
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.rkey, 250);
-	// SDL_PollEvent(&data->input.ev);
+	//SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
-// REMOVE
+//REMOVE
 void		check_mutex(t_data *data)
 {
 	int i = -1;
@@ -102,17 +102,19 @@ void		check_mutex(t_data *data)
 
 void		ask_screenshot(t_data *data)
 {
-	const SDL_MessageBoxButtonData buttons[] = {{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "TGA" },
-			{ 0, 1, "BMP" },{ SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 2, "Cancel" },};
-	const SDL_MessageBoxColorScheme colorScheme = {{{255, 0, 0},
-			{0, 255, 0}, {255, 255, 0}, {0, 0, 255}, {255,   0, 255}}};
-	const SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION, NULL, "Screenshot", "Select a format :", SDL_arraysize(buttons), buttons, &colorScheme};
-	int buttonid;
+	const	SDL_MessageBoxButtonData buttons[] = {{
+			SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "TGA" }, {
+				0, 1, "BMP" }, { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT,
+				2, "Cancel" }, };
+	const	SDL_MessageBoxColorScheme colorScheme = {{{255, 0, 0},
+			{0, 255, 0}, {255, 255, 0}, {0, 0, 255}, {255, 0, 255}}};
+	const	SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION,
+			NULL, "Screenshot", "Select a format :",
+			SDL_arraysize(buttons), buttons, &colorScheme};
+	int		buttonid;
 
 	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
-	{
 		SDL_Log("error displaying message box");
-	}
 	if (buttonid == 0)
 		create_screenshot(data, data->window.pxl);
 	else if (buttonid == 1)
@@ -125,13 +127,14 @@ void		input(t_data *data)
 	void			*tmp;
 
 	tmp = data->obj.item[data->obj.index[1]];
-	get_input(data);//segfault ici
+	get_input(data);
 	if (data->screen.interface == RUN)
 	{
 		if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
 			ask_screenshot(data);
 		if (key_check(*data, SDL_SCANCODE_V))
-			data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
+			data->flag.pixel =
+			(data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
 		if (key_check(*data, SDL_SCANCODE_R))
 			data->flag.refresh = (data->flag.refresh ? 0 : 1);
 		if (adad.flag == 0 && data->hud.color_obj)
@@ -149,41 +152,42 @@ void		input(t_data *data)
 			adad.flag = 0;
 		}
 		if (key_check(*data, SDL_SCANCODE_O))
-			data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
+			data->flag.antialiasing =
+			(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
 	}
 }
+/*
+	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
+		create_screenshot(data, data->window.pxl);
+	if (key_check(*data, SDL_SCANCODE_V))
+		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
+	if (key_check(*data, SDL_SCANCODE_R))
+		data->flag.refresh = (data->flag.refresh ? 0 : 1);
 
-	// if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-	// 	create_screenshot(data, data->window.pxl);
-	// if (key_check(*data, SDL_SCANCODE_V))
-	// 	data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-	// if (key_check(*data, SDL_SCANCODE_R))
-	// 	data->flag.refresh = (data->flag.refresh ? 0 : 1);
+	if (select.flag == 0 && data->hud.color_obj)
+	{
+		for (int i = 0; i < 4; i ++)
+			((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
+				select.color;
+		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = select.color;
+	}
+	light_cursor(data);
+	input_obj(data);
+	input_filter(data);
+	input_hud(data);
+	if (data->hud.color_obj)
+	{
+		select.color =
+		((t_base *)(((t_thread *)data->thread)[0].obj.item[data->obj.index[1]]))->effect.color;
+		for (int i = 0; i < 4; i ++)
+		((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
+			0xF3DA75;
+		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
+			0xF3DA75;
+		select.flag = 0;
+	}
 
-	// if (select.flag == 0 && data->hud.color_obj)
-	// {
-	// 	for (int i = 0; i < 4; i ++)
-	// 		((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
-	// 			select.color;
-	// 	((t_base *)data->obj.item[data->obj.index[1]])->effect.color = select.color;
-	// }
-	// light_cursor(data);
-	// input_obj(data);
-	// input_filter(data);
-	// input_hud(data);
-	// if (data->hud.color_obj)
-	// {
-	// 	select.color =
-	// 	((t_base *)(((t_thread *)data->thread)[0].obj.item[data->obj.index[1]]))->effect.color;
-	// 	for (int i = 0; i < 4; i ++)
-	// 	((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
-	// 		0xF3DA75;
-	// 	((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-	// 		0xF3DA75;
-	// 	select.flag = 0;
-	// }
-
-	// if (key_check(*data, SDL_SCANCODE_O))
-	// 	data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
-	// check_mutex(data);
-// }
+	if (key_check(*data, SDL_SCANCODE_O))
+		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
+	check_mutex(data);
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 19:07:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/20 16:40:54 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,32 @@ int				initialize_scene(t_data *data)
 		exit(0);
 	SDL_FreeSurface(tmp);
 	free_tga(txt);
-	if ((txt = load_tga("./texture/Grimoire.tga")) == NULL)
-		return (1);
-	if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
-			txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
-		return (5);
-	if ((data->screen.scenetxt[3] =
-		SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
-		exit(0);
-	SDL_FreeSurface(tmp);
-	free_tga(txt);
+	// if ((txt = load_tga("./texture/Grimoire.tga")) == NULL)
+	// 	return (1);
+	// if (!(tmp = SDL_CreateRGBSurfaceWithFormatFrom(txt->data, txt->w,
+	// 		txt->h, txt->data_bpp, txt->w << 2, SDL_PIXELFORMAT_ARGB32)))
+	// 	return (5);
+	// if ((data->screen.scenetxt[3] =
+	// 	SDL_CreateTextureFromSurface(data->window.rend, tmp)) == NULL)
+	// 	exit(0);
+	// SDL_FreeSurface(tmp);
+	// free_tga(txt);
 	return (0);
 }
 
-static int	init_sub(t_data *data)
+static int		init_sub(t_data *data)
 {
 	data->screen.interface = HOME;
 	data->screen.screen[HOME] = home_screen;
-	// data->screen->screen[NOFILE] = path_screen;
+	//data->screen->screen[NOFILE] = path_screen;
 	data->screen.screen[RUN] = sub_loop;
-	data->screen.screen[INFO] = info_screen;
+	// data->screen.screen[INFO] = info_screen;
 	if (initialize_scene(data))
 		return (5);
 	return (0);
 }
 
-static int	initialize_sdl_txt(t_data *data)
+static int		initialize_sdl_txt(t_data *data)
 {
 	data->window.txt = SDL_CreateTexture(data->window.rend,
 		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
@@ -64,7 +64,7 @@ static int	initialize_sdl_txt(t_data *data)
 	return (0);
 }
 
-static void	initialize_event(t_data *data)
+static void		initialize_event(t_data *data)
 {
 	SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
 	SDL_PollEvent(&data->input.ev);
@@ -72,7 +72,7 @@ static void	initialize_event(t_data *data)
 	ft_bzero(data->input.oldkey, 282);
 }
 
-int			initialize_sdl(t_data *data)
+int				initialize_sdl(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER))
 		return (1);

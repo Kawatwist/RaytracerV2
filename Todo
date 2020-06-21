@@ -116,7 +116,7 @@ POUR LE SPECULAR :
 
 need enlever oeil_txt et mettre a la place invalid.tga
 
-quand il n'y a pas -fsanitize=address dans le grimoire il ny a pas le texte
+quand il n'y a pas -fsanitize=address dans makefile dans le grimoire il ny a pas le texte
 
 
 bmp
@@ -125,4 +125,82 @@ bmp
 
 
 
-rasjouter le caracterer "-" pour les point d'origines des obj et tout
+rajouter le caracterer "-" pour les point d'origines des obj et tout
+
+
+
+
+
+IMPORTANT segfault lors de laffichage dun filtre lorsque une ssphere est selectionne []
+
+
+
+fichier restant a faire pour la norme
+=================================================================================================
+
+
+										POUR LA NORME
+
+- Effect
+{
+	normal_map.c
+	perlin.c
+	resize_screen.c
+}
+..........................
+- Initialize
+{
+	init_sdl.c //cest un commentaire c'est comme si ce dossier etait deja bon
+}
+..........................
+- Input
+{
+	input.c
+}
+..........................
+- Interface
+{
+	set_section.c
+}
+..........................
+- Option
+{
+	clear.c // commentaire
+}
+..........................
+- Parsing
+{
+	fill_obj.c
+}
+..........................
+- Ray
+{
+	create_specular.c
+	send.c // commentaire
+	texture.c
+	tolight.c
+}
+..........................
+- Scene
+{
+	loop.c
+	move_obj.c
+	move_type.c
+	screen.c
+	shape.c
+	shape_cartoon.c // commentaire
+}
+..........................
+- tga reader
+- thread
+- vector
+
+=================================================================================================
+
+
+pour rt faire en sorte que lorsquon lance rt par ex : ./raytracer des que cest lance on choisis sur une sorte dinterface la map.
+
+
+
+
+mettre un petit rt dans le rt

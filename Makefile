@@ -104,6 +104,7 @@ SRC				=	main.c										\
 					shape_cartoon.c								\
 					antialiasing.c								\
 					filters.c									\
+					cartoon.c									\
 					init_hud.c									\
 					place_hud.c									\
 					rgb_hud.c									\

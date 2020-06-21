@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:40:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/18 20:03:12 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 		color = add_color(color, light_color(r.color[0], set_color(0,
 			data->obj.color_find[0], (dot * obj[0] * len), -1)));
 	r.color[0] = color;
-	return (create_specular(data, color, &r, dot));
+	return (create_specular(data, color, &r, dot, index));
 }
 
 unsigned int		ray_to_light(t_thread *data, t_ray r)
