@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 15:38:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/21 16:21:32 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,13 @@ typedef struct		s_scene
 	int				fd;
 	unsigned int	error_line;
 }					t_scene;
+
+typedef struct		s_preview
+{
+	t_vec			cam;
+	t_sphere		sphere;
+
+
+}					t_preview;
 
 #endif

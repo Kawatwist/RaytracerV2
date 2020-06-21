@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 19:47:47 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/21 15:41:37 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_interface
 	SDL_Texture		*(scenetxt[4]);
 	char			interface;
 	int				(*screen[4]) (t_data *data);
+	t_preview		preview;
 }					t_interface;
 
 typedef struct	s_font
@@ -236,6 +237,10 @@ void			get_input(t_data *data);
 int				home_screen(t_data *data);
 int				info_screen(t_data *data);
 int				sub_loop(t_data *data);
+int				init_preview(t_data *data);
+void			new_rt(t_data *data);
+
+
 /*
 **			Run
 */

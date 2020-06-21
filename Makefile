@@ -120,6 +120,7 @@ SRC				=	main.c										\
 					third_page.c								\
 					fourth_page.c								\
 					create_specular.c							\
+					preview.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

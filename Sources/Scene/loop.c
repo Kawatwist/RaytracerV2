@@ -6,42 +6,42 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/20 18:17:00 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/21 17:25:48 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int	looping(t_data *data)
-{
-	int		err;
+// static int	looping(t_data *data)
+// {
+// 	int		err;
 
-	resize(data);
-	SDL_LockTexture(data->window.txt, NULL,
-			&data->window.pxl, &data->window.pitch);
-	if ((err = start_thread(data)))//segfault
-		return (err);
-	post_processing(data);
-	data->percent++;
-	if (data->percent > 99)
-		data->percent = 0;
-	SDL_UnlockTexture(data->window.txt);
-	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	if (data->hud.flag_hud)
-		pics_on_screen(data);
-	if (data->obj.type_index == 0)
-		data->font.str = ft_strjoinfree("Current Cam :\0",
-			ft_itoa(data->obj.index[0]), 2);
-	else if (data->obj.type_index == 1)
-		data->font.str = ft_strjoinfree("Current Obj :\0",
-			ft_itoa(data->obj.index[1]), 2);
-	else
-		data->font.str = ft_strjoinfree("Current Light :\0",
-			ft_itoa(data->obj.index[2]), 2);
-	print_text(data, 0, 0, 30);
-	SDL_RenderPresent(data->window.rend);
-	return (0);
-}
+// 	resize(data);
+// 	SDL_LockTexture(data->window.txt, NULL,
+// 			&data->window.pxl, &data->window.pitch);
+// 	if ((err = start_thread(data)))
+// 		return (err);
+// 	post_processing(data);
+// 	data->percent++;
+// 	if (data->percent > 99)
+// 		data->percent = 0;
+// 	SDL_UnlockTexture(data->window.txt);
+// 	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+// 	if (data->hud.flag_hud)
+// 		pics_on_screen(data);
+// 	if (data->obj.type_index == 0)
+// 		data->font.str = ft_strjoinfree("Current Cam :\0",
+// 			ft_itoa(data->obj.index[0]), 2);
+// 	else if (data->obj.type_index == 1)
+// 		data->font.str = ft_strjoinfree("Current Obj :\0",
+// 			ft_itoa(data->obj.index[1]), 2);
+// 	else
+// 		data->font.str = ft_strjoinfree("Current Light :\0",
+// 			ft_itoa(data->obj.index[2]), 2);
+// 	print_text(data, 0, 0, 30);
+// 	SDL_RenderPresent(data->window.rend);
+// 	return (0);
+// }
 
 void		check_time(t_data *data)
 {
@@ -74,20 +74,22 @@ void		check_time(t_data *data)
 
 int			sub_loop(t_data *data)
 {
-	int err;
+	// int err;
 
 	if (data->flag.refresh || data->flag.asked || data->flag.video)
 	{
+		new_rt(data);
 		ft_putstr("\nRefresh Mode Enable\n");
 		printf("avant looping\n");
-		if ((err = looping(data)) != 0)// souvent segfault
+		/*if ((err = looping(data)) != 0)
 			return (err);
+		*/
 		data->flag.asked = 0;
 		data->flag.video ? data->flag.video -= 1 : 0;
 	}
 	else
 		SDL_Delay(16);
-	real_time_icon(data);
+	// real_time_icon(data);
 	return (0);
 }
 

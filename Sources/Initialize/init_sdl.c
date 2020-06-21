@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 16:40:54 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/21 15:42:10 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int				initialize_sdl(t_data *data)
 	if ((init_sub(data)) != 0)
 		return (5);
 	if (init_font(data))
+		return (1);
+	if (init_preview(data))
 		return (1);
 	return (0);
 }
