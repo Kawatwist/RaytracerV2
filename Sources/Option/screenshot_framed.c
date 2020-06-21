@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:42:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/21 16:11:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ static char	*next_frame(t_data *data, char *name)
 {
 	int		nb;
 	char	*fake;
+	char	*fake2;
 
-	fake = ft_strdup(name);
+	fake = ft_strdup(name); /* Secure malloc*/
 	*ft_strrchr(fake, '.') = '\0';
 	nb = ft_atoi(ft_strrchr(fake, '_') + 1);
 	nb +=1 ;
-	if (nb == data->flag.nb_video - 1)
+	fake2 = ft_strdup(fake);
+	*(ft_strrchr(fake2, '_') + 1) = '\0';
+	fake2 = ft_strjoinfree(fake2, ft_itoa(nb), 2);
+	fake2 = ft_strjoinfree(fake2, ".bmp", 1);
+	if (nb == data->flag.nb_video - 1 || access(fake2, F_OK))
 		nb = 0;
+	free(fake2);
 	*(ft_strrchr(fake, '_') + 1) = '\0';
 	fake = ft_strjoinfree(fake, ft_itoa(nb), 3);
 	fake = ft_strjoinfree(fake, ".bmp", 1);
