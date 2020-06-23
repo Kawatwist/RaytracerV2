@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:32:36 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/22 18:25:33 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int				init_cam(t_data *data)
 void		create_menu_texture(t_data *data)
 {
 	data->menu.background = SDL_CreateTexture(data->window.rend,
-	SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, 300, data->window.y); 
+	SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, 200, data->window.y); 
 
     /*
 	** A protéger avec le bon code erreur

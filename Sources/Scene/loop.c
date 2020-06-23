@@ -6,11 +6,20 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/20 20:37:01 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/22 19:15:22 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+void	set_background(t_data *data)
+{
+	int			pitch;
+	void		*pxl;
+
+	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
+	ft_memset(pxl, 33, 200 * data->window.y * 4);
+	SDL_UnlockTexture(data->menu.background);
+}
 
 static int	texture_on_screen(t_data *data)
 {
@@ -22,24 +31,37 @@ static int	texture_on_screen(t_data *data)
 	pos.y = 30;
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
-	SDL_SetRenderDrawColor(data->window.rend, 51, 51, 51, 00);
+	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
 	SDL_RenderClear(data->window.rend);
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
 	
-	dst.x = 100;
-	dst.y = 100;
-	dst.w = 100;
-	dst.h = 100;
-	draw_rect(data, dst, 0xFFFF00FF);
-	/*
+	set_background(data);
+	
+	
 	dst.x = 0;
-	dst.y = 400;
+	dst.y = 20;
 	dst.w = 50;
 	dst.h = 50;
-	draw_rect(data, dst, 0x00FFF0FF);
-	*/
-	dst.x = 50;
-    dst.y = 50;
+	draw_rect(data, dst, 0xf0451d);
+	//0x29cb75
+	
+	
+	dst.x = 100;
+	dst.y = 100;
+	dst.w = 20;
+	dst.h = 20;
+	draw_rect(data, dst, 0x29cb75);
+	
+	dst.x = 150;
+	dst.y = 0;
+	dst.w = 1;
+	dst.h = data->window.y;
+	draw_rect(data, dst, 0x29cb75);
+
+	dst.x = 0;
+	dst.y = 0;
+	dst.w = 200;
+	dst.h = data->window.y;
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
 	return (0);
 }
