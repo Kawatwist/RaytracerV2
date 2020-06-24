@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/21 16:21:32 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/23 18:54:47 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,9 @@ typedef struct		s_preview
 {
 	t_vec			cam;
 	t_sphere		sphere;
-
+	SDL_Texture		*texture;
+	void			*pxl;
+	t_point			light;
 
 }					t_preview;
 
