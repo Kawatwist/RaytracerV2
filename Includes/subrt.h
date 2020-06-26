@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:15:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 18:44:29 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define TRINITY_TXT "./texture/Texture/trinity.tga"
 # define CONE_TXT "./texture/Texture/cone.tga"
 # define PLAN_TXT "./texture/Texture/plan.tga"
-# define OEIL_TXT "./texture/Texture/oeil.tga"
+# define OEIL_TXT "./texture/Texture/Oeil.tga"
 
 typedef enum		e_lol
 {
@@ -149,5 +149,28 @@ typedef struct		s_scene
 	int				fd;
 	unsigned int	error_line;
 }					t_scene;
+
+typedef struct    	s_grad
+{
+    int ix;
+    int iy;
+    float x;
+    float y;
+}      				 t_grad;
+
+typedef struct      s_perl
+{
+    int x0;
+    int x1;
+    int y0;
+    int y1;
+    float sx;
+    float sy;
+    float n0;
+    float n1;
+    float ix0;
+    float ix1;
+    float value;
+}      				t_perl;
 
 #endif

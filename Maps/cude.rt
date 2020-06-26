@@ -82,9 +82,9 @@
 	origin : {1 4.7 0}
 	direction : {0 -1 0}
 	color : 0xffffff
-			id_texture : 255
+			id_texture : 254
 			texture : 255
-			reflection : 125
+			reflection : 12
 			ns : 1
 [object:sphere]
 	origin : {0 2.7 3.3}

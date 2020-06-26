@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:06:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 19:08:22 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define NOTHREAD 0
 # define XSCREEN 1000
 # define YSCREEN 1000
+# define GRADIENT 16
 
 typedef struct	s_flag
 {
@@ -89,6 +90,7 @@ struct			s_data
 	int					ambiant;
 	void				*thread;
 	int					max_dist;
+	t_point				perlin[GRADIENT * GRADIENT];
 };
 
 float			sphere_depth(void *sphere, t_vec ray);
@@ -249,7 +251,10 @@ int				sub_loop(t_data *data);
 /*
 **			Post Processing
 */
+
 void			perlin_noise(t_data *data);
+float   		get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+void			generate_perlin(t_data *data);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);

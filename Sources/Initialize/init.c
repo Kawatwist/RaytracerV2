@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:54:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 18:31:48 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int			initialize(t_data *data)
 	data->move[1] = move_obj;
 	data->move[2] = move_light;
 	data->ambiant = 0xFF000000;
+	generate_perlin(data);
 	return (0);
 }
