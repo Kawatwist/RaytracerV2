@@ -12,7 +12,7 @@ static int perlin_color(float val)
 		val = -val;
 	if (val > 1)
 		val = 1;
-	color = color + (int)(val * 255);
+	color = color + ((int)(val * 255) << 16);
 	return (color);
 }
 

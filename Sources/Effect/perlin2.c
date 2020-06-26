@@ -5,10 +5,14 @@ void generate_perlin(t_data *data)
 {
 	int i;
 	int j;
+    static Uint32   seed = 25356;
 	t_point p;
 
 	i = -1;
-	srand(time(NULL));
+    seed += 1;
+	srand(seed);
+    printf("Coucou %d\n", seed);
+    SDL_Delay(50);
 	while(++i < GRADIENT)
 	{
 		j = -1;
@@ -21,6 +25,10 @@ void generate_perlin(t_data *data)
 			data->perlin[i * GRADIENT + j] = p;
 		}
 	}
+    // int     thd;
+    // thd = -1;
+    // while (++thd < 4)
+    //     setup_perlin(data, ((t_thread *)data->thread), thd);
 }
 
 static float lerp(float a, float b, float w)

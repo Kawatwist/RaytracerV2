@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/26 19:16:16 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/06/26 19:42:58 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ static void		setup_function(t_thread *tmp)
 	(*tmp).move[2] = move_light;
 }
 
-static void		setup_perlin(t_data *data, t_thread *tmp, int x)
-{
-	int i;
-	int j;
-	i = -1;
-	while (++i < GRADIENT)
-	{
-		j = -1;
-		while (++j < GRADIENT)
-		{
-			tmp[x].perlin[i * GRADIENT + j] = data->perlin[i * GRADIENT + j];
-		}
-	}
-}
 
 static int		setup_struct(t_data *data, t_thread *tmp)
 {
@@ -73,7 +59,6 @@ static int		setup_struct(t_data *data, t_thread *tmp)
 		tmp[i].pos = i * ((data->window.y * data->window.x) >> 2);
 		tmp[i].signal = 0;
 		tmp[i].mutex = mut;
-		setup_perlin(data, tmp, i);
 		// pthread_mutex_init(tmp[i].mutex, NULL);
 	}
 	return (0);

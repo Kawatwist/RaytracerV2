@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/26 19:08:22 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/06/26 19:26:34 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define NOTHREAD 0
 # define XSCREEN 1000
 # define YSCREEN 1000
-# define GRADIENT 16
+# define GRADIENT 64
 
 typedef struct	s_flag
 {
