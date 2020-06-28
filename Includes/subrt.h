@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/23 18:54:47 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/28 22:41:41 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,25 @@ typedef struct		s_scene
 	unsigned int	error_line;
 }					t_scene;
 
+typedef struct		s_slider
+{
+	Uint32			colorbg;
+	Uint32			colorcursor;
+	SDL_Rect		position;
+	SDL_Rect		cursor;
+	Uint32			init : 1;
+	Uint32			dir : 1;
+	Uint32			selected : 1;
+}					t_slider;
+
 typedef struct		s_preview
 {
 	t_vec			cam;
 	t_sphere		sphere;
 	SDL_Texture		*texture;
 	void			*pxl;
-	t_point			light;
-
+	t_light			light;
+	t_slider		slider[2];
 }					t_preview;
 
 #endif
