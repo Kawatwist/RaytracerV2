@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/11 18:17:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 19:41:01 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int			initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->flag.refresh += 0b100000;
+	data->flag.nb_video = 100;
 	data->hud.color_obj = 1;
+	data->hud.flag_hud = 0;
+	data->hud.last_hud = 0;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;
@@ -38,5 +41,6 @@ int			initialize(t_data *data)
 	data->move[1] = move_obj;
 	data->move[2] = move_light;
 	data->ambiant = 0xFF000000;
+	generate_perlin(data);
 	return (0);
 }

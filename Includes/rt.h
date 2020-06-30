@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:27:06 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/30 19:39:07 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define NOTHREAD 0
 # define XSCREEN 1000
 # define YSCREEN 1000
+# define GRADIENT 64
 
 typedef struct	s_flag
 {
@@ -42,7 +43,10 @@ typedef struct	s_flag
 	Uint32		time : 1;
 	Uint32		diapo : 1;
 	Uint32		flare : 1;
-	Uint32		video : 5;
+	Uint32		video : 12;
+	Uint32		nb_video : 12;
+	Uint32		show : 1;
+	Uint32		save : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -88,6 +92,7 @@ struct			s_data
 	int					ambiant;
 	void				*thread;
 	int					max_dist;
+	t_point				perlin[GRADIENT * GRADIENT];
 };
 
 float			sphere_depth(void *sphere, t_vec ray);
@@ -193,6 +198,7 @@ void			light_cursor(t_data *data);
 void			create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
 void			framed(t_data *data);
+void			show_framed(t_data *data);
 /*
 **			Thread
 */
@@ -249,7 +255,10 @@ void			create_menu_texture(t_data *data);
 /*
 **			Post Processing
 */
+
 void			perlin_noise(t_data *data);
+float   		get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+void			generate_perlin(t_data *data);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);

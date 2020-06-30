@@ -121,6 +121,8 @@ SRC				=	main.c										\
 					fourth_page.c								\
 					create_specular.c							\
 					draw_rect.c									\
+					perlin.c									\
+					perlin2.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

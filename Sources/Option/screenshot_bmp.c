@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/19 20:51:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/28 19:19:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static char	*findname_bmp(char *name)
 	fake = ft_strjoin(name, ".bmp");
 	while (access(fake, F_OK) == 0)
 	{
-		nb = ft_atoi(ft_strchr(fake, '_') + 1);
+		nb = ft_atoi(ft_strrchr(fake, '_') + 1);
 		nb += 1;
-		*(ft_strchr(fake, '_') + 1) = '\0';
+		*(ft_strrchr(fake, '_') + 1) = '\0';
 		fake = ft_strjoinfree(fake, ft_itoa(nb), 3);
 		fake = ft_strjoinfree(fake, ".bmp", 1);
 	}
@@ -41,6 +41,7 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 	name = findname_bmp(name);
 	tobmp = SDL_CreateRGBSurfaceWithFormatFrom(pxl, data->window.x,
 		data->window.y, 32, data->window.x * 4, SDL_PIXELFORMAT_BGRA32);
+	printf("Screenshot Path Current: %s\n", name);
 	printf("Screenshot : %d\n", SDL_SaveBMP(tobmp, name));
     printf("Screenshot error: %s\n", SDL_GetError());
 	if (tobmp != NULL)
@@ -50,12 +51,13 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
 			"Screenshot Done", name, data->window.window);
 		free(name);
+		free(*path);
 	}
 	else
 	{
 		// if (path)
 		// 	free(path);
-		*path = name;
-		(ft_strchr(*path, 'b'))[-1] = '\0';
+		// *path = name;
+		// *(ft_strrchr(*path, '/')+ 1) = '\0';
 	}
 }

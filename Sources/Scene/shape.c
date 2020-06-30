@@ -6,9 +6,10 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/20 19:27:48 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/30 19:40:00 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "rt.h"
 #include "thread.h"
@@ -216,9 +217,10 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 	float	dot;
 	t_disk	dor;
 
+	// c->close = 1;
 	dot = dot_product(ray.direction, c->origin.direction);
 	dor.rayon = rayon;
-	if (dot > 0)
+	if (dot >= 0)
 	{
 		dor.origin.origin = add_vec(c->origin.origin, mult_vec2(c->origin.direction, -(c->high)));
 		dor.origin.direction = neg_norm(c->origin.direction);
@@ -230,6 +232,7 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 	}
 	else
 		return (-1);
+	// c->dir_close = veccpy(dor.origin.direction);
 	return (disk(&dor, ray));
 }
 
@@ -244,6 +247,7 @@ float		cone(void *coo, t_vec ray)
 	float	rayon;
 
 	cone = coo;
+	// cone->close = 0;
 	oc = sub_vec(ray.origin, cone->origin.origin);
 	k = square(tan(rad(cone->ang) / 2.0)) + 1;
 	c.a = dot_product(ray.direction, ray.direction) -
@@ -272,43 +276,43 @@ float		cone(void *coo, t_vec ray)
 	return (c.t0);
 }
 
-static float		close_cyl(t_cylinder c, t_vec ray)
+static float		close_cyl(t_cylinder *c, t_vec ray)
 {
 	float	dot;
 	t_disk	dor;
 
-	dot = dot_product(ray.direction, c.origin.direction);
-	dor.rayon = c.rayon;
+	dot = dot_product(ray.direction, c->origin.direction);
+	dor.rayon = c->rayon;
 	if (dot > 0)
 	{
-		dor.origin.origin = veccpy(c.origin.origin);
-		dor.origin.direction = neg_norm(c.origin.direction);
-	}
-	else if (dot < 0)
-	{
-		dor.origin.origin = add_vec(c.origin.origin, mult_vec2(c.origin.direction, (c.hauteur)));
-		dor.origin.direction = veccpy(c.origin.direction);
+		dor.origin.origin = veccpy(c->origin.origin);
+		dor.origin.direction = neg_norm(c->origin.direction);
 	}
 	else
-		return (-1);
+	{
+		dor.origin.origin = add_vec(c->origin.origin, mult_vec2(c->origin.direction, c->hauteur));
+		dor.origin.direction = veccpy(c->origin.direction);
+	}
+	c->dir_close = veccpy(dor.origin.direction);
 	return (disk(&dor, ray));
 }
 
 float		cylinder(void *cylinder, t_vec ray)
 {
-	t_cylinder	c;
+	t_cylinder	*c;
 	t_point		os;
 	t_point		tmp;
 	t_calc		d;
 	float		len;
 
-	c = *(t_cylinder *)cylinder;
-	os = cross_vec(c.origin.direction, ray.direction);
-	tmp = cross_vec(c.origin.direction, sub_vec(ray.origin, c.origin.origin));
+	c = (t_cylinder *)cylinder;
+	c->close = 0;
+	os = cross_vec(c->origin.direction, ray.direction);
+	tmp = cross_vec(c->origin.direction, sub_vec(ray.origin, c->origin.origin));
 	d.a = dot_product(os, os);
-	d.b = dot_product(os, cross_vec(c.origin.direction,
-		sub_vec(ray.origin, c.origin.origin))) * 2.0;
-	d.c = dot_product(tmp, tmp) - square(c.rayon);
+	d.b = dot_product(os, cross_vec(c->origin.direction,
+		sub_vec(ray.origin, c->origin.origin))) * 2.0;
+	d.c = dot_product(tmp, tmp) - square(c->rayon);
 	d.delta = square(d.b) - (4.0 * d.a * d.c);
 	if ((!d.a && d.b > 0) || d.delta < 0)
 		return (-1);
@@ -316,10 +320,22 @@ float		cylinder(void *cylinder, t_vec ray)
 	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);
 	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
 	d.t0 = find_t(d);
-	if (d.t0 != -1 && c.hauteur != -1)
-		len = length(sub_vec(c.origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0))));
-	if (d.t0 != -1 && c.hauteur != -1 && (sqrtf((len * len) - (c.rayon * c.rayon)) > (c.hauteur) || dot_product(sub_vec(c.origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0))), c.origin.direction) > 0))
+	if (!d.delta)
+	{
+		c->close = 1;
 		return (close_cyl(c, ray));
+	}
+	if (d.t0 != -1 && c->hauteur != -1)
+	{
+		len = sqrtf(square(c->rayon) + square(c->hauteur));
+		if (length(sub_vec(c->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0)))) > len || dot_product(sub_vec(c->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0))), c->origin.direction) > 0)
+			d.t0 = -1;
+	}
+	if (c->hauteur != -1)
+		d.t1 = close_cyl(c, ray);
+	d.t0 = find_t(d);
+	// if (c->hauteur != -1 && square(length(sub_vec(c->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0))))) != square(c->rayon) + square(c->hauteur))
+	// 	c->close = 1;
 	return (d.t0);
 }
 

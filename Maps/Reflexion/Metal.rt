@@ -8,7 +8,7 @@
 	yscreen : 1440
 	camera : 1
 	quality : 0
-	aa : 3
+	aa : 0
 	bounce : 10
 	object : 9
 	light : 4

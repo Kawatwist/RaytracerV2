@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/11 09:46:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/24 19:13:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,20 @@ t_point			find_normal(void *object, t_vec collide)
 			((t_base *)object)->origin.origin);
 	else if ((((t_base *)object)->effect.type) == PLAN)
 		normal = veccpy(((t_plan *)object)->origin.direction);
-	else if ((((t_base *)object)->effect.type) == CYLINDER)
+	else if ((((t_base *)object)->effect.type) == CYLINDER && !((t_cylinder *)object)->close)
 		normal = cylinder_normal(*((t_cylinder *)object), collide);
 	else if ((((t_base *)object)->effect.type) == DISK)
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	else if ((((t_base *)object)->effect.type) == OBJ)
 		normal = normal_face(((t_obj *)object)->face);
-	else
+	else if ((((t_base *)object)->effect.type) == CONE && !((t_cone *)object)->close)
 		normal = cone_normal(*((t_cone *)object), collide);
+	else if ((((t_base *)object)->effect.type) == CYLINDER)
+		normal = (veccpy(((t_cylinder *)object)->dir_close));
+	else if ((((t_base *)object)->effect.type) == CONE)
+		normal = (veccpy(((t_cone *)object)->dir_close));
+	else
+		normal = veccpy(((t_plan *)object)->origin.direction);
 	return (normalize(normal));
 }
 

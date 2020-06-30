@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/17 18:44:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/30 19:40:54 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,15 @@ typedef	struct			s_thread
 	int					percent;
 	int					bounce;
 	int					len;
+	float				dist_ray;
 	int					max_dist;
 	pthread_mutex_t		mutex;
 	char				signal;
 	pthread_t			thd;
 	int					tmp_color;
 	char				loading;
-	int				current;
+	int					current;
+	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
 **			Special Function pthread
@@ -73,6 +75,7 @@ t_point					find_reflexion(void *obj, t_vec ray, t_thread data);
 /*
 **			Textures
 */
+int						find_perlin(t_thread *data, void *obj, t_vec ray);
 int						find_damier(t_thread *data, void *obj, t_vec ray);
 t_point					find_normal_with_txt(t_thread data, void *object,
 							t_vec collide);
