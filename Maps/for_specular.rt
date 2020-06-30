@@ -3,8 +3,8 @@
 #############################################
 [header]
 	ambiant : 0xFF000000
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 600
+	yscreen : 600
 	refresh : 1
 	quality : 1
 	bounce : 0

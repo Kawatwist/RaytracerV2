@@ -6,11 +6,21 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/22 19:15:22 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/26 18:53:56 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Tableau fini de structure contenant bouton et pointeur de fonction de x cases
+** Menu deroulant de la longueur du tableau avec y (taille max d'option affichable avec dimension actuelle)
+** z est l 'indice a partir du quel le menu deroulant demarre
+** L'option selectioné est égale a l'emplacement actuel cliqué + z
+** 
+** La valeur de l'emplacement + z est recupérée et transmise au tableau de structure de bouton qui contient 
+** aussi un pointeur de fonction
+*/
 void	set_background(t_data *data)
 {
 	int			pitch;
@@ -19,6 +29,112 @@ void	set_background(t_data *data)
 	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
 	ft_memset(pxl, 33, 200 * data->window.y * 4);
 	SDL_UnlockTexture(data->menu.background);
+}
+
+void	draw_outline(t_data *data)
+{
+	SDL_Rect	dst;
+
+	dst.x = 199;
+	dst.y = 30;
+	dst.w = 1;
+	dst.h = data->window.y - 30;
+	draw_rect(data, dst, 0xffffff);
+	dst.x = 0;
+	draw_rect(data, dst, 0xffffff);
+	dst.w = 200;
+	dst.h = 1;
+	draw_rect(data, dst, 0xffffff);
+	dst.y = data->window.y - 1;
+	draw_rect(data, dst, 0xffffff);
+	dst.y = data->window.y * 0.55 - 1;
+	draw_rect(data, dst, 0xffffff);
+	
+}
+
+void	draw_outline_color(t_data *data)
+{
+	SDL_Rect	dst;
+
+	dst.x = 20;
+	dst.y = data->window.y * 0.55 + 180 - 10;
+	dst.w = 160;
+	dst.h = 20;
+	draw_rect(data, dst, 0xffffff);
+	dst.y = data->window.y * 0.55 + 210 - 10;
+	draw_rect(data, dst, 0xffffff);
+	dst.y = data->window.y * 0.55 + 240 - 10;
+	draw_rect(data, dst, 0xffffff);
+	dst.x = 21;
+	dst.w = 159;
+	dst.h = 19;
+	dst.y = data->window.y * 0.55 + 181 - 10;
+	draw_rect(data, dst, 0x3c3c3c);
+	dst.y = data->window.y * 0.55 + 211 - 10;
+	draw_rect(data, dst, 0x3c3c3c);
+	dst.y = data->window.y * 0.55 + 241 - 10;
+	draw_rect(data, dst, 0x3c3c3c);
+	
+}
+
+void	draw_title_background(t_data *data)
+{
+	SDL_Rect	dst;
+
+	dst.x = 0;
+	dst.y = 31;
+	dst.w = 200;
+	dst.h = 50;
+	draw_rect(data, dst, 0x1965a1);
+
+	dst.x = 0;
+	dst.y = data->window.y * 0.55;
+	dst.w = 200;
+	dst.h = 50;
+	draw_rect(data, dst, 0x1965a1);	
+}
+
+void	draw_background_box(t_data *data)
+{
+	SDL_Rect	dst;
+
+	dst.x = 0;
+	dst.y = 107;
+	dst.w = 150;
+	dst.h = 25;
+	draw_rect(data, dst, 0x262626);
+	dst.x = 0;
+	dst.y = 107 + 45;
+	dst.w = 150;
+	dst.h = 25;
+	draw_rect(data, dst, 0x262626);
+	dst.x = 0;
+	dst.y = 107 + 90;
+	dst.w = 150;
+	dst.h = 25;
+	draw_rect(data, dst, 0x262626);
+}
+
+void	draw_button(t_data *data, int x, int y, int state)
+{
+	SDL_Rect		dst;
+	unsigned int	color;
+
+	dst.w = 30;
+	dst.h = 30;
+	dst.x = x;
+	dst.y = y;
+	if (state == 0)
+		color = 0xf0451d;
+	else
+		color = 0x29cb75;
+	draw_rect(data, dst, color);
+	if (state == 0)
+	{
+		dst.y += 30;
+		dst.h = 3;
+		draw_rect(data, dst, 0xc80a20);
+	}	
 }
 
 static int	texture_on_screen(t_data *data)
@@ -36,27 +152,19 @@ static int	texture_on_screen(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
 	
 	set_background(data);
+	draw_title_background(data);
+	
+	draw_outline_color(data);
+
+	draw_background_box(data);
+	draw_button(data, 145, 105, 0);
+	draw_button(data, 145, 150, 1);
+	draw_button(data, 145, 195, 0);
+	//0x29cb75 Rouge foncé 
+	//0xf0451d Rouge Clair
+	draw_outline(data);
 	
 	
-	dst.x = 0;
-	dst.y = 20;
-	dst.w = 50;
-	dst.h = 50;
-	draw_rect(data, dst, 0xf0451d);
-	//0x29cb75
-	
-	
-	dst.x = 100;
-	dst.y = 100;
-	dst.w = 20;
-	dst.h = 20;
-	draw_rect(data, dst, 0x29cb75);
-	
-	dst.x = 150;
-	dst.y = 0;
-	dst.w = 1;
-	dst.h = data->window.y;
-	draw_rect(data, dst, 0x29cb75);
 
 	dst.x = 0;
 	dst.y = 0;

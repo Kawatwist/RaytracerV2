@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/22 18:25:33 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/06/26 18:33:10 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,18 @@ void		resize(t_data *data)
 	SDL_GetWindowSize(data->window.window, &check[0], &check[1]);
 	if (x != check[0] || y != check[1])
 	{
-		if (check[1] % 4)
-		{
-			SDL_SetWindowSize(data->window.window, check[0], check[1] + (4 - (check[1] % 4)));
-			check[1] = check[1] + (4 - (check[1] % 4));
-		}
+		data->flag.asked = 1;
+		if (check[0] < 600)
+			check[0] = 601;
 		data->window.x = check[0];
+		if (check[1] < 600)
+			check[1] = 601;
+				
+	if (check[1] % 4)	
+	{
+		SDL_SetWindowSize(data->window.window, check[0], check[1] + (4 - (check[1] % 4)));
+		check[1] = check[1] + (4 - (check[1] % 4));
+	}
 		data->window.y = check[1];
 		create_menu_texture(data);
 		SDL_DestroyTexture(data->window.txt);
