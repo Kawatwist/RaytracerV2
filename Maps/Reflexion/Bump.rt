@@ -11,7 +11,7 @@
 	aa : 0
 	bounce : 0
 	object : 10
-	light : 1
+	light : 2
 	nb_normal : 1
 	nb_texture : 2
 	normal : "./texture/normal/rock.tga"
@@ -22,17 +22,20 @@
 	origin : {0 0 -0.5}
 	direction : {0 0 1}
 	color : 0xFFFFFF
-	distance : 3
+	distance : 100
 	intensity : 1
-	spot : 0
-	ang : -0.7
+[light:1]
+	origin : {0.5 0 1}
+	color : 0xFFFFFF
+	distance : 100
+	intensity : 1
 ############################ Camera ####################
 [camera:1]
 	origin : {0 0 -0.5}
 	direction : {0 0 1}
 ############################ Object ####################
 [object:plan]
-	origin : {0 0 1}
+	origin : {0 0 3}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
 			reflection : 255
@@ -71,7 +74,7 @@
 	origin : {0 0 0.4}
 	direction : {0 1 0}
 	color : 0xFF00FF
-	rayon : 0.3
+	rayon : 0.1
 			id_refraction : 0.7
 			refraction : 255
 			normal : 255

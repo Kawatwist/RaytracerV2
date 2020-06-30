@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/20 20:45:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/29 19:51:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		ask_screenshot(t_data *data)
 	if (buttonid == 0)
 		create_screenshot(data, data->window.pxl);
 	else if (buttonid == 1)
-		create_screenshot_bmp(data, data->window.pxl, (char **)(&("./Screenshot/screenshot_0\0")), 1);
+		create_screenshot_bmp(data, data->window.pxl, (char **)(&(("./Screenshot/screenshot_0\0"))), 1);
 }
 
 void		input(t_data *data)

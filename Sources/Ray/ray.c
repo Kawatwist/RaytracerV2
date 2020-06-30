@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/21 15:27:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/29 22:32:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
-	if (data->max_dist &&
-		length(sub_vec(r.tmp.origin, ray.origin)) > data->max_dist)
+	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) > data->max_dist) && data->max_dist)
 		return (data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
@@ -66,6 +65,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal_with_txt(*data, r.obj, r.tmp); /*Need setup for closed cone/cylinder */
+	//  return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) + ((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) + ((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;

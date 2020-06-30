@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/24 21:01:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 19:53:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,6 +319,11 @@ float		cylinder(void *cylinder, t_vec ray)
 	d.t0 = (-d.b + sqrt(d.delta)) / (2 * d.a);
 	d.t1 = (-d.b - sqrt(d.delta)) / (2 * d.a);
 	d.t0 = find_t(d);
+	if (!d.delta)
+	{
+		c->close = 1;
+		return (close_cyl(c, ray));
+	}
 	if (d.t0 != -1 && c->hauteur != -1)
 	{
 		len = sqrtf(square(c->rayon) + square(c->hauteur));
@@ -327,9 +332,9 @@ float		cylinder(void *cylinder, t_vec ray)
 	}
 	if (c->hauteur != -1)
 		d.t1 = close_cyl(c, ray);
-	if ((d.t1 != -1 && d.t0 > d.t1) && c->hauteur != -1 && dot_product(c->dir_close, ray.direction) < 0)
-		c->close = 1;
 	d.t0 = find_t(d);
+	// if (c->hauteur != -1 && square(length(sub_vec(c->origin.origin, add_vec(ray.origin, mult_vec2(ray.direction, d.t0))))) != square(c->rayon) + square(c->hauteur))
+	// 	c->close = 1;
 	return (d.t0);
 }
 
