@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/20 20:42:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 19:39:48 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	looping(t_data *data)
 			&data->window.pxl, &data->window.pitch);
 	if ((err = start_thread(data)))//segfault
 		return (err);
+	generate_perlin(data);
 	post_processing(data);
 	data->percent++;
 	if (data->percent > 99)

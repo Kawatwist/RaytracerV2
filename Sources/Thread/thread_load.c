@@ -3,15 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   thread_load.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/12 01:57:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/06/26 19:43:03 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
+
+static void		setup_perlin(t_data *data, t_thread *tmp, int x)
+{
+	int i;
+	int j;
+	i = -1;
+	while (++i < GRADIENT)
+	{
+		j = -1;
+		while (++j < GRADIENT)
+		{
+			tmp[x].perlin[i * GRADIENT + j] = data->perlin[i * GRADIENT + j];
+		}
+	}
+}
 
 int		load_modif(t_data *data, t_thread *tmp)
 {
@@ -37,6 +52,7 @@ int		load_modif(t_data *data, t_thread *tmp)
 			ft_memcpy(&tmp[i].obj.light[data->obj.index[2]],
 			&data->obj.light[data->obj.index[2]], sizeof(t_light));
 		ft_memcpy(&tmp[i].flag, &data->flag, sizeof(t_flag));
+		setup_perlin(data, tmp, i);
 	}
 	return (0);
 }
