@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/28 22:41:41 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/29 21:46:20 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,12 @@ typedef struct		s_slider
 	Uint32			selected : 1;
 }					t_slider;
 
+typedef struct		s_color_picker
+{
+	Uint32			circle;
+	SDL_Rect		position;
+}					t_color_picker;
+
 typedef struct		s_preview
 {
 	t_vec			cam;
@@ -168,6 +174,7 @@ typedef struct		s_preview
 	void			*pxl;
 	t_light			light;
 	t_slider		slider[2];
+	t_color_picker	color_picker;
 }					t_preview;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/28 23:04:37 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 19:53:58 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,23 +161,11 @@ float			slider(t_data *data, t_slider *slider)
 		slider->selected = 0;
 	if (slider->selected == 1)
 	{
-		if (!slider->dir) /* X */
+		if (!slider->dir)
 			slider->cursor.x = stay_in_case(data->input.x - (slider->cursor.w / 2.0), slider->position.x, slider->position.x + slider->position.w);
 		else
 			slider->cursor.y = stay_in_case(data->input.y - (slider->cursor.h / 2.0), slider->position.y, slider->position.y + slider->position.h);
 	}
-		// printf("%d\n", data->input.x);
-		//slider horizontale
-	// if ()
-	// {
-	// 	//slider verticale
-	// }
-	/*
-		Quel direction du slider (x / y)?
-		Slider Selectionner (en mouvement)?
-		Return quel valeur ? (Position du curseur sur slider / User En mouvement sur slider)
-	*/
-
 	SDL_SetRenderDrawColor(data->window.rend, slider->colorbg & 0xFF, slider->colorbg & 0xFF00, slider->colorbg & 0xFF0000, slider->colorbg & 0xFF000000);
 	SDL_RenderFillRect(data->window.rend, &slider->position);
 	SDL_SetRenderDrawColor(data->window.rend, slider->colorcursor & 0xFF, slider->colorcursor & 0xFF00, slider->colorcursor & 0xFF0000, slider->colorcursor & 0xFF000000);
@@ -208,14 +196,40 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[1].selected = 0;
 	data->screen.preview.slider[1].colorbg = 0x909090;
 	data->screen.preview.slider[1].colorcursor = 0x000000;
-	data->screen.preview.slider[1].position.x = 300 - 25 - 20;
+	data->screen.preview.slider[1].position.x = 225 - 25 - 20;
 	data->screen.preview.slider[1].position.y = 100;
 	data->screen.preview.slider[1].position.w = 25;
 	data->screen.preview.slider[1].position.h = data->window.y - 400;
-	data->screen.preview.slider[1].cursor.x = 300 - 25 - 20;
+	data->screen.preview.slider[1].cursor.x = 225 - 25 - 20;
 	data->screen.preview.slider[1].cursor.y = 300;
 	data->screen.preview.slider[1].cursor.w = 25;
 	data->screen.preview.slider[1].cursor.h = 100;
+}
+
+static	void	color_picker(t_data *data, t_color_picker *color_picker)
+{
+	double	distance;
+	int		radius = 150;
+	int		radius_min = 100;
+	int		i;
+	int		j;
+
+	distance = 0.0;
+	radius = 150;
+	radius_min = 100;
+	i = 0;
+	j = 0;
+	(void)color_picker;
+	while (i++ <= 2 * radius)
+	{
+		j = 0;
+		while (j++ <= 2 * radius)
+		{
+			distance = sqrt((double)(i - radius) * (i - radius) + (j - radius) * (j - radius));
+			if (distance<radius && distance > radius_min)
+				((int *)data->screen.preview.pxl)[i + (j * 300)] = 0xFF00FF;
+		}
+	}
 }
 
 void		new_rt(t_data *data)
@@ -234,8 +248,6 @@ void		new_rt(t_data *data)
 	static float var = 0;
 	static char flag = 0;
 
-	printf("[%d]\n", slider_bar.x);
-	(void)r;
 	if (!data->screen.preview.slider[0].init)
 		init_slider_preview(data);
 	tmp = data->obj.item[data->obj.index[1]];
@@ -272,7 +284,6 @@ void		new_rt(t_data *data)
 				dot = dot_product(l2n, new_point);
 				if (dot < 0)
 				{
-					//Specular
 					color = data->screen.preview.sphere.effect.color;
 					((int *)data->screen.preview.pxl)[(150 + (int)ray.origin.x) + ((150 +(int)ray.origin.y) * 300)] = create_specular(data, color, &r, -dot);
 				}
@@ -287,9 +298,10 @@ void		new_rt(t_data *data)
 	}
 	rect_slider.y = data->window.y - 80;
 	slider_bar.y = data->window.y - 80;
-	SDL_UnlockTexture(data->screen.preview.texture);
+	color_picker(data, &data->screen.preview.color_picker);
 	SDL_RenderCopy(data->window.rend, data->screen.preview.texture, NULL, &petit);
-	printf("=> %f\n", slider(data, &data->screen.preview.slider[0]));
+	SDL_UnlockTexture(data->screen.preview.texture);
+	printf("=> %f\n", slider(data, &data->screen.preview.slider[0]));//position du slider current
 	slider(data, &data->screen.preview.slider[1]);
 	SDL_RenderPresent(data->window.rend);
 	SDL_Delay(64);
