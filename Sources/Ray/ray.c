@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:31:27 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:56:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
 	r.tmp.direction = find_normal_with_txt(*data, r.obj, r.tmp); /*Need setup for closed cone/cylinder */
-	// return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) + ((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) + ((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;
@@ -74,5 +73,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		((unsigned char *)&(data->tmp_color))[0] > 0
 		&& ((t_base *)r.obj)->effect.transparancy)
 		send_ray_txt(&r, data, &ray, &bounce); /*Need setup for closed cone/cylinder */
+	if (data->flag.normal && !r.bounce)
+		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) + ((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) + ((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
 	return (r.color[0]);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:17:54 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:51:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_flag
 	Uint32		nb_video : 12;
 	Uint32		show : 1;
 	Uint32		save : 1;
+	Uint32		normal : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;

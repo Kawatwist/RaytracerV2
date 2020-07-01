@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_filter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 23:03:52 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/30 21:15:09 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:54:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void		input_filter(t_data *data)
 		data->flag.filter = (data->flag.filter == 0) ? 4 : 0;
 	if (key_check(*data, SDL_SCANCODE_5))
 		data->flag.filter = (data->flag.filter < 5 || data->flag.filter > 8) ? 5 : data->flag.filter + 1;
+	if (key_check(*data, SDL_SCANCODE_N))
+		data->flag.normal = (data->flag.normal == 0) ? 1 : 0;
 }

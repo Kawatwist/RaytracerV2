@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 20:21:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 21:52:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,88 +182,3 @@ void		input(t_data *data)
 	}
 	((t_base *)data->obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
 }
-
-
-//================================================================================
-// void		input(t_data *data)
-// {
-// 	static			t_c33	adad = {.color = 0, .flag = 1};
-// 	// static void		*tmp2;
-// 	void			*tmp;
-// 	static int		index = 0;
-
-// 	printf("adad.flag = [%d]\n", adad.flag);
-// 	tmp = data->obj.item[data->obj.index[1]];
-// 	index = data->obj.index[1];
-// 	adad.color = ((t_base *)data->obj.item[index])->effect.color;
-// 	get_input(data);
-// 	if (data->screen.interface == RUN)
-// 	{
-// 		if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-// 			ask_screenshot(data);
-// 		if (key_check(*data, SDL_SCANCODE_V))
-// 			data->flag.pixel =
-// 			(data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-// 		if (key_check(*data, SDL_SCANCODE_R))
-// 			data->flag.refresh = (data->flag.refresh ? 0 : 1);
-// 		input_obj(data, &adad);
-// 		((t_base *)(tmp))->effect.color = adad.color;
-// 		// else
-// 		// 	tmp2 = tmp;
-// 		if (key_check(*data, SDL_SCANCODE_L))
-// 			data->flag.video = 31;
-// 		light_cursor(data);
-// 		input_filter(data);
-// 		input_hud(data);
-// 			adad.color = ((t_base *)(tmp))->effect.color;
-// 		if (data->hud.color_obj)
-// 		{
-// 			// ((t_base *)(tmp2))->effect.color = adad.color;
-// 			// tmp2 = tmp;
-// 			if (index != data->obj.index[1])
-// 				((t_base *)data->obj.item[index])->effect.color = adad.color;
-// 			((t_base *)(tmp))->effect.color = 0xFFFFFF;
-// 			adad.flag = 0;
-// 		}
-// 		if (key_check(*data, SDL_SCANCODE_O))
-// 			data->flag.antialiasing =
-// 			(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
-// 	}
-// }
-/*
-//================================================================================
-
-	if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
-		create_screenshot(data, data->window.pxl);
-	if (key_check(*data, SDL_SCANCODE_V))
-		data->flag.pixel = (data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-	if (key_check(*data, SDL_SCANCODE_R))
-		data->flag.refresh = (data->flag.refresh ? 0 : 1);
-
-	if (select.flag == 0 && data->hud.color_obj)
-	{
-		for (int i = 0; i < 4; i ++)
-			((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
-				select.color;
-		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = select.color;
-	}
-	light_cursor(data);
-	input_obj(data);
-	input_filter(data);
-	input_hud(data);
-	if (data->hud.color_obj)
-	{
-		select.color =
-		((t_base *)(((t_thread *)data->thread)[0].obj.item[data->obj.index[1]]))->effect.color;
-		for (int i = 0; i < 4; i ++)
-		((t_base *)(((t_thread *)data->thread)[i].obj.item[data->obj.index[1]]))->effect.color =
-			0xF3DA75;
-		((t_base *)(data->obj.item[data->obj.index[1]]))->effect.color =
-			0xF3DA75;
-		select.flag = 0;
-	}
-
-	if (key_check(*data, SDL_SCANCODE_O))
-		data->flag.antialiasing = (data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
-	check_mutex(data);
-}*/
