@@ -57,7 +57,7 @@ static int		perlin_plan(t_thread *data, void *obj, t_vec ray)
 	t_point		u;
 	t_point		v;
 	t_point		uv;
-	
+
 	u = fill_vec(((t_plan *)obj)->origin.direction.y,
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);

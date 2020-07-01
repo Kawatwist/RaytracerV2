@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/17 18:25:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/01 20:20:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ static void			special_characters(char a, SDL_Rect *pos)
 {
 	unsigned int count;
 
-	count = (a == '"') ? 1 : 2;
-	if (a == '.')
-		count = 0;
+	if (a == '"' || a == '*')
+		count = (a == '"') ? 1 : 2;
+	if (a == '.' || a == '-')
+		count = (a == '.') ? 0 : 3;
+	else if (a == ':' || a == ' ')
+		count = (a == ':') ? 5 : 6;
 	pos->w = 110;
 	pos->h = 115;
 	pos->x = ((58 + count - '9') % 9) * pos->w;
@@ -47,7 +50,8 @@ SDL_Rect			set_font_pos(char a)
 		pos.x = ((a - '0') % 9) * pos.w;
 		pos.y = 765 + (((a - '0') / 9) * pos.h);
 	}
-	else if (a == '.' || a == '"' || a == '*')
+	else if (a == '.' || a == '"' || a == '*' ||
+		a == ' ' || a == '-' || a == ':')
 		special_characters(a, &pos);
 	return (pos);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/30 19:39:22 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:22:46 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,5 +176,32 @@ typedef struct      s_perl
     float ix1;
     float value;
 }      				t_perl;
+typedef struct		s_slider
+{
+	Uint32			colorbg;
+	Uint32			colorcursor;
+	SDL_Rect		position;
+	SDL_Rect		cursor;
+	Uint32			init : 1;
+	Uint32			dir : 1;
+	Uint32			selected : 1;
+}					t_slider;
+
+typedef struct		s_color_picker
+{
+	Uint32			circle;
+	SDL_Rect		position;
+}					t_color_picker;
+
+typedef struct		s_preview
+{
+	t_vec			cam;
+	t_sphere		sphere;
+	SDL_Texture		*texture;
+	void			*pxl;
+	t_light			light;
+	t_slider		slider[2];
+	t_color_picker	color_picker;
+}					t_preview;
 
 #endif

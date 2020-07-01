@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/30 19:39:07 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:17:54 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct		s_interface
 	SDL_Texture		*(scenetxt[4]);
 	char			interface;
 	int				(*screen[4]) (t_data *data);
-	unsigned int	page;
+	t_preview		preview;
 }					t_interface;
 
 typedef struct	s_font
@@ -249,6 +249,10 @@ int				info_screen(t_data *data);
 int				sub_loop(t_data *data);
 void			draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color);
 void			create_menu_texture(t_data *data);
+int				init_preview(t_data *data);
+void			new_rt(t_data *data);
+
+
 /*
 **			Run
 */
@@ -259,6 +263,7 @@ void			create_menu_texture(t_data *data);
 void			perlin_noise(t_data *data);
 float   		get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
 void			generate_perlin(t_data *data);
+void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);
@@ -272,11 +277,6 @@ void			hud_cone(t_data *data);
 void			hud_plan(t_data *data);
 void			hud_sphere(t_data *data);
 
-void			info_book(t_data *data, SDL_Rect *pos);
-void			first_page(t_data *data);
-void			second_page(t_data *data);
-void			third_page(t_data *data);
-void			fourth_page(t_data *data);
 int				hitbox(int	x, int	y, SDL_Rect *pos);//mettre autre part
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 20:30:05 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:20:49 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ int				initialize_scene(t_data *data)
 	return (0);
 }
 
-static int	init_sub(t_data *data)
+static int		init_sub(t_data *data)
 {
 	data->screen.interface = HOME;
 	data->screen.screen[HOME] = home_screen;
-	// data->screen->screen[NOFILE] = path_screen;
+	//data->screen->screen[NOFILE] = path_screen;
 	data->screen.screen[RUN] = sub_loop;
-	data->screen.screen[INFO] = info_screen;
+	// data->screen.screen[INFO] = info_screen;
 	if (initialize_scene(data))
 		return (5);
 	return (0);
 }
 
-static int	initialize_sdl_txt(t_data *data)
+static int		initialize_sdl_txt(t_data *data)
 {
 	data->window.txt = SDL_CreateTexture(data->window.rend,
 		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
@@ -65,7 +65,7 @@ static int	initialize_sdl_txt(t_data *data)
 	return (0);
 }
 
-static void	initialize_event(t_data *data)
+static void		initialize_event(t_data *data)
 {
 	SDL_EventState(SDL_DROPFILE, SDL_DISABLE);
 	SDL_PollEvent(&data->input.ev);
@@ -73,7 +73,7 @@ static void	initialize_event(t_data *data)
 	ft_bzero(data->input.oldkey, 282);
 }
 
-int			initialize_sdl(t_data *data)
+int				initialize_sdl(t_data *data)
 {
 	if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO | SDL_INIT_TIMER))
 		return (1);
@@ -95,6 +95,7 @@ int			initialize_sdl(t_data *data)
 		return (5);
 	if (init_font(data))
 		return (1);
-	
+	if (init_preview(data))
+		return (1);
 	return (0);
 }
