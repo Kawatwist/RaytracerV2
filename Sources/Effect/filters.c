@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/16 16:20:32 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 21:17:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static void	filter_negatif(t_data *data, unsigned int i)
 {
 	while (++i < data->window.x * data->window.y)
+	{
 		((unsigned int *)data->window.pxl)[i] *= -1;
+	}
 }
 
 static void	filter_cartoon(t_data *data, unsigned int i)
@@ -79,6 +81,14 @@ static void	filter_grey(t_data *data, unsigned int i, int color)
 	}
 }
 
+static void	filter_check(t_data *data, unsigned int i, int j)
+{
+	while (++i < data->window.x * data->window.y)
+	{
+		((unsigned int *)data->window.pxl)[i] = (((unsigned int *)data->window.pxl)[i] & (0xFF << (j * 8)));
+	}
+}
+
 int			post_processing(t_data *data)
 {
 	unsigned int		i;
@@ -94,5 +104,7 @@ int			post_processing(t_data *data)
 		filter_cartoon(data, i);
 	else if (data->flag.filter == 4)
 		filter_negatif(data, i);
+	else if (data->flag.filter > 4)
+		filter_check(data, i, data->flag.filter - 5);
 	return (0);
 }

@@ -2,7 +2,6 @@
 #			Scene 42 : specular				#
 #############################################
 [header]
-	ambiant : 0xFF000000
 	xscreen : 1000
 	yscreen : 1000
 	refresh : 1

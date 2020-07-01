@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/19 20:13:06 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 21:20:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ float			specular(t_light light,
 	t_point				v;
 	t_point				r;
 	static int			test = 0;
-	static float		value = 3;
+	static float		value = 13;
 
 	test++;
 	if (test == 50000)
@@ -127,27 +127,17 @@ float			specular(t_light light,
 int			create_specular(t_thread *data, int color, t_ray *r, float dot, int index)
 {
 	(void)r;
-	(void)index;
+	(void)color;
 	(void)data;
-
+	(void)dot;
+	(void)index;
 	if (dot > 0.0)
 	{
 		color = apply_mult(((t_base *)r->obj)->effect.color, data->obj.light[index].color, dot);
-		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
-		if (dot > 0.0)
-			color = apply_mult_3(data->obj.light[index].color, color, dot);
+		// dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
+		// if (dot > 0.0)
+		// 	color = apply_mult_3(data->obj.light[index].color, color, dot);
 	}
 	return (color);
 }
 
-/*
-if (dot >= 0.98 && dot <= 0.9998)
-	{
-		dot -= 0.98;
-		dot = dot * (1.0 / 0.0198);
-		color = set_specular(data, color, r->color[0], dot);
-	}
-	else if (dot > 0.9998)
-		color = data->obj.light[data->obj.index[2]].color;
-	return (color);
-	*/

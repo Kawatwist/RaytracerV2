@@ -201,11 +201,11 @@ image: libraries/lib/libSDL2.dylib
 libraries/lib/libSDL2.dylib:
 	@echo "${cyanfonce}Installing SDL2 ...${neutre}\c"
 	@mkdir -p libraries
-	@curl -s https://www.libsdl.org/release/SDL2-2.0.8.tar.gz -o libraries/SDL2-2.0.8.tar.gz
-	@tar -xf libraries/SDL2-2.0.8.tar.gz -C libraries
-	@cd libraries/SDL2-2.0.8 ; ./configure --prefix=$(shell pwd)/libraries
-	@make -C ./libraries/SDL2-2.0.8
-	@make -C ./libraries/SDL2-2.0.8 install
+	@curl -s https://www.libsdl.org/release/SDL2-2.0.12.tar.gz -o libraries/SDL2-2.0.12.tar.gz
+	@tar -xf libraries/SDL2-2.0.12.tar.gz -C libraries
+	@cd libraries/SDL2-2.0.12 ; ./configure --prefix=$(shell pwd)/libraries
+	@make -C ./libraries/SDL2-2.0.12
+	@make -C ./libraries/SDL2-2.0.12 install
 	@echo "${cyanclair}DONE${neutre}"
 
 .PHONY: all clean fclean re image

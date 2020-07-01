@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/18 20:03:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 21:20:56 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,10 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	obj[2] = length(sub_vec(data->obj.light[index].origin, r.tmp.origin));
 	obj[1] = stop_light(data, data->obj.light[index], r.tmp, obj[2]);
 	obj[0] = (dist(obj));
-	len > 1 ? len = 1 : 0;
+	// len > 1 ? len = 1 : 0;
 	len < 0 ? len = 0 : 0;
-	dot > 1 ? dot = 1 : 0;
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
+	return (r.color[0]);
 	if (data->flag.diapo)
 		color = add_color(color, light_color(r.color[0],
 			set_color(data->obj.color_find[0],

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/30 19:53:58 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 20:02:02 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,14 +209,14 @@ static	void	init_slider_preview(t_data *data)
 static	void	color_picker(t_data *data, t_color_picker *color_picker)
 {
 	double	distance;
-	int		radius = 150;
-	int		radius_min = 100;
+	int		radius;
+	int		radius_min;
 	int		i;
 	int		j;
 
 	distance = 0.0;
 	radius = 150;
-	radius_min = 100;
+	radius_min = 115;
 	i = 0;
 	j = 0;
 	(void)color_picker;
@@ -226,7 +226,7 @@ static	void	color_picker(t_data *data, t_color_picker *color_picker)
 		while (j++ <= 2 * radius)
 		{
 			distance = sqrt((double)(i - radius) * (i - radius) + (j - radius) * (j - radius));
-			if (distance<radius && distance > radius_min)
+			if (distance < radius && distance > radius_min)
 				((int *)data->screen.preview.pxl)[i + (j * 300)] = 0xFF00FF;
 		}
 	}
