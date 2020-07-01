@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 20:37:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 23:26:48 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,6 @@ int				apply_mult(int i, int j, float d)
 	return (i);
 }
 
-
-// static int	set_specular(t_thread *data, int color, unsigned int specobj, float dot)
-// {
-// 	color = (((int)(((data->obj.light[0].color & 0xFF000000) >> 24) * dot) << 24) +
-// 			((int)(((data->obj.light[0].color & 0xFF0000) >> 16) * dot) << 16) +
-// 			((int)(((data->obj.light[0].color & 0xFF00) >> 8) * dot) << 8) +
-// 			((int)(((data->obj.light[0].color & 0xFF) >> 0) * dot) << 0) +
-// 			((int)(((specobj & 0xFF000000) >> 24) * (1.0 - dot)) << 24) +
-// 			((int)(((specobj & 0xFF0000) >> 16) * (1.0 - dot)) << 16) +
-// 			((int)(((specobj & 0xFF00) >> 8) * (1.0 - dot)) << 8) +
-// 			((int)(((specobj & 0xFF) >> 0) * (1.0 - dot)) << 0));
-// 	return (color);
-// }
-
-
 float			specular(t_light light,
 				t_vec cam, t_vec collide)
 {
@@ -126,6 +111,7 @@ float			specular(t_light light,
 
 int			create_specular(t_thread *data, int color, t_ray *r, float dot, int index)
 {
+	//verifier si il y a un obj pour pas avoir la lumiere du specular sur un obj qui est devant un obj devant une lumiere
 	if (dot > 0.0)
 	{
 		color = apply_mult(((t_base *)r->obj)->effect.color, data->obj.light[index].color, dot);

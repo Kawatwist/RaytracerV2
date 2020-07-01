@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 20:33:22 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 22:34:10 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,19 +234,19 @@ static	void	color_picker(t_data *data, t_color_picker *color_picker)
 
 void		new_rt(t_data *data)
 {
-	t_vec	ray;
-	static	SDL_Rect	petit = {.x = 0, .y = 200, .w = 200, .h = 200};
-	static	SDL_Rect	rect_slider = {.x = 0, .y = 0, .w = 200, .h = 25};
-	static	SDL_Rect	slider_bar = {.x = 15, .y = 0, .w = 10, .h = 25};
-	float	dist;
-	t_point	new_point;
-	t_point	l2n;
-	float	dot;
-	t_ray	r;
-	int		color;
+	t_vec			ray;
+	static			SDL_Rect	petit = {.x = 0, .y = 200, .w = 200, .h = 200};
+	static			SDL_Rect	rect_slider = {.x = 0, .y = 0, .w = 200, .h = 25};
+	static			SDL_Rect	slider_bar = {.x = 15, .y = 0, .w = 10, .h = 25};
+	float			dist;
+	t_point			new_point;
+	t_point			l2n;
+	float			dot;
+	t_ray			r;
+	int				color;
 	void			*tmp;
-	static float var = 0;
-	static char flag = 0;
+	static float	var = 0;
+	static char		flag = 0;
 
 	if (!data->screen.preview.slider[0].init)
 		init_slider_preview(data);
@@ -303,6 +303,6 @@ void		new_rt(t_data *data)
 	SDL_UnlockTexture(data->screen.preview.texture);
 	printf("=> %f\n", slider(data, &data->screen.preview.slider[0]));//position du slider current
 	slider(data, &data->screen.preview.slider[1]);
-	SDL_RenderPresent(data->window.rend);
+	// SDL_RenderPresent(data->window.rend);
 	SDL_Delay(64);
 }
