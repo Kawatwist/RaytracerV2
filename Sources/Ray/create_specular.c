@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 20:37:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/01 23:26:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,16 +105,8 @@ float			specular(t_light light,
 	t_point				l;
 	t_point				v;
 	t_point				r;
-	static int			test = 0;
-	static float		value = 13;
+	static float		value = 700;
 
-	test++;
-	if (test == 50000)
-		test = 0;
-	if (!test)
-		value += 0.0;
-	if (value == 20)
-		value = 1;
 	l = sub_vec(collide.origin, light.origin);
 	v = cam.direction;
 	r = sub_vec(mult_vec2(collide.direction,
@@ -133,6 +125,8 @@ int			create_specular(t_thread *data, int color, t_ray *r, float dot, int index)
 		if (dot > 0.0)
 			color = apply_mult_3(data->obj.light[index].color, color, dot);
 	}
+	else
+		return (data->ambiant);
 	return (color);
 }
 

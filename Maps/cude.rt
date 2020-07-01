@@ -7,8 +7,8 @@
 	camera : 1
 	ambiant : 0xFFFFFF
 	aa : 0
-	bounce : 2
-	quality : 0
+	bounce : 0
+	quality : 2
 	object : 12
 	light : 3
 	opti : 1000
@@ -85,7 +85,7 @@
 			id_texture : 254
 			texture : 255
 			reflection : 12
-			ns : 1
+			ns : 0
 [object:sphere]
 	origin : {0 2.7 3.3}
 	color : 0xffffff
