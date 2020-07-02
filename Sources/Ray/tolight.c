@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 23:21:39 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/02 20:56:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,9 @@ unsigned int		ray_to_light(t_thread *data, t_ray r)
 	while (++index < data->obj.nb_light + 1)
 	{
 		if (data->obj.light[index].type == 1)
-			color = spot(data, r, color, index);
+			color = add_color(spot(data, r, color, index), color);
 		else
-			color = omni(data, r, color, index);
+			color = add_color(omni(data, r, color, index), color);
 	}
 	return (color);
 }
