@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/26 19:41:01 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/02 22:20:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
+
+static void	initialize2(t_data *data)
+{
+	data->txt[0] = texture_sphere;
+	data->txt[1] = texture_plan;
+	data->txt[2] = texture_cone;
+	data->txt[3] = texture_cylinder;
+	data->txt[4] = texture_plan;
+	data->txt[5] = texture_plan;
+	data->txt[6] = texture_obj;
+	data->move[0] = move_cam;
+	data->move[1] = move_obj;
+	data->move[2] = move_light;
+}
 
 int			initialize(t_data *data)
 {
@@ -30,17 +44,8 @@ int			initialize(t_data *data)
 	data->dist[4] = triangle;
 	data->dist[5] = disk;
 	data->dist[6] = obj;
-	data->txt[0] = texture_sphere;
-	data->txt[1] = texture_plan;
-	data->txt[2] = texture_cone;
-	data->txt[3] = texture_cylinder;
-	data->txt[4] = texture_plan;
-	data->txt[5] = texture_plan;
-	data->txt[6] = texture_obj;
-	data->move[0] = move_cam;
-	data->move[1] = move_obj;
-	data->move[2] = move_light;
 	data->ambiant = 0xFF000000;
+	initialize2(data);
 	generate_perlin(data);
 	return (0);
 }

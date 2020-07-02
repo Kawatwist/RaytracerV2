@@ -8,7 +8,7 @@
 	ambiant : 0x7F007F
 	aa : 0
 	bounce : 0
-	quality : 0
+	quality : 3
 	object : 9
 	light : 2
 	opti : 0

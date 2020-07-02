@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/30 19:16:46 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/02 22:26:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int	parsing_head_v4(t_data *data, char *line)
 	else if (!ft_strncmp("\tquality : ", line, 11))
 		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
 	else if (!ft_strncmp("\taa : ", line, 6))
-		data->flag.antialiasing = ((unsigned int)ft_atoi(&(line[6])) & 0b11);
+		data->flag.antialiasing =
+			((unsigned int)ft_atoi(&(line[6])) & 0b11);
 	else if (!ft_strncmp("\topti : ", line, 8))
 		data->max_dist = ft_atoi(&(line[8]));
 	else
@@ -50,15 +51,11 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-	{	
-		if ((data->window.x = ft_atoi(&(line[11]))) < 600)
-			data->window.x = 600;
-	}
+		data->window.x = ((ft_atoi(&(line[11]))) >= 600 ?
+			ft_atoi(&(line[11])) : 600);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-	{
-		if ((data->window.y = ft_atoi(&(line[11]))) < 600)
-			data->window.y = 600;
-	}
+		data->window.y = ((ft_atoi(&(line[11]))) >= 600 ?
+			ft_atoi(&(line[11])) : 600);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
 		data->bounce = ft_atoi(&(line[10]));
 	else if (!ft_strncmp("\tcamera : ", line, 10))

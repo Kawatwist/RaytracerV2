@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 22:52:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/02 22:13:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
-	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) > data->max_dist) && data->max_dist)
+	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
+		data->max_dist) && data->max_dist)
 		return (data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	data->tmp_color = r.color[0];
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
-	r.tmp.direction = find_normal_with_txt(*data, r.obj, r.tmp); /*Need setup for closed cone/cylinder */
+	r.tmp.direction = find_normal_with_txt(*data, r.obj, r.tmp);
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;
@@ -72,8 +73,10 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	if (((t_base *)r.obj)->effect.texture &&
 		((unsigned char *)&(data->tmp_color))[0] > 0
 		&& ((t_base *)r.obj)->effect.transparancy)
-		send_ray_txt(&r, data, &ray, &bounce); /*Need setup for closed cone/cylinder */
-	// if (data->flag.normal && !r.bounce)
-	// 	return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) + ((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) + ((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
+		send_ray_txt(&r, data, &ray, &bounce);
+	if (data->flag.normal && r.bounce <= 0)
+		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) +
+		((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) +
+		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
 	return (r.color[0]);
 }

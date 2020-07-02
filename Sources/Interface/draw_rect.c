@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/20 17:57:20 by anboilea          #+#    #+#             */
-/*   Updated: 2020/06/26 17:45:34 by anboilea         ###   ########.fr       */
+/*   Created: 2020/07/02 22:21:35 by lomasse           #+#    #+#             */
+/*   Updated: 2020/07/02 22:22:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,20 @@ void	draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color)
 {
 	int			pitch;
 	void		*pxl;
-
-    int         x;
-    int         y;
+	int			x;
+	int			y;
 
 	SDL_LockTexture(ptr->menu.background, NULL, &pxl, &pitch);
-
-    y = dst.y;
-    while (y < dst.y + dst.h)
-    {
-        x = dst.x;
-        while (x < dst.w + dst.x)
-        {
-            ((int *)pxl)[x + (y * 200)] = color;
-            x++;
-        }
-        y++;
-    }
-
-    SDL_UnlockTexture(ptr->menu.background);
+	y = dst.y;
+	while (y < dst.y + dst.h)
+	{
+		x = dst.x;
+		while (x < dst.w + dst.x)
+		{
+			((int *)pxl)[x + (y * 200)] = color;
+			x++;
+		}
+		y++;
+	}
+	SDL_UnlockTexture(ptr->menu.background);
 }

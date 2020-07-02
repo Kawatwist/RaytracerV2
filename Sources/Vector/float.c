@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   float.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 22:24:42 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/28 22:27:17 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/02 22:16:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	stay_in_case(float	value, float min, float max)
+float	stay_in_case(float value, float min, float max)
 {
 	if (value > min && value < max)
 		return (value);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 01:55:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/02 22:33:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ static void	refresh_cam(t_data *data, void **cam)
 {
 	if (key_old(*data, SDL_SCANCODE_J))
 	{
-		(*(t_camera **)cam)->pos.origin = veccpy((*(t_camera **)cam)->oldpos.origin);
-		(*(t_camera **)cam)->pos.direction = veccpy((*(t_camera **)cam)->oldpos.direction);
+		(*(t_camera **)cam)->pos.origin =
+			veccpy((*(t_camera **)cam)->oldpos.origin);
+		(*(t_camera **)cam)->pos.direction =
+			veccpy((*(t_camera **)cam)->oldpos.direction);
 		(*(t_camera **)cam)->sc = veccpy((*(t_camera **)cam)->oldsc);
 		(*(t_camera **)cam)->x = veccpy((*(t_camera **)cam)->oldx);
 		(*(t_camera **)cam)->y = veccpy((*(t_camera **)cam)->oldy);

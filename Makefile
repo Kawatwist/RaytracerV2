@@ -63,7 +63,6 @@ SRC				=	main.c										\
 					texture.c									\
 					ray.c										\
 					setup_ray_effect.c							\
-					send.c										\
 					input.c										\
 					input_tool.c								\
 					screen.c									\
@@ -76,6 +75,9 @@ SRC				=	main.c										\
 					thread_load.c								\
 					pthread_timedjoin.c							\
 					shape.c										\
+					extra_shape.c								\
+					cone.c										\
+					cylinder.c									\
 					tolight.c									\
 					init_vec.c									\
 					mat_vec2.c									\

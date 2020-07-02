@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:20:49 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/02 22:19:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ static int		init_sub(t_data *data)
 {
 	data->screen.interface = HOME;
 	data->screen.screen[HOME] = home_screen;
-	//data->screen->screen[NOFILE] = path_screen;
 	data->screen.screen[RUN] = sub_loop;
-	// data->screen.screen[INFO] = info_screen;
 	if (initialize_scene(data))
 		return (5);
 	return (0);

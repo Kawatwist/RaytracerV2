@@ -6,25 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 21:51:04 by lomasse          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/*   Updated: 2020/06/26 19:39:48 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/02 22:30:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-/*
-** Tableau fini de structure contenant bouton et pointeur de fonction de x cases
-** Menu deroulant de la longueur du tableau avec y (taille max d'option affichable avec dimension actuelle)
-** z est l 'indice a partir du quel le menu deroulant demarre
-** L'option selectioné est égale a l'emplacement actuel cliqué + z
-**
-** La valeur de l'emplacement + z est recupérée et transmise au tableau de structure de bouton qui contient
-** aussi un pointeur de fonction
-*/
 void	set_background(t_data *data)
 {
 	int			pitch;
@@ -53,7 +40,6 @@ void	draw_outline(t_data *data)
 	draw_rect(data, dst, 0xffffff);
 	dst.y = data->window.y * 0.55 - 1;
 	draw_rect(data, dst, 0xffffff);
-
 }
 
 void	draw_outline_color(t_data *data)
@@ -78,7 +64,6 @@ void	draw_outline_color(t_data *data)
 	draw_rect(data, dst, 0x3c3c3c);
 	dst.y = data->window.y * 0.55 + 241 - 10;
 	draw_rect(data, dst, 0x3c3c3c);
-
 }
 
 void	draw_title_background(t_data *data)
@@ -90,7 +75,6 @@ void	draw_title_background(t_data *data)
 	dst.w = 200;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
-
 	dst.x = 0;
 	dst.y = data->window.y * 0.55;
 	dst.w = 200;
@@ -146,7 +130,6 @@ static int	texture_on_screen(t_data *data)
 	SDL_Rect	pos;
 	SDL_Rect	dst;
 
-	/*If Hud*/
 	pos.x = 200;
 	pos.y = 30;
 	pos.w = data->window.x - 200;
@@ -154,23 +137,15 @@ static int	texture_on_screen(t_data *data)
 	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
 	SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
 	SDL_RenderClear(data->window.rend);
-	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos); // Secu ?
-
+	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
 	draw_title_background(data);
-
 	draw_outline_color(data);
-
 	draw_background_box(data);
 	draw_button(data, 145, 105, 0);
 	draw_button(data, 145, 150, 1);
 	draw_button(data, 145, 195, 0);
-	//0x29cb75 Rouge foncé
-	//0xf0451d Rouge Clair
 	draw_outline(data);
-
-
-
 	dst.x = 0;
 	dst.y = 0;
 	dst.w = 200;
@@ -198,19 +173,11 @@ static int	looping(t_data *data)
 		texture_on_screen(data);
 	else
 		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	// if (data->hud.flag_hud)
-	// 	pics_on_screen(data);
-	if (data->obj.type_index == 0)
-		data->font.str = ft_strjoinfree("Current Cam :\0",
-			ft_itoa(data->obj.index[0]), 2);
-	else if (data->obj.type_index == 1)
-		data->font.str = ft_strjoinfree("Current Obj :\0",
-			ft_itoa(data->obj.index[1]), 2);
-	else
-		data->font.str = ft_strjoinfree("Current Light :\0",
-			ft_itoa(data->obj.index[2]), 2);
-	print_text(data, 0, 0, 30);
-	// new_rt(data);
+	if (data->hud.flag_hud)
+	{
+		pics_on_screen(data);
+		new_rt(data);
+	}
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
@@ -254,7 +221,6 @@ int			sub_loop(t_data *data)
 		printf("avant looping\n");
 		if ((err = looping(data)) != 0)
 			return (err);
-		// SDL_RenderPresent(data->window.rend);
 		data->flag.asked = 0;
 		data->flag.video ? data->flag.video -= 1 : 0;
 		real_time_icon(data);
@@ -321,7 +287,7 @@ int			loop(t_data *data)
 	create_menu_texture(data);
 	while (TRUE)
 	{
-		if (key_check(*data, SDL_SCANCODE_BACKSPACE))//pour revenir sur le menu des maps
+		if (key_check(*data, SDL_SCANCODE_BACKSPACE))
 			data->screen.interface = HOME;
 		check_time(data);
 		if (SDL_QuitRequested())
