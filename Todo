@@ -226,7 +226,7 @@ mettre un petit rt dans le rt
 
 
 
-//faire en sorte davoir la bonne couleur de fond dans preview.c
+//faire en sorte davoir la bonne couleur de fond dans preview.c derriere la sphere
 
 
 
@@ -235,10 +235,7 @@ mettre un petit rt dans le rt
 
 
 
+reactiver new_rt en fin de resolution problemes
 
 
-
-
-
-
-faire que quand je clic sur slider bar je puisse le deplacer meme si je suis pas dessus
+faire fonction raytracer pour new_rt

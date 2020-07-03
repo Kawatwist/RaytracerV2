@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:20:06 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:40:31 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void			special_characters(char a, SDL_Rect *pos)
 	if (a == '.' || a == '-')
 		count = (a == '.') ? 0 : 3;
 	else if (a == ':' || a == ' ')
-		count = (a == ':') ? 5 : 6;
+		count = (a == ':') ? 4 : 5;
 	pos->w = 110;
 	pos->h = 115;
 	pos->x = ((58 + count - '9') % 9) * pos->w;
