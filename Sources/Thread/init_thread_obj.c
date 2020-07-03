@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:05:28 by lomasse           #+#    #+#             */
-/*   Updated: 2020/03/09 22:59:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 21:34:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int		copy_item(t_object base, t_object *dest, int nb)
 {
 	static	size_t	tab[NONE] = {sizeof(t_sphere),
 								sizeof(t_plan), sizeof(t_cone),
-								sizeof(t_cylinder), sizeof(t_triangle), sizeof(t_disk), sizeof(t_obj)};
+								sizeof(t_cylinder), sizeof(t_triangle),
+								sizeof(t_disk), sizeof(t_obj)};
 	int				i;
 
 	ft_bzero(dest->item, sizeof(void *) * (nb + 1));
@@ -67,7 +68,7 @@ static int		setup_cam_light(t_data *data, t_thread *tmp)
 	return (0);
 }
 
-int			setup_obj(t_data *data, t_thread *tmp)
+int				setup_obj(t_data *data, t_thread *tmp)
 {
 	int	i;
 

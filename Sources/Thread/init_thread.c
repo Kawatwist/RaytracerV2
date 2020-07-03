@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_thread.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/26 19:42:58 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/03 21:34:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
-
 
 static void		setup_function(t_thread *tmp)
 {
@@ -35,11 +34,10 @@ static void		setup_function(t_thread *tmp)
 	(*tmp).move[2] = move_light;
 }
 
-
 static int		setup_struct(t_data *data, t_thread *tmp)
 {
-	static pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
-	int	i;
+	static pthread_mutex_t	mut = PTHREAD_MUTEX_INITIALIZER;
+	int						i;
 
 	i = -1;
 	while (++i < 4)
@@ -59,12 +57,11 @@ static int		setup_struct(t_data *data, t_thread *tmp)
 		tmp[i].pos = i * ((data->window.y * data->window.x) >> 2);
 		tmp[i].signal = 0;
 		tmp[i].mutex = mut;
-		// pthread_mutex_init(tmp[i].mutex, NULL);
 	}
 	return (0);
 }
 
-int		init_thread_memory(t_data *data)
+int				init_thread_memory(t_data *data)
 {
 	if ((data->thread = malloc(sizeof(t_thread) * 4)) == NULL)
 		return (1);

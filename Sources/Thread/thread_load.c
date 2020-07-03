@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread_load.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/26 19:43:03 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/03 21:54:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,30 @@
 
 static void		setup_perlin(t_data *data, t_thread *tmp, int x)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+
 	i = -1;
 	while (++i < GRADIENT)
 	{
 		j = -1;
 		while (++j < GRADIENT)
-		{
 			tmp[x].perlin[i * GRADIENT + j] = data->perlin[i * GRADIENT + j];
-		}
 	}
 }
 
-int		load_modif(t_data *data, t_thread *tmp)
+static void		load_modif_other(t_data *data, t_thread *tmp, int index)
+{
+	ft_memcpy(&tmp[index].flag, &data->flag, sizeof(t_flag));
+	setup_perlin(data, tmp, index);
+}
+
+int				load_modif(t_data *data, t_thread *tmp)
 {
 	static	size_t	tab[NONE] = {sizeof(t_sphere), sizeof(t_plan),
-				sizeof(t_cone), sizeof(t_cylinder), sizeof(t_triangle), sizeof(t_disk), sizeof(t_obj)};
-	int	 i;
+				sizeof(t_cone), sizeof(t_cylinder), sizeof(t_triangle),
+				sizeof(t_disk), sizeof(t_obj)};
+	int				i;
 
 	i = -1;
 	while (++i < 4)
@@ -47,12 +53,11 @@ int		load_modif(t_data *data, t_thread *tmp)
 		else if (data->obj.type_index == 1)
 			ft_memcpy(tmp[i].obj.item[data->obj.index[1]],
 			data->obj.item[data->obj.index[1]],
-			tab[(int)((t_base*)data->obj.item[data->obj.index[1]])->effect.type]);
+		tab[(int)((t_base*)data->obj.item[data->obj.index[1]])->effect.type]);
 		else if (data->obj.type_index == 2)
 			ft_memcpy(&tmp[i].obj.light[data->obj.index[2]],
 			&data->obj.light[data->obj.index[2]], sizeof(t_light));
-		ft_memcpy(&tmp[i].flag, &data->flag, sizeof(t_flag));
-		setup_perlin(data, tmp, i);
+		load_modif_other(data, tmp, i);
 	}
 	return (0);
 }

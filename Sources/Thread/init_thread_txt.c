@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 06:08:24 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/22 22:25:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 21:35:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 static int		setup_normal(t_data *data, t_thread *tmp, t_tga *tgamp)
 {
 	int		j;
+
 	if ((tmp->normal = malloc(sizeof(void *)
 		* data->obj.nb_normal)) == NULL)
 		return (1);
@@ -40,7 +41,7 @@ static int		setup_normal(t_data *data, t_thread *tmp, t_tga *tgamp)
 	return (0);
 }
 
-int			setup_txt_and_normal(t_data *data, t_thread *tmp)
+int				setup_txt_and_normal(t_data *data, t_thread *tmp)
 {
 	int				j;
 	t_tga			*tgamp;

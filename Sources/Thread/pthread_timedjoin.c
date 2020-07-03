@@ -6,14 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 04:09:42 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/05 04:58:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 21:35:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-static void *waiter(void *ap)
+static void		*waiter(void *ap)
 {
 	t_args	*args;
 
@@ -23,10 +23,11 @@ static void *waiter(void *ap)
 	args->joined = 1;
 	pthread_mutex_unlock(&args->mtx);
 	pthread_cond_signal(&args->cond);
-	return 0;
+	return (0);
 }
 
-int pthread_timedjoin_np(pthread_t td, void **res, struct timespec *ts)
+int				pthread_timedjoin_np(pthread_t td, void **res,
+			struct timespec *ts)
 {
 	pthread_t	tmp;
 	int			ret;

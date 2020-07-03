@@ -6,13 +6,13 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 01:59:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:32:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 21:31:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static vooid	mv_obj2(t_data *data, t_obj **obj, int *pressed)
+static void		mv_obj2(t_data *data, t_obj **obj, int *pressed)
 {
 	if (key_old(*data, SDL_SCANCODE_D))
 	{

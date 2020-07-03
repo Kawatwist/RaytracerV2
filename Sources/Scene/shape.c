@@ -6,21 +6,12 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:35:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/02 22:39:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 21:12:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
-
-static float		find_t(t_calc d)
-{
-	if (d.t0 > 0 && d.t1 > 0)
-		return (d.t1 > d.t0 ? d.t0 : d.t1);
-	else if (d.t0 > 0 || d.t1 > 0)
-		return (d.t0 > 0 ? d.t0 : d.t1);
-	return (-1);
-}
 
 float				sphere(void *sphere, t_vec ray)
 {

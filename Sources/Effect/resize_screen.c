@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:20:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:55:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,46 +62,59 @@ static int		init_cam(t_data *data)
 	return (0);
 }
 
-
-/*
-**		À déplacer dans le fichier adéquat
-*/
-
-void		create_menu_texture(t_data *data)
+void			create_menu_texture(t_data *data)
 {
 	data->menu.background = SDL_CreateTexture(data->window.rend,
 	SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, 200, data->window.y);
-
-    /*
-	** A protéger avec le bon code erreur
-	*/
+	// Move to Interface ?
 }
 
-void		resize(t_data *data)
+static void		resize_size(t_data *data, int check[2])
+{
+	data->flag.asked = 1;
+	if (check[0] < 600)
+		check[0] = 600;
+	if (check[1] < 600)
+		check[1] = 601;
+	data->window.x = check[0];
+	data->window.y = check[1];
+	if (check[1] % 4)
+	{
+		SDL_SetWindowSize(data->window.window, check[0], check[1] +
+			(4 - (check[1] % 4)));
+		check[1] = check[1] + (4 - (check[1] % 4));
+	}
+	else
+		SDL_SetWindowSize(data->window.window, check[0], check[1]);
+}
+
+static void		resize_thread(t_data *data)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		((t_thread *)data->thread)[i].x = data->window.x;
+		((t_thread *)data->thread)[i].y = data->window.y;
+		ft_memcpy((((t_thread *)data->thread)[i].obj.camera),
+			(data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
+		((t_thread *)data->thread)[i].obj.nb_camera = data->obj.nb_camera;
+	}
+}
+
+void			resize(t_data *data)
 {
 	static int	x;
 	static int	y;
 	int			check[2];
-	int			i;
 
 	x = data->window.x;
 	y = data->window.y;
 	SDL_GetWindowSize(data->window.window, &check[0], &check[1]);
 	if (x != check[0] || y != check[1])
 	{
-		data->flag.asked = 1;
-		if (check[0] < 600)
-			check[0] = 601;
-		data->window.x = check[0];
-		if (check[1] < 600)
-			check[1] = 601;
-
-	if (check[1] % 4)
-	{
-		SDL_SetWindowSize(data->window.window, check[0], check[1] + (4 - (check[1] % 4)));
-		check[1] = check[1] + (4 - (check[1] % 4));
-	}
-		data->window.y = check[1];
+		resize_size(data, check);
 		create_menu_texture(data);
 		SDL_DestroyTexture(data->window.txt);
 		SDL_DestroyTexture(data->window.oldtxt);
@@ -112,14 +125,6 @@ void		resize(t_data *data)
 			SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, data->window.x,
 			data->window.y);
 		init_cam(data);
-		i = -1;
-		while (++i < 4)
-		{
-			((t_thread *)data->thread)[i].x = check[0];
-			((t_thread *)data->thread)[i].y = check[1];
-			ft_memcpy((((t_thread *)data->thread)[i].obj.camera),
-				(data->obj.camera), sizeof(t_camera) * data->obj.nb_camera);
-			((t_thread *)data->thread)[i].obj.nb_camera = data->obj.nb_camera;
-		}
+		resize_thread(data);
 	}
 }

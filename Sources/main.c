@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/25 18:35:51 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:41:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-/*
-**		Resize Screen ?
-**
-**		Check Leaks
-*/
-
-// void	__attribute__((destructor)) lost();
-
-// void		lost()
-// {
-// 	while(1);
-// }
 
 int			main(int argc, char *argv[])
 {

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   thread_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:25:37 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:37:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-static	t_point	find_dir(t_thread *data, int x, int y)
+static	t_point		find_dir(t_thread *data, int x, int y)
 {
 	t_point		ret;
 
@@ -66,15 +66,14 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 		quality(data, x, y, curr);
 }
 
-int		quitrequested(t_thread *data)
+int					quitrequested(t_thread *data)
 {
-	int 	value;
+	int		value;
 
 	value = 0;
 	while (pthread_mutex_trylock(&data->mutex))
 		;
-	data->loading =  (char)(((float)data->current / (float)data->len) * 25.0);
-	// printf("Load = %d | %d\n", data->current, data->len);
+	data->loading = (char)(((float)data->current / (float)data->len) * 25.0);
 	value = data->signal;
 	if (value == THREAD_SIG)
 		data->signal = NOTHREAD;
@@ -82,9 +81,9 @@ int		quitrequested(t_thread *data)
 	return (value);
 }
 
-void	*thread_function(void *arg)
+void				*thread_function(void *arg)
 {
-	t_thread 		*data;
+	t_thread		*data;
 	int				x;
 	int				y;
 	int				curr;
