@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 22:34:22 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:38:03 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ static int	looping(t_data *data)
 		data->font.str = ft_strjoinfree("Current Light :\0",
 			ft_itoa(data->obj.index[2]), 2);
 	print_text(data, 0, 0, 30);
-	// new_rt(data);
+	new_rt(data);
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }

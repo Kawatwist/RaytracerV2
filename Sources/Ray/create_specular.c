@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/02 20:47:41 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 21:22:18 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int			create_specular(t_thread *data, int color, t_ray *r, float dot, int index)
 	//verifier si il y a un obj pour pas avoir la lumiere du specular sur un obj qui est devant un obj devant une lumiere
 	if (dot > 0.0)
 	{
-		color = apply_mult(((t_base *)r->obj)->effect.color, data->obj.light[index].color, dot);
+		color = apply_mult(((t_base *)r->obj)->effect.color, data->obj.light[index].color, dot);// calcul niveau d'ombre
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)
 			color = apply_mult_3(data->obj.light[index].color, color, dot);
