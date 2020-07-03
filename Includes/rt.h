@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 22:44:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 00:52:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,7 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);
 int				home_screen(t_data *data);
 int				info_screen(t_data *data);

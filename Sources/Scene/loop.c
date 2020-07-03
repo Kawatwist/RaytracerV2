@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:39:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 00:48:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	draw_button(t_data *data, int x, int y, int state)
 	}
 }
 
-static int	texture_on_screen(t_data *data)
+int			texture_on_screen(t_data *data)
 {
 	SDL_Rect	pos;
 	SDL_Rect	dst;

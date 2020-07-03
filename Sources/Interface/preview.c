@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:41:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 00:47:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,12 @@ static	void	init_slider_preview(t_data *data)
 static int		find_color_chroma(int i, int j)
 {
 	int		pos;
-	int	dot;
+	float	dot;
 
-	dot = (dot_product(normalize(sub_vec(fill_vec(i, j, 0), fill_vec(150, 150, 0))), fill_vec(0, -1, 0)) + 1.0) * 90;
-	pos = (i < 150 ? 360 - dot : dot);
+	dot = (dot_product(normalize(sub_vec(fill_vec(i, j, 0), fill_vec(150, 150, 0))), fill_vec(0, -1, 0)) + 1.0) * 90.0;
+	pos = (i <= 150 ? 360 - dot: dot);
+	pos < 360 ? pos += 360 : 0;
+	pos > 360 ? pos -= 360 : 0;
 	return (switchcolor(pos));
 }
 
