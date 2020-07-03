@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:13:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 22:44:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ int				sub_loop(t_data *data);
 void			draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color);
 void			create_menu_texture(t_data *data);
 int				init_preview(t_data *data);
+void			mini_rt(t_data *data);
 void			new_rt(t_data *data);
 
 

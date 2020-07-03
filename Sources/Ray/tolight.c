@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 22:00:53 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 23:15:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ unsigned int		ray_to_light(t_thread *data, t_ray r)
 	int		index;
 
 	index = -1;
-	color = r.color[0];
+	color = data->ambiant;
 	while (++index < data->obj.nb_light + 1)
 	{
 		if (data->obj.light[index].type == 1)

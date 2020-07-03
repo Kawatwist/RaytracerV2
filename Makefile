@@ -122,6 +122,7 @@ SRC				=	main.c										\
 					perlin.c									\
 					perlin2.c									\
 					preview.c									\
+					mini_rt.c									\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

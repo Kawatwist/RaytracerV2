@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:21:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:22:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/03 23:36:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color)
 		x = dst.x;
 		while (x < dst.w + dst.x)
 		{
-			((int *)pxl)[x + (y * 200)] = color;
+			((int *)pxl)[x + (y * 300)] = color;
 			x++;
 		}
 		y++;
