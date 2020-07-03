@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/03 22:00:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/04 01:04:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ float			specular(t_light light,
 	t_point				l;
 	t_point				v;
 	t_point				r;
-	static float		value = 700;
+	static float		value = 300;
 
 	l = sub_vec(collide.origin, light.origin);
 	v = cam.direction;

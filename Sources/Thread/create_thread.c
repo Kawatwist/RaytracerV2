@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 00:48:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 01:22:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void		show_hud_loading(t_data *data)
 	else
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, &pos, &pos);
 	/* Place Hud There */
-	texture_on_screen(data);
+	// texture_on_screen(data);
 }
 
 static void		loading_sc(t_data *data, int p)
@@ -96,19 +96,17 @@ static void		loading_sc(t_data *data, int p)
 	SDL_Rect	screen;
 	SDL_Rect	lolz;
 
+	printf("Ta mere Lucas\n");
 	pos.x = (p % 6) * 100;
 	pos.y = (p / 6) * 100;
 	pos.w = 100;
 	pos.h = 100;
 	int i;
 
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		while (pthread_mutex_trylock(&((t_thread *)data->thread)[i].mutex))
 			;
-		i++;
-	}
 	data->loading = ((t_thread *)data->thread)[0].loading + ((t_thread *)data->thread)[1].loading + ((t_thread *)data->thread)[2].loading + ((t_thread *)data->thread)[3].loading;
 	printf("%d%%\n", data->loading);
 	if (data->flag.video)
@@ -122,6 +120,7 @@ static void		loading_sc(t_data *data, int p)
 		pthread_mutex_unlock(&((t_thread *)data->thread)[i].mutex);
 		i++;
 	}
+	printf("La Soeur a Lucas cette grosse chienasse\n");
 	setup_rect(data, &og, &screen, &lolz);
 	SDL_RenderClear(data->window.rend);
 	if (data->hud.flag_hud)
@@ -130,12 +129,16 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
 	else
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
+	printf("Lucas le pire FDP\n");
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
+	printf("Lucas aimerais se prendre des bites en beton\n");
 	SDL_Delay(240);
-	if (data->window.rend != NULL)
-		SDL_RenderPresent(data->window.rend);
+	printf("Nique ta mere Lucas\n");
+	SDL_RenderPresent(data->window.rend);
+	printf("Lucas le sale Bronzos\n");
 	SDL_Delay(240);
+	printf("La grosse daronne a Lucas\n");
 }
 
 static void		light_variance(t_data *data, t_thread *thd)
