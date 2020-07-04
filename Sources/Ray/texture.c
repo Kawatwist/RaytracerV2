@@ -3,31 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 22:53:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 00:35:34 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
-
-int			find_size(t_thread data, void *obj, int choose)
-{
-	int index;
-
-	if (choose)
-	{
-		index = (((t_sphere *)obj)->effect.id_texture);
-		return (((data.texture[index])->w << 16) + (data.texture[index])->h);
-	}
-	else
-	{
-		index = (((t_sphere *)obj)->effect.id_normal);
-		return (((data.normal[index])->w << 16) + (data.normal[index])->h);
-	}
-}
 
 t_point		texture_obj(void *data, void *obj, t_vec ray, int choose)
 {

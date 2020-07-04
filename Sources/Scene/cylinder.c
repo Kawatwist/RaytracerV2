@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 21:30:11 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 01:17:08 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static float		find_t(t_calc d)
 
 static float		close_cyl(t_cylinder *c, t_vec ray)
 {
-	float	dot;
-	t_disk	dor;
+	float			dot;
+	t_disk			dor;
 
 	dot = dot_product(ray.direction, c->origin.direction);
 	dor.rayon = c->rayon;
@@ -43,13 +43,13 @@ static float		close_cyl(t_cylinder *c, t_vec ray)
 	return (disk(&dor, ray));
 }
 
-float		cylinder(void *cylinder, t_vec ray)
+float				cylinder(void *cylinder, t_vec ray)
 {
-	t_cylinder	*c;
-	t_point		os;
-	t_point		tmp;
-	t_calc		d;
-	float		len;
+	t_cylinder		*c;
+	t_point			os;
+	t_point			tmp;
+	t_calc			d;
+	float			len;
 
 	c = (t_cylinder *)cylinder;
 	c->close = 0;

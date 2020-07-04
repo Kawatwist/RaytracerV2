@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   perlin.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/03 23:18:51 by luwargni          #+#    #+#             */
+/*   Updated: 2020/07/03 23:20:15 by luwargni         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 #include "thread.h"
 
-
-static int perlin_color(float val)
+static int		perlin_color(float val)
 {
-	int color;
+	int			color;
 
 	color = 0xFF000000;
 	val = (int)val - val;
-	if(val < 0)
+	if (val < 0)
 		val = -val;
 	if (val > 1)
 		val = 1;
@@ -18,10 +29,10 @@ static int perlin_color(float val)
 
 static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray)
 {
-	float	phi;
-	t_point ontexture;
-	t_point	u;
-	t_point	v;
+	float		phi;
+	t_point		ontexture;
+	t_point		u;
+	t_point		v;
 
 	u = fill_vec(((t_cylinder *)obj)->origin.direction.y,
 		((t_cylinder *)obj)->origin.direction.z,
@@ -32,14 +43,14 @@ static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray)
 	ontexture.x = (phi / (2 * M_PI));
 	ontexture.y = ((float)((int)((t_base *)obj)->origin.origin.y) -
 		ray.origin.y) / 100.0;
-	return(perlin_color(get_perlin(data->perlin, ontexture)));
+	return (perlin_color(get_perlin(data->perlin, ontexture)));
 }
 
 static int		perlin_sphere(t_thread *data, void *obj, t_vec ray)
 {
-	t_point	ontexture;
-	float	phi;
-	float	theta;
+	t_point		ontexture;
+	float		phi;
+	float		theta;
 
 	theta = acos(sub_vec(ray.origin,
 		((t_sphere *)obj)->origin.origin).y / ((t_sphere *)obj)->rayon);
@@ -49,7 +60,7 @@ static int		perlin_sphere(t_thread *data, void *obj, t_vec ray)
 		phi += 2 * M_PI;
 	ontexture.x = (phi / (2 * M_PI));
 	ontexture.y = ((M_PI - theta) / (M_PI));
-	return(perlin_color(get_perlin(data->perlin, ontexture)));
+	return (perlin_color(get_perlin(data->perlin, ontexture)));
 }
 
 static int		perlin_plan(t_thread *data, void *obj, t_vec ray)

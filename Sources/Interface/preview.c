@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/03 21:50:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/03 22:58:01 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,6 +311,5 @@ void		new_rt(t_data *data)
 	SDL_UnlockTexture(data->screen.preview.texture);
 	printf("=> %f\n", slider(data, &data->screen.preview.slider[0]));//position du slider current
 	slider(data, &data->screen.preview.slider[1]);
-	// SDL_RenderPresent(data->window.rend);
-	SDL_Delay(64);
+	// SDL_RenderPresent(data	->window.rend);
 }

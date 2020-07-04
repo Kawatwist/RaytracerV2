@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 21:52:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 00:58:47 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,42 +84,10 @@ void		get_input(t_data *data)
 	//SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
-//REMOVE
-void		check_mutex(t_data *data)
-{
-	int i = -1;
-	if (key_check(*data, SDL_SCANCODE_G))
-	{
-		while (++i < 4)
-		{
-			while (pthread_mutex_trylock(&((t_thread *)(data)->thread)[i].mutex))
-				;
-			((t_thread *)(data)->thread)[i].signal = SIGTSTP;
-			pthread_mutex_unlock(&((t_thread *)(data)->thread)[i].mutex);
-		}
-	}
-}
 
-void		ask_screenshot(t_data *data)
-{
-	const	SDL_MessageBoxButtonData buttons[] = {{
-			SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "TGA" }, {
-				0, 1, "BMP" }, { SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT,
-				2, "Cancel" }, };
-	const	SDL_MessageBoxColorScheme colorScheme = {{{255, 0, 0},
-			{0, 255, 0}, {255, 255, 0}, {0, 0, 255}, {255, 0, 255}}};
-	const	SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION,
-			NULL, "Screenshot", "Select a format :",
-			SDL_arraysize(buttons), buttons, &colorScheme};
-	int		buttonid;
-
-	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
-		SDL_Log("error displaying message box");
-	if (buttonid == 0)
-		create_screenshot(data, data->window.pxl);
-	else if (buttonid == 1)
-		create_screenshot_bmp(data, data->window.pxl, (char **)(&(("./Screenshot/screenshot_0\0"))), 1);
-}
+/*
+**REMOVE
+*/
 
 void		input(t_data *data)
 {
@@ -166,7 +134,6 @@ void		input(t_data *data)
 		input_hud(data);
 		if (data->flag.video)
 		{
-
 		}
 		if (key_check(*data, SDL_SCANCODE_O))
 			data->flag.antialiasing =
