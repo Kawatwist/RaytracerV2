@@ -7,7 +7,7 @@
 	camera : 1
 	ambiant : 0x7F007F
 	aa : 0
-	bounce : 0
+	bounce : 8
 	quality : 3
 	object : 9
 	light : 2

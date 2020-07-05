@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 22:23:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 02:36:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,28 @@ static unsigned int	send_ray_txt(t_ray *r, t_thread *data, t_vec *ray,
 	r->tmp.direction = veccpy(ray->direction);
 	return (set_color(send_ray(data, r->tmp, *bounce), r->color[0],
 		((255 - ((unsigned char *)&(data->tmp_color))[0])) / 255.0, -1));
+}
+
+// unsigned int		color_tree(t_thread *data)
+// {
+// 	unsigned int color;
+
+// 	color =
+// 	return (color);
+// }
+
+unsigned int		new_ray(t_thread *data, t_vec *ray)
+{
+	t_ray r;
+	int	bounce;
+
+	r.bounce = data->bounce;
+	data->tree->cam_dir = veccpy(data->ray.direction);
+	data->tree->cam_pos = veccpy(data->ray.origin);
+	while (--r.bounce)
+	{
+	}
+	return (color_tree(data));
 }
 
 unsigned int		send_ray(t_thread *data, t_vec ray,

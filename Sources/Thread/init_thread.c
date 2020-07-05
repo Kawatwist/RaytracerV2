@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:05 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 21:34:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 00:35:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int				init_thread_memory(t_data *data)
 	if (setup_struct(data, data->thread))
 		return (1);
 	if (setup_obj(data, data->thread))
+		return (1);
+	if (setup_tree(data, data->thread))
 		return (1);
 	return (0);
 }

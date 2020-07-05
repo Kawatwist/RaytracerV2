@@ -7,7 +7,7 @@
 	yscreen : 1000
 	refresh : 1
 	quality : 0
-	bounce : 8
+	bounce : 3
 	aa : 0
 	camera : 1
 	object : 5

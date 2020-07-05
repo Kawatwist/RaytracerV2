@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 00:52:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/04 21:27:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_flag
 	Uint32		show : 1;
 	Uint32		save : 1;
 	Uint32		normal : 1;
+	Uint32		tree : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
