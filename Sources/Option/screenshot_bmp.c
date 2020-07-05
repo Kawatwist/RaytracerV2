@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/28 19:19:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:20:37 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,19 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 	name = findname_bmp(name);
 	tobmp = SDL_CreateRGBSurfaceWithFormatFrom(pxl, data->window.x,
 		data->window.y, 32, data->window.x * 4, SDL_PIXELFORMAT_BGRA32);
-	printf("Screenshot Path Current: %s\n", name);
-	printf("Screenshot : %d\n", SDL_SaveBMP(tobmp, name));
-    printf("Screenshot error: %s\n", SDL_GetError());
 	if (tobmp != NULL)
+	{
+		SDL_SaveBMP(tobmp, name);
 		SDL_FreeSurface(tobmp);
+	}
 	if (mode == 1)
 	{
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
 			"Screenshot Done", name, data->window.window);
 		free(name);
-		free(*path);
+		free(*path); // Ici crash ?
 	}
 	else
-	{
-		// if (path)
-		// 	free(path);
-		// *path = name;
-		// *(ft_strrchr(*path, '/')+ 1) = '\0';
-	}
+		free(name);
+	// Leaks on mode 0 ?
 }

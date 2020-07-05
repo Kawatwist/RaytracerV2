@@ -5,8 +5,8 @@
 	ambiant : 0xFF00FF
 	xscreen : 1000
 	yscreen : 1000
-	refresh : 1
-	quality : 0
+	refresh : 0
+	quality : 3
 	bounce : 3
 	aa : 0
 	camera : 1
@@ -41,7 +41,7 @@
 	color : 0xFFFFFF
 	origin : {-4 0 -3}
 	direction : {0 1 0}
-	rayon : 2
+	rayon : 1
 			reflection : 255
 [object:sphere]
 	color : 0xFFFFFF

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 02:33:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 20:52:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,6 @@ typedef struct			s_args
 	pthread_cond_t		cond;
 	void				**res;
 }						t_args;
-
-typedef struct			s_tree t_tree;
-
-struct					s_tree
-{
-	t_point				cam_pos;
-	t_point				cam_dir;
-	t_point				pos;
-	t_point				direction;
-	unsigned int		color;
-	float				percent;
-	t_tree				*reflexion;
-	t_tree				*refraction;
-	t_tree				*opacity;
-	t_tree				*before;
-	Uint32				done : 1;
-	Uint32				first : 1;
-};
 
 typedef	struct			s_thread
 {
@@ -73,7 +55,6 @@ typedef	struct			s_thread
 	int					tmp_color;
 	char				loading;
 	int					current;
-	t_tree				*tree;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
@@ -131,7 +112,7 @@ void					*check_object(t_thread *data, t_vec ray,
 **			Ray Setup
 */
 t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
-t_vec		setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
+t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
 unsigned int			set_ambiant(unsigned int base);
@@ -146,7 +127,6 @@ int						start_ray(t_thread *data);
 /*
 **			Memory
 */
-int						setup_tree(t_data *data, t_thread *thd);
 int						setup_txt_and_normal(t_data *data, t_thread *tmp);
 int						setup_obj(t_data *data, t_thread *tmp);
 int						clear_thread(t_thread *data);

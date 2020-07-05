@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:22:46 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/05 22:20:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct		s_hud
 	SDL_Texture		*rgb[3];
 	int				color_obj;
 	int				type_obj;
+	int				var;
 	Uint8			flag_hud : 1;
 	Uint8			last_hud : 1;
 }					t_hud;
@@ -187,11 +188,15 @@ typedef struct		s_slider
 	Uint32			selected : 1;
 }					t_slider;
 
-typedef struct		s_color_picker
+typedef struct		s_circle
 {
-	Uint32			circle;
-	SDL_Rect		position;
-}					t_color_picker;
+	int				x;
+	int				y;
+	void			*pxl;
+	int				r_outside;
+	int				r_inside;
+	int				color;
+}					t_circle;
 
 typedef struct		s_preview
 {
@@ -201,7 +206,6 @@ typedef struct		s_preview
 	void			*pxl;
 	t_light			light;
 	t_slider		slider[2];
-	t_color_picker	color_picker;
 }					t_preview;
 
 #endif

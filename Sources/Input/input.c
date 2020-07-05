@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 21:27:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:28:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	input_obj2(t_data *data, char enter)
 	if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
 	{
 		data->flag.tree = 1;
-		data->bounce += 1;
+		data->bounce += data->bounce < 8 ? 1 : 0;
 	}
 	else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
 	{
@@ -76,10 +76,10 @@ static void	input_obj(t_data *data)
 	else
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
-	if (enter == 1)
-		ft_putstr("Current Mode Object\n\n");
-	else
-		ft_putstr("Current Mode Index\n\n");
+	// if (enter == 1)
+	// 	ft_putstr("Current Mode Object\n\n");
+	// else
+	// 	ft_putstr("Current Mode Index\n\n");
 	data->move[data->obj.type_index](data, obj);
 }
 
@@ -119,6 +119,7 @@ void		ask_screenshot(t_data *data)
 	const	SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION,
 			NULL, "Screenshot", "Select a format :",
 			SDL_arraysize(buttons), buttons, &colorScheme};
+	char	*path;
 	int		buttonid;
 
 	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
@@ -126,7 +127,10 @@ void		ask_screenshot(t_data *data)
 	if (buttonid == 0)
 		create_screenshot(data, data->window.pxl);
 	else if (buttonid == 1)
-		create_screenshot_bmp(data, data->window.pxl, (char **)(&(("./Screenshot/screenshot_0\0"))), 1);
+	{
+		path = ft_strdup("./Screenshot/screenshot_0\0");
+		create_screenshot_bmp(data, data->window.pxl, &(path), 1);
+	}
 }
 
 void		input(t_data *data)
@@ -164,7 +168,7 @@ void		input(t_data *data)
 			data->flag.save = 1;
 		}
 		if (key_check(*data, SDL_SCANCODE_K))
-			data->flag.show = 1;
+			data->flag.show = (data->flag.show == 1 ? 0 : 1);
 		if (data->flag.video)
 			framed(data);
 		if (data->flag.show && !data->flag.asked)
@@ -172,10 +176,6 @@ void		input(t_data *data)
 		light_cursor(data);
 		input_filter(data);
 		input_hud(data);
-		if (data->flag.video)
-		{
-
-		}
 		if (key_check(*data, SDL_SCANCODE_O))
 			data->flag.antialiasing =
 			(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);

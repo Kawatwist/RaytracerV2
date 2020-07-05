@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 21:27:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 22:20:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+void			interface_grey(t_data *data);
 int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);
 int				home_screen(t_data *data);
@@ -256,7 +257,6 @@ int				init_preview(t_data *data);
 void			mini_rt(t_data *data);
 void			new_rt(t_data *data);
 
-
 /*
 **			Run
 */
@@ -265,7 +265,7 @@ void			new_rt(t_data *data);
 */
 
 void			perlin_noise(t_data *data);
-float   		get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+float			get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
 void			generate_perlin(t_data *data);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);

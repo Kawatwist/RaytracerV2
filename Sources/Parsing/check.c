@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 19:13:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 20:56:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int				check_parse(t_data *data)
 
 	if ((val = check_effect(data, data->obj)) != 0)
 		return (val);
+	data->bounce > 8 ? data->bounce = 8 : 0;
 	if ((data->input.rkey = malloc(282)) == NULL)
 		return (1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 21:40:31 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/05 21:23:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int					print_text(t_data *data, int x, int y, int size)
 		SDL_RenderCopy(data->window.rend, data->font.font_maj,
 			&data->font.pos, &pos);
 	}
-	printf("data->font.str = %s\n", data->font.str);
 	if (data->font.str)
 		free(data->font.str);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:56:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:38:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int			texture_on_screen(t_data *data)
 	dst.y = 0;
 	dst.w = 300;
 	dst.h = data->window.y;
+	interface_grey(data);
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
 	return (0);
 }
@@ -227,8 +228,6 @@ int			sub_loop(t_data *data)
 
 	if (data->flag.refresh || data->flag.asked || data->flag.video)
 	{
-		ft_putstr("\nRefresh Mode Enable\n");
-		printf("avant looping\n");
 		if ((err = looping(data)) != 0)
 			return (err);
 		data->flag.asked = 0;

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:53:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 22:52:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,40 @@ static int		find_color_chroma(int i, int j)
 	return (switchcolor(pos));
 }
 
-static	void	color_picker(t_data *data, t_color_picker *color_picker)
+static t_circle	setup_circle(t_point pos, int color, long int	radius, void *pxl)
+{
+	t_circle circle;
+
+	circle.pxl = pxl;
+	circle.x = pos.x;
+	circle.y = pos.y;
+	circle.color = color;
+	circle.r_inside = ((Uint64)radius) & 0xFFFFFFFF;
+	circle.r_outside = ((Uint64)radius) >> 32;
+	return (circle);
+}
+
+static void		draw_circle(t_circle circle)
+{
+	int		i;
+	int		j;
+	float	distance;
+
+	i = 0;
+	while (i++ <= 2 * circle.r_outside)
+	{
+		j = 0;
+		while (j++ <= 2 * circle.r_outside)
+		{
+			distance = sqrt((double)(i - circle.r_outside) * (i - circle.r_outside) +
+									(j - circle.r_outside) * (j - circle.r_outside));
+			if (distance < circle.r_outside && distance > circle.r_inside)
+				((int *)circle.pxl)[i + ((j + circle.y) * 300) + circle.x] = circle.color;
+		}
+	}
+}
+
+static	void	color_picker(t_data *data)
 {
 	double	distance;
 	int		radius;
@@ -134,7 +167,6 @@ static	void	color_picker(t_data *data, t_color_picker *color_picker)
 	radius_min = 115;
 	i = 0;
 	j = 0;
-	(void)color_picker;
 	while (i++ <= 2 * radius)
 	{
 		j = 0;
@@ -167,6 +199,33 @@ static float	moving_light(t_data *data)
 	return (var);
 }
 
+static void	text_info(t_data *data)
+{
+	if (data->flag.video)
+	{
+		data->font.str = ft_strdup("Rendu En cours\0");
+		print_text(data, 300, data->window.y - 40, 30);
+		// Draw Text
+	}
+}
+static t_point	color_to_pos(int posx, int posy, int color)
+{
+	t_point pos;
+	float	theta;
+
+	theta = 0;
+	if (color & 0xFF0000)
+		theta += ((((color & 0xFF0000) >> 16) / 255.0) * 90.0);
+	if (color & 0xFF00)
+		theta += (((color & 0xFF00) >> 8) / 255.0) * 180.0;
+	if (color & 0xFF)
+		theta += (((color & 0xFF) >> 0) / 255.0) * 240.0;
+	pos.x = posx +  100 * cos(theta);
+	pos.y = posy +  100 * sin(theta);
+	printf("%#x => %f ||| %f\n", color, pos.x, pos.y);
+	return (pos);
+}
+
 void		new_rt(t_data *data)
 {
 	static	SDL_Rect	petit = {.x = 0, .y = 200, .w = 200, .h = 200};
@@ -180,8 +239,10 @@ void		new_rt(t_data *data)
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
 	mini_rt(data);
-	color_picker(data, &data->screen.preview.color_picker);
+	color_picker(data);
+	// draw_circle(setup_circle(color_to_pos(150, 150, data->screen.preview.sphere.effect.color), 0x0, (0x150000007), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
 	slider(data, &data->screen.preview.slider[0]);
 	slider(data, &data->screen.preview.slider[1]);
+	text_info(data);
 }

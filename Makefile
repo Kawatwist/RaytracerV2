@@ -123,7 +123,7 @@ SRC				=	main.c										\
 					perlin2.c									\
 					preview.c									\
 					mini_rt.c									\
-					create_tree.c								\
+					filter_interface.c							\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 

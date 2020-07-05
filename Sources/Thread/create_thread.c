@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 20:03:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:34:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ static void		show_hud_loading(t_data *data)
 {
 	SDL_Rect	pos;
 
-	pos.x = 200;
-	pos.y = 30;
-	pos.w = data->window.x - 200;
-	pos.h = data->window.y - 30;
+	pos.x = 300;
+	pos.y = 0;
+	pos.w = data->window.x - 300;
+	pos.h = data->window.y - 0;
 
 	if (data->flag.first == 0 || data->window.oldtxt == NULL)
 		SDL_RenderCopy(data->window.rend, data->load.loading, &pos, &pos);
 	else
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, &pos, &pos);
 	/* Place Hud There */
-	// texture_on_screen(data);
+	texture_on_screen(data);
 }
 
 static void		loading_sc(t_data *data, int p)
@@ -96,7 +96,6 @@ static void		loading_sc(t_data *data, int p)
 	SDL_Rect	screen;
 	SDL_Rect	lolz;
 
-	printf("Ta mere Lucas\n");
 	pos.x = (p % 6) * 100;
 	pos.y = (p / 6) * 100;
 	pos.w = 100;
@@ -108,9 +107,19 @@ static void		loading_sc(t_data *data, int p)
 		while (pthread_mutex_trylock(&((t_thread *)data->thread)[i].mutex))
 			;
 	data->loading = ((t_thread *)data->thread)[0].loading + ((t_thread *)data->thread)[1].loading + ((t_thread *)data->thread)[2].loading + ((t_thread *)data->thread)[3].loading;
-	printf("%d%%\n", data->loading);
+	ft_putnbr(data->loading);
+	ft_putstr("%\n");
 	if (data->flag.video)
-		printf("%d%% Rendu (%d/%d)\n", data->flag.video / data->flag.nb_video, (data->flag.nb_video - data->flag.video),  data->flag.nb_video);
+	{
+		ft_putstr("frame : ");
+		ft_putnbr(data->flag.video / data->flag.nb_video);
+		ft_putstr("\t(");
+		ft_putnbr((data->flag.nb_video - data->flag.video));
+		ft_putchar('/');
+		ft_putnbr(data->flag.nb_video);
+		ft_putstr(")\n");
+		// printf("%d%% Rendu (%d/%d)\n", data->flag.video / data->flag.nb_video, (data->flag.nb_video - data->flag.video),  data->flag.nb_video);
+	}
 	// SDL_UnlockTexture(data->window.txt);
 	// SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 	// SDL_LockTexture(data->window.txt, NULL, &data->window.pxl, &data->window.pitch);
@@ -120,7 +129,6 @@ static void		loading_sc(t_data *data, int p)
 		pthread_mutex_unlock(&((t_thread *)data->thread)[i].mutex);
 		i++;
 	}
-	printf("La Soeur a Lucas cette grosse chienasse\n");
 	setup_rect(data, &og, &screen, &lolz);
 	SDL_RenderClear(data->window.rend);
 	if (data->hud.flag_hud)
@@ -129,16 +137,11 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
 	else
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
-	printf("Lucas le pire FDP\n");
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
-	printf("Lucas aimerais se prendre des bites en beton\n");
 	SDL_Delay(240);
-	printf("Nique ta mere Lucas\n");
 	SDL_RenderPresent(data->window.rend);
-	printf("Lucas le sale Bronzos\n");
 	SDL_Delay(240);
-	printf("La grosse daronne a Lucas\n");
 }
 
 static void		light_variance(t_data *data, t_thread *thd)
