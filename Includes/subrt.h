@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 22:20:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/06 22:23:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct		s_slider
 	Uint32			init : 1;
 	Uint32			dir : 1;
 	Uint32			selected : 1;
+	float			value;
 }					t_slider;
 
 typedef struct		s_circle

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 22:52:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/06 22:23:29 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,20 +208,61 @@ static void	text_info(t_data *data)
 		// Draw Text
 	}
 }
+
+static int		lowest_value(int color)
+{
+	if ((color & 0xFF) < ((color & 0xFF00) >> 8) && (color & 0xFF) < ((color & 0xFF0000) >> 16))
+		return (color & 0xFF);
+	if ((color & 0xFF) > ((color & 0xFF00) >> 8) && ((color & 0xFF00) >> 8) < ((color & 0xFF0000) >> 16))
+		return ((color & 0xFF00) >> 8);
+	return ((color & 0xFF0000) >> 16);
+}
+
+static int		highest_value(int color)
+{
+	if ((color & 0xFF) > ((color & 0xFF00) >> 8) && (color & 0xFF) > ((color & 0xFF0000) >> 16))
+		return (color & 0xFF);
+	if ((color & 0xFF) < ((color & 0xFF00) >> 8) && ((color & 0xFF00) >> 8) > ((color & 0xFF0000) >> 16))
+		return ((color & 0xFF00) >> 8);
+	return ((color & 0xFF0000) >> 16);
+}
+
 static t_point	color_to_pos(int posx, int posy, int color)
 {
 	t_point pos;
 	float	theta;
+	int		new_color;
 
 	theta = 0;
-	if (color & 0xFF0000)
-		theta += ((((color & 0xFF0000) >> 16) / 255.0) * 90.0);
-	if (color & 0xFF00)
-		theta += (((color & 0xFF00) >> 8) / 255.0) * 180.0;
-	if (color & 0xFF)
-		theta += (((color & 0xFF) >> 0) / 255.0) * 240.0;
-	pos.x = posx +  100 * cos(theta);
-	pos.y = posy +  100 * sin(theta);
+	new_color = lowest_value(color);
+	color = ((color & 0xFF) - new_color) + ((((color & 0xFF00) >> 8) - new_color) << 8) + ((((color & 0xFF0000) >> 16) - new_color) << 16);
+	new_color = highest_value(color);
+	if (!new_color)
+		theta = 0;
+	else
+	{
+		color = ((color & 0xFF) * (255.0 / new_color)) +
+				((int)(((color & 0xFF00) >> 8) * (255.0 / new_color)) << 8) +
+				((int)(((color & 0xFF0000) >> 16) * (255.0 / new_color)) << 16);
+		if (color & 0xFF && (color & 0xFF) == new_color)
+		{
+			if (color & 0xFF00)
+				theta = 240 - ((int)((((color & 0xFF00) >> 8) / 255.0) * 120) << 8);
+			else if (color & 0xFF0000)
+				theta = 240 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
+			else
+				theta = 240;
+		}
+		else if (color & 0xFF00)
+		{
+			if (color & 0xFF0000)
+				theta = 120 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
+			else
+				theta = 120;
+		}
+	}
+	pos.x = posx +  (133 * cos(rad(theta)));
+	pos.y = posy +  (133 * sin(rad(theta)));
 	printf("%#x => %f ||| %f\n", color, pos.x, pos.y);
 	return (pos);
 }
@@ -240,9 +281,9 @@ void		new_rt(t_data *data)
 		&data->screen.preview.pxl, &data->window.pitch);
 	mini_rt(data);
 	color_picker(data);
-	// draw_circle(setup_circle(color_to_pos(150, 150, data->screen.preview.sphere.effect.color), 0x0, (0x150000007), data->screen.preview.pxl));
+	draw_circle(setup_circle(color_to_pos(100, 100, data->screen.preview.sphere.effect.color), 0x0, (0x1500000010), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
 	slider(data, &data->screen.preview.slider[0]);
-	slider(data, &data->screen.preview.slider[1]);
+	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);
 	text_info(data);
 }
