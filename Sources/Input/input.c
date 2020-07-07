@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/01 21:52:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 02:11:15 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,14 @@ void		get_input(t_data *data)
 {
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
+	data->input.oldbutton = data->input.button;
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.rkey, 250);
 	//SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
+
 //REMOVE
-void		check_mutex(t_data *data)
-{
-	int i = -1;
-	if (key_check(*data, SDL_SCANCODE_G))
-	{
-		while (++i < 4)
-		{
-			while (pthread_mutex_trylock(&((t_thread *)(data)->thread)[i].mutex))
-				;
-			((t_thread *)(data)->thread)[i].signal = SIGTSTP;
-			pthread_mutex_unlock(&((t_thread *)(data)->thread)[i].mutex);
-		}
-	}
-}
 
 void		ask_screenshot(t_data *data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 22:23:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:27:49 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) +
 		((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) +
 		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
-	return (r.color[0]);
+		return (r.color[0]);
 }

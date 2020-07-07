@@ -6,8 +6,8 @@
 	xscreen : 1000
 	yscreen : 1000
 	refresh : 1
-	quality : 0
-	bounce : 8
+	quality : 3
+	bounce : 0
 	aa : 0
 	camera : 1
 	object : 5

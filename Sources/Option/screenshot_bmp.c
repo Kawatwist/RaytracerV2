@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot_bmp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/28 19:19:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 20:56:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		data->window.y, 32, data->window.x * 4, SDL_PIXELFORMAT_BGRA32);
 	printf("Screenshot Path Current: %s\n", name);
 	printf("Screenshot : %d\n", SDL_SaveBMP(tobmp, name));
-    printf("Screenshot error: %s\n", SDL_GetError());
+	printf("Screenshot error: %s\n", SDL_GetError());
 	if (tobmp != NULL)
 		SDL_FreeSurface(tobmp);
 	if (mode == 1)

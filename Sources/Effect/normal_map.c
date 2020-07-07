@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 21:44:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 01:49:15 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 					float percent, float dist)
 {
-
-	t_point	base;
-	t_point	ret;
-	(void)percent;
+	t_point		base;
+	t_point		ret;
 
 	base = normalize((normal));
 	ret = normalize(fill_vec(color[0], color[1], color[2]));
@@ -30,7 +28,7 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 static t_point	get_uv(t_thread data, void *obj,
 					t_vec collide)
 {
-	t_point uv;
+	t_point		uv;
 
 	if (((t_sphere *)obj)->effect.type == PLAN ||
 		((t_sphere *)obj)->effect.type == TRIANGLE)
@@ -49,8 +47,8 @@ static t_point	get_uv(t_thread data, void *obj,
 t_point			find_normal_texture(t_thread data, void *obj,
 					t_vec collide, t_point normal)
 {
-	int				info;
-	t_point			uv;
+	int			info;
+	t_point		uv;
 
 	uv = get_uv(data, obj, collide);
 	info = (((t_base *)obj)->effect.id_normal) << 16;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preview.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:53:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 02:45:48 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,22 @@ float	stay_in_case(float value, float min, float max)
 	return (value < min ? min : max);
 }
 
+void			pos_slider(t_slider *slider, float val)
+{
+	if (val > 1)
+		val = 1;
+	else if (val < 0)
+		val = 0;
+	if (!slider->dir)
+		slider->cursor.x = slider->position.x + (slider->position.w * val);
+	else
+		slider->cursor.y = slider->position.y + (slider->position.h * val);
+}
+
 float			slider(t_data *data, t_slider *slider)
 {
-	if ((data->input.button & SDL_BUTTON_LEFT) &&
-		(hitbox(data->input.x, data->input.y, &slider->position)) == 1)
+	if ((data->input.button & SDL_BUTTON_LEFT) && !(data->input.oldbutton & SDL_BUTTON_LEFT)
+		&& (hitbox(data->input.x, data->input.y, &slider->position)) == 1)
 		slider->selected = 1;
 	if (!(data->input.button & SDL_BUTTON_LEFT))
 		slider->selected = 0;
@@ -67,11 +79,11 @@ float			slider(t_data *data, t_slider *slider)
 		if (!slider->dir)
 			slider->cursor.x =
 			stay_in_case(data->input.x - (slider->cursor.w / 2.0),
-			slider->position.x, slider->position.x + slider->position.w);
+			slider->position.x, slider->position.x + slider->position.w - slider->cursor.w);
 		else
 			slider->cursor.y =
 			stay_in_case(data->input.y - (slider->cursor.h / 2.0),
-			slider->position.y, slider->position.y + slider->position.h);
+			slider->position.y, slider->position.y + slider->position.h - slider->cursor.h);
 	}
 	draw_rect(data, slider->position, slider->colorbg);
 	draw_rect(data, slider->cursor, slider->colorcursor);
@@ -115,7 +127,7 @@ static int		find_color_chroma(int i, int j)
 	float	dot;
 
 	dot = (dot_product(normalize(sub_vec(fill_vec(i, j, 0), fill_vec(150, 150, 0))), fill_vec(0, -1, 0)) + 1.0) * 90.0;
-	pos = (i <= 150 ? 360 - dot: dot);
+	pos = (i <= 150 ? 360 - dot : dot);
 	pos < 360 ? pos += 360 : 0;
 	pos > 360 ? pos -= 360 : 0;
 	return (switchcolor(pos));
@@ -183,5 +195,9 @@ void		new_rt(t_data *data)
 	color_picker(data, &data->screen.preview.color_picker);
 	SDL_UnlockTexture(data->screen.preview.texture);
 	slider(data, &data->screen.preview.slider[0]);
-	slider(data, &data->screen.preview.slider[1]);
+	printf("%f\n", slider(data, &data->screen.preview.slider[1]));
+
+	static float value = 0;
+	value = (value > 1 ? 0 : value + 0.025);
+	// pos_slider(&data->screen.preview.slider[1], value);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot_framed.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/21 16:11:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 20:57:12 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*next_frame(t_data *data, char *name)
 	fake = ft_strdup(name); /* Secure malloc*/
 	*ft_strrchr(fake, '.') = '\0';
 	nb = ft_atoi(ft_strrchr(fake, '_') + 1);
-	nb +=1 ;
+	nb += 1;
 	fake2 = ft_strdup(fake);
 	*(ft_strrchr(fake2, '_') + 1) = '\0';
 	fake2 = ft_strjoinfree(fake2, ft_itoa(nb), 2);
@@ -73,7 +73,7 @@ static char	*findcurrentdirname(char *name)
 		if (access(fake2, F_OK))
 		{
 			free(fake2);
-			break;
+			break ;
 		}
 		fake = ft_strjoinfree(fake, ft_itoa(nb + 1), 3);
 	}
@@ -112,12 +112,12 @@ void		show_framed(t_data *data)
 	}
 }
 
-static void		stop_frame(t_data *data, char **path)
+static void	stop_frame(t_data *data, char **path)
 {
 	ft_putstr("Attention, Rendu Indisponible (Creattion du dossier impossible)\n");
 	SDL_Delay(300);
 	free(*path);
-		*path = NULL;
+	*path = NULL;
 	data->flag.show = 0;
 	data->flag.save = 0;
 }

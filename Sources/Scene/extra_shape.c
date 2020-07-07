@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:35:46 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 21:31:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:54:39 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ float			triangle(void *tri, t_vec ray)
 	return (-1);
 }
 
-float		box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
+float			box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
 {
-	float	t;
-	t_point	dir;
-	t_point	pos;
-	float	div;
+	float		t;
+	t_point		dir;
+	t_point		pos;
+	float		div;
 
 	dir = veccpy(p.origin.direction);
 	div = dot_product(ray.direction, dir);
@@ -71,13 +71,13 @@ float		box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
 	return (-1);
 }
 
-float		obj(void *obj, t_vec ray)
+float			obj(void *obj, t_vec ray)
 {
-	float	t;
-	float	save;
-	t_plan	p;
-	t_obj	*o;
-	Uint8	side;
+	float		t;
+	float		save;
+	t_plan		p;
+	t_obj		*o;
+	Uint8		side;
 
 	o = ((t_obj *)obj);
 	t = -1;
@@ -104,11 +104,11 @@ float		obj(void *obj, t_vec ray)
 	return (save == 99999 ? -1 : save);
 }
 
-float		disk(void *di, t_vec ray)
+float			disk(void *di, t_vec ray)
 {
-	t_disk	d;
-	float	t;
-	float	div;
+	t_disk		d;
+	float		t;
+	float		div;
 
 	d = *(t_disk *)di;
 	div = dot_product(ray.direction, d.origin.direction);
@@ -120,4 +120,3 @@ float		disk(void *di, t_vec ray)
 		return (-1);
 	return (t / (-div));
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 22:45:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/06 21:18:26 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int						apply_mult_2(int i, float d);
 int						apply_mult_3(int i, int j, float d);
 int						light_color(unsigned int color, unsigned int newcolor);
 //int						create_specular(t_thread *data, int color, t_ray *r, float dot);
-int						create_specular(t_thread *data, int color, t_ray *r, float dot, int index);
+int						create_specular(t_thread *data, t_ray *r, float dot, int index);
+unsigned int			add_color(unsigned int base, unsigned int new);
+unsigned int			spot(t_thread *data, t_ray r, unsigned int color, int index);
+unsigned int			omni(t_thread *data, t_ray r, unsigned int color, int index);
 unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist, float max_dist);
@@ -111,8 +114,9 @@ void					*check_object(t_thread *data, t_vec ray,
 /*
 **			Ray Setup
 */
+void					quality(t_thread *data, int *x, int *y, int *curr);
 t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
-t_vec		setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
+t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
 unsigned int			set_ambiant(unsigned int base);

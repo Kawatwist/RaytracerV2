@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 00:52:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 00:17:41 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,11 @@ int				create_texture(t_data *data);
 int				create_item(t_data *data);
 int				find_type(char *type);
 int				create_type(t_data *data, int index, int type);
+t_point			add_rot(t_point mov, char *str);
+int				fill_effect_special(t_effect *effect, char *line);
+int				fill_effect(t_effect *effect, char *line);
+int				add_texture_face(t_data *data, char **line, int index);
+int				add_point(t_data *data, char **line, int index);
 int				fill_obj(t_data *data, char **line, int index);
 int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
@@ -203,6 +208,7 @@ void			show_framed(t_data *data);
 /*
 **			Thread
 */
+void			check_mutex(t_data *data);
 void			*thread_function(void	*arg);
 int				thread_poll(t_data *data);
 int				start_thread(t_data *data);
@@ -264,9 +270,10 @@ void			new_rt(t_data *data);
 */
 
 void			perlin_noise(t_data *data);
-float   		get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+float			get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
 void			generate_perlin(t_data *data);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
+void			filter_check(t_data *data, unsigned int i, int j);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);

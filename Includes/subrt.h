@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:22:46 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/07 02:16:42 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct		s_input
 	unsigned char	oldkey[282];
 	int				x;
 	int				y;
+	int				oldbutton;
 	int				button;
 }					t_input;
 
@@ -176,6 +177,7 @@ typedef struct      s_perl
     float ix1;
     float value;
 }      				t_perl;
+
 typedef struct		s_slider
 {
 	Uint32			colorbg;

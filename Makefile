@@ -47,11 +47,13 @@ SRC				=	main.c										\
 					quit.c										\
 					clear.c										\
 					clear_thread.c								\
+					check_mutex.c								\
 					get_point.c									\
 					parse.c										\
 					header.c									\
 					parse_texture.c								\
 					fill_obj.c									\
+					fill_other_obj.c							\
 					type_tool.c									\
 					camera.c									\
 					object.c									\
@@ -61,6 +63,7 @@ SRC				=	main.c										\
 					find_normal.c								\
 					color.c										\
 					texture.c									\
+					find_size.c									\
 					ray.c										\
 					setup_ray_effect.c							\
 					input.c										\
@@ -71,6 +74,7 @@ SRC				=	main.c										\
 					init_thread.c								\
 					init_thread_obj.c							\
 					init_thread_txt.c							\
+					quality.c									\
 					thread_function.c							\
 					thread_load.c								\
 					pthread_timedjoin.c							\
@@ -79,6 +83,8 @@ SRC				=	main.c										\
 					cone.c										\
 					cylinder.c									\
 					tolight.c									\
+					mix_color.c									\
+					type_of_light.c								\
 					init_vec.c									\
 					mat_vec2.c									\
 					math_vec_float.c							\
@@ -107,12 +113,14 @@ SRC				=	main.c										\
 					shape_cartoon.c								\
 					antialiasing.c								\
 					filters.c									\
+					check_filter.c								\
 					cartoon.c									\
 					init_hud.c									\
 					place_hud.c									\
 					rgb_hud.c									\
 					set_hud.c									\
 					input_hud.c									\
+					menu_texture.c								\
 					input_filter.c								\
 					set_section.c								\
 					hud_obj.c									\

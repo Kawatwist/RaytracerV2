@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:59:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/05 21:53:11 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static float		find_t(t_calc d)
 
 static float		close_cone(t_cone *c, t_vec ray, float rayon)
 {
-	float	dot;
-	t_disk	dor;
+	float			dot;
+	t_disk			dor;
 
 	c->close = 1;
 	dot = dot_product(ray.direction, c->origin.direction);
@@ -48,11 +48,11 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 	return (disk(&dor, ray));
 }
 
-static float	cone2(t_cone *cone, t_vec ray, t_calc c)
+static float		cone2(t_cone *cone, t_vec ray, t_calc c)
 {
-	float	dot;
-	float	len;
-	float	rayon;
+	float			dot;
+	float			len;
+	float			rayon;
 
 	if (c.t0 != -1 && cone->high != -1)
 	{
@@ -68,12 +68,12 @@ static float	cone2(t_cone *cone, t_vec ray, t_calc c)
 	return (c.t0);
 }
 
-float			cone(void *coo, t_vec ray)
+float				cone(void *coo, t_vec ray)
 {
-	t_calc	c;
-	t_cone	*cone;
-	t_point oc;
-	double	k;
+	t_calc			c;
+	t_cone			*cone;
+	t_point			oc;
+	double			k;
 
 	cone = coo;
 	cone->close = 0;
@@ -93,4 +93,3 @@ float			cone(void *coo, t_vec ray)
 	c.t0 = find_t(c);
 	return (cone2(cone, ray, c));
 }
-
