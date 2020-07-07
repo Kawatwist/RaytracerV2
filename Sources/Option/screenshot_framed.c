@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:11:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 22:22:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		show_framed(t_data *data)
 		path = ft_strjoinfree(path, "/Frame_0.bmp\0", 1);
 	}
 	/* Secure */
+
 	surface = SDL_LoadBMP(path);
 	txt = SDL_CreateTextureFromSurface(data->window.rend, surface);
 	SDL_FreeSurface(surface);

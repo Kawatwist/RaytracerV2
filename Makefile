@@ -123,6 +123,9 @@ SRC				=	main.c										\
 					perlin2.c									\
 					preview.c									\
 					mini_rt.c									\
+					draw_circle.c								\
+					fade_color.c								\
+					color_picker.c								\
 					filter_interface.c							\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))

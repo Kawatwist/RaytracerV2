@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 22:20:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 21:33:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,13 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+t_point			color_to_pos(int posx, int posy, int color);
+t_circle		setup_circle(t_point pos, int color, long int radius,
+				void *pxl);
+float			find_slider_pos(int color);
+int				switchcolor(int h);
+void			color_picker(t_data *data);
+void			draw_circle(t_circle circle);
 void			interface_grey(t_data *data);
 int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);
