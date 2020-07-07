@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/06 22:23:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 02:39:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ static int		find_color_chroma(int i, int j)
 
 	dot = (dot_product(normalize(sub_vec(fill_vec(i, j, 0), fill_vec(150, 150, 0))), fill_vec(0, -1, 0)) + 1.0) * 90.0;
 	pos = (i <= 150 ? 360 - dot: dot);
+	pos += 45;
 	pos < 360 ? pos += 360 : 0;
 	pos > 360 ? pos -= 360 : 0;
 	return (switchcolor(pos));
@@ -154,6 +155,45 @@ static void		draw_circle(t_circle circle)
 	}
 }
 
+static float	find_slider_pos(int color)
+{
+	float value;
+
+	value = (color & 0xFF) + ((color & 0xFF00) >> 8) + ((color & 0xFF0000) >> 16);
+	return ((value / 3.0) / 255.0);
+}
+
+static int		hue(t_data *data, int color)
+{
+	float	value;
+
+	value = data->screen.preview.slider[0].value;
+	if (value == 0.5)
+		return (color);
+	else if (value < 0.5)
+	{
+		value *= 2.0;
+		color = (((color & 0xFF) * value) < 0  ? 0 : ((color & 0xFF) * value)) +
+			((((color & 0xFF00) >> 8) * value) < 0  ? 0 : ((int)(((color & 0xFF00) >> 8) * value) << 8)) +
+			((((color & 0xFF0000) >> 16) * value) < 0  ? 0 : ((int)(((color & 0xFF0000) >> 16) * value) << 16));
+	}
+	else
+	{
+		value *= 2.0;
+		color = (((color & 0xFF) * value) >= 255 ? 255 : ((color & 0xFF) * value)) +
+			((((color & 0xFF00) >> 8) * value) >= 255 ? 255 << 8 : ((int)(((color & 0xFF00) >> 8) * value) << 8)) +
+			((((color & 0xFF0000) >> 16) * value) >= 255 ? 255 << 16 : ((int)(((color & 0xFF0000) >> 16) * value) << 16));
+		value = (value - 1.0) * 255.0;
+		if ((color & 0xFF) < value)
+			color = ((int)value) + (color & 0xFFFF00);
+		if (((color & 0xFF00) >> 8) < value)
+			color = (((int)value) << 8) + (color & 0xFF00FF);
+		if (((color & 0xFF0000) >> 16) < value)
+			color = (((int)value) << 16) + (color & 0xFFFF);
+	}
+	return (color);
+}
+
 static	void	color_picker(t_data *data)
 {
 	double	distance;
@@ -175,7 +215,7 @@ static	void	color_picker(t_data *data)
 			distance = sqrt((double)(i - radius) * (i - radius) +
 									(j - radius) * (j - radius));
 			if (distance < radius && distance > radius_min)
-				((int *)data->screen.preview.pxl)[i + (j * 300)] = find_color_chroma(i, j);
+				((int *)data->screen.preview.pxl)[i + (j * 300)] = hue(data, find_color_chroma(i, j));
 		}
 	}
 }
@@ -241,29 +281,39 @@ static t_point	color_to_pos(int posx, int posy, int color)
 		theta = 0;
 	else
 	{
-		color = ((color & 0xFF) * (255.0 / new_color)) +
-				((int)(((color & 0xFF00) >> 8) * (255.0 / new_color)) << 8) +
-				((int)(((color & 0xFF0000) >> 16) * (255.0 / new_color)) << 16);
-		if (color & 0xFF && (color & 0xFF) == new_color)
+		color = ((int)((float)(color & 0xFF) * (255.0 / new_color))) +
+				((int)((float)((color & 0xFF00) >> 8) * (255.0 / new_color)) << 8) +
+				((int)((float)((color & 0xFF0000) >> 16) * (255.0 / new_color)) << 16);
+		if (((color & 0xFF) > ((color & 0xFF00) >> 8) && (color & 0xFF) > ((color & 0xFF0000) >> 16)))
 		{
 			if (color & 0xFF00)
-				theta = 240 - ((int)((((color & 0xFF00) >> 8) / 255.0) * 120) << 8);
+				theta = 240 - ((int)((((color & 0xFF00) >> 8) / 255.0) * 60));
 			else if (color & 0xFF0000)
-				theta = 240 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
+				theta = 240 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 60));
 			else
 				theta = 240;
 		}
-		else if (color & 0xFF00)
+		else if (((color & 0xFF00) >> 8) > ((color & 0xFF0000) >> 16))
 		{
 			if (color & 0xFF0000)
-				theta = 120 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
+				theta = 120 - ((int)((((color & 0xFF0000) >> 16) / 255.0) * 60));
+			else if (color & 0xFF)
+				theta = 120 + ((int)((((color & 0xFF)) / 255.0) * 60));
 			else
 				theta = 120;
 		}
+		else
+		{
+			if (color & 0xFF)
+				theta = 360 - ((int)((((color & 0xFF)) / 255.0) * 60));
+			else if (color & 0xFF00)
+				theta = ((int)((((color & 0xFF00) >> 8) / 255.0) * 60));
+			else
+				theta = 0;
+		}
 	}
-	pos.x = posx +  (133 * cos(rad(theta)));
-	pos.y = posy +  (133 * sin(rad(theta)));
-	printf("%#x => %f ||| %f\n", color, pos.x, pos.y);
+	pos.x = posx +  (133 * cos(rad(theta - 120))) - (0x15 / 2);
+	pos.y = posy +  (133 * sin(rad(theta - 120))) - (0x15 / 2);
 	return (pos);
 }
 
@@ -279,11 +329,12 @@ void		new_rt(t_data *data)
 			switchcolor((int)moving_light(data));
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
+	find_slider_pos(data->screen.preview.sphere.effect.color);
+	data->screen.preview.slider[0].value = slider(data, &data->screen.preview.slider[0]);
 	mini_rt(data);
 	color_picker(data);
-	draw_circle(setup_circle(color_to_pos(100, 100, data->screen.preview.sphere.effect.color), 0x0, (0x1500000010), data->screen.preview.pxl));
+	draw_circle(setup_circle(color_to_pos(145, 145, data->screen.preview.sphere.effect.color), 0x333333, (0x1000000007), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
-	slider(data, &data->screen.preview.slider[0]);
 	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);
 	text_info(data);
 }
