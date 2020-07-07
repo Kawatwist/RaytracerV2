@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/07 21:31:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 23:22:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,17 @@ static float	moving_light(t_data *data)
 
 static void	text_info(t_data *data)
 {
+	static char *str = NULL;
+
 	if (data->flag.video)
 	{
 		data->font.str = ft_strdup("Rendu En cours\0");
 		print_text(data, 300, data->window.y - 40, 30);
 		// Draw Text
 	}
+	str = input_hud_text(data, str);
+	data->font.str = ft_strdup(str);
+	print_text(data, 300, data->window.y - 40, 30);
 }
 
 void		new_rt(t_data *data)

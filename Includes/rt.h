@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 21:33:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 23:18:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ float			find_slider_pos(int color);
 int				switchcolor(int h);
 void			color_picker(t_data *data);
 void			draw_circle(t_circle circle);
+char			*input_hud_text(t_data*data, char *text);
 void			interface_grey(t_data *data);
 int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);

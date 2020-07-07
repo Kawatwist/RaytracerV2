@@ -126,6 +126,7 @@ SRC				=	main.c										\
 					draw_circle.c								\
 					fade_color.c								\
 					color_picker.c								\
+					read_input.c								\
 					filter_interface.c							\
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))

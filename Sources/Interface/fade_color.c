@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:08:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 22:39:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 23:20:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static float	color_to_pos3(int color)
 	return (theta);
 }
 
-static float	color_to_pos3(int color, float theta)
+static float	color_to_pos4(int new_color, int color, float theta)
 {
 	color = ((int)((float)(color & 0xFF) * (255.0 / new_color))) +
 	((int)((float)((color & 0xFF00) >> 8) * (255.0 / new_color)) << 8) +
@@ -96,7 +96,7 @@ t_point			color_to_pos(int posx, int posy, int color)
 	if (!new_color)
 		theta = 0;
 	else
-		theta = color_to_pos3(color, theta);
+		theta = color_to_pos4(new_color, color, theta);
 	pos.x = posx + (133 * cos(rad(theta - 120))) - (0x15 / 2);
 	pos.y = posy + (133 * sin(rad(theta - 120))) - (0x15 / 2);
 	return (pos);
