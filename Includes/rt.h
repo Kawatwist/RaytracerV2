@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 23:18:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/08 15:21:43 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,8 +273,18 @@ void			new_rt(t_data *data);
 */
 
 void			perlin_noise(t_data *data);
-float			get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+void 			init_perlin(t_point uv, t_perl *p);
+void 			init_perlin_wood(t_point uv, t_perl *p);
+void			init_grad(t_point uv, t_perl *p, t_grad *g);
+float			get_perlin_cloud(t_point perlin[GRADIENT * GRADIENT], t_point uv, int type);
+float   		get_perlin_marble(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+float   		get_perlin_wood(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+int				perlin_color_wood(float val);
+int				perlin_color_cloud(float val);
+int				perlin_color_marble(float val);
 void			generate_perlin(t_data *data);
+void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
+void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);

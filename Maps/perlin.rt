@@ -1,0 +1,62 @@
+#############################################
+#			Scene 42 : AWh MAN				#
+#############################################
+[header]
+	xscreen : 1000
+	yscreen : 1000
+	camera : 1
+	ambiant : 0xFFFFFF
+	aa : 0
+	bounce : 2
+	quality : 0
+	object : 3
+	light : 3
+	opti : 1000
+	nb_texture : 0
+############### Light ##################
+[light:1]
+	origin : {0.5 0 -2}
+	color : 0xFFFFFF
+	distance : 10000
+	intensity : 1
+[light:1]
+	origin : {0.5 0 4}
+	color : 0xFFFFFF
+	distance : 10000
+	intensity : 1
+[light:1]
+	origin : {2 0 0}
+	color : 0xFFFFFF
+	distance : 10000
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -5}
+	direction : {0 0 1}
+############### Creeper ###############
+[object:sphere]
+	origin : {0 0 0}
+	color : 0xff5fff
+	rayon : 35
+			id_texture : 254
+			texture : 255
+			reflection : 12
+			ns : 1
+[object:plan]
+	origin : {1 4.7 0}
+	direction : {0 -1 0}
+	color : 0xffffff
+			id_texture : 253
+			texture : 255
+			reflection : 12
+			ns : 1
+[object:cylinder]
+	origin : {0 2 -2.5}
+	direction : {0 1 0}
+	color : 0xffffff
+	rayon : 0.5
+	hauteur : 2.5
+			id_texture : 252
+			texture : 255
+			reflection : 12
+			ns : 1
