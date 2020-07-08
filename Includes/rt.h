@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 21:59:46 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 22:51:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_flag
 	Uint32		show : 1;
 	Uint32		save : 1;
 	Uint32		normal : 1;
+	Uint32		tree : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -251,6 +252,16 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+t_point			color_to_pos(int posx, int posy, int color);
+t_circle		setup_circle(t_point pos, int color, long int radius,
+				void *pxl);
+float			find_slider_pos(int color);
+int				switchcolor(int h);
+void			color_picker(t_data *data);
+void			draw_circle(t_circle circle);
+char			*input_hud_text(t_data*data, char *text);
+void			interface_grey(t_data *data);
+int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);
 int				home_screen(t_data *data);
 int				info_screen(t_data *data);
@@ -258,8 +269,8 @@ int				sub_loop(t_data *data);
 void			draw_rect(t_data *ptr, SDL_Rect dst, unsigned int color);
 void			create_menu_texture(t_data *data);
 int				init_preview(t_data *data);
+void			mini_rt(t_data *data);
 void			new_rt(t_data *data);
-
 
 /*
 **			Run
@@ -269,8 +280,18 @@ void			new_rt(t_data *data);
 */
 
 void			perlin_noise(t_data *data);
-float			get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+void 			init_perlin(t_point uv, t_perl *p);
+void 			init_perlin_wood(t_point uv, t_perl *p);
+void			init_grad(t_point uv, t_perl *p, t_grad *g);
+float			get_perlin_cloud(t_point perlin[GRADIENT * GRADIENT], t_point uv, int type);
+float   		get_perlin_marble(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+float   		get_perlin_wood(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+int				perlin_color_wood(float val);
+int				perlin_color_cloud(float val);
+int				perlin_color_marble(float val);
 void			generate_perlin(t_data *data);
+void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
+void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 00:50:30 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 21:19:17 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 22:59:44 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		ask_screenshot(t_data *data)
 	const	SDL_MessageBoxData messageboxdata = {SDL_MESSAGEBOX_INFORMATION,
 			NULL, "Screenshot", "Select a format :",
 			SDL_arraysize(buttons), buttons, &colorScheme};
+	char	*path;
 	int		buttonid;
 
 	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0)
@@ -30,6 +31,8 @@ void		ask_screenshot(t_data *data)
 	if (buttonid == 0)
 		create_screenshot(data, data->window.pxl);
 	else if (buttonid == 1)
-		create_screenshot_bmp(data, data->window.pxl,
-		(char **)(&(("./Screenshot/screenshot_0\0"))), 1);
+	{
+		path = ft_strdup("./Screenshot/screenshot_0\0");
+		create_screenshot_bmp(data, data->window.pxl, &(path), 1);
+	}
 }

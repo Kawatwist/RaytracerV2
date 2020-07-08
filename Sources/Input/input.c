@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 00:58:47 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 22:59:39 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,17 @@ static void	input_obj2(t_data *data, char enter)
 	if (key_check(*data, SDL_SCANCODE_KP_MULTIPLY))
 		data->bounce = 0;
 	if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
-		data->bounce += 1;
+	{
+		data->flag.tree = 1;
+		data->bounce += data->bounce < 8 ? 1 : 0;
+	}
 	else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
+	{
+		data->flag.tree = 1;
 		data->bounce > 0 ? data->bounce -= 1 : 0;
+	}
+	else
+		data->flag.tree = 0;
 }
 
 static void	input_obj(t_data *data)
@@ -68,10 +76,10 @@ static void	input_obj(t_data *data)
 	else
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
-	if (enter == 1)
-		ft_putstr("Current Mode Object\n\n");
-	else
-		ft_putstr("Current Mode Index\n\n");
+	// if (enter == 1)
+	// 	ft_putstr("Current Mode Object\n\n");
+	// else
+	// 	ft_putstr("Current Mode Index\n\n");
 	data->move[data->obj.type_index](data, obj);
 }
 
@@ -84,10 +92,6 @@ void		get_input(t_data *data)
 	//SDL_PollEvent(&data->input.ev);
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
-
-/*
-**REMOVE
-*/
 
 void		input(t_data *data)
 {
@@ -124,7 +128,7 @@ void		input(t_data *data)
 			data->flag.save = 1;
 		}
 		if (key_check(*data, SDL_SCANCODE_K))
-			data->flag.show = 1;
+			data->flag.show = (data->flag.show == 1 ? 0 : 1);
 		if (data->flag.video)
 			framed(data);
 		if (data->flag.show && !data->flag.asked)
@@ -132,9 +136,6 @@ void		input(t_data *data)
 		light_cursor(data);
 		input_filter(data);
 		input_hud(data);
-		if (data->flag.video)
-		{
-		}
 		if (key_check(*data, SDL_SCANCODE_O))
 			data->flag.antialiasing =
 			(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 01:03:33 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 22:53:42 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			set_background(t_data *data)
 	void		*pxl;
 
 	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
-	ft_memset(pxl, 33, 200 * data->window.y * 4);
+	ft_memset(pxl, 33, 300 * data->window.y * 4);
 	SDL_UnlockTexture(data->menu.background);
 }
 
@@ -26,14 +26,14 @@ void			draw_outline(t_data *data)
 {
 	SDL_Rect	dst;
 
-	dst.x = 199;
+	dst.x = 299;
 	dst.y = 30;
 	dst.w = 1;
 	dst.h = data->window.y - 30;
 	draw_rect(data, dst, 0xffffff);
 	dst.x = 0;
 	draw_rect(data, dst, 0xffffff);
-	dst.w = 200;
+	dst.w = 300;
 	dst.h = 1;
 	draw_rect(data, dst, 0xffffff);
 	dst.y = data->window.y - 1;
@@ -72,12 +72,12 @@ void			draw_title_background(t_data *data)
 
 	dst.x = 0;
 	dst.y = 31;
-	dst.w = 200;
+	dst.w = 300;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
 	dst.x = 0;
 	dst.y = data->window.y * 0.55;
-	dst.w = 200;
+	dst.w = 300;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
 }
@@ -125,7 +125,7 @@ void			draw_button(t_data *data, int x, int y, int state)
 	}
 }
 
-static int		texture_on_screen(t_data *data)
+int			texture_on_screen(t_data *data)
 {
 	SDL_Rect	pos;
 	SDL_Rect	dst;
@@ -142,14 +142,29 @@ static int		texture_on_screen(t_data *data)
 	draw_title_background(data);
 	draw_outline_color(data);
 	draw_background_box(data);
-	draw_button(data, 145, 105, 0);
-	draw_button(data, 145, 150, 1);
-	draw_button(data, 145, 195, 0);
+	draw_button(data, 245, 105, 0);
+	draw_button(data, 245, 150, 1);
+	draw_button(data, 245, 195, 0);
+/* 	  ** 	*/
+/* Preview	*/
+
+	new_rt(data);
+	void	*pxl;
+	int		pitch;
+
+	SDL_LockTexture(data->screen.preview.texture, NULL,
+		&data->screen.preview.pxl, &data->window.pitch);
+	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
+	ft_memcpy(&(pxl[610 * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
+	SDL_UnlockTexture(data->menu.background);
+	SDL_UnlockTexture(data->screen.preview.texture);
+/* ** */
 	draw_outline(data);
 	dst.x = 0;
 	dst.y = 0;
-	dst.w = 200;
+	dst.w = 300;
 	dst.h = data->window.y;
+	interface_grey(data);
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
 	return (0);
 }
@@ -173,11 +188,7 @@ static int		looping(t_data *data)
 		texture_on_screen(data);
 	else
 		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	if (data->hud.flag_hud)
-	{
-		pics_on_screen(data);
-		new_rt(data);
-	}
+
 	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
@@ -217,8 +228,6 @@ int				sub_loop(t_data *data)
 
 	if (data->flag.refresh || data->flag.asked || data->flag.video)
 	{
-		ft_putstr("\nRefresh Mode Enable\n");
-		printf("avant looping\n");
 		if ((err = looping(data)) != 0)
 			return (err);
 		data->flag.asked = 0;

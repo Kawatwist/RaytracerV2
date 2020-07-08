@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:38:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/18 15:19:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 02:44:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int						real_time_icon(t_data *data)
 		data->window.x, data->window.y, 32,
 		data->window.x * 4, 0xFF0000, 0xFF00, 0xFF, 0xFF000000)) == NULL)
 		return (1);
-	if (data->window.window != NULL)
+	if (icon && data->window.window != NULL)
 		SDL_SetWindowIcon(data->window.window, icon);
-	SDL_FreeSurface(icon);
+	if (icon)
+		SDL_FreeSurface(icon);
 	return (0);
 }
 

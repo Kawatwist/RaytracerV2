@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 20:22:46 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 14:46:14 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct		s_hud
 	SDL_Texture		*rgb[3];
 	int				color_obj;
 	int				type_obj;
+	int				var;
 	Uint8			flag_hud : 1;
 	Uint8			last_hud : 1;
 }					t_hud;
@@ -162,6 +163,38 @@ typedef struct    	s_grad
     float y;
 }      				 t_grad;
 
+typedef struct		s_slider
+{
+	Uint32			colorbg;
+	Uint32			colorcursor;
+	SDL_Rect		position;
+	SDL_Rect		cursor;
+	Uint32			init : 1;
+	Uint32			dir : 1;
+	Uint32			selected : 1;
+	float			value;
+}					t_slider;
+
+typedef struct		s_circle
+{
+	int				x;
+	int				y;
+	void			*pxl;
+	int				r_outside;
+	int				r_inside;
+	int				color;
+}					t_circle;
+
+typedef struct		s_preview
+{
+	t_vec			cam;
+	t_sphere		sphere;
+	SDL_Texture		*texture;
+	void			*pxl;
+	t_light			light;
+	t_slider		slider[2];
+}					t_preview;
+
 typedef struct      s_perl
 {
     int x0;
@@ -175,33 +208,16 @@ typedef struct      s_perl
     float ix0;
     float ix1;
     float value;
+	float xPeriod;
+    float yPeriod;
+    float turbPower;
+	float turbSize;
+    float xyvalue;
+	float xvalue;
+	float yvalue;
+    float sinvalue;
+	float distvalue;
 }      				t_perl;
-typedef struct		s_slider
-{
-	Uint32			colorbg;
-	Uint32			colorcursor;
-	SDL_Rect		position;
-	SDL_Rect		cursor;
-	Uint32			init : 1;
-	Uint32			dir : 1;
-	Uint32			selected : 1;
-}					t_slider;
 
-typedef struct		s_color_picker
-{
-	Uint32			circle;
-	SDL_Rect		position;
-}					t_color_picker;
-
-typedef struct		s_preview
-{
-	t_vec			cam;
-	t_sphere		sphere;
-	SDL_Texture		*texture;
-	void			*pxl;
-	t_light			light;
-	t_slider		slider[2];
-	t_color_picker	color_picker;
-}					t_preview;
 
 #endif

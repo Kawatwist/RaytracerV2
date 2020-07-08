@@ -6,21 +6,21 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 22:41:52 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:00:13 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-float				specular(t_light light,
-					t_vec cam, t_vec collide)
+float			specular(t_light light,
+				t_vec cam, t_vec collide)
 {
-	float			specular;
-	t_point			l;
-	t_point			v;
-	t_point			r;
-	static float	value = 25;
+	float	specular;
+	t_point				l;
+	t_point				v;
+	t_point				r;
+	static float		value = 300;
 
 	l = sub_vec(collide.origin, light.origin);
 	v = cam.direction;

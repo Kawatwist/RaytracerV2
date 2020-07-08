@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 21:25:39 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 22:52:49 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void			show_framed(t_data *data)
 		path = ft_strjoinfree(path, "/Frame_0.bmp\0", 1);
 	}
 	/* Secure */
+
 	surface = SDL_LoadBMP(path);
 	txt = SDL_CreateTextureFromSurface(data->window.rend, surface);
 	SDL_FreeSurface(surface);
@@ -114,8 +115,7 @@ void			show_framed(t_data *data)
 
 static void		stop_frame(t_data *data, char **path)
 {
-	ft_putstr("Attention, Rendu Indisponible (Creattion du dossier impossible)\n");
-	SDL_Delay(300);
+	ft_putstr("Attention, Rendu Indisponible (Creation du dossier impossible)\n");
 	free(*path);
 	*path = NULL;
 	data->flag.show = 0;
@@ -139,7 +139,10 @@ void			framed(t_data *data)
 		path = ft_strjoinfree(path, "/Frame_0\0", 1);
 	}
 	else if (data->flag.video != 0 && path != NULL && data->flag.save)
+	{
+		printf("Screenshot name : %s\n", path);
 		create_screenshot_bmp(data, data->window.pxl, &path, 0);
+	}
 	if (data->flag.video == 1 && path != NULL)
 	{
 		free(path);

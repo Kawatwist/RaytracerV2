@@ -6,7 +6,7 @@
 	xscreen : 200
 	yscreen : 200
 	refresh : 1
-	quality : 0
+	quality : 3
 	bounce : 0
 	camera : 1
 	object : 7
