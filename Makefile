@@ -121,6 +121,9 @@ SRC				=	main.c										\
 					draw_rect.c									\
 					perlin.c									\
 					perlin2.c									\
+					perlin_colors.c								\
+					perlin_init.c								\
+					perlin_gen.c								\
 					preview.c									\
 					mini_rt.c									\
 					draw_circle.c								\

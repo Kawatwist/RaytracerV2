@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/06 22:36:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/08 14:46:14 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,20 +163,6 @@ typedef struct    	s_grad
     float y;
 }      				 t_grad;
 
-typedef struct      s_perl
-{
-    int x0;
-    int x1;
-    int y0;
-    int y1;
-    float sx;
-    float sy;
-    float n0;
-    float n1;
-    float ix0;
-    float ix1;
-    float value;
-}      				t_perl;
 typedef struct		s_slider
 {
 	Uint32			colorbg;
@@ -208,5 +194,30 @@ typedef struct		s_preview
 	t_light			light;
 	t_slider		slider[2];
 }					t_preview;
+
+typedef struct      s_perl
+{
+    int x0;
+    int x1;
+    int y0;
+    int y1;
+    float sx;
+    float sy;
+    float n0;
+    float n1;
+    float ix0;
+    float ix1;
+    float value;
+	float xPeriod;
+    float yPeriod;
+    float turbPower;
+	float turbSize;
+    float xyvalue;
+	float xvalue;
+	float yvalue;
+    float sinvalue;
+	float distvalue;
+}      				t_perl;
+
 
 #endif
