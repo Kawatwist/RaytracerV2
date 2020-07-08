@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/07 23:22:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/08 20:29:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void	text_info(t_data *data)
 
 	if (data->flag.video)
 	{
-		data->font.str = ft_strdup("Rendu En cours\0");
+		data->font.str = ft_strdup("Rendu Video En cours\0");
 		print_text(data, 300, data->window.y - 40, 30);
 		// Draw Text
 	}
