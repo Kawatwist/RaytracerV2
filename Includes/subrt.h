@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 02:16:42 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/07 23:18:57 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,28 +155,28 @@ typedef struct	s_menu
 {
 	SDL_Texture		*background;
 }				t_menu;
-typedef struct    	s_grad
+typedef struct		s_grad
 {
-    int ix;
-    int iy;
-    float x;
-    float y;
-}      				 t_grad;
+	int ix;
+	int iy;
+	float x;
+	float y;
+}					t_grad;
 
-typedef struct      s_perl
+typedef struct		s_perl
 {
-    int x0;
-    int x1;
-    int y0;
-    int y1;
-    float sx;
-    float sy;
-    float n0;
-    float n1;
-    float ix0;
-    float ix1;
-    float value;
-}      				t_perl;
+	int x0;
+	int x1;
+	int y0;
+	int y1;
+	float sx;
+	float sy;
+	float n0;
+	float n1;
+	float ix0;
+	float ix1;
+	float value;
+}					t_perl;
 
 typedef struct		s_slider
 {

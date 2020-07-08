@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/07 02:45:48 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 20:38:21 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void			pos_slider(t_slider *slider, float val)
 
 float			slider(t_data *data, t_slider *slider)
 {
+	float		result;
+
+	result = 0.0;
 	if ((data->input.button & SDL_BUTTON_LEFT) && !(data->input.oldbutton & SDL_BUTTON_LEFT)
 		&& (hitbox(data->input.x, data->input.y, &slider->position)) == 1)
 		slider->selected = 1;
@@ -89,9 +92,9 @@ float			slider(t_data *data, t_slider *slider)
 	draw_rect(data, slider->cursor, slider->colorcursor);
 	if (!slider->dir)
 		return ((float)(slider->cursor.x - slider->position.x)
-			/ (slider->position.w));
+			/ (slider->position.w) * 1.07692357396);
 		return ((float)(slider->cursor.y - slider->position.y)
-		/ (slider->position.h));
+		/ (slider->position.h) * 1.0952380);
 }
 
 static	void	init_slider_preview(t_data *data)
@@ -199,5 +202,5 @@ void		new_rt(t_data *data)
 
 	static float value = 0;
 	value = (value > 1 ? 0 : value + 0.025);
-	// pos_slider(&data->screen.preview.slider[1], value);
+	// pos_slider(&data->screen.preview.slider[0], value);
 }
