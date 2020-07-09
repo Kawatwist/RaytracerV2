@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/06 22:23:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:24:46 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define CONE_TXT "./texture/Texture/cone.tga"
 # define PLAN_TXT "./texture/Texture/plan.tga"
 # define OEIL_TXT "./texture/Texture/Oeil.tga"
+
+# define CASE_NBR 15
 
 typedef enum		e_lol
 {
@@ -52,6 +54,14 @@ typedef struct		s_c33
 	Uint32			color;
 	Uint32			flag : 1;
 }					t_c33;
+
+typedef struct		s_case
+{
+		void		(*pf)(int *);
+		char		*to_print;
+		int			val;
+		char		i;
+}					t_case;
 
 typedef struct		s_hud
 {

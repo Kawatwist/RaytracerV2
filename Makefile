@@ -67,6 +67,7 @@ SRC				=	main.c										\
 					input_tool.c								\
 					screen.c									\
 					loop.c										\
+					show_button.c								\
 					create_thread.c								\
 					init_thread.c								\
 					init_thread_obj.c							\

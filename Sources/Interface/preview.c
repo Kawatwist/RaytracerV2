@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preview.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/06 22:23:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:38:49 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,19 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[0].cursor.y = data->window.y - 80;
 	data->screen.preview.slider[0].cursor.w = 20;
 	data->screen.preview.slider[0].cursor.h = 15;
+	
 	data->screen.preview.slider[1].init = 1;
 	data->screen.preview.slider[1].dir = 1;
 	data->screen.preview.slider[1].colorbg = 0x909090;
 	data->screen.preview.slider[1].colorcursor = 0x000000;
+
 	data->screen.preview.slider[1].position.x = 285;
 	data->screen.preview.slider[1].position.y = 85;
 	data->screen.preview.slider[1].position.w = 10;
-	data->screen.preview.slider[1].position.h = data->window.y - 540;
+	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
+	
 	data->screen.preview.slider[1].cursor.x = 285;
-	data->screen.preview.slider[1].cursor.y = 300;
+	data->screen.preview.slider[1].cursor.y = 85;
 	data->screen.preview.slider[1].cursor.w = 10;
 	data->screen.preview.slider[1].cursor.h = 40;
 }
@@ -208,61 +211,20 @@ static void	text_info(t_data *data)
 		// Draw Text
 	}
 }
-
-static int		lowest_value(int color)
-{
-	if ((color & 0xFF) < ((color & 0xFF00) >> 8) && (color & 0xFF) < ((color & 0xFF0000) >> 16))
-		return (color & 0xFF);
-	if ((color & 0xFF) > ((color & 0xFF00) >> 8) && ((color & 0xFF00) >> 8) < ((color & 0xFF0000) >> 16))
-		return ((color & 0xFF00) >> 8);
-	return ((color & 0xFF0000) >> 16);
-}
-
-static int		highest_value(int color)
-{
-	if ((color & 0xFF) > ((color & 0xFF00) >> 8) && (color & 0xFF) > ((color & 0xFF0000) >> 16))
-		return (color & 0xFF);
-	if ((color & 0xFF) < ((color & 0xFF00) >> 8) && ((color & 0xFF00) >> 8) > ((color & 0xFF0000) >> 16))
-		return ((color & 0xFF00) >> 8);
-	return ((color & 0xFF0000) >> 16);
-}
-
 static t_point	color_to_pos(int posx, int posy, int color)
 {
 	t_point pos;
 	float	theta;
-	int		new_color;
 
 	theta = 0;
-	new_color = lowest_value(color);
-	color = ((color & 0xFF) - new_color) + ((((color & 0xFF00) >> 8) - new_color) << 8) + ((((color & 0xFF0000) >> 16) - new_color) << 16);
-	new_color = highest_value(color);
-	if (!new_color)
-		theta = 0;
-	else
-	{
-		color = ((color & 0xFF) * (255.0 / new_color)) +
-				((int)(((color & 0xFF00) >> 8) * (255.0 / new_color)) << 8) +
-				((int)(((color & 0xFF0000) >> 16) * (255.0 / new_color)) << 16);
-		if (color & 0xFF && (color & 0xFF) == new_color)
-		{
-			if (color & 0xFF00)
-				theta = 240 - ((int)((((color & 0xFF00) >> 8) / 255.0) * 120) << 8);
-			else if (color & 0xFF0000)
-				theta = 240 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
-			else
-				theta = 240;
-		}
-		else if (color & 0xFF00)
-		{
-			if (color & 0xFF0000)
-				theta = 120 + ((int)((((color & 0xFF0000) >> 16) / 255.0) * 120) << 16);
-			else
-				theta = 120;
-		}
-	}
-	pos.x = posx +  (133 * cos(rad(theta)));
-	pos.y = posy +  (133 * sin(rad(theta)));
+	if (color & 0xFF0000)
+		theta += ((((color & 0xFF0000) >> 16) / 255.0) * 90.0);
+	if (color & 0xFF00)
+		theta += (((color & 0xFF00) >> 8) / 255.0) * 180.0;
+	if (color & 0xFF)
+		theta += (((color & 0xFF) >> 0) / 255.0) * 240.0;
+	pos.x = posx +  100 * cos(theta);
+	pos.y = posy +  100 * sin(theta);
 	printf("%#x => %f ||| %f\n", color, pos.x, pos.y);
 	return (pos);
 }
@@ -285,5 +247,6 @@ void		new_rt(t_data *data)
 	SDL_UnlockTexture(data->screen.preview.texture);
 	slider(data, &data->screen.preview.slider[0]);
 	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);
+	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
 	text_info(data);
 }

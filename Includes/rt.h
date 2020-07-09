@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 22:20:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/06 22:17:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ struct			s_data
 	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
+	t_case				*all_button;
 	float				(*dist[7]) (void *obj, t_vec ray);
 	t_point				(*txt[7]) (void *data, void *obj,
 							t_vec ray, int choose);
