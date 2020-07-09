@@ -1,58 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tolight.c                                          :+:      :+:    :+:   */
+/*   type_of_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/10 00:15:04 by lomasse          ###   ########.fr       */
+/*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
+/*   Updated: 2020/07/05 00:50:56 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
 #include "thread.h"
 
-unsigned int		add_color(unsigned int base, unsigned int new)
-{
-	unsigned char	color[4];
-
-	color[3] = 0xFF;
-	color[2] = (((base & 0xFF0000) >> 16)) + (((new & 0xFF0000) >> 16)) > 255
-			? 255 : (((base & 0xFF0000) >> 16)) + (((new & 0xFF0000) >> 16));
-	color[1] = (((base & 0xFF00) >> 8)) + (((new & 0xFF00) >> 8)) > 255 ? 255
-			: (((base & 0xFF00) >> 8)) + (((new & 0xFF00) >> 8));
-	color[0] = ((base & 0xFF)) + ((new & 0xFF)) > 255 ? 255 : ((base & 0xFF))
-			+ ((new & 0xFF));
-	return (*((int *)color));
-}
-
-int					light_color(unsigned int color, unsigned int newcolor)
-{
-	unsigned char	value[4];
-	int				tmp;
-
-	if ((((newcolor & 0xFF) * (color & 0xFF)) / 255) > 255)
-		value[0] = 255;
-	else if ((((newcolor & 0xFF) * (color & 0xFF)) / 255) < 0)
-		value[0] = 0;
-	else
-		value[0] = ((newcolor & 0xFF) * (color & 0xFF)) / 255;
-	if ((tmp = (((newcolor & 0xFF00) >> 8) *
-			((color & 0xFF00) >> 8) / 255)) > 255)
-		value[1] = 255;
-	else
-		value[1] = tmp;
-	if ((tmp = (((newcolor & 0xFF0000) >> 16) *
-			((color & 0xFF0000) >> 16) / 255)) > 255)
-		value[2] = 255;
-	else
-		value[2] = tmp;
-	value[3] = 255;
-	return (*(int*)(value));
-}
-
-float				stop_light(t_thread *data, t_light light,
+static float		stop_light(t_thread *data, t_light light,
 		t_vec ray, float max_dist)
 {
 	float	intersect;
@@ -99,9 +59,11 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	dot > 1 ? dot = 1 : 0;
 	dot < 0 ? dot = 0 : 0;
 	dot *= data->obj.light[index].intensity;
-	color = add_color(color, light_color(r.color[0], set_color(0,
-			data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	return (create_specular(data, color, &r, dot, index));
+	return (data->flag.diapo ? add_color(color, light_color(r.color[0],
+			set_color(data->obj.color_find[0],
+			data->obj.color_find[0], (dot * obj[0] * len), -1))) :
+			add_color(color, light_color(r.color[0], set_color(0,
+			data->obj.color_find[0], (dot * obj[0] * len), -1))));
 }
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
@@ -121,24 +83,13 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	len < 0 ? len = 0 : 0;
 	dot > 1 ? dot = 1 : 0;
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
-	color = add_color(color, light_color(r.color[0], set_color(0,
-		data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	return (create_specular(data, color, &r, dot, index));
-}
-
-unsigned int		ray_to_light(t_thread *data, t_ray r)
-{
-	int		color;
-	int		index;
-
-	index = -1;
-	color = data->ambiant;
-	while (++index < data->obj.nb_light + 1)
-	{
-		if (data->obj.light[index].type == 1)
-			color = add_color(spot(data, r, data->tmp_color, index), color);/* Addition light ? */
-		else
-			color = add_color(omni(data, r, data->tmp_color, index), color);
-	}
-	return (color);
+	if (data->flag.diapo)
+		color = add_color(color, light_color(r.color[0],
+			set_color(data->obj.color_find[0],
+			data->obj.color_find[0], (dot * obj[0] * len), -1)));
+	else
+		color = add_color(color, light_color(r.color[0], set_color(0,
+			data->obj.color_find[0], (dot * obj[0] * len), -1)));
+	r.color[0] = color;
+	return (create_specular(data, &r, dot, index));
 }

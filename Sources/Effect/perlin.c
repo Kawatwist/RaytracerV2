@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   perlin.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:23 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/08 15:52:10 by cbilga           ###   ########.fr       */
+/*   Created: 2020/07/03 23:18:51 by luwargni          #+#    #+#             */
+/*   Updated: 2020/07/08 22:51:30 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray, int type)
 {
-	float	phi;
-	t_point ontexture;
-	t_point	u;
-	t_point	v;
+	float		phi;
+	t_point		ontexture;
+	t_point		u;
+	t_point		v;
 
 	u = fill_vec(((t_cylinder *)obj)->origin.direction.y,
 		((t_cylinder *)obj)->origin.direction.z,
@@ -38,9 +38,9 @@ static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray, int type)
 
 static int		perlin_sphere(t_thread *data, void *obj, t_vec ray, int type)
 {
-	t_point	ontexture;
-	float	phi;
-	float	theta;
+	t_point		ontexture;
+	float		phi;
+	float		theta;
 
 	theta = acos(sub_vec(ray.origin,
 		((t_sphere *)obj)->origin.origin).y / ((t_sphere *)obj)->rayon);

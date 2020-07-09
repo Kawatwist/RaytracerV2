@@ -42,6 +42,8 @@ SRC				=	main.c										\
 					init_font.c									\
 					init_cam.c									\
 					rot_init_cam.c								\
+					ask_screenshot.c							\
+					mutex.c										\
 					check.c										\
 					loading.c									\
 					quit.c										\
@@ -52,6 +54,7 @@ SRC				=	main.c										\
 					header.c									\
 					parse_texture.c								\
 					fill_obj.c									\
+					fill_other_obj.c							\
 					type_tool.c									\
 					camera.c									\
 					object.c									\
@@ -61,6 +64,7 @@ SRC				=	main.c										\
 					find_normal.c								\
 					color.c										\
 					texture.c									\
+					find_texture_size.c							\
 					ray.c										\
 					setup_ray_effect.c							\
 					input.c										\
@@ -79,6 +83,7 @@ SRC				=	main.c										\
 					cone.c										\
 					cylinder.c									\
 					tolight.c									\
+					type_of_light.c								\
 					init_vec.c									\
 					mat_vec2.c									\
 					math_vec_float.c							\
@@ -118,6 +123,7 @@ SRC				=	main.c										\
 					hud_obj.c									\
 					damier.c									\
 					create_specular.c							\
+					mix_color.c									\
 					draw_rect.c									\
 					perlin.c									\
 					perlin2.c									\

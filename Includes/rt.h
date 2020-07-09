@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 15:21:43 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/08 22:51:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,10 @@ int				create_item(t_data *data);
 int				find_type(char *type);
 int				create_type(t_data *data, int index, int type);
 int				fill_obj(t_data *data, char **line, int index);
+int				other(t_data *data, char **line, int index);
+int				add_point(t_data *data, char **line, int index);
+int				fill_effect(t_effect *effect, char *line);
+int				add_texture_face(t_data *data, char **line, int index);
 int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
@@ -204,6 +208,7 @@ void			show_framed(t_data *data);
 /*
 **			Thread
 */
+void			check_mutex(t_data *data);
 void			*thread_function(void	*arg);
 int				thread_poll(t_data *data);
 int				start_thread(t_data *data);
@@ -219,6 +224,7 @@ void			rot_init_cam_y(t_data *data, t_point *base,
 					t_point *direction, int index);
 void			rot_init_cam_z(t_data *data, t_point *base,
 					t_point *direction, int index);
+int				init_cam(t_data *data);
 int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
@@ -232,6 +238,7 @@ int				init_font(t_data *data);
 /*
 **			Basic
 */
+void			ask_screenshot(t_data *data);
 void			resize(t_data *data);
 int				real_time_icon(t_data *data);
 int				set_icone(t_data *data);
