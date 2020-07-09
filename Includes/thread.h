@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 20:52:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:43:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
-unsigned int			set_ambiant(unsigned int base);
+unsigned int			set_ambiant(unsigned int base, int divide);
 int						load_modif(t_data *data, t_thread *tmp);
 unsigned int			set_color(unsigned int base, unsigned int new,
 						float percent, char a);

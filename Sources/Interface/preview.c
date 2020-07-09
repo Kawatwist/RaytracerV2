@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 20:29:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:51:40 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static float	moving_light(t_data *data)
 
 static void	text_info(t_data *data)
 {
-	static char *str = NULL;
+	// static char *str = NULL;
 
 	if (data->flag.video)
 	{
@@ -117,9 +117,14 @@ static void	text_info(t_data *data)
 		print_text(data, 300, data->window.y - 40, 30);
 		// Draw Text
 	}
-	str = input_hud_text(data, str);
-	data->font.str = ft_strdup(str);
-	print_text(data, 300, data->window.y - 40, 30);
+	if (data->bounce)
+	{
+		data->font.str = ft_strjoinfree("Bounce :\0", ft_itoa(data->bounce), 2);
+		print_text(data, 300, data->window.y - 80, 30);
+	}
+	// str = input_hud_text(data, str);
+	// data->font.str = ft_strdup(str);
+	// print_text(data, 300, data->window.y - 40, 30);
 }
 
 void		new_rt(t_data *data)

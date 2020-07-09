@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 21:38:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 22:04:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int			texture_on_screen(t_data *data)
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
 	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
-	ft_memcpy(&(pxl[610 * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
+	ft_memcpy(&(pxl[(data->window.y - 350) * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
 	SDL_UnlockTexture(data->menu.background);
 	SDL_UnlockTexture(data->screen.preview.texture);
 /* ** */

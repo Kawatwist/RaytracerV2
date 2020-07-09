@@ -7,7 +7,7 @@
 	camera : 1
 	ambiant : 0x7F007F
 	aa : 0
-	bounce : 8
+	bounce : 0
 	quality : 3
 	object : 9
 	light : 2
@@ -24,8 +24,11 @@
 	distance : 100
 	intensity : 1
 ############### Camera ################
+# [camera:1]
+# 	origin : {0 0 -15}
+# 	direction : {0 0 1}
 [camera:1]
-	origin : {0 0 -15}
+	origin : {-10 0 -15}
 	direction : {0 0 1}
 [object:sphere]
 	origin : {0 -4 0}
@@ -71,7 +74,7 @@
 			reflection : 255
 [object:cylinder]
 	origin : {-10 0 -3}
-	direction : {0 0 1}
+	direction : {0 0 -1}
 	color : 0x7f3f7f
 	rayon : 3
 	hauteur : 6

@@ -6,19 +6,19 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 22:57:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:46:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-unsigned int		set_ambiant(unsigned int base)
+unsigned int		set_ambiant(unsigned int base, int divide)
 {
 	return (0xFF000000 +
-			((((unsigned char *)&base)[2] / 5) << 16) +
-			((((unsigned char *)&base)[1] / 5) << 8) +
-			(((unsigned char *)&base)[0] / 5));
+			((((unsigned char *)&base)[2] / divide) << 16) +
+			((((unsigned char *)&base)[1] / divide) << 8) +
+			(((unsigned char *)&base)[0] / divide));
 }
 
 unsigned int		set_color(unsigned int base, unsigned int new,

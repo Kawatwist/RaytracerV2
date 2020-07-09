@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:26:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/09 23:43:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_tga(t_data *data, char *line)
 static int	parsing_head_v4(t_data *data, char *line)
 {
 	if (!ft_strncmp("\tambiant : ", line, 11))
-		data->ambiant = set_ambiant(ft_atoi_base(&(line[11]), 16));
+		data->ambiant = set_ambiant(ft_atoi_base(&(line[11]), 16), 5);
 	else if (!ft_strncmp("\tquality : ", line, 11))
 		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
 	else if (!ft_strncmp("\taa : ", line, 6))
