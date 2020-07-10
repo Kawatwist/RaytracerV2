@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:20:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 01:38:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			initialize(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->flag.refresh += 0b100000;
-	data->flag.nb_video = 100;
+	data->flag.nb_video = 5;
 	data->hud.color_obj = 1;
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;

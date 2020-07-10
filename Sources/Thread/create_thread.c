@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:34:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 01:41:12 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,9 @@ static void		loading_sc(t_data *data, int p)
 		ft_putstr(")\n");
 		// printf("%d%% Rendu (%d/%d)\n", data->flag.video / data->flag.nb_video, (data->flag.nb_video - data->flag.video),  data->flag.nb_video);
 	}
-	// SDL_UnlockTexture(data->window.txt);
-	// SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	// SDL_LockTexture(data->window.txt, NULL, &data->window.pxl, &data->window.pitch);
+	SDL_UnlockTexture(data->window.txt);
+	SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+	SDL_LockTexture(data->window.txt, NULL, &data->window.pxl, &data->window.pitch);
 	i = 0;
 	while (i < 4)
 	{
@@ -139,9 +139,8 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
-	SDL_Delay(240);
+	SDL_Delay(32);
 	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(240);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)
