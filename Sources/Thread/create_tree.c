@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:33:58 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/10 02:06:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 23:36:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,9 @@ void		reset_tree(t_data *data, t_thread *thd)
 	while (++current_thread < 4)
 	{
 		curr = thd[current_thread].tree;
-		while (thd[current_thread].tree->reflexion || thd[current_thread].tree->refraction || thd[current_thread].tree->opacity)
+		while (thd[current_thread].tree->reflexion ||
+			thd[current_thread].tree->refraction ||
+			thd[current_thread].tree->opacity)
 		{
 			if (curr->reflexion->done)
 				curr = curr->reflexion;

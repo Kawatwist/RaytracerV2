@@ -7,7 +7,7 @@
 	camera : 1
 	ambiant : 0xFF00FF
 	aa : 0
-	bounce : 3
+	bounce : 2
 	refresh : 1
 	quality : 1
 	object : 15
@@ -79,7 +79,7 @@
 	origin : {0 0 0}
 	color : 0xff5fff
 	rayon : 35
-			id_texture : 2
+			id_texture : 4
 			texture : 255
 			ns : 1
 [object:sphere]
@@ -107,7 +107,6 @@
 			id_texture : 0
 			texture : 0
 			reflection : 255
-			normal : 255
 			ns : 0
 [object:sphere]
 	origin : {0 2.7 3.3}
