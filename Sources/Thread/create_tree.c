@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:33:58 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/10 23:36:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/11 22:22:50 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ static int	setup_first_branch(t_data *data, t_thread *thd, t_tree **pos)
 	if (!(thd->tree = malloc(sizeof(t_tree))))
 		return (1);
 	ft_bzero(thd->tree, sizeof(t_tree));
+	thd->tree->before = NULL;
+	thd->tree->reflexion = NULL;
+	thd->tree->refraction = NULL;
+	thd->tree->opacity = NULL;
 	thd->tree->first = 1;
+	thd->tree->done = 1;
 	nb_bounce = 0;
 	curr = thd->tree;
-	while (nb_bounce < data->bounce + 1)
+	while (nb_bounce < data->bounce)
 	{
 		if ((create_sub_tree(curr)))
 			return (1);
@@ -60,15 +65,15 @@ static int	reach_top(t_tree *curr, int bounce)
 	deep = 0;
 	while ((deep < bounce) || (!curr->reflexion->done || !curr->refraction->done || !curr->opacity))
 	{
-		int value = deep;
-		while (value-- > 0)
-			printf("\t");
-		if (curr == curr->before->reflexion)
-			printf("reflexion\n");
-		if (curr == curr->before->refraction)
-			printf("refraction\n");
-		if (curr == curr->before->opacity)
-			printf("opacity\n");
+		// int value = deep;
+		// while (value-- > 0)
+		// 	printf("\t");
+		// if (curr == curr->before->reflexion)
+		// 	printf("reflexion\n");
+		// if (curr == curr->before->refraction)
+		// 	printf("refraction\n");
+		// if (curr == curr->before->opacity)
+		// 	printf("opacity\n");
 		if (deep == 0)
 		{
 			curr->reflexion = NULL;
@@ -110,7 +115,7 @@ int			setup_tree(t_data *data, t_thread *thd)
 	{
 		if (setup_first_branch(data, &(thd[current_thread]), &curr))
 			return (1);
-		if (reach_top(curr, thd[current_thread].bounce))
+		if (data->bounce && reach_top(curr, thd[current_thread].bounce))
 			return (1);
 	}
 	return (0);

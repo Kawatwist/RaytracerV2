@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/09 21:38:57 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/11 20:32:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ int				load_modif(t_data *data, t_thread *tmp)
 	int				i;
 
 	i = -1;
-	// Debug_cylinder
-	// ((t_cylinder *)(data->obj.item[8]))->hauteur += 0.5;
-	// ((t_cylinder *)(data->obj.item[8]))->hauteur > 10 ? ((t_cylinder *)(data->obj.item[8]))->hauteur = 1 : 0;
-	//
 	while (++i < 4)
 	{
 		ft_memcpy(&tmp[i].obj.index, &data->obj.index, 12);
@@ -62,9 +58,6 @@ int				load_modif(t_data *data, t_thread *tmp)
 			ft_memcpy(&tmp[i].obj.light[data->obj.index[2]],
 			&data->obj.light[data->obj.index[2]], sizeof(t_light));
 		load_modif_other(data, tmp, i);
-		// Debug Cylinder
-		// ((t_cylinder *)tmp[i].obj.item[8])->hauteur = ((t_cylinder *)(data->obj.item[8]))->hauteur;
-		//
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/03/12 14:04:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/11 22:10:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				aa_render(t_thread *data, int *x, int *y, int *curr)
 	*x = *curr % data->x;
 	i = -1;
 	while (++i < aa)
-		color[i] = send_ray(data, setup_ray(data,
+		color[i] = tree_thread(data, setup_ray(data,
 			*x + (((rand() % 100) - 50) / 200.0),
 			*y + (((rand() % 100) - 50) / 200.0)), data->bounce);
 	((unsigned int *)data->pxl)[*curr] =
