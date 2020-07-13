@@ -78,6 +78,8 @@ SRC				=	main.c										\
 					init_thread_txt.c							\
 					thread_function.c							\
 					thread_load.c								\
+					create_tree.c								\
+					tree_thread.c								\
 					pthread_timedjoin.c							\
 					shape.c										\
 					extra_shape.c								\

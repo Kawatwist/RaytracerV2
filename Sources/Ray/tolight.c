@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/10 00:41:43 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:10:12 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int					light_color(unsigned int color, unsigned int newcolor)
 	value[3] = 255;
 	return (*(int*)(value));
 }
-
+/*
 float				stop_light(t_thread *data, t_light light,
 		t_vec ray, float max_dist)
 {
@@ -69,6 +69,7 @@ float				stop_light(t_thread *data, t_light light,
 		return (-1);
 	return (intersect);
 }
+*/
 /*
 static float		dist(float *obj)
 {

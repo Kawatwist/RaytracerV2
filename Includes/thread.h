@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/10 00:14:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/11 22:21:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@ typedef struct			s_args
 	pthread_cond_t		cond;
 	void				**res;
 }						t_args;
+
+typedef struct			s_tree t_tree;
+
+struct					s_tree
+{
+	t_vec				cam;
+	t_vec				collide;
+	void				*obj;
+	float				dist;
+	unsigned int		color;
+	float				percent;
+	t_tree				*reflexion;
+	t_tree				*refraction;
+	t_tree				*opacity;
+	t_tree				*before;
+	Uint32				level;
+	Uint32				done : 2;
+	Uint32				first : 1;
+};
 
 typedef	struct			s_thread
 {
@@ -55,6 +74,7 @@ typedef	struct			s_thread
 	int					tmp_color;
 	char				loading;
 	int					current;
+	t_tree				*tree;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
@@ -129,6 +149,12 @@ t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray, int bounce);
 int						start_ray(t_thread *data);
+/*
+**			Tree
+*/
+int						setup_tree(t_data *data, t_thread *thd);
+void					reset_tree(t_data *data, t_thread *thd);
+unsigned int			tree_thread(t_thread *data, t_vec ray, int bounce);
 /*
 **			Memory
 */

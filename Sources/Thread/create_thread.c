@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:34:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/11 22:05:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,8 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
-	SDL_Delay(240);
 	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(240);
+	SDL_Delay(64);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)
