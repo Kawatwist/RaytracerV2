@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot_framed.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:11:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/08 22:52:49 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <sys/types.h>
 
-static char	*finddirname(char *name)
+static char		*finddirname(char *name)
 {
 	int		nb;
 	char	*fake;
@@ -32,7 +32,7 @@ static char	*finddirname(char *name)
 	return (name);
 }
 
-static char	*next_frame(t_data *data, char *name)
+static char		*next_frame(t_data *data, char *name)
 {
 	int		nb;
 	char	*fake;
@@ -41,7 +41,7 @@ static char	*next_frame(t_data *data, char *name)
 	fake = ft_strdup(name); /* Secure malloc*/
 	*ft_strrchr(fake, '.') = '\0';
 	nb = ft_atoi(ft_strrchr(fake, '_') + 1);
-	nb +=1 ;
+	nb += 1;
 	fake2 = ft_strdup(fake);
 	*(ft_strrchr(fake2, '_') + 1) = '\0';
 	fake2 = ft_strjoinfree(fake2, ft_itoa(nb), 2);
@@ -58,7 +58,7 @@ static char	*next_frame(t_data *data, char *name)
 	return (name);
 }
 
-static char	*findcurrentdirname(char *name)
+static char		*findcurrentdirname(char *name)
 {
 	int		nb;
 	char	*fake;
@@ -84,7 +84,7 @@ static char	*findcurrentdirname(char *name)
 	return (name);
 }
 
-void		show_framed(t_data *data)
+void			show_framed(t_data *data)
 {
 	static char	*path = NULL;
 	SDL_Texture	*txt;
@@ -97,6 +97,7 @@ void		show_framed(t_data *data)
 		path = ft_strjoinfree(path, "/Frame_0.bmp\0", 1);
 	}
 	/* Secure */
+
 	surface = SDL_LoadBMP(path);
 	txt = SDL_CreateTextureFromSurface(data->window.rend, surface);
 	SDL_FreeSurface(surface);
@@ -116,12 +117,12 @@ static void		stop_frame(t_data *data, char **path)
 {
 	ft_putstr("Attention, Rendu Indisponible (Creation du dossier impossible)\n");
 	free(*path);
-		*path = NULL;
+	*path = NULL;
 	data->flag.show = 0;
 	data->flag.save = 0;
 }
 
-void		framed(t_data *data)
+void			framed(t_data *data)
 {
 	static char	*path = NULL;
 

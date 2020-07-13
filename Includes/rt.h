@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/06 22:17:42 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:05:08 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,10 @@ int				create_item(t_data *data);
 int				find_type(char *type);
 int				create_type(t_data *data, int index, int type);
 int				fill_obj(t_data *data, char **line, int index);
+int				other(t_data *data, char **line, int index);
+int				add_point(t_data *data, char **line, int index);
+int				fill_effect(t_effect *effect, char *line);
+int				add_texture_face(t_data *data, char **line, int index);
 int				parsing_obj(t_data *data, char **line, char *type);
 int				parsing_camera(t_data *data, char **line);
 int				parsing_head(t_data *data, char **line);
@@ -205,6 +209,7 @@ void			show_framed(t_data *data);
 /*
 **			Thread
 */
+void			check_mutex(t_data *data);
 void			*thread_function(void	*arg);
 int				thread_poll(t_data *data);
 int				start_thread(t_data *data);
@@ -220,6 +225,7 @@ void			rot_init_cam_y(t_data *data, t_point *base,
 					t_point *direction, int index);
 void			rot_init_cam_z(t_data *data, t_point *base,
 					t_point *direction, int index);
+int				init_cam(t_data *data);
 int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
@@ -233,6 +239,7 @@ int				init_font(t_data *data);
 /*
 **			Basic
 */
+void			ask_screenshot(t_data *data);
 void			resize(t_data *data);
 int				real_time_icon(t_data *data);
 int				set_icone(t_data *data);
@@ -246,6 +253,14 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+t_point			color_to_pos(int posx, int posy, int color);
+t_circle		setup_circle(t_point pos, int color, long int radius,
+				void *pxl);
+float			find_slider_pos(int color);
+int				switchcolor(int h);
+void			color_picker(t_data *data);
+void			draw_circle(t_circle circle);
+char			*input_hud_text(t_data*data, char *text);
 void			interface_grey(t_data *data);
 int				texture_on_screen(t_data *data);
 void			get_input(t_data *data);
@@ -266,8 +281,18 @@ void			new_rt(t_data *data);
 */
 
 void			perlin_noise(t_data *data);
-float			get_perlin(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+void 			init_perlin(t_point uv, t_perl *p);
+void 			init_perlin_wood(t_point uv, t_perl *p);
+void			init_grad(t_point uv, t_perl *p, t_grad *g);
+float			get_perlin_cloud(t_point perlin[GRADIENT * GRADIENT], t_point uv, int type);
+float   		get_perlin_marble(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+float   		get_perlin_wood(t_point perlin[GRADIENT * GRADIENT], t_point uv);
+int				perlin_color_wood(float val);
+int				perlin_color_cloud(float val);
+int				perlin_color_marble(float val);
 void			generate_perlin(t_data *data);
+void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
+void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);

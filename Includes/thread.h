@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 20:52:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 00:14:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,14 @@ int						mix(int i, int j);
 int						apply_mult(int i, int j, float d);
 int						apply_mult_2(int i, float d);
 int						apply_mult_3(int i, int j, float d);
+unsigned int			add_color(unsigned int base, unsigned int new);
 int						light_color(unsigned int color, unsigned int newcolor);
 //int						create_specular(t_thread *data, int color, t_ray *r, float dot);
-int						create_specular(t_thread *data, int color, t_ray *r, float dot, int index);
+int						apply_mult_3(int i, int j, float d);
+int						apply_mult(int i, int j, float d);
+int						create_specular(t_thread *data, t_ray *r, float dot, int index);
+unsigned int			spot(t_thread *data, t_ray r, unsigned int color, int index);
+unsigned int			omni(t_thread *data, t_ray r, unsigned int color, int index);
 unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist, float max_dist);
@@ -115,7 +120,7 @@ t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
-unsigned int			set_ambiant(unsigned int base);
+unsigned int			set_ambiant(unsigned int base, int divide);
 int						load_modif(t_data *data, t_thread *tmp);
 unsigned int			set_color(unsigned int base, unsigned int new,
 						float percent, char a);

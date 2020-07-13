@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 20:50:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 00:14:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static unsigned int	send_ray_txt(t_ray *r, t_thread *data, t_vec *ray,
 }
 
 unsigned int		send_ray(t_thread *data, t_vec ray,
-		int bounce)
+					int bounce)
 {
 	t_ray			r;
 
@@ -78,5 +78,5 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) +
 		((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) +
 		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
-	return (r.color[0]);
+		return (r.color[0]);
 }

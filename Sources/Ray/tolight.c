@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 00:54:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 00:41:43 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-static unsigned int	add_color(unsigned int base, unsigned int new)
+unsigned int		add_color(unsigned int base, unsigned int new)
 {
 	unsigned char	color[4];
 
@@ -69,7 +69,7 @@ float				stop_light(t_thread *data, t_light light,
 		return (-1);
 	return (intersect);
 }
-
+/*
 static float		dist(float *obj)
 {
 	if (obj[1] > 0.0 && !(obj[1] >= obj[2]))
@@ -78,62 +78,7 @@ static float		dist(float *obj)
 		obj[0] = 1;
 	return (obj[0]);
 }
-
-unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
-{
-	float	obj[3];
-	float	len;
-	float	dot;
-
-	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)),
-		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
-	if (dot > data->obj.light[index].ang)
-		;
-	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
-		data->obj.light[index].origin));
-	obj[2] = length(sub_vec(data->obj.light[index].origin, r.tmp.origin));
-	obj[1] = stop_light(data, data->obj.light[index], r.tmp, obj[2]);
-	obj[0] = (dist(obj));
-	len > 1 ? len = 1 : 0;
-	len < 0 ? len = 0 : 0;
-	dot > 1 ? dot = 1 : 0;
-	dot < 0 ? dot = 0 : 0;
-	dot *= data->obj.light[index].intensity;
-	return (data->flag.diapo ? add_color(color, light_color(r.color[0],
-			set_color(data->obj.color_find[0],
-			data->obj.color_find[0], (dot * obj[0] * len), -1))) :
-			add_color(color, light_color(r.color[0], set_color(0,
-			data->obj.color_find[0], (dot * obj[0] * len), -1))));
-}
-
-unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
-{
-	float				obj[3];
-	float				len;
-	float				dot;
-
-	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
-		data->obj.light[index].origin)),
-		normalize(neg_norm(r.tmp.direction))))));
-	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
-		data->obj.light[index].origin));
-	obj[2] = length(sub_vec(data->obj.light[index].origin, r.tmp.origin));
-	obj[1] = stop_light(data, data->obj.light[index], r.tmp, obj[2]);
-	obj[0] = (dist(obj));
-	len < 0 ? len = 0 : 0;
-	dot > 1 ? dot = 1 : 0;
-	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
-	if (data->flag.diapo)
-		color = add_color(color, light_color(r.color[0],
-			set_color(data->obj.color_find[0],
-			data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	else
-		color = add_color(color, light_color(r.color[0], set_color(0,
-			data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	r.color[0] = color;
-	return (create_specular(data, color, &r, dot, index));
-}
-
+*/
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
 	int		color;
@@ -144,9 +89,9 @@ unsigned int		ray_to_light(t_thread *data, t_ray r)
 	while (++index < data->obj.nb_light + 1)
 	{
 		if (data->obj.light[index].type == 1)
-			color = add_color(spot(data, r, color, index), color);/* Addition light ? */
+			color = add_color(spot(data, r, data->tmp_color, index), color);/* Addition light ? */
 		else
-			color = add_color(omni(data, r, color, index), color);
+			color = add_color(omni(data, r, data->tmp_color, index), color);
 	}
 	return (color);
 }

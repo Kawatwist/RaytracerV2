@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:26:48 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 17:27:12 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_tga(t_data *data, char *line)
 static int	parsing_head_v4(t_data *data, char *line)
 {
 	if (!ft_strncmp("\tambiant : ", line, 11))
-		data->ambiant = set_ambiant(ft_atoi_base(&(line[11]), 16));
+		data->ambiant = set_ambiant(ft_atoi_base(&(line[11]), 16), 5);
 	else if (!ft_strncmp("\tquality : ", line, 11))
 		data->flag.pixel = (unsigned int)ft_atoi(&(line[11])) & 3;
 	else if (!ft_strncmp("\taa : ", line, 6))
@@ -51,11 +51,11 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-		data->window.x = ((ft_atoi(&(line[11]))) >= 600 ?
-			ft_atoi(&(line[11])) : 600);
+		data->window.x = ((ft_atoi(&(line[11]))) >= 800 ?
+			ft_atoi(&(line[11])) : 800);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-		data->window.y = ((ft_atoi(&(line[11]))) >= 600 ?
-			ft_atoi(&(line[11])) : 600);
+		data->window.y = ((ft_atoi(&(line[11]))) >= 800 ?
+			ft_atoi(&(line[11])) : 800);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
 		data->bounce = ft_atoi(&(line[10]));
 	else if (!ft_strncmp("\tcamera : ", line, 10))

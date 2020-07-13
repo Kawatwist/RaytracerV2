@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/10 00:19:23 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/13 17:40:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,15 @@ void	draw_title_background(t_data *data)
 	dst.w = 300;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
-	data->font.str = ft_strdup("Options");
-    print_text(data, 150, 15, 25);
+	
 }
 
-void	draw_background_box(t_data *data)
+void	draw_background_box(t_data *data, int y)
 {
 	SDL_Rect	dst;
 
 	dst.x = 20;
-	dst.y = 107;
+	dst.y = y + 3;
 	dst.w = 210;
 	dst.h = 25;
 	draw_rect(data, dst, 0x262626);
@@ -139,8 +138,8 @@ int			texture_on_screen(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
 	draw_title_background(data);
-	draw_outline_color(data);
-	draw_background_box(data);
+	//draw_outline_color(data);
+	//draw_background_box(data);
 	//draw_button(data, 245, 105, 0);
 	//draw_button(data, 245, 150, 1);
 	//draw_button(data, 245, 195, 0);
@@ -148,16 +147,17 @@ int			texture_on_screen(t_data *data)
 /* 	  ** 	*/
 /* Preview	*/
 
-	new_rt(data);
+	
 	void	*pxl;
 	int		pitch;
 
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
 	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
-	ft_memcpy(&(pxl[((int)(data->window.y * 0.55) + 50) * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
+	ft_memcpy(&(pxl[((int)(data->window.y * 0.55 + 50)) * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
 	SDL_UnlockTexture(data->menu.background);
 	SDL_UnlockTexture(data->screen.preview.texture);
+	new_rt(data);
 /* ** */
 	draw_outline(data);
 	dst.x = 0;

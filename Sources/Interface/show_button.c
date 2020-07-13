@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/10 00:22:19 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/13 17:51:14 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void    button_aa(t_data *data)
     data->all_button[1].i = 1;
 }
 
+void    button_normals(t_data *data)
+{
+    data->all_button[2].pf = &boo_value;
+    data->all_button[2].to_print = "Normals";
+    data->all_button[2].val = (data->flag.normal);
+    data->all_button[2].i = 2;
+}
+
 void    init_case(t_data *data)
 {
     int i;
@@ -59,10 +67,11 @@ void    init_case(t_data *data)
     }
     button_once_refresh(data);
     button_aa(data);
+    button_normals(data);
 }
 void	draw_button(t_data *data, int x, int y, int state);
 
-
+void	draw_background_box(t_data *data, int y);
 void show_button(t_data *data)
 {
     int     i;
@@ -70,16 +79,18 @@ void show_button(t_data *data)
     SDL_Rect    pos;
 
     pos.x = 245;
-    pos.y = 105;
+    pos.y = 95;
     i = (int)(data->screen.preview.slider[1].value * CASE_NBR);
     j = i;
-    while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.42)
+    while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.5 - 92)
     {
         draw_button(data, pos.x, pos.y, (int)data->all_button[i].val);
+        draw_background_box(data, pos.y);
         i++;
         pos.y += 45;
     }
 }
+
 
 void show_txt(t_data *data)
 {
@@ -88,10 +99,10 @@ void show_txt(t_data *data)
     SDL_Rect    pos;
 
     pos.x = 245;
-    pos.y = 105;
+    pos.y = 95;
     i = (int)(data->screen.preview.slider[1].value * CASE_NBR);
     j = i;
-    while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.42)
+    while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.5 - 92)
     {
         data->font.str = ft_strdup(data->all_button[i].to_print);
         print_text(data, 15, pos.y, 25);
