@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 00:32:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 20:04:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void				*thread_function(void *arg)
 	while (++curr < data->len)
 	{
 		data->current = curr;
-		if (quitrequested(data) == THREAD_SIG)
+		if (!data->flag.screen && quitrequested(data) == THREAD_SIG)
 			pthread_exit(NULL);
 		if (data->flag.antialiasing == 0)
 			basic_render(data, &x, &y, &curr);

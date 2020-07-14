@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/09 23:43:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 22:23:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	parsing_head_v4(t_data *data, char *line)
 			((unsigned int)ft_atoi(&(line[6])) & 0b11);
 	else if (!ft_strncmp("\topti : ", line, 8))
 		data->max_dist = ft_atoi(&(line[8]));
+	else if (!ft_strncmp("\tscreenshot : ", line, 14))
+		data->flag.screen = ft_atoi(&(line[14])) & 0b1;
 	else
 		return (1);
 	return (0);
@@ -51,11 +53,11 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-		data->window.x = ((ft_atoi(&(line[11]))) >= 600 ?
-			ft_atoi(&(line[11])) : 600);
+		data->window.x = ((ft_atoi(&(line[11]))) >= 800 ?
+			ft_atoi(&(line[11])) : 800);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-		data->window.y = ((ft_atoi(&(line[11]))) >= 600 ?
-			ft_atoi(&(line[11])) : 600);
+		data->window.y = ((ft_atoi(&(line[11]))) >= 800 ?
+			ft_atoi(&(line[11])) : 800);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
 		data->bounce = ft_atoi(&(line[10]));
 	else if (!ft_strncmp("\tcamera : ", line, 10))

@@ -5,16 +5,17 @@
 	xscreen : 600
 	yscreen : 600
 	camera : 1
-	ambiant : 0xFF00FF
-	aa : 0
-	bounce : 2
+	ambiant : 0x000000
+	aa : 1
+	bounce : 10
 	refresh : 0
-	quality : 2
+	quality : 0
 	object : 15
 	light : 3
 	opti : 100
 	nb_texture : 5
 	nb_normal : 1
+	screenshot : 1
 	textures : "./texture/Minecraft/creeper_head.tga"
 	textures : "./texture/Minecraft/creeper.tga"
 	textures : "./texture/Minecraft/snow.tga"
@@ -39,7 +40,7 @@
 	intensity : 1
 ############### Camera ################
 [camera:1]
-	origin : {0 4.60 1.3}
+	origin : {0 0 -5}
 	direction : {0 0 1}
 ############### Creeper ###############
 [object:obj]
@@ -54,7 +55,6 @@
 			t5 : 1
 			id_texture : 0
 			texture : 255
-			ns : 1
 [object:obj]
 	origin : {0 1.5 0}
 	destination : {1 4 0.5}
@@ -62,7 +62,6 @@
 	size : 0
 			id_texture : 1
 			texture : 255
-			ns : 1
 [object:obj]
 	origin : {0 4 0.5}
 	destination : {1 4.7 1.3}
@@ -70,7 +69,6 @@
 	size : 0
 			id_texture : 1
 			texture : 255
-			ns : 1
 [object:obj]
 	origin : {0 4 -0.7}
 	destination : {1 4.7 0}
@@ -78,7 +76,6 @@
 	size : 0
 			id_texture : 1
 			texture : 255
-			ns : 1
 [object:sphere]
 	origin : {0 0 0}
 	color : 0xff00ff
@@ -105,7 +102,7 @@
 	origin : {1 4.7 0}
 	direction : {0 -1 0}
 	color : 0xffffff
-			reflection : 255
+			reflection : 200
 			ns : 0
 			mv : 1
 			normal : 255

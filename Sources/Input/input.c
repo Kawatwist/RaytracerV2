@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/13 21:40:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:56:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,11 @@ void		input(t_data *data)
 		light_cursor(data);
 		input_filter(data);
 		input_hud(data);
-		if (key_check(*data, SDL_SCANCODE_O))
+		if (key_check(*data, SDL_SCANCODE_O) && !key_check(*data, SDL_SCANCODE_LCTRL))
 			data->flag.antialiasing =
 			(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
+		else if (key_check(*data, SDL_SCANCODE_O))
+			data->flag.antialiasing = 0;
 	}
 	i = -1;
 	while (++i < 4)

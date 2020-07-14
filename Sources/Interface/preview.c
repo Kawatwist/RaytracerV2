@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preview.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/11 17:46:28 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 18:09:24 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			init_preview(t_data *data)
 	data->screen.preview.cam.origin = fill_vec(0, 0, 0);
 	data->screen.preview.cam.direction = normalize(fill_vec(0, 0, 1));
 	data->screen.preview.sphere.origin.origin = fill_vec(0, 0, 300);
-	data->screen.preview.sphere.rayon = 100.0;
+	data->screen.preview.sphere.rayon = 70.0;
 	data->screen.preview.sphere.effect.color = 0xFF00FF;
 	if (!(data->screen.preview.texture = SDL_CreateTexture(data->window.rend,
 		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, 300, 300)))
@@ -67,23 +67,26 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[0].colorbg = 0x7c7c7c;
 	data->screen.preview.slider[0].colorcursor = 0x000000;
 	data->screen.preview.slider[0].position.x = 10;
-	data->screen.preview.slider[0].position.y = data->window.y - 80;
+	data->screen.preview.slider[0].position.y = data->window.y - 20;
 	data->screen.preview.slider[0].position.w = 280;
 	data->screen.preview.slider[0].position.h = 15;
 	data->screen.preview.slider[0].cursor.x = 140;
-	data->screen.preview.slider[0].cursor.y = data->window.y - 80;
+	data->screen.preview.slider[0].cursor.y = data->window.y - 20;
 	data->screen.preview.slider[0].cursor.w = 20;
 	data->screen.preview.slider[0].cursor.h = 15;
+	
 	data->screen.preview.slider[1].init = 1;
 	data->screen.preview.slider[1].dir = 1;
 	data->screen.preview.slider[1].colorbg = 0x909090;
 	data->screen.preview.slider[1].colorcursor = 0x000000;
+
 	data->screen.preview.slider[1].position.x = 285;
 	data->screen.preview.slider[1].position.y = 85;
 	data->screen.preview.slider[1].position.w = 10;
-	data->screen.preview.slider[1].position.h = data->window.y - 540;
+	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
+	
 	data->screen.preview.slider[1].cursor.x = 285;
-	data->screen.preview.slider[1].cursor.y = 300;
+	data->screen.preview.slider[1].cursor.y = 85;
 	data->screen.preview.slider[1].cursor.w = 10;
 	data->screen.preview.slider[1].cursor.h = 40;
 }
@@ -129,9 +132,6 @@ static void	text_info(t_data *data)
 
 void		new_rt(t_data *data)
 {
-	static	SDL_Rect	petit = {.x = 0, .y = 200, .w = 200, .h = 200};
-
-	petit.y = data->window.y - 300;
 	if (!data->screen.preview.slider[0].init)
 		init_slider_preview(data);
 	if (!data->hud.color_obj)
@@ -139,16 +139,26 @@ void		new_rt(t_data *data)
 			switchcolor((int)moving_light(data));
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
+	
 	find_slider_pos(data->screen.preview.sphere.effect.color);
 	data->screen.preview.slider[0].value =
-		slider(data, &data->screen.preview.slider[0]);
+	slider(data, &data->screen.preview.slider[0]);
+	
 	mini_rt(data);
 	color_picker(data);
+	
 	draw_circle(setup_circle(color_to_pos(145, 145,
 		data->screen.preview.sphere.effect.color), 0x333333,
 		(0x1000000007), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
-	data->screen.preview.slider[1].value =
-		slider(data, &data->screen.preview.slider[1]);
+	//slider(data, &data->screen.preview.slider[0]);
+	
+	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
+	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);
+	data->screen.preview.slider[0].position.y = data->window.y * 0.55 + 60;
+	data->screen.preview.slider[0].cursor.y = data->window.y * 0.55 + 60;
+	
+	
+	
 	text_info(data);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/11 22:05:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 19:58:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,15 +206,18 @@ int				start_thread(t_data *data)
 		timeout.tv_nsec = 0;
 		if (pthread_timedjoin_np(((t_thread *)data->thread)[i].thd, NULL, &timeout) == ETIMEDOUT)
 		{
-			if (!data->flag.time && SDL_GetTicks() - time > 1000)
-				data->flag.time = 1;
-			if (SDL_QuitRequested())
-				return (stop_execute("", &data));
-			if (data->flag.first == 0 || data->flag.time)
+			if (!data->flag.screen)
 			{
-				loading_sc(data, pos);
-				pos += 1;
-				pos > 34 ? pos = 0 : 0;
+				if (!data->flag.time && SDL_GetTicks() - time > 1000)
+					data->flag.time = 1;
+				if (SDL_QuitRequested())
+					return (stop_execute("", &data));
+				if (data->flag.first == 0 || data->flag.time)
+				{
+					loading_sc(data, pos);
+					pos += 1;
+					pos > 34 ? pos = 0 : 0;
+				}
 			}
 		}
 		else
@@ -225,7 +228,8 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
-	SDL_RenderClear(data->window.rend); // Dosnt need ?
+	if (!data->flag.screen)
+		SDL_RenderClear(data->window.rend); // Dosnt need ?
 	data->flag.first = 1;
 	return (0);
 }
