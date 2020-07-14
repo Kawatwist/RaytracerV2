@@ -6,14 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:23:08 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:19:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 23:35:31 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-t_point		find_refraction(t_thread data, void *obj, t_vec ray)
+t_point		find_refraction(t_thread *data, void *obj, t_vec ray)
 {
 	float	indice;
 	float	angle;

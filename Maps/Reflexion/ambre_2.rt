@@ -2,12 +2,13 @@
 #			Scene 42 : The Ambre			#
 #############################################
 [header]
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 2560
+	yscreen : 1440
 	camera : 2
 	ambiant : 0x7F007F
-	aa : 2
-	bounce : 13
+	aa : 1
+	refresh : 0
+	bounce : 20
 	quality : 0
 	object : 9
 	light : 2

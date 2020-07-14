@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 18:15:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/01 22:59:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 23:38:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vec		setup_refraction(t_thread *data, void *obj,
 	t_vec tmp;
 
 	tmp.origin = set_neworigin_op(ray, dist);
-	tmp.direction = find_refraction(*data, obj, ray);
+	tmp.direction = find_refraction(data, obj, ray);
 	return (tmp);
 }
 
@@ -41,6 +41,6 @@ t_vec		setup_reflection(t_thread *data, void *obj,
 
 	tmp.origin = set_neworigin_neg(ray, dist);
 	tmp.direction = veccpy(ray.direction);
-	tmp.direction = find_reflexion(obj, tmp, *data);
+	tmp.direction = find_reflexion(obj, tmp, data);
 	return (tmp);
 }

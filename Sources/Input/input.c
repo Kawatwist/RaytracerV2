@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/10 00:15:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 21:40:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	input_obj2(t_data *data, char enter)
 	if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
 	{
 		data->flag.tree = 1;
-		data->bounce += data->bounce < 8 ? 1 : 0;
+		data->bounce += 1;
 	}
 	else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
 	{

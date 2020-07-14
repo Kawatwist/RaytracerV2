@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/11 22:07:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:32:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 	*x = *curr % data->x;
 	if (*curr < data->x || (!(*x % ((data->flag.pixel * 2) + 1)) && !(*y %
 			((data->flag.pixel * 2) + 1))))
-		((unsigned int *)data->pxl)[*curr] = tree_thread(data, setup_ray(data, *x,
+		((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, *x,
 				*y), data->bounce);
 	else
 		quality(data, x, y, curr);
