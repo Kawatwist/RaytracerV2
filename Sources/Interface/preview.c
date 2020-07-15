@@ -6,13 +6,14 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 22:52:45 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/14 23:14:10 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "thread.h"
 
-int			init_preview(t_data *data)
+int				init_preview(t_data *data)
 {
 	data->screen.preview.light.origin = fill_vec(120, -120, 235);
 	data->screen.preview.light.color = 0xFFFFFF;
@@ -27,17 +28,32 @@ int			init_preview(t_data *data)
 	return (0);
 }
 
-float	stay_in_case(float value, float min, float max)
+float			stay_in_case(float value, float min, float max)
 {
 	if (value > min && value < max)
 		return (value);
 	return (value < min ? min : max);
 }
 
+void			pos_slider(t_slider *slider, float val)
+{
+	if (val > 1)
+		val = 1;
+	else if (val < 0)
+		val = 0;
+	if (!slider->dir)
+		slider->cursor.x = slider->position.x + (slider->position.w * val);
+	else
+		slider->cursor.y = slider->position.y + (slider->position.h * val);
+}
+
 float			slider(t_data *data, t_slider *slider)
 {
-	if ((data->input.button & SDL_BUTTON_LEFT) &&
-		(hitbox(data->input.x, data->input.y, &slider->position)) == 1)
+	float	result;
+
+	result = 0.0;
+	if ((data->input.button & SDL_BUTTON_LEFT) && !(data->input.oldbutton & SDL_BUTTON_LEFT)
+		&& (hitbox(data->input.x, data->input.y, &slider->position)) == 1)
 		slider->selected = 1;
 	if (!(data->input.button & SDL_BUTTON_LEFT))
 		slider->selected = 0;
@@ -46,19 +62,19 @@ float			slider(t_data *data, t_slider *slider)
 		if (!slider->dir)
 			slider->cursor.x =
 			stay_in_case(data->input.x - (slider->cursor.w / 2.0),
-			slider->position.x, slider->position.x + slider->position.w);
+			slider->position.x, slider->position.x + slider->position.w - slider->cursor.w);
 		else
 			slider->cursor.y =
 			stay_in_case(data->input.y - (slider->cursor.h / 2.0),
-			slider->position.y, slider->position.y + slider->position.h);
+			slider->position.y, slider->position.y + slider->position.h - slider->cursor.h);
 	}
 	draw_rect(data, slider->position, slider->colorbg);
 	draw_rect(data, slider->cursor, slider->colorcursor);
 	if (!slider->dir)
 		return ((float)(slider->cursor.x - slider->position.x)
-			/ (slider->position.w));
+			/ (slider->position.w) * 1.07692357396);
 		return ((float)(slider->cursor.y - slider->position.y)
-		/ (slider->position.h));
+		/ (slider->position.h) * 1.0952380);
 }
 
 static	void	init_slider_preview(t_data *data)
@@ -107,9 +123,9 @@ static float	moving_light(t_data *data)
 	return (var);
 }
 
-static void	text_info(t_data *data)
+static void		text_info(t_data *data)
 {
-	static char *str = NULL;
+	static char	*str = NULL;
 
 	if (data->flag.video)
 	{
@@ -120,6 +136,37 @@ static void	text_info(t_data *data)
 	str = input_hud_text(data, str);
 	data->font.str = ft_strdup(str);
 	print_text(data, 300, data->window.y - 40, 30);
+}
+
+int				circle_hitbox(t_data *data)
+{
+	float		distance;
+	t_circle	circle;
+
+	circle = setup_circle(fill_vec(0, 610, 0), 0xFFFF00, ((long)150 << 32) + 115, data->screen.preview.pxl);
+	distance = sqrt((double)(data->input.x - circle.r_outside)
+		* (data->input.x - circle.r_outside) + (data->input.y - (610 + circle.r_outside))
+		* (data->input.y - (610 + circle.r_outside)));
+	if (distance < circle.r_outside && distance > circle.r_inside)
+		return (1);
+	return (0);
+}
+
+void		take_color(t_data *data)
+{
+	int		i;
+
+	i = -1;
+	if ((data->input.button & SDL_BUTTON_LEFT) && (circle_hitbox(data)) == 1)
+		while (++i < 4)
+		{
+			if (data->hud.color_obj)
+				((t_thread *)data->thread)[i].color_pick = hue(data, find_color_chroma(data->input.x, data->input.y - 610));
+		}
+	if (!((t_thread *)data->thread)[0].color_pick)
+		data->screen.preview.sphere.effect.color = ((t_base *)data->obj.item[0])->effect.color;
+	else
+		data->screen.preview.sphere.effect.color = ((t_thread *)data->thread)[0].color_pick;
 }
 
 void		new_rt(t_data *data)
@@ -146,4 +193,5 @@ void		new_rt(t_data *data)
 	data->screen.preview.slider[1].value =
 		slider(data, &data->screen.preview.slider[1]);
 	text_info(data);
+	take_color(data);
 }

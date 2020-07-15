@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 22:52:49 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:10:04 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char		*findcurrentdirname(char *name)
 		if (access(fake2, F_OK))
 		{
 			free(fake2);
-			break;
+			break ;
 		}
 		fake = ft_strjoinfree(fake, ft_itoa(nb + 1), 3);
 	}
@@ -113,7 +113,7 @@ void			show_framed(t_data *data)
 	}
 }
 
-static void		stop_frame(t_data *data, char **path)
+static void	stop_frame(t_data *data, char **path)
 {
 	ft_putstr("Attention, Rendu Indisponible (Creation du dossier impossible)\n");
 	free(*path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_picker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:05:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 22:45:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 23:07:36 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			switchcolor(int h)
 	return (color);
 }
 
-static int		find_color_chroma(int i, int j)
+int			find_color_chroma(int i, int j)
 {
 	int		pos;
 	float	dot;
@@ -67,7 +67,7 @@ static int		hue_2(int color, float value)
 	return (color);
 }
 
-static int		hue(t_data *data, int color)
+int		hue(t_data *data, int color)
 {
 	float	value;
 

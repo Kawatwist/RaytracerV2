@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 22:51:06 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/13 23:05:25 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ int				create_texture(t_data *data);
 int				create_item(t_data *data);
 int				find_type(char *type);
 int				create_type(t_data *data, int index, int type);
+t_point			add_rot(t_point mov, char *str);
+int				fill_effect_special(t_effect *effect, char *line);
+int				fill_effect(t_effect *effect, char *line);
+int				add_texture_face(t_data *data, char **line, int index);
+int				add_point(t_data *data, char **line, int index);
 int				fill_obj(t_data *data, char **line, int index);
 int				other(t_data *data, char **line, int index);
 int				add_point(t_data *data, char **line, int index);
@@ -252,6 +257,8 @@ int				stop_execute(char *error, t_data **data);
 /*
 **			Interface
 */
+int		hue(t_data *data, int color);
+int				find_color_chroma(int i, int j);
 t_point			color_to_pos(int posx, int posy, int color);
 t_circle		setup_circle(t_point pos, int color, long int radius,
 				void *pxl);
@@ -279,6 +286,10 @@ void			new_rt(t_data *data);
 **			Post Processing
 */
 
+int						mix(int i, int j);
+int						apply_mult(int i, int j, float d);
+int						apply_mult_2(int i, float d);
+int						apply_mult_3(int i, int j, float d);
 void			perlin_noise(t_data *data);
 void 			init_perlin(t_point uv, t_perl *p);
 void 			init_perlin_wood(t_point uv, t_perl *p);
@@ -293,6 +304,7 @@ void			generate_perlin(t_data *data);
 void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
 void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
+void			filter_check(t_data *data, unsigned int i, int j);
 int				post_processing(t_data *data);
 int				init_hud(t_data *data);
 void			set_hud(t_data *data);

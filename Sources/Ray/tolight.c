@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 22:53:27 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:12:42 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int					light_color(unsigned int color, unsigned int newcolor)
 
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
-	int		color;
-	int		index;
+	int				color;
+	int				index;
 
 	index = -1;
 	color = data->ambiant;

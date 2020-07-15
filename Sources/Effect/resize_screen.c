@@ -6,19 +6,12 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 22:51:51 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:20:22 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
-
-void			create_menu_texture(t_data *data)
-{
-	data->menu.background = SDL_CreateTexture(data->window.rend,
-	SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, 300, data->window.y);
-	// Move to Interface ?
-}
 
 static void		resize_size(t_data *data, int check[2])
 {

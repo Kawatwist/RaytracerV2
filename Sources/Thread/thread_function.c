@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread_function.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/03 21:37:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/06 21:14:26 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ static t_vec		setup_ray(t_thread *data, int x, int y)
 	return (data->ray);
 }
 
-static void			quality(t_thread *data, int *x, int *y, int *curr)
-{
-	while ((*x % ((data->flag.pixel * 2) + 1) || (*y % ((data->flag.pixel * 2)
-			+ 1))) && *curr < data->len && *y == (*curr / data->x) +
-			(data->pos / data->x))
-	{
-		if (*curr < data->x * ((data->flag.pixel * 2) + 1) || *y < (*y %
-			((data->flag.pixel * 2) + 1)))
-			((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
-				[*x - (*x % ((data->flag.pixel * 2) + 1))];
-		else
-			((unsigned int *)data->pxl)[*curr] = ((unsigned int *)data->pxl)
-				[*curr - (*x % ((data->flag.pixel * 2) + 1) + ((*y %
-					((data->flag.pixel * 2) + 1) * data->x)))];
-		if (*x % (data->flag.pixel * 2) + 1)
-			*curr += 1;
-		else
-			break ;
-		*x = *curr % data->x;
-	}
-	*curr -= 1;
-}
-
 static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 {
 	*y = (*curr / data->x) + (data->pos / data->x);
@@ -66,9 +43,9 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 		quality(data, x, y, curr);
 }
 
-int					quitrequested(t_thread *data)
+static int			quitrequested(t_thread *data)
 {
-	int		value;
+	int				value;
 
 	value = 0;
 	while (pthread_mutex_trylock(&data->mutex))

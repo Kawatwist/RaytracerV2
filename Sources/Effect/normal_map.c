@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/04 00:29:15 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/11 22:43:12 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 					float percent, float dist)
 {
-	t_point	base;
-	t_point	ret;
+	t_point		base;
+	t_point		ret;
 
 	base = normalize((normal));
 	ret = normalize(fill_vec(color[0], color[1], color[2]));

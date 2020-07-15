@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:00:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:11:21 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 float			specular(t_light light,
 				t_vec cam, t_vec collide)
 {
-	float	specular;
+	float				specular;
 	t_point				l;
 	t_point				v;
 	t_point				r;
@@ -39,7 +39,7 @@ int					create_specular(t_thread *data,
 	if (dot > 0.0)
 	{
 		color = apply_mult(((t_base *)r->obj)->effect.color,
-		data->obj.light[index].color, dot);
+			data->obj.light[index].color, dot);
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)
 			color = apply_mult_3(data->obj.light[index].color, color, dot);

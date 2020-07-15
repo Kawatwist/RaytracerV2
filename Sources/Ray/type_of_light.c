@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 00:50:56 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:13:03 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static float		dist(float *obj)
 
 unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 {
-	float	obj[3];
-	float	len;
-	float	dot;
+	float			obj[3];
+	float			len;
+	float			dot;
 
 	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)),
 		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
@@ -68,9 +68,9 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 {
-	float				obj[3];
-	float				len;
-	float				dot;
+	float			obj[3];
+	float			len;
+	float			dot;
 
 	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin)),
