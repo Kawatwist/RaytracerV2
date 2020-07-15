@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:11:21 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:35:03 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int					create_specular(t_thread *data,
 			color = apply_mult_3(data->obj.light[index].color, color, dot);
 	}
 	else
-		return (data->ambiant);
+		return (set_ambiant(data->ambiant, 14));
 	return (color);
 }

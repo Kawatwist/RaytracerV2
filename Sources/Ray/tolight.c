@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 23:12:42 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:35:13 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,35 @@ int					light_color(unsigned int color, unsigned int newcolor)
 	value[3] = 255;
 	return (*(int*)(value));
 }
+/*
+float				stop_light(t_thread *data, t_light light,
+		t_vec ray, float max_dist)
+{
+	float	intersect;
+	void	*obj;
+	t_vec	check;
 
+	intersect = -1;
+	check.origin = veccpy(ray.origin);
+	check.direction = normalize(sub_vec(light.origin, ray.origin));
+	data->obj.color_find[1] = light.color;
+	data->obj.color_find[0] = light.color;
+	obj = check_object_light(data, check, &intersect, max_dist);
+	if (obj == NULL || intersect <= 0)
+		return (-1);
+	return (intersect);
+}
+*/
+/*
+static float		dist(float *obj)
+{
+	if (obj[1] > 0.0 && !(obj[1] >= obj[2]))
+		obj[0] = obj[1] / obj[2];
+	else
+		obj[0] = 1;
+	return (obj[0]);
+}
+*/
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
 	int				color;
@@ -62,9 +90,9 @@ unsigned int		ray_to_light(t_thread *data, t_ray r)
 	while (++index < data->obj.nb_light + 1)
 	{
 		if (data->obj.light[index].type == 1)
-			color = add_color(spot(data, r, color, index), color);/* Addition light ? */
+			color = add_color(spot(data, r, data->tmp_color, index), color);/* Addition light ? */
 		else
-			color = add_color(omni(data, r, color, index), color);
+			color = add_color(omni(data, r, data->tmp_color, index), color);
 	}
 	return (color);
 }

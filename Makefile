@@ -30,6 +30,8 @@ INC_PATH 		= $(shell find Includes -type d) $(shell find libft -type d) $(shell 
 OBJ_PATH		= OBJ
 
 SRC				=	main.c										\
+					flag_parameter.c							\
+					flag_help.c									\
 					createpxl.c									\
 					data.c										\
 					filldata.c									\
@@ -70,7 +72,9 @@ SRC				=	main.c										\
 					input.c										\
 					input_tool.c								\
 					screen.c									\
+					single_screen.c								\
 					loop.c										\
+					show_button.c								\
 					create_thread.c								\
 					init_thread.c								\
 					init_thread_obj.c							\

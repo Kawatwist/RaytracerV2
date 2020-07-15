@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:14:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:48:19 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,25 +80,16 @@ void				draw_title_background(t_data *data)
 	dst.w = 300;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
+
 }
 
-void				draw_background_box(t_data *data)
+void				draw_background_box(t_data *data, int y)
 {
 	SDL_Rect		dst;
 
-	dst.x = 0;
-	dst.y = 107;
-	dst.w = 150;
-	dst.h = 25;
-	draw_rect(data, dst, 0x262626);
-	dst.x = 0;
-	dst.y = 107 + 45;
-	dst.w = 150;
-	dst.h = 25;
-	draw_rect(data, dst, 0x262626);
-	dst.x = 0;
-	dst.y = 107 + 90;
-	dst.w = 150;
+	dst.x = 20;
+	dst.y = y + 3;
+	dst.w = 210;
 	dst.h = 25;
 	draw_rect(data, dst, 0x262626);
 }
@@ -114,8 +105,13 @@ void				draw_button(t_data *data, int x, int y, int state)
 	dst.y = y;
 	if (state == 0)
 		color = 0xf0451d;
-	else
+	else if (state == 1)
 		color = 0x29cb75;
+	else if (state == 2)
+		color = 0xf6ff00;
+	else
+		color = 0xffbb00;
+
 	draw_rect(data, dst, color);
 	if (state == 0)
 	{
@@ -124,6 +120,8 @@ void				draw_button(t_data *data, int x, int y, int state)
 		draw_rect(data, dst, 0xc80a20);
 	}
 }
+void show_button(t_data *data);
+void show_txt(t_data *data);
 
 int					texture_on_screen(t_data *data)
 {
@@ -140,24 +138,26 @@ int					texture_on_screen(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
 	draw_title_background(data);
-	draw_outline_color(data);
-	draw_background_box(data);
-	draw_button(data, 245, 105, 0);
-	draw_button(data, 245, 150, 1);
-	draw_button(data, 245, 195, 0);
+	//draw_outline_color(data);
+	//draw_background_box(data);
+	//draw_button(data, 245, 105, 0);
+	//draw_button(data, 245, 150, 1);
+	//draw_button(data, 245, 195, 0);
+
 /* 	  ** 	*/
 /* Preview	*/
 
-	new_rt(data);
+
 	void	*pxl;
 	int		pitch;
 
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
 	SDL_LockTexture(data->menu.background, NULL, &pxl, &pitch);
-	ft_memcpy(&(pxl[610 * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
+	ft_memcpy(&(pxl[((int)(data->window.y * 0.55 + 50)) * 300 * 4]), data->screen.preview.pxl, 300 * 300 * 4);
 	SDL_UnlockTexture(data->menu.background);
 	SDL_UnlockTexture(data->screen.preview.texture);
+	new_rt(data);
 /* ** */
 	draw_outline(data);
 	dst.x = 0;
@@ -165,7 +165,10 @@ int					texture_on_screen(t_data *data)
 	dst.w = 300;
 	dst.h = data->window.y;
 	interface_grey(data);
+	show_button(data);
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
+	show_txt(data);
+
 	return (0);
 }
 
@@ -247,7 +250,7 @@ int					sub_loop(t_data *data)
 	return (0);
 }
 
-static void		parse_line(t_data *data, char *line)
+static void			parse_line(t_data *data, char *line)
 {
 	char			*ret;
 
@@ -255,7 +258,7 @@ static void		parse_line(t_data *data, char *line)
 		data->flag.antialiasing = ft_atoi(ret + 4) & 0x2;
 }
 
-static int		signals(t_data *data)
+static int			signals(t_data *data)
 {
 	char			*line;
 
@@ -276,13 +279,14 @@ static int		signals(t_data *data)
 	return (0);
 }
 
-static void		effect(t_data *data)
+static void			effect(t_data *data)
 {
-	if (data->flag.video)
+	if (data->flag.video && data->flag.cam_move)
 	{
 		rot_cam_video(data, &data->obj.camera[data->obj.index[0]]);
 	}
 }
+void    init_case(t_data *data);
 
 int					loop(t_data *data)
 {
@@ -293,6 +297,7 @@ int					loop(t_data *data)
 		return (err);
 	data->flag.asked = 1;
 	create_menu_texture(data);
+	init_case(data);
 	while (TRUE)
 	{
 		if (key_check(*data, SDL_SCANCODE_BACKSPACE))

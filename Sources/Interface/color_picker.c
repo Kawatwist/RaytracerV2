@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:05:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/13 23:07:36 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:34:16 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void			color_picker(t_data *data)
 	int		j;
 
 	distance = 0.0;
-	radius = 150;
-	radius_min = 115;
+	radius = 120; // 150
+	radius_min = 85; // 115 de base avant modif
 	i = 0;
 	j = 0;
 	while (i++ <= 2 * radius)
@@ -119,7 +119,7 @@ void			color_picker(t_data *data)
 			distance = sqrt((double)(i - radius) * (i - radius) +
 									(j - radius) * (j - radius));
 			if (distance < radius && distance > radius_min)
-				((int *)data->screen.preview.pxl)[i + (j * 300)] =
+				((int *)data->screen.preview.pxl)[30 + i + (( 30 + j) * 300)] =
 					hue(data, find_color_chroma(i, j));
 		}
 	}

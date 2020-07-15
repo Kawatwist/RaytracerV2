@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:18:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/14 00:12:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ t_point			find_normal(void *object, t_vec collide)
 	return (normalize(normal));
 }
 
-t_point			find_normal_with_txt(t_thread data, void *object, t_vec collide)
+t_point			find_normal_with_txt(t_thread *data, void *object, t_vec collide)
 {
 	t_point normal;
 
 	normal = find_normal(object, collide);
 	if (((t_base *)object)->effect.normal)
-		normal = find_normal_texture(data, object, collide, normal);
+		normal = find_normal_texture(*data, object, collide, normal);
 	return (normal);
 }

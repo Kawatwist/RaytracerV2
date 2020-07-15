@@ -6,14 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:23:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/09 18:19:50 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/13 23:56:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-t_point		find_reflexion(void *obj, t_vec ray, t_thread data)
+t_point		find_reflexion(void *obj, t_vec ray, t_thread *data)
 {
 	float	dot;
 	t_point	normal;

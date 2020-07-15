@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/13 23:05:25 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:33:36 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ typedef struct	s_flag
 	Uint32		time : 1;
 	Uint32		diapo : 1;
 	Uint32		flare : 1;
+	Uint32		cam_move : 1;
 	Uint32		video : 12;
 	Uint32		nb_video : 12;
 	Uint32		show : 1;
 	Uint32		save : 1;
 	Uint32		normal : 1;
 	Uint32		tree : 1;
+	Uint32		screen : 1;
 }				t_flag;
 
 typedef struct s_data	t_data;
@@ -84,6 +86,7 @@ struct			s_data
 	t_load				load;
 	t_tga				**texture;
 	t_tga				**normal;
+	t_case				*all_button;
 	float				(*dist[7]) (void *obj, t_vec ray);
 	t_point				(*txt[7]) (void *data, void *obj,
 							t_vec ray, int choose);
@@ -250,6 +253,9 @@ int				set_icone(t_data *data);
 int				loading(t_data *data);
 int				main(int argc, char *argv[]);
 int				loop(t_data *data);
+int				single_screen(t_data *data);
+int				flag(t_data *data, int argc, char **argv);
+void			flag_help(int page);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
 int				stop_main_execute(char *error, t_data *data, int error_value);

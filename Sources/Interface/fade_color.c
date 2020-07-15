@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fade_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:08:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 23:20:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/10 01:25:39 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_point			color_to_pos(int posx, int posy, int color)
 		theta = 0;
 	else
 		theta = color_to_pos4(new_color, color, theta);
-	pos.x = posx + (133 * cos(rad(theta - 120))) - (0x15 / 2);
-	pos.y = posy + (133 * sin(rad(theta - 120))) - (0x15 / 2);
+	pos.x = posx + (102 * cos(rad(theta - 120))) - (0x15 / 2);
+	pos.y = posy + (102 * sin(rad(theta - 120))) - (0x15 / 2);
 	return (pos);
 }

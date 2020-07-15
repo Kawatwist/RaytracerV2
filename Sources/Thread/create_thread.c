@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 23:14:05 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:36:09 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,8 @@ static void		loading_sc(t_data *data, int p)
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
-	SDL_Delay(240);
 	SDL_RenderPresent(data->window.rend);
-	SDL_Delay(240);
+	SDL_Delay(64);
 }
 
 static void		light_variance(t_data *data, t_thread *thd)
@@ -212,15 +211,18 @@ int				start_thread(t_data *data)
 		timeout.tv_nsec = 0;
 		if (pthread_timedjoin_np(((t_thread *)data->thread)[i].thd, NULL, &timeout) == ETIMEDOUT)
 		{
-			if (!data->flag.time && SDL_GetTicks() - time > 1000)
-				data->flag.time = 1;
-			if (SDL_QuitRequested())
-				return (stop_execute("", &data));
-			if (data->flag.first == 0 || data->flag.time)
+			if (!data->flag.screen)
 			{
-				loading_sc(data, pos);
-				pos += 1;
-				pos > 34 ? pos = 0 : 0;
+				if (!data->flag.time && SDL_GetTicks() - time > 1000)
+					data->flag.time = 1;
+				if (SDL_QuitRequested())
+					return (stop_execute("", &data));
+				if (data->flag.first == 0 || data->flag.time)
+				{
+					loading_sc(data, pos);
+					pos += 1;
+					pos > 34 ? pos = 0 : 0;
+				}
 			}
 		}
 		else
@@ -231,7 +233,8 @@ int				start_thread(t_data *data)
 			i++;
 		}
 	}
-	SDL_RenderClear(data->window.rend); // Dosnt need ?
+	if (!data->flag.screen)
+		SDL_RenderClear(data->window.rend); // Dosnt need ?
 	data->flag.first = 1;
 	return (0);
 }

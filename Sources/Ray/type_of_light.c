@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:13:03 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:35:16 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,9 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	dot > 1 ? dot = 1 : 0;
 	dot < 0 ? dot = 0 : 0;
 	dot *= data->obj.light[index].intensity;
-	return (data->flag.diapo ? add_color(color, light_color(r.color[0],
-			set_color(data->obj.color_find[0],
-			data->obj.color_find[0], (dot * obj[0] * len), -1))) :
-			add_color(color, light_color(r.color[0], set_color(0,
-			data->obj.color_find[0], (dot * obj[0] * len), -1))));
+	color = add_color(color, light_color(r.color[0], set_color(0,
+			data->obj.color_find[0], (dot * obj[0] * len), -1)));
+	return (create_specular(data, &r, dot, index));
 }
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
@@ -83,13 +81,7 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	len < 0 ? len = 0 : 0;
 	dot > 1 ? dot = 1 : 0;
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
-	if (data->flag.diapo)
-		color = add_color(color, light_color(r.color[0],
-			set_color(data->obj.color_find[0],
-			data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	else
-		color = add_color(color, light_color(r.color[0], set_color(0,
-			data->obj.color_find[0], (dot * obj[0] * len), -1)));
-	r.color[0] = color;
+	color = add_color(color, light_color(r.color[0], set_color(0,
+		data->obj.color_find[0], (dot * obj[0] * len), -1)));
 	return (create_specular(data, &r, dot, index));
 }

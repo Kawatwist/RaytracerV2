@@ -2,14 +2,16 @@
 #			Scene 42 : The Ambre			#
 #############################################
 [header]
-	xscreen : 600
-	yscreen : 600
-	camera : 1
+	xscreen : 1000
+	yscreen : 1000
+	camera : 2
 	ambiant : 0x7F007F
 	aa : 0
-	bounce : 8
-	quality : 3
+	refresh : 0
+	bounce : 5
+	quality : 0
 	object : 9
+	screenshot : 0
 	light : 2
 	opti : 0
 ############### Light ##################
@@ -27,6 +29,10 @@
 [camera:1]
 	origin : {0 0 -15}
 	direction : {0 0 1}
+[camera:1]
+	origin : {-10 0 -15}
+	direction : {0 0 1}
+############### OBJECT ################
 [object:sphere]
 	origin : {0 -4 0}
 	rayon : 3
@@ -71,7 +77,7 @@
 			reflection : 255
 [object:cylinder]
 	origin : {-10 0 -3}
-	direction : {0 0 1}
+	direction : {0 0 -1}
 	color : 0x7f3f7f
 	rayon : 3
 	hauteur : 6

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/09 23:42:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:33:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ int						pthread_timedjoin_np(pthread_t td, void **res,
 /*
 **			Special Effect
 */
-t_point					find_refraction(t_thread data, void *obj, t_vec ray);
-t_point					find_reflexion(void *obj, t_vec ray, t_thread data);
+t_point					find_refraction(t_thread *data, void *obj, t_vec ray);
+t_point					find_reflexion(void *obj, t_vec ray, t_thread *data);
 /*
 **			Textures
 */
 int						find_perlin(t_thread *data, void *obj, t_vec ray);
 int						find_damier(t_thread *data, void *obj, t_vec ray);
-t_point					find_normal_with_txt(t_thread data, void *object,
+t_point					find_normal_with_txt(t_thread *data, void *object,
 							t_vec collide);
 int						find_size(t_thread data, void *obj, int choose);
 t_point					find_normal_texture(t_thread data, void *obj,
@@ -117,7 +117,7 @@ t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
-unsigned int			set_ambiant(unsigned int base);
+unsigned int			set_ambiant(unsigned int base, int divide);
 int						load_modif(t_data *data, t_thread *tmp);
 unsigned int			set_color(unsigned int base, unsigned int new,
 						float percent, char a);

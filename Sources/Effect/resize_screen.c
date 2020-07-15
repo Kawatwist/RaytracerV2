@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 23:20:22 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:34:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 static void		resize_size(t_data *data, int check[2])
 {
 	data->flag.asked = 1;
-	if (check[0] < 600)
-		check[0] = 600;
-	if (check[1] < 600)
-		check[1] = 601;
+	if (check[0] < 800)
+		check[0] = 800;
+	if (check[1] < 800)
+		check[1] = 801;
 	data->window.x = check[0];
 	data->window.y = check[1];
 	if (check[1] % 4)

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/11 22:43:12 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/15 20:34:02 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 					float percent, float dist)
 {
-	t_point		base;
-	t_point		ret;
-
+	t_point	base;
+	t_point	ret;
+	(void)dist;
+	(void)percent;
 	base = normalize((normal));
-	ret = normalize(fill_vec(color[0], color[1], color[2]));
-	ret = normalize(add_vec(mult_vec2(base, ((dist + 2 + percent))), ret));
-	return (ret);
+	ret = normalize(fill_vec((color[1] / 128.0) - 1, (color[2] / 128.0) - 1, (color[3] / 128.0) - 1));
+	ret = fill_vec(ret.x * M_PI, ret.y * M_PI, ret.z * M_PI);
+	base = rotx(base, ret.x);
+	base = roty(base, ret.y);
+	base = rotz(base, ret.z);
+	return (base);
 }
 
 static t_point	get_uv(t_thread data, void *obj,

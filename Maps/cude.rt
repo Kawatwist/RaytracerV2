@@ -2,13 +2,14 @@
 #			Scene 42 : AWh MAN				#
 #############################################
 [header]
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 600
+	yscreen : 600
 	camera : 1
 	ambiant : 0xFFFFFF
 	aa : 0
-	bounce : 2
-	quality : 0
+	bounce : 0
+	refresh : 1
+	quality : 1
 	object : 12
 	light : 3
 	opti : 1000
@@ -21,17 +22,17 @@
 [light:1]
 	origin : {0.5 0 -2}
 	color : 0xFFFFFF
-	distance : 10000
+	distance : 1
 	intensity : 1
 [light:1]
 	origin : {0.5 0 4}
 	color : 0xFFFFFF
-	distance : 10000
+	distance : 1
 	intensity : 1
 [light:1]
 	origin : {2 0 0}
 	color : 0xFFFFFF
-	distance : 10000
+	distance : 1
 	intensity : 1
 ############### Camera ################
 [camera:1]

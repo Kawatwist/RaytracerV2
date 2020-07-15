@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:23:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/07 23:40:44 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int					print_text(t_data *data, int x, int y, int size)
 		data->font.pos = set_font_pos(data->font.str[i]);
 		pos.w = size;
 		pos.h = size;
-		pos.x = x + ((pos.w - (size / 3)) * i);
+		pos.x = x + ((pos.w - (size / 2.5)) * i);
 		pos.y = y;
 		SDL_RenderCopy(data->window.rend, data->font.font_maj,
 			&data->font.pos, &pos);
