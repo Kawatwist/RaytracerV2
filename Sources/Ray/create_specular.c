@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/13 18:29:25 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/18 14:59:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int					create_specular(t_thread *data,
 
 	if (dot > 0.0)
 	{
-		color = apply_mult(data->tmp_color, data->obj.light[index].color, dot);// calcul niveau d'ombre
+		color = apply_mult(r->color[0], data->obj.light[index].color, dot);// calcul niveau d'ombre
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)
 			color = apply_mult_3(data->obj.light[index].color, color, dot);

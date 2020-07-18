@@ -9,18 +9,13 @@
 	aa : 0
 	bounce : 0
 	quality : 0
-	object : 2
+	object : 3
 	light : 2
 	opti : 0
 	nb_texture : 1
 	textures : "./texture/Minecraft/snow.tga"
 [light:1]
-	origin : {10 -15 5}
-	color : 0xFFFFFF
-	distance : 10000
-	intensity : 1
-[light:1]
-	origin : {10 0 0}
+	origin : {100 -150 5}
 	color : 0xFFFFFF
 	distance : 10000
 	intensity : 1
@@ -31,11 +26,16 @@
 	origin : {0 1 0}
 	direction : {0 -1 0}
 	color : 0x0
+[object:sphere]
+	origin : {6 -10 0}
+	color : 0xFF00FF
+	rayon : 1
+			opacity : 125
 [object:plan]
 	origin : {4 0 0}
 	direction : {-1 0 0}
 	color : 0xFFFFFF
 			id_texture : 0
 			texture : 255
-			opacity : 255
-			ns : 1
+			opacity : 125
+			ns : 0

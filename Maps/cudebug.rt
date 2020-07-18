@@ -7,7 +7,7 @@
 	camera : 1
 	ambiant : 0x000000
 	aa : 0
-	bounce : 10
+	bounce : 0
 	refresh : 0
 	quality : 0
 	object : 15

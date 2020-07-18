@@ -8,7 +8,7 @@
 	ambiant : 0x7F007F
 	aa : 0
 	refresh : 0
-	bounce : 0
+	bounce : 600
 	quality : 2
 	object : 9
 	screenshot : 0
