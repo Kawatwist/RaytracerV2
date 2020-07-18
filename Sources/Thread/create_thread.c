@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 19:58:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:49:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ static void		loading_sc(t_data *data, int p)
 		ft_putchar('/');
 		ft_putnbr(data->flag.nb_video);
 		ft_putstr(")\n");
-		// printf("%d%% Rendu (%d/%d)\n", data->flag.video / data->flag.nb_video, (data->flag.nb_video - data->flag.video),  data->flag.nb_video);
 	}
 	// SDL_UnlockTexture(data->window.txt);
 	// SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);

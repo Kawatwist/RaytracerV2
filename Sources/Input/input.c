@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/14 17:56:47 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/18 11:49:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		get_input(t_data *data)
 {
 	if (data->input.key == NULL)
 		data->input.key = (unsigned char *)SDL_GetKeyboardState(NULL);
+	data->input.oldbutton = data->input.button;
 	data->input.button = (int)SDL_GetMouseState(&data->input.x, &data->input.y);
 	ft_memcpy(data->input.oldkey, data->input.rkey, 250);
 	//SDL_PollEvent(&data->input.ev);
@@ -103,14 +104,20 @@ void		input(t_data *data)
 	i = -1;
 	while (++i < 4)
 	{
+
 		if (!tmp)
 			color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
 		tmp = 1;
 		tmp2 = ((t_base *)data->obj.item[data->obj.index[1]]);
-		((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = color;
+		// ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = color;
+		// if (!data->hud.color_obj)
+		// {
+		// 	data->screen.preview.sphere.effect.color = ((t_thread *)data->thread)[i].color_pick;
+		// }
+		// else
+		// 	data->screen.preview.sphere.effect.color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
 	}
-	((t_base *)data->obj.item[data->obj.index[1]])->effect.color = color;
-	data->screen.preview.sphere.effect.color = ((t_base *)data->obj.item[data->obj.index[1]])->effect.color;
+	// ((t_base *)data->obj.item[data->obj.index[1]])->effect.color = color;
 	get_input(data);
 	if (data->screen.interface == RUN)
 	{
@@ -148,7 +155,15 @@ void		input(t_data *data)
 		if (tmp2 != ((t_base *)data->obj.item[data->obj.index[1]]))
 			((t_base *)tmp2)->effect.color = color;
 		color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
-		((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
+		if (data->hud.color_obj)
+			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
+		if (!data->hud.color_obj && data->hud.last_color_obj)
+		{
+			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = ((t_thread *)data->thread)[i].color_pick;
+			color = data->screen.preview.sphere.effect.color;
+		}
 	}
-	((t_base *)data->obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
+	if (!data->hud.color_obj && data->hud.last_color_obj)
+		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = ((t_thread *)data->thread)[i].color_pick;
+	data->hud.last_color_obj = data->hud.color_obj;
 }

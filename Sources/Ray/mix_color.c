@@ -6,13 +6,13 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 22:20:47 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 22:45:26 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/08 23:38:42 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int			mix(int i, int j)
+int					mix(int i, int j)
 {
 	unsigned char	base[4];
 	unsigned char	light[4];
@@ -47,7 +47,7 @@ int					apply_mult_3(int i, int j, float d)
 	return (fix);
 }
 
-static int			apply_mult_2(int i, float d)
+int					apply_mult_2(int i, float d)
 {
 	return (
 	((int)(((int)((int)((i & 0xFF000000) >> 24) * d) << 24) & 0xFF000000) +
