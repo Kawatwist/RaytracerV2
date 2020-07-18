@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/13 23:16:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/18 17:41:27 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ unsigned int		find_color(t_thread *data, void *obj, t_vec ray)
 	if (((t_base *)obj)->effect.id_texture < data->obj.nb_texture)
 		colortmp = find_texture_color(data, obj, ray, find_index(obj));
 	else
-		colortmp = find_damier(data, obj, ray);
-	// else
-	// 	colortmp = find_perlin(data, obj, ray);
+	{
+		if (((t_base *)obj)->effect.id_texture == 255)
+			colortmp = find_damier(data, obj, ray);
+		else
+			colortmp = find_perlin(data, obj, ray);
+	}
 	return (set_color(((t_base *)obj)->effect.color, colortmp,
 		((t_base *)obj)->effect.texture / 255, ((char *)&colortmp)[0]));
 }
