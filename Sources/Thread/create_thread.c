@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/15 20:36:09 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/14 19:58:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static	t_point	find_dir(t_thread *data, int x, int y)
 	return (ret);
 }
 
-static void		setup_rect(t_data *data, SDL_Rect *og,
-				SDL_Rect *screen, SDL_Rect *lolz)
+static void		setup_rect(t_data *data, SDL_Rect *og, SDL_Rect *screen, SDL_Rect *lolz)
 {
 	og->x = (data->window.x) - 150;
 	og->y = (data->window.y) - 150;
@@ -50,13 +49,10 @@ static void		thread_loading_bar(t_data *data)
 	while (++i < 4)
 	{
 		load.x = 300 + (i * 25);
-		load.y = data->window.y - 35 -
-		(((t_thread *)data->thread)[i].loading * 4);
+		load.y = data->window.y - 35 - (((t_thread *)data->thread)[i].loading * 4);
 		load.w = 20;
 		load.h = ((t_thread *)data->thread)[i].loading * 4;
-		SDL_SetRenderDrawColor(data->window.rend, (25 -
-		((t_thread *)data->thread)[i].loading) * 10,
-		(((t_thread *)data->thread)[i].loading) * 10, 0, 0); /*! ATTENTION LOADING VAR */
+		SDL_SetRenderDrawColor(data->window.rend, (25 - ((t_thread *)data->thread)[i].loading) * 10, (((t_thread *)data->thread)[i].loading) * 10, 0, 0); /*! ATTENTION LOADING VAR */
 		SDL_RenderFillRect(data->window.rend, &load);
 	}
 	SDL_SetRenderDrawColor(data->window.rend, 0, 0, 0, 0);
@@ -66,8 +62,7 @@ static void		loading_bar(t_data *data)
 {
 	SDL_Rect	load;
 
-	SDL_SetRenderDrawColor(data->window.rend, (100 - data->loading) * 2.5,
-	(data->loading) * 2.5, 0, 0);
+	SDL_SetRenderDrawColor(data->window.rend, (100 - data->loading) * 2.5, (data->loading) * 2.5, 0, 0);
 	load.x = 300;
 	load.y = data->window.y - 30;
 	load.w = data->loading;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/15 20:35:03 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/13 18:29:25 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 float			specular(t_light light,
 				t_vec cam, t_vec collide)
 {
-	float				specular;
+	float	specular;
 	t_point				l;
 	t_point				v;
 	t_point				r;
@@ -38,8 +38,7 @@ int					create_specular(t_thread *data,
 
 	if (dot > 0.0)
 	{
-		color = apply_mult(((t_base *)r->obj)->effect.color,
-			data->obj.light[index].color, dot);
+		color = apply_mult(data->tmp_color, data->obj.light[index].color, dot);// calcul niveau d'ombre
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)
 			color = apply_mult_3(data->obj.light[index].color, color, dot);

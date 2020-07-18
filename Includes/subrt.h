@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/15 20:33:35 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/10 00:29:53 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,9 @@ typedef struct		s_hud
 	SDL_Surface		*tmp;
 	SDL_Texture		*texture[12];
 	SDL_Texture		*rgb[3];
+	int				color_obj;
 	int				type_obj;
 	int				var;
-	Uint8			last_color_obj : 1;
-	Uint8			color_obj : 1;
 	Uint8			flag_hud : 1;
 	Uint8			last_hud : 1;
 }					t_hud;
@@ -115,7 +114,6 @@ typedef struct		s_input
 	unsigned char	oldkey[282];
 	int				x;
 	int				y;
-	int				oldbutton;
 	int				button;
 }					t_input;
 
@@ -167,7 +165,6 @@ typedef struct	s_menu
 {
 	SDL_Texture		*background;
 }				t_menu;
-
 typedef struct    	s_grad
 {
     int ix;

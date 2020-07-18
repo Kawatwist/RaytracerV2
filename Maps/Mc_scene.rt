@@ -15,16 +15,16 @@
 	color : 0x3F3FFF
 	distance : 10
 	intensity : 1
-[light:side1]
-	origin : {-1 0 2}
-	color : 0x3F3FFF
-	distance : 10
-	intensity : 1
-[light:side2]
-	origin : {0 2.5 4}
-	color : 0x3F3FFF
-	distance : 10
-	intensity : 1
+# [light:side1]
+# 	origin : {-1 0 2}
+# 	color : 0x3F3FFF
+# 	distance : 10
+# 	intensity : 1
+# [light:side2]
+# 	origin : {0 2.5 4}
+# 	color : 0x3F3FFF
+# 	distance : 10
+# 	intensity : 1
 # Camera
 [camera:1]
 	origin : {4 0 -3}

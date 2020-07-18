@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tolight.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/15 20:35:13 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/14 17:44:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static float		dist(float *obj)
 */
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
-	int				color;
-	int				index;
+	int		color;
+	int		index;
 
 	index = -1;
 	color = data->ambiant;

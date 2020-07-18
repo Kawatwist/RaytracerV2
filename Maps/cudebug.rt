@@ -6,7 +6,7 @@
 	yscreen : 600
 	camera : 1
 	ambiant : 0x000000
-	aa : 1
+	aa : 0
 	bounce : 10
 	refresh : 0
 	quality : 0
@@ -15,7 +15,6 @@
 	opti : 100
 	nb_texture : 5
 	nb_normal : 1
-	screenshot : 1
 	textures : "./texture/Minecraft/creeper_head.tga"
 	textures : "./texture/Minecraft/creeper.tga"
 	textures : "./texture/Minecraft/snow.tga"

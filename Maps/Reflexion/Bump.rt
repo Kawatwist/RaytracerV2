@@ -4,11 +4,11 @@
 #														#
 #########################################################
 [header]
-	xscreen : 2000
-	yscreen : 2000
+	xscreen : 1000
+	yscreen : 1000
 	camera : 1
 	quality : 0
-	aa : 1
+	aa : 0
 	bounce : 10
 	object : 10
 	light : 2
