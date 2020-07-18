@@ -12,7 +12,7 @@
 	nb_normal : 1
 	textures : "./texture/Texture/Skybox2.tga"
 	textures : "./texture/normal/rock.tga"
-	normal : "./texture/normal/rock.tga"
+	normal : "./texture/normal/pcb.tga"
 ############### Camera ################
 [camera:1]
 	origin : {0 -1 -0.5}
@@ -41,5 +41,6 @@
 	origin : {0 0 0}
 	direction : {0 -1 0}
 	color : 0xFFFFFF
+			mv : 1
 			reflection : 255
 			normal : 255

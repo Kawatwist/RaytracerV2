@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 18:20:06 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/18 18:40:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void		input(t_data *data)
 		// ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = color;
 		// if (!data->hud.color_obj)
 		// {
-		// 	printf("crece\n");
 		// 	data->screen.preview.sphere.effect.color = ((t_thread *)data->thread)[i].color_pick;
 		// }
 		// else

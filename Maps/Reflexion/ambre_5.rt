@@ -6,9 +6,9 @@
 	yscreen : 6000
 	camera : 2
 	ambiant : 0x7F0000
-	aa : 1
+	aa : 0
 	refresh : 0
-	bounce : 256
+	bounce : 5
 	quality : 2
 	object : 9
 	light : 2

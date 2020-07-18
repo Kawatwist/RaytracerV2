@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_of_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/15 20:35:16 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/18 16:59:46 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static float		dist(float *obj)
 
 unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 {
-	float			obj[3];
-	float			len;
-	float			dot;
+	float	obj[3];
+	float	len;
+	float	dot;
 
 	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)),
 		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
@@ -66,9 +66,9 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 {
-	float			obj[3];
-	float			len;
-	float			dot;
+	float				obj[3];
+	float				len;
+	float				dot;
 
 	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin)),

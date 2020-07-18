@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/15 20:33:40 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/18 11:45:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,12 @@ t_point					texture_cone(void *data,
 /*
 **			Light
 */
-
+int						mix(int i, int j);
+int						apply_mult_3(int i, int j, float d);
+int						apply_mult_2(int i, float d);
+int						apply_mult(int i, int j, float d);
 unsigned int			add_color(unsigned int base, unsigned int new);
 int						light_color(unsigned int color, unsigned int newcolor);
-//int						create_specular(t_thread *data, int color, t_ray *r, float dot);
 int						create_specular(t_thread *data, t_ray *r, float dot, int index);
 unsigned int			add_color(unsigned int base, unsigned int new);
 unsigned int			spot(t_thread *data, t_ray r, unsigned int color, int index);
@@ -112,7 +114,6 @@ void					*check_object(t_thread *data, t_vec ray,
 /*
 **			Ray Setup
 */
-void					quality(t_thread *data, int *x, int *y, int *curr);
 t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, void *obj, t_vec ray, float dist);

@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 16:52:33 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:09:49 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/04 20:00:05 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	set_light(t_data *data, float tmp1, float tmp2)
 	data->hud.pos[2].h = (data->window.y / 500.0) * 35.0;
 	data->hud.pos[9].w = (data->window.x / 500.0) * 10.0;
 	data->hud.pos[9].x = data->window.x / 10.7;
-	data->hud.pos[9].h = ((tmp & 0xFF0000) >> 16) * data->window.y / 2100;
+	data->hud.pos[9].h = ((tmp & 0xFF0000) >> 16) *  data->window.y / 2100;
 	data->hud.pos[9].y = data->window.y - data->hud.pos[9].h;
 	data->hud.pos[10].w = (data->window.x / 500.0) * 10.0;
 	data->hud.pos[10].x = data->window.x / 8.6;

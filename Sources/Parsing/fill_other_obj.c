@@ -6,13 +6,13 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 21:49:55 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 23:15:58 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/04 22:01:39 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_point			add_rot(t_point mov, char *str)
+static t_point	add_rot(t_point mov, char *str)
 {
 	if (!ft_strncmp("rotatex : ", str, 10))
 		mov.x = ft_atof(str + 10);
@@ -23,7 +23,7 @@ t_point			add_rot(t_point mov, char *str)
 	return (mov);
 }
 
-int			fill_effect_special(t_effect *effect, char *line)
+static int		fill_effect_special(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\trefraction : ", line, 16))
 		effect->refraction = ft_atoi(line + 16);

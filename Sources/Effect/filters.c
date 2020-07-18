@@ -6,13 +6,13 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/06 22:26:54 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/06/30 21:17:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void			filter_negatif(t_data *data, unsigned int i)
+static void	filter_negatif(t_data *data, unsigned int i)
 {
 	while (++i < data->window.x * data->window.y)
 	{
@@ -20,11 +20,11 @@ static void			filter_negatif(t_data *data, unsigned int i)
 	}
 }
 
-static void			filter_cartoon(t_data *data, unsigned int i)
+static void	filter_cartoon(t_data *data, unsigned int i)
 {
-	int				tr;
-	int				tg;
-	int				tb;
+	int					tr;
+	int					tg;
+	int					tb;
 
 	while (++i < data->window.x * data->window.y)
 	{
@@ -41,11 +41,11 @@ static void			filter_cartoon(t_data *data, unsigned int i)
 	cartoon(data, i, tr, tg);
 }
 
-static void			filter_sepia(t_data *data, unsigned int i)
+static void	filter_sepia(t_data *data, unsigned int i)
 {
-	int				tr;
-	int				tg;
-	int				tb;
+	int					tr;
+	int					tg;
+	int					tb;
 
 	while (++i < data->window.x * data->window.y)
 	{
@@ -69,7 +69,7 @@ static void			filter_sepia(t_data *data, unsigned int i)
 	}
 }
 
-static void			filter_grey(t_data *data, unsigned int i, int color)
+static void	filter_grey(t_data *data, unsigned int i, int color)
 {
 	while (++i < data->window.x * data->window.y)
 	{
@@ -81,10 +81,18 @@ static void			filter_grey(t_data *data, unsigned int i, int color)
 	}
 }
 
-int					post_processing(t_data *data)
+static void	filter_check(t_data *data, unsigned int i, int j)
 {
-	unsigned int	i;
-	int				color;
+	while (++i < data->window.x * data->window.y)
+	{
+		((unsigned int *)data->window.pxl)[i] = (((unsigned int *)data->window.pxl)[i] & (0xFF << (j * 8)));
+	}
+}
+
+int			post_processing(t_data *data)
+{
+	unsigned int		i;
+	int					color;
 
 	i = -1;
 	color = 0;

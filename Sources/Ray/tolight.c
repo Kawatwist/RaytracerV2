@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 16:31:41 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/18 18:40:50 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static float		dist(float *obj)
 */
 unsigned int		ray_to_light(t_thread *data, t_ray r)
 {
-	int				color;
-	int				index;
+	int		color;
+	int		index;
 
 	index = -1;
 	color = data->ambiant;
