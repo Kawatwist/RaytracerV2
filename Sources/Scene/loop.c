@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 18:41:13 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/19 17:16:17 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,8 @@ dst.h = 3;
 void show_button(t_data *data);
 void show_txt(t_data *data);
 void click_button(t_data *data);
+void video_settings(t_data *data);
+void draw_nbvideo_bg(t_data *data);
 
 int			texture_on_screen(t_data *data)
 {
@@ -196,18 +198,21 @@ int			texture_on_screen(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
 	draw_title_background(data);
-	//draw_outline_color(data);
-	//draw_background_box(data);
-	//draw_button(data, 245, 105, 0);
-	//draw_button(data, 245, 150, 1);
-	//draw_button(data, 245, 195, 0);
 
 /* 	  ** 	*/
 /* Preview	*/
 
-
 	void	*pxl;
 	int		pitch;
+
+
+	dst.x = 0;
+	dst.y = 0;
+	dst.w = 300;
+	dst.h = data->window.y;
+	interface_grey(data);
+	show_button(data);
+	draw_nbvideo_bg(data);
 
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
@@ -218,13 +223,10 @@ int			texture_on_screen(t_data *data)
 	new_rt(data);
 /* ** */
 	draw_outline(data);
-	dst.x = 0;
-	dst.y = 0;
-	dst.w = 300;
-	dst.h = data->window.y;
-	interface_grey(data);
-	show_button(data);
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
+	video_settings(data);
+	data->font.str = ft_strdup("Nb Image");
+	print_text(data, 10, 4, 20);
 	show_txt(data);
 	click_button(data);
 	
@@ -298,15 +300,14 @@ int			sub_loop(t_data *data)
 	}
 	else
 		SDL_Delay(16);
-	if (data->hud.flag_hud != data->hud.last_hud)
-	{
+
 		if (data->hud.flag_hud)
 			texture_on_screen(data);
 		else
 			SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 		data->hud.last_hud = data->hud.flag_hud;
 		SDL_RenderPresent(data->window.rend);
-	}
+	
 	return (0);
 }
 

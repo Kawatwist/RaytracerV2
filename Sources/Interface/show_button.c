@@ -6,58 +6,71 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/18 18:38:04 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/19 17:52:55 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+/*
 
-void    boo_value_normals(void *data, int val)
+A mettre dans le header
+void    boo_value_diapo(t_data *data, int val);
+void    boo_value_normals(t_data *data, int val);
+void    boo_value_show(t_data *data, int val);
+void    boo_value_aa(t_data *data, int val);
+void    boo_value_quality(t_data *data, int val);
+void    boo_value_refresh(t_data *data, int val);
+*/
+
+void    boo_value_diapo(t_data *data, int val)
 {
-    t_data *test;
-    test = (t_data *)data;
-    
-    if (test->flag.normal == val)
-        test->flag.normal = 0;
+    if (data->flag.diapo == val)
+        data->flag.diapo = 0;
     else
-        test->flag.normal = val;
+        data->flag.diapo = val;
 }
 
-void    boo_value_show(void *data, int val)
+void    boo_value_normals(t_data *data, int val)
 {
-    t_data *test;
-    test = (t_data *)data;
-    
-    if (test->flag.show == val)
-        test->flag.show = 0;
+    if (data->flag.normal == val)
+        data->flag.normal = 0;
     else
-        test->flag.show = val;
+        data->flag.normal = val;
 }
 
-
-void    boo_value_aa(void *data, int val)
+void    boo_value_show(t_data *data, int val)
 {
-    t_data *test;
-    test = (t_data *)data;
-    
-    if (test->flag.antialiasing == val)
-        test->flag.antialiasing = 0;
+    if (data->flag.show == val)
+        data->flag.show = 0;
     else
-        test->flag.antialiasing = val;
+        data->flag.show = val;
 }
 
-void    boo_value_quality(void *data, int val)
+void    boo_value_aa(t_data *data, int val)
 {
-    t_data *test;
-    test = (t_data *)data;
-    
-    if (test->flag.pixel  == val)
-        test->flag.pixel = 0;
+    if (data->flag.antialiasing == val)
+        data->flag.antialiasing = 0;
     else
-        test->flag.pixel = val;
+        data->flag.antialiasing = val;
 }
 
-void    boo_value(void *data, int val)
+void    boo_value_quality(t_data *data, int val)
+{
+    if (data->flag.pixel  == val)
+        data->flag.pixel = 0;
+    else
+        data->flag.pixel = val;
+}
+
+void    boo_value_refresh(t_data *data, int val)
+{
+    if (data->flag.asked  == val)
+        data->flag.asked = 0;
+    else
+        data->flag.asked = val;
+}
+
+void    boo_value(t_data *data, int val)
 {
     (void)data;
     (void)val;
@@ -79,7 +92,7 @@ void    button_stand(t_data *data, int i)
 
 void    button_once_refresh(t_data *data)
 {
-    data->all_button[0].pf = &boo_value;
+    data->all_button[0].pf = &boo_value_refresh;
     data->all_button[0].to_print = "Single Refresh";
     data->all_button[0].val = data->flag.asked;
     data->all_button[0].i = 0;
@@ -117,6 +130,14 @@ void    button_show(t_data *data)
     data->all_button[4].i = 1;
 }
 
+void    button_diapo(t_data *data)
+{
+    data->all_button[5].pf = &boo_value_diapo;
+    data->all_button[5].to_print = "Diapo";
+    data->all_button[5].val = data->flag.diapo;
+    data->all_button[5].i = 1;
+}
+
 void    init_case(t_data *data)
 {
     int i;
@@ -134,12 +155,57 @@ void    init_case(t_data *data)
     button_normals(data);
     button_quality(data);
     button_show(data);
+    button_diapo(data);
 }
 
 void	draw_button(t_data *data, int x, int y, t_case c);
 void	draw_background_box(t_data *data, int y);
+char		*input_hud_text(t_data*data, char *text);
 
-void show_button(t_data *data)
+void draw_nbvideo_bg(t_data *data)
+{
+    SDL_Rect	dst;
+
+	dst.x = 10;
+	dst.y = 5;
+	dst.w = 200;
+	dst.h = 20;
+	draw_rect(data, dst, 0xffffff);
+    dst.x = 11;
+	dst.y = 6;
+	dst.w = 198;
+	dst.h = 18;
+	draw_rect(data, dst, 0x333333);    
+}
+
+void    video_settings(t_data *data)
+{
+    (void)data;
+
+    static char *str = NULL;
+    
+    if (data->input.x >= 10 && data->input.x <= 210
+        && data->input.y >= 5 && data->input.y <= 25
+        && data->input.button & SDL_BUTTON_LEFT)
+     {
+        data->flag.typing = 1;
+        if (str)
+        free(str);
+        str = NULL;
+     }
+     else if (data->input.button & SDL_BUTTON_LEFT)
+        data->flag.typing = 0;
+
+    if (data->flag.typing == 1 && ft_strlen(str) < 4)
+        str = input_hud_text(data, str);
+    if (str)
+    {
+        data->font.str = ft_strdup(str); // RENTRER LA VALEUR DANS NB_VIDEO
+        print_text(data, 115, 4, 20);
+    }
+}
+
+void    show_button(t_data *data)
 {
     int     i;
     int         j;
@@ -151,17 +217,14 @@ void show_button(t_data *data)
     j = i;
     init_case(data);
     while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.5 - 92)
-    {
-       
+    {  
         draw_button(data, pos.x, pos.y, data->all_button[i]);
         draw_background_box(data, pos.y);
         i++;
         pos.y += 45;
     }
     
-    //char *antoine;
-    //input_hud_text(data, antoine);
-    //ft_putchar(antoine);
+   
 }
 
 void click_button(t_data *data)

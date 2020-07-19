@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 17:58:34 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/19 17:13:18 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef enum		e_hud
 	LOAD_SCREEN = 9,
 }					e_hud;
 
+typedef struct s_data	t_data;
+
 typedef struct		s_c33
 {
 	Uint32			color;
@@ -57,7 +59,7 @@ typedef struct		s_c33
 
 typedef struct		s_case
 {
-		void		(*pf)(void *, int);
+		void		(*pf)(t_data *, int);
 		char		*to_print;
 		int			val;
 		char		i;
