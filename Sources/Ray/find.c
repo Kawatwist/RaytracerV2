@@ -6,61 +6,41 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 16:59:08 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 17:42:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-void		set_color_light(t_thread *data, t_vec ray, int index, float dist)
-{
-	(void)dist;
-	if (index == 0)
-		data->obj.color_find[0] = light_color(data->obj.color_find[1],
-			set_color(0, find_color(data, ((t_base *)data->obj.item[index]),
-			ray), ((t_base *)data->obj.item[index])->effect.opacity / 255.0,
-			-1));
-	else
-		data->obj.color_find[0] = light_color(data->obj.color_find[0],
-			set_color(0, find_color(data, ((t_base *)data->obj.item[index]),
-			ray), ((t_base *)data->obj.item[index])->effect.opacity / 255.0,
-			-1));
-}
-
 void		*check_object_light(t_thread *data, t_vec ray, float *dist,
 		float max_dist)
 {
 	void	*close;
-	int		index[2];
+	int		index;
 	float	value;
 
 	value = -1;
 	close = NULL;
-	index[0] = 0;
-	index[1] = 0;
-	// *((void **)index) = NULL;
-	while (data->obj.item[index[0]])
+	index = 0;
+	while (index < data->obj.nb_item && data->obj.item[index])
 	{
-		if (!(((t_base *)data->obj.item[index[0]])->effect.flag & NS)) // Si Ombre
+		if (!(((t_base *)data->obj.item[index])->effect.flag & NS))
 		{
 			if (data->flag.diapo)
 			{
-				value = data->dist[(int)((t_base *)data->obj.item[index[0]])
-					->effect.type](data->obj.item[index[0]], ray);
+				value = data->dist[(int)((t_base *)data->obj.item[index])
+					->effect.type](data->obj.item[index], ray);
 				if ((value > 0 && value < max_dist))
 				{
-					*dist == -1 || value < *dist ? *dist = value : 0;
-					data->flag.diapo && data->obj.color_find[0] ?
-					set_color_light(data, ray, index[1], value) : 0;
-					data->flag.diapo && data->obj.color_find[0] ? index[1] += 1 : 0;
-					close = data->obj.item[index[0]];
+					close = data->obj.item[index];
+					value > *dist ? *dist = value : 0;
 				}
 			}
 		}
-		index[0] += 1;
+		index += 1;
 	}
-	return (*dist < max_dist ? close : NULL);
+	return (*dist < max_dist && *dist != -1? close : NULL);
 }
 
 void		*check_object(t_thread *data, t_vec ray, float *dist)

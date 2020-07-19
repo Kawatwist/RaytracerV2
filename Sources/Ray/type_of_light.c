@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 16:56:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 17:54:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 
 	dot = -dot_product(normalize(neg_norm(data->obj.light[index].direction)),
 		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
-	if (dot > data->obj.light[index].ang)
-		;
+	if (dot < data->obj.light[index].ang)
+		return (data->ambiant);
 	len = data->obj.light[index].distance - length(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin));
 	obj[2] = length(sub_vec(data->obj.light[index].origin, r.tmp.origin));
@@ -64,7 +64,6 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	return (create_specular(data, &r, dot, index));
 }
 
-unsigned int	diapo(t_thread *data, t_vec r, int index, int bounce);
 
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 {
@@ -92,7 +91,7 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	{
 		ray.origin = veccpy(r.tmp.origin);
 		ray.direction = normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
-		return (light_color(color, diapo(data, ray, index, 1)));
+		data->tmp_color = (light_color(r.color[0], diapo(data, &ray, index, data->bounce)));
 	}
 	return (create_specular(data, &r, dot, index));
 }

@@ -8,7 +8,7 @@
 	ambiant : 0x7F007F
 	aa : 0
 	refresh : 0
-	bounce : 600
+	bounce : 0
 	quality : 2
 	object : 9
 	screenshot : 0
@@ -76,8 +76,8 @@
 	direction : {0 0 1}
 	color : 0x7f3f7f
 	angle : 15
-	hauteur : -1
-	side : 0
+	hauteur : 3
+	side : -1
 			ns : 1
 			reflection : 150
 [object:cone]
@@ -85,7 +85,21 @@
 	direction : {0 0 1}
 	color : 0x7f3f7f
 	angle : 15
-	hauteur : -1
-	side : 0
+	hauteur : 3
+	side : -1
 			ns : 1
 			reflection : 150
+# [object:cylinder]
+# 	origin : {10 0 -3}
+# 	direction : {0 0 1}
+# 	color : 0x7f3f7f
+# 	rayon : 2
+# 	hauteur : 6
+# 			reflection : 150
+# [object:cylinder]
+# 	origin : {-10 0 -3}
+# 	direction : {0 0 1}
+# 	color : 0x7f3f7f
+# 	rayon : 2
+# 	hauteur : 6
+# 			reflection : 150

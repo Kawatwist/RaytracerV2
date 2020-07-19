@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/14 19:29:37 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 16:27:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,15 +239,11 @@ int			sub_loop(t_data *data)
 	}
 	else
 		SDL_Delay(16);
-	if (data->hud.flag_hud != data->hud.last_hud)
-	{
-		if (data->hud.flag_hud)
-			texture_on_screen(data);
-		else
-			SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-		data->hud.last_hud = data->hud.flag_hud;
-		SDL_RenderPresent(data->window.rend);
-	}
+	if (data->hud.flag_hud)
+		texture_on_screen(data);
+	else
+		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
 
