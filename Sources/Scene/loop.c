@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/19 16:27:18 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 18:19:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,34 +94,94 @@ void	draw_background_box(t_data *data, int y)
 	draw_rect(data, dst, 0x262626);
 }
 
-void	draw_button(t_data *data, int x, int y, int state)
+void	draw_separation(t_data *data, SDL_Rect dst, int nb, int x)
+{
+	int tmp;
+
+	tmp = 30;
+	if (nb > 1)
+	nb = tmp / nb;
+	dst.x = x;
+	dst.w = 1;
+	dst.y -= 3;
+	dst.h = 33;
+	while (tmp > 0)
+	{
+		if (dst.x != x)
+			draw_rect(data, dst, 0xc80a20);
+		tmp -= nb;
+		dst.x = dst.x + nb;
+	}
+}
+void	draw_button(t_data *data, int x, int y, t_case c)
 {
 	SDL_Rect		dst;
 	unsigned int	color;
 
+
+	(void)color;
 	dst.w = 30;
 	dst.h = 30;
 	dst.x = x;
 	dst.y = y;
-	if (state == 0)
-		color = 0xf0451d;
-	else if (state == 1)
-		color = 0x29cb75;
-	else if (state == 2)
-		color = 0xf6ff00;
-	else
-		color = 0xffbb00;
+	dst.y += 3;
 
+	color = 0xf0451d;
 	draw_rect(data, dst, color);
-	if (state == 0)
+	dst.y += 30;
+	dst.h = 3;
+	draw_rect(data, dst, 0xc80a20);
+	dst.h = 33;
+	dst.y -= 27;
+	dst.h -= 3;
+	if (c.i > 1)
 	{
-		dst.y += 30;
-		dst.h = 3;
-		draw_rect(data, dst, 0xc80a20);
+		draw_separation(data, dst, c.i, x);
+		dst.w = 30 / c.i;
 	}
+	else
+		dst.w = 30;
+	if (c.val == 1)
+	{
+		color = 0x29cb75;
+		draw_rect(data, dst, color);
+		dst.y -= 3;
+		dst.h = 3;
+		color = 0x000000;
+		draw_rect(data, dst, color);
+	}
+	else if (c.val == 2)
+	{
+		dst.x += 10;
+
+		color = 0xf6ff00;
+		draw_rect(data, dst, color);
+dst.h = 3;
+		dst.y -= 3;
+		color = 0x000000;
+		draw_rect(data, dst, color);
+	}
+	else if (c.val == 3)
+	{
+		dst.x += 20;
+
+		color = 0xffbb00;
+		draw_rect(data, dst, color);
+
+		dst.h = 3;
+		dst.y -= 3;
+		color = 0x000000;
+		draw_rect(data, dst, color);
+	}
+
+
+
 }
 void show_button(t_data *data);
 void show_txt(t_data *data);
+void click_button(t_data *data);
+void video_settings(t_data *data);
+void draw_nbvideo_bg(t_data *data);
 
 int			texture_on_screen(t_data *data)
 {
@@ -138,18 +198,21 @@ int			texture_on_screen(t_data *data)
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
 	draw_title_background(data);
-	//draw_outline_color(data);
-	//draw_background_box(data);
-	//draw_button(data, 245, 105, 0);
-	//draw_button(data, 245, 150, 1);
-	//draw_button(data, 245, 195, 0);
 
 /* 	  ** 	*/
 /* Preview	*/
 
-
 	void	*pxl;
 	int		pitch;
+
+
+	dst.x = 0;
+	dst.y = 0;
+	dst.w = 300;
+	dst.h = data->window.y;
+	interface_grey(data);
+	show_button(data);
+	draw_nbvideo_bg(data);
 
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
@@ -160,14 +223,12 @@ int			texture_on_screen(t_data *data)
 	new_rt(data);
 /* ** */
 	draw_outline(data);
-	dst.x = 0;
-	dst.y = 0;
-	dst.w = 300;
-	dst.h = data->window.y;
-	interface_grey(data);
-	show_button(data);
 	SDL_RenderCopy(data->window.rend, data->menu.background, NULL, &dst);
+	video_settings(data);
+	data->font.str = ft_strdup("Nb Image");
+	print_text(data, 10, 4, 20);
 	show_txt(data);
+	click_button(data);
 
 	return (0);
 }
@@ -278,6 +339,7 @@ static int			signals(t_data *data)
 
 static void			effect(t_data *data)
 {
+	//data->flag.cam_move = 1;
 	if (data->flag.video && data->flag.cam_move)
 	{
 		rot_cam_video(data, &data->obj.camera[data->obj.index[0]]);

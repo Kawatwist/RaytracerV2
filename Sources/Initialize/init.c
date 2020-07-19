@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 00:24:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 16:20:00 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			initialize(t_data *data)
 	data->hud.color_obj = 1;
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
+	data->flag.typing = 0;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;
@@ -47,5 +48,6 @@ int			initialize(t_data *data)
 	data->ambiant = 0xFF000000;
 	initialize2(data);
 	generate_perlin(data);
+	
 	return (0);
 }

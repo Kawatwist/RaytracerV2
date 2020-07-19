@@ -15,6 +15,7 @@
 	opti : 1000
 	nb_texture : 5
 	nb_normal : 1
+	screenshot : 0
 	textures : "./texture/Minecraft/creeper_head.tga"
 	textures : "./texture/Minecraft/creeper.tga"
 	textures : "./texture/Minecraft/snow.tga"

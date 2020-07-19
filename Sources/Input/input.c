@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 13:23:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/19 18:18:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void		input(t_data *data)
 		color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
 		if (data->hud.color_obj)
 			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
+		//printf("%d \\ %d\n", data->hud.color_obj, data->hud.last_color_obj);
 		if (!data->hud.color_obj && data->hud.last_color_obj)
 		{
 			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = ((t_thread *)data->thread)[i].color_pick;
