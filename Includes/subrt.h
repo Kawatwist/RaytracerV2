@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 17:13:18 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/20 10:26:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,18 @@ typedef struct		s_case
 		char		i;
 }					t_case;
 
+typedef struct		s_select
+{
+	Uint32			index_last;
+	Uint32			color_save;
+	Uint32			color_pick_save;
+	Uint32			selector : 1;
+	Uint32			color_pick : 1;
+}					t_select;
+
 typedef struct		s_hud
 {
+	t_select		select;
 	SDL_Rect		pos[12];
 	SDL_Surface		*tmp;
 	SDL_Texture		*texture[12];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 17:41:58 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/20 10:30:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,6 +264,8 @@ t_circle		setup_circle(t_point pos, int color, long int radius,
 				void *pxl);
 float			find_slider_pos(int color);
 int				switchcolor(int h);
+int				find_color_chroma(int i, int j);
+int				hue(t_data *data, int color);
 void			color_picker(t_data *data);
 void			draw_circle(t_circle circle);
 char			*input_hud_text(t_data*data, char *text);
