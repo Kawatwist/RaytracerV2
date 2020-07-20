@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 17:41:58 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/19 18:11:50 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_flag
 	Uint32		tree : 1;
 	Uint32		screen : 1;
 	Uint32		typing : 1;
+	Uint32		shadow : 1;
 }				t_flag;
 
 

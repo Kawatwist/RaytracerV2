@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/13 18:09:24 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 01:23:30 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,31 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[1].cursor.y = 85;
 	data->screen.preview.slider[1].cursor.w = 10;
 	data->screen.preview.slider[1].cursor.h = 40;
+
+	data->screen.preview.slider[2].init = 1;
+	data->screen.preview.slider[2].colorbg = 0x7c7c7c;
+	data->screen.preview.slider[2].colorcursor = 0x000000;
+	data->screen.preview.slider[2].position.x = 125;
+	data->screen.preview.slider[2].position.y = 25;
+	data->screen.preview.slider[2].position.w = 150;
+	data->screen.preview.slider[2].position.h = 15;
+	data->screen.preview.slider[2].cursor.x = 125;
+	data->screen.preview.slider[2].cursor.y = 25;
+	data->screen.preview.slider[2].cursor.w = 20;
+	data->screen.preview.slider[2].cursor.h = 15;
+
+	data->screen.preview.slider[3].init = 1;
+	data->screen.preview.slider[3].colorbg = 0x7c7c7c;
+	data->screen.preview.slider[3].colorcursor = 0x000000;
+	data->screen.preview.slider[3].position.x = 125;
+	data->screen.preview.slider[3].position.y = 25;
+	data->screen.preview.slider[3].position.w = 150;
+	data->screen.preview.slider[3].position.h = 15;
+	data->screen.preview.slider[3].cursor.x = 125;
+	data->screen.preview.slider[3].cursor.y = 25;
+	data->screen.preview.slider[3].cursor.w = 20;
+	data->screen.preview.slider[3].cursor.h = 15;
+
 }
 
 static float	moving_light(t_data *data)

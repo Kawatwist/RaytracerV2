@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 16:20:00 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/19 18:07:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			initialize(t_data *data)
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
 	data->flag.typing = 0;
+	data->flag.shadow = 0;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;

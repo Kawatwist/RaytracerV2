@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 17:13:18 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 01:23:04 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_case
 		char		*to_print;
 		int			val;
 		char		i;
+		int			type;
 }					t_case;
 
 typedef struct		s_hud
@@ -207,7 +208,7 @@ typedef struct		s_preview
 	SDL_Texture		*texture;
 	void			*pxl;
 	t_light			light;
-	t_slider		slider[2];
+	t_slider		slider[4];
 }					t_preview;
 
 typedef struct      s_perl
