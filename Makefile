@@ -130,6 +130,7 @@ SRC				=	main.c										\
 					hud_obj.c									\
 					damier.c									\
 					create_specular.c							\
+					diapo.c										\
 					mix_color.c									\
 					draw_rect.c									\
 					perlin.c									\

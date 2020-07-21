@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 17:14:34 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/19 18:18:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					create_specular(t_thread *data,
 					t_ray *r, float dot, int index)
 {
 	int				color;
-	
+
 	if (dot > 0.0)
 	{
 		color = apply_mult(data->tmp_color, data->obj.light[index].color, dot);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 01:07:02 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/19 15:18:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 	float			dot;
 	t_disk			dor;
 
-	c->close = 1;
 	dot = dot_product(ray.direction, c->origin.direction);
 	dor.rayon = rayon;
 	if (dot >= 0)
@@ -42,8 +41,6 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 			mult_vec2(c->origin.direction, (c->high)));
 		dor.origin.direction = veccpy(c->origin.direction);
 	}
-	else
-		return (-1);
 	c->dir_close = veccpy(dor.origin.direction);
 	return (disk(&dor, ray));
 }
@@ -64,7 +61,18 @@ static float		cone2(t_cone *cone, t_vec ray, t_calc c)
 	if (cone->side != 0 && ((cone->side >= 1 && dot > 0) || (cone->side <= -1 && dot < 0)))
 		return (-1);
 	if (cone->high != -1)
-		return (close_cone(cone, ray, rayon));
+	{
+		if (len >= cone->high)
+			return (-1);
+		c.t1 = close_cone(cone, ray, rayon);
+		if (c.t1 != -1 && (c.t0 > c.t1 || c.t0 == -1))
+		{
+			cone->close = 1;
+			return (c.t1);
+		}
+		else
+			cone->close = 0;
+	}
 	return (c.t0);
 }
 
@@ -90,6 +98,9 @@ float				cone(void *coo, t_vec ray)
 	c.delta = (c.b * c.b) - (4 * c.a * c.c);
 	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
 	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
-	c.t0 = find_t(c);
+	if (c.t0 != -1 || c.t1 != -1)
+		c.t0 = find_t(c);
+	else
+		return (-1);
 	return (cone2(cone, ray, c));
 }

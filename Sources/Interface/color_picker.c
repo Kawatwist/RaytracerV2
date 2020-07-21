@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_picker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:05:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/15 20:34:16 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/20 12:26:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,27 @@ int			switchcolor(int h)
 
 	if (h > 0 && h < 121)
 	{
-		color = (h * 255 / 120) << 8;
-		color += (255 - ((color & 0xFF00) >> 8));
+		color = 0xFFFF;
+		if (h < 60)
+			color -= ((int)((60 - h) * 4.25) << 8);
+		else if (h > 60)
+			color -= ((int)((h - 60) * 4.25) & 0xFF);
 	}
 	else if (h < 241)
 	{
-		color = ((h - 120) * 255 / 120) << 16;
-		color += (255 - ((color & 0xFF0000) >> 16)) << 8;
+		color = 0xFFFF00;
+		if (h < 180)
+			color -= ((int)((180 - h) * 4.25) << 16);
+		else if (h > 180)
+			color -= ((int)((h - 180) * 4.25) << 8);
 	}
 	else
 	{
-		color = ((h - 240) * 255) / 120;
-		color += (255 - (color & 0xFF)) << 16;
+		color = 0xFF00FF;
+		if (h < 300)
+			color -= ((int)((300 - h) * 4.25));
+		else if (h > 300)
+			color -= ((int)((h - 300) * 4.25) << 16);
 	}
 	return (color);
 }
@@ -40,8 +49,8 @@ int			find_color_chroma(int i, int j)
 	float	dot;
 
 	dot = (dot_product(normalize(sub_vec(fill_vec(i, j, 0),
-		fill_vec(150, 150, 0))), fill_vec(0, -1, 0)) + 1.0) * 90.0;
-	pos = (i <= 150 ? 360 - dot : dot);
+		fill_vec(120, 120, 0))), fill_vec(0, -1, 0)) + 1.0) * 90.0;
+	pos = (i <= 120 ? 360 - dot : dot);
 	pos += 45;
 	pos < 360 ? pos += 360 : 0;
 	pos > 360 ? pos -= 360 : 0;

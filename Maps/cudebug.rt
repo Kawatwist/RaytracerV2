@@ -5,14 +5,14 @@
 	xscreen : 600
 	yscreen : 600
 	camera : 1
-	ambiant : 0x000000
+	ambiant : 0xFF00FF
 	aa : 0
-	bounce : 10
+	bounce : 0
 	refresh : 0
 	quality : 0
 	object : 15
 	light : 3
-	opti : 100
+	opti : 1000
 	nb_texture : 5
 	nb_normal : 1
 	screenshot : 0

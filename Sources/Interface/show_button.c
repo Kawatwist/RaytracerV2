@@ -1,26 +1,16 @@
 /* ************************************************************************** */
-/*                                                                        */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   show_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/19 18:07:53 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 04:03:48 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-/*
-
-A mettre dans le header
-void    boo_value_diapo(t_data *data, int val);
-void    boo_value_normals(t_data *data, int val);
-void    boo_value_show(t_data *data, int val);
-void    boo_value_aa(t_data *data, int val);
-void    boo_value_quality(t_data *data, int val);
-void    boo_value_refresh(t_data *data, int val);
-*/
 
 void	boo_value_diapo(t_data *data, int val)
 {
@@ -72,9 +62,11 @@ void	boo_value_refresh(t_data *data, int val)
 
 void	boo_value(t_data *data, int val)
 {
+	int value;
+
 	(void)data;
 	(void)val;
-	int value = 0;
+	value = 0;
 	if (value == 1)
 		value = 0;
 	else
@@ -130,14 +122,6 @@ void	button_show(t_data *data)
 	data->all_button[4].i = 1;
 }
 
-void	button_diapo(t_data *data)
-{
-	data->all_button[5].pf = &boo_value_diapo;
-	data->all_button[5].to_print = "Diapo";
-	data->all_button[5].val = data->flag.diapo;
-	data->all_button[5].i = 1;
-}
-
 void	button_slider_filter(t_data *data)
 {
 	data->all_button[5].to_print = "Filter";
@@ -152,6 +136,37 @@ void	button_slider_bounce(t_data *data)
 	data->all_button[6].type = 1;
 }
 
+void	button_diapo(t_data *data)
+{
+	data->all_button[7].pf = &boo_value_diapo;
+	data->all_button[7].to_print = "Diapo";
+	data->all_button[7].val = data->flag.diapo;
+	data->all_button[7].i = 1;
+}
+
+void	button_oculus(t_data *data)
+{
+	data->all_button[8].pf = &boo_value;
+	data->all_button[8].to_print = "Oculus";
+	data->all_button[8].val = data->flag.diapo;
+	data->all_button[8].i = 1;
+}
+
+void	button_stereo(t_data *data)
+{
+	data->all_button[9].pf = &boo_value;
+	data->all_button[9].to_print = "Stereoscopie";
+	data->all_button[9].val = data->flag.diapo;
+	data->all_button[9].i = 1;
+}
+
+void	button_spawn(t_data *data)
+{
+	data->all_button[10].pf = &boo_value;
+	data->all_button[10].to_print = "Spawn";
+	data->all_button[10].val = data->flag.diapo;
+	data->all_button[10].i = 1;
+}
 
 void	init_case(t_data *data)
 {
@@ -159,7 +174,7 @@ void	init_case(t_data *data)
 
 	i = 0;
 	if (!(data->all_button = (t_case *)malloc(sizeof(t_case) * CASE_NBR)))
-		return;
+		return ;
 	while (i < CASE_NBR)
 	{
 		button_stand(data, i);
@@ -173,11 +188,10 @@ void	init_case(t_data *data)
 	button_diapo(data);
 	button_slider_filter(data);
 	button_slider_bounce(data);
+	button_oculus(data);
+	button_stereo(data);
+	button_spawn(data);
 }
-
-void	draw_button(t_data *data, int x, int y, t_case c);
-void	draw_background_box(t_data *data, int y);
-char	*input_hud_text(t_data *data, char *text);
 
 void	draw_nbvideo_bg(t_data *data)
 {
@@ -197,11 +211,10 @@ void	draw_nbvideo_bg(t_data *data)
 
 void	video_settings(t_data *data)
 {
-	(void)data;
-
 	static char *str = NULL;
 
-	if (data->input.x >= 10 && data->input.x <= 210 && data->input.y >= 5 && data->input.y <= 25 && data->input.button & SDL_BUTTON_LEFT)
+	if (data->input.x >= 10 && data->input.x <= 210 && data->input.y >= 5
+	&& data->input.y <= 25 && data->input.button & SDL_BUTTON_LEFT)
 	{
 		data->flag.typing = 1;
 		if (str)
@@ -210,7 +223,6 @@ void	video_settings(t_data *data)
 	}
 	else if (data->input.button & SDL_BUTTON_LEFT)
 		data->flag.typing = 0;
-
 	if (data->flag.typing == 1 && ft_strlen(str) < 4)
 		str = input_hud_text(data, str);
 	if (str)
@@ -219,21 +231,18 @@ void	video_settings(t_data *data)
 		print_text(data, 115, 4, 20);
 	}
 }
-float			slider(t_data *data, t_slider *slider);
 
-void	draw_slider(t_data *data, int x, int y, t_case c, int selector)
+void	draw_slider(t_data *data, int y, int selector)
 {
-	(void)c;
-	(void)x;
 	data->screen.preview.slider[selector].position.y = y + 8;
 	data->screen.preview.slider[selector].cursor.y = y + 8;
 	slider(data, &data->screen.preview.slider[selector]);
-	data->screen.preview.slider[selector].value = slider(data, &data->screen.preview.slider[selector]);
+	data->screen.preview.slider[selector].value =
+	slider(data, &data->screen.preview.slider[selector]);
 	if (selector == 2)
-		data->flag.filter = data->screen.preview.slider[selector].value * 7; // Remplacer 7 par nombre total de filtres;
+		data->flag.filter = data->screen.preview.slider[selector].value * 7;
 	else if (selector == 3)
 		data->bounce = data->screen.preview.slider[selector].value * 20;
-
 }
 
 void	show_button(t_data *data)
@@ -256,12 +265,22 @@ void	show_button(t_data *data)
 			draw_button(data, pos.x, pos.y, data->all_button[i]);
 		else
 		{
-			draw_slider(data, pos.x, pos.y, data->all_button[i], selector);
+			draw_slider(data, pos.y, selector);
 			selector++;
 		}
 		i++;
 		pos.y += 45;
 	}
+}
+
+int		click_button_is_in_menu(t_data *data)
+{
+	if (data->input.x <= 300 && data->input.y <= data->window.y * 0.55
+	&& data->input.button != data->input.oldbutton
+	&& data->input.button == 1)
+		return (1);
+	else
+		return (0);
 }
 
 void	click_button(t_data *data)
@@ -272,15 +291,14 @@ void	click_button(t_data *data)
 	int max_val;
 
 	start = (int)(data->screen.preview.slider[1].value * CASE_NBR);
-	if (data->input.x <= 300 && data->input.y <= data->window.y * 0.55 && data->input.button != data->input.oldbutton && data->input.button == 1)
+	if (click_button_is_in_menu(data) == 1)
 	{
-		if (data->input.y >= 95 && data->input.x >= 245 && data->input.x <= 245 + 30)
+		if (data->input.y >= 95 && data->input.x >= 245
+		&& data->input.x <= 245 + 30)
 		{
-			blabla = (data->input.y) / 45;
-			blabla = blabla - 2;
+			blabla = (data->input.y) / 45 - 2;
 			data->input.y = data->input.y % 45;
 			if (data->input.y > 6 && data->input.y < 41)
-			{
 				if (blabla + start < CASE_NBR)
 				{
 					max_val = data->all_button[blabla + start].i;
@@ -289,16 +307,15 @@ void	click_button(t_data *data)
 					val = (data->input.x - 245) / (30 / max_val);
 					data->all_button[blabla + start].pf(data, val + 1);
 				}
-			}
 		}
 	}
 }
 
 void	show_txt(t_data *data)
 {
-	int i;
-	int j;
-	SDL_Rect pos;
+	int			i;
+	int			j;
+	SDL_Rect	pos;
 
 	pos.x = 245;
 	pos.y = 95;
@@ -309,7 +326,6 @@ void	show_txt(t_data *data)
 		data->font.str = ft_strdup(data->all_button[i].to_print);
 		print_text(data, 15, pos.y, 25);
 		i++;
-
 		pos.y += 45;
 	}
 	data->font.str = ft_strdup("Options");

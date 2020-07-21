@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 01:23:04 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 01:42:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,18 @@ typedef struct		s_case
 		int			type;
 }					t_case;
 
+typedef struct		s_select
+{
+	Uint32			index_last;
+	Uint32			color_save;
+	Uint32			color_pick_save;
+	Uint32			selector : 1;
+	Uint32			color_pick : 1;
+}					t_select;
+
 typedef struct		s_hud
 {
+	t_select		select;
 	SDL_Rect		pos[12];
 	SDL_Surface		*tmp;
 	SDL_Texture		*texture[12];

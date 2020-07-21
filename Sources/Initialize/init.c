@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 18:07:42 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 04:04:32 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ int			initialize(t_data *data)
 	data->ambiant = 0xFF000000;
 	initialize2(data);
 	generate_perlin(data);
-	
 	return (0);
 }

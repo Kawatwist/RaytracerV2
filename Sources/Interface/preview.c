@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/21 01:23:30 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/21 01:42:49 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[0].cursor.y = data->window.y - 20;
 	data->screen.preview.slider[0].cursor.w = 20;
 	data->screen.preview.slider[0].cursor.h = 15;
-	
+
 	data->screen.preview.slider[1].init = 1;
 	data->screen.preview.slider[1].dir = 1;
 	data->screen.preview.slider[1].colorbg = 0x909090;
@@ -84,7 +84,7 @@ static	void	init_slider_preview(t_data *data)
 	data->screen.preview.slider[1].position.y = 85;
 	data->screen.preview.slider[1].position.w = 10;
 	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
-	
+
 	data->screen.preview.slider[1].cursor.x = 285;
 	data->screen.preview.slider[1].cursor.y = 85;
 	data->screen.preview.slider[1].cursor.w = 10;
@@ -137,22 +137,34 @@ static float	moving_light(t_data *data)
 
 static void	text_info(t_data *data)
 {
-	// static char *str = NULL;
-
 	if (data->flag.video)
 	{
 		data->font.str = ft_strdup("Rendu Video En cours\0");
 		print_text(data, 300, data->window.y - 40, 30);
-		// Draw Text
 	}
 	if (data->bounce)
 	{
 		data->font.str = ft_strjoinfree("Bounce :\0", ft_itoa(data->bounce), 2);
 		print_text(data, 300, data->window.y - 80, 30);
 	}
-	// str = input_hud_text(data, str);
-	// data->font.str = ft_strdup(str);
-	// print_text(data, 300, data->window.y - 40, 30);
+}
+
+static void	get_color_picker(t_data *data)
+{
+	double	distance;
+	int		radius;
+	int		radius_min;
+
+	distance = 0.0;
+	radius = 120;
+	radius_min = 85;
+	distance = sqrt((double)((data->input.x - 30) - radius) * ((data->input.x - 30) - radius) +
+							((data->input.y - 650) - radius) * ((data->input.y - 650) - radius));
+	if (data->input.button & SDL_BUTTON_LEFT && distance > radius_min && distance < radius)
+	{
+		data->hud.select.color_pick = 1;
+		data->hud.select.color_pick_save = hue(data, find_color_chroma(data->input.x - 30, data->input.y - 650));
+	}
 }
 
 void		new_rt(t_data *data)
@@ -164,26 +176,26 @@ void		new_rt(t_data *data)
 			switchcolor((int)moving_light(data));
 	SDL_LockTexture(data->screen.preview.texture, NULL,
 		&data->screen.preview.pxl, &data->window.pitch);
-	
+
 	find_slider_pos(data->screen.preview.sphere.effect.color);
 	data->screen.preview.slider[0].value =
 	slider(data, &data->screen.preview.slider[0]);
-	
+
 	mini_rt(data);
 	color_picker(data);
-	
+
 	draw_circle(setup_circle(color_to_pos(145, 145,
 		data->screen.preview.sphere.effect.color), 0x333333,
 		(0x1000000007), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
 	//slider(data, &data->screen.preview.slider[0]);
-	
+
 	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
 	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);
 	data->screen.preview.slider[0].position.y = data->window.y * 0.55 + 60;
 	data->screen.preview.slider[0].cursor.y = data->window.y * 0.55 + 60;
-	
-	
-	
+
+	get_color_picker(data);
+
 	text_info(data);
 }

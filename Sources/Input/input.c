@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/18 18:40:42 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/20 12:38:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,6 @@ static void	input_obj(t_data *data)
 	else
 		tmp = &(data->obj.camera[data->obj.index[data->obj.type_index]]);
 	obj = &(tmp);
-	// if (enter == 1)
-	// 	ft_putstr("Current Mode Object\n\n");
-	// else
-	// 	ft_putstr("Current Mode Index\n\n");
 	data->move[data->obj.type_index](data, obj);
 }
 
@@ -94,30 +90,39 @@ void		get_input(t_data *data)
 	ft_memcpy(data->input.rkey, data->input.key, 250);
 }
 
+static void	set_color_selected(t_data *data)
+{
+	data->hud.select.color_save = ((t_base *)data->obj.item[data->obj.index[1]])->effect.color;
+	if (data->hud.color_obj && data->obj.type_index == 1)
+		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
+	if (data->hud.color_obj && data->obj.type_index == 1)
+		data->screen.preview.sphere.effect.color = data->hud.select.color_save;
+	if (data->hud.select.color_pick)
+		data->hud.select.color_save = data->hud.select.color_pick_save;
+}
+
+static void	color_selected(t_data *data)
+{
+	int		i;
+
+	if (!data->hud.select.selector)
+		data->hud.select.selector = 1;
+	else
+	{
+		if (data->hud.select.color_pick && data->hud.color_obj)
+			data->hud.select.color_save = data->hud.select.color_pick_save;
+		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = data->hud.select.color_save;
+		i = -1;
+		while (++i < 4)
+			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = data->hud.select.color_save;
+	}
+	data->hud.select.index_last = data->obj.index[1];
+	data->hud.select.color_pick = 0;
+}
+
 void		input(t_data *data)
 {
-	static Uint32	color = 0;
-	static char		tmp = 0;
-	static void		*tmp2 = NULL;
-	int				i;
-
-	i = -1;
-	while (++i < 4)
-	{
-
-		if (!tmp)
-			color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
-		tmp = 1;
-		tmp2 = ((t_base *)data->obj.item[data->obj.index[1]]);
-		// ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = color;
-		// if (!data->hud.color_obj)
-		// {
-		// 	data->screen.preview.sphere.effect.color = ((t_thread *)data->thread)[i].color_pick;
-		// }
-		// else
-		// 	data->screen.preview.sphere.effect.color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
-	}
-	// ((t_base *)data->obj.item[data->obj.index[1]])->effect.color = color;
+	color_selected(data);
 	get_input(data);
 	if (data->screen.interface == RUN)
 	{
@@ -149,22 +154,5 @@ void		input(t_data *data)
 		else if (key_check(*data, SDL_SCANCODE_O))
 			data->flag.antialiasing = 0;
 	}
-	i = -1;
-	while (++i < 4)
-	{
-		if (tmp2 != ((t_base *)data->obj.item[data->obj.index[1]]))
-			((t_base *)tmp2)->effect.color = color;
-		color = ((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color;
-		if (data->hud.color_obj)
-			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = 0xFFFFFF;
-		//printf("%d \\ %d\n", data->hud.color_obj, data->hud.last_color_obj);
-		if (!data->hud.color_obj && data->hud.last_color_obj)
-		{
-			((t_base *)((t_thread *)data->thread)[i].obj.item[data->obj.index[1]])->effect.color = ((t_thread *)data->thread)[i].color_pick;
-			color = data->screen.preview.sphere.effect.color;
-		}
-	}
-	if (!data->hud.color_obj && data->hud.last_color_obj)
-		((t_base *)data->obj.item[data->obj.index[1]])->effect.color = ((t_thread *)data->thread)[i].color_pick;
-	data->hud.last_color_obj = data->hud.color_obj;
+	set_color_selected(data);
 }

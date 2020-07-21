@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 11:45:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/20 10:13:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef	struct			s_thread
 	char				loading;
 	int					current;
 	t_point				perlin[GRADIENT * GRADIENT];
-	Uint32				color_pick;
 }						t_thread;
 /*
 **			Special Function pthread
@@ -96,6 +95,8 @@ t_point					texture_cone(void *data,
 /*
 **			Light
 */
+
+unsigned int			diapo(t_thread *data, t_vec *ray, int index, int bounce);
 int						mix(int i, int j);
 int						apply_mult_3(int i, int j, float d);
 int						apply_mult_2(int i, float d);

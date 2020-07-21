@@ -7,22 +7,35 @@
 	camera : 1
 	ambiant : 0xFFFFFF
 	aa : 0
-	bounce : 0
-	quality : 0
-	object : 2
-	light : 2
-	opti : 0
-	nb_texture : 1
+	bounce : 3
+	refresh : 1
+	quality : 3
+	object : 4
+	light : 4
+	opti : 2000
+	nb_texture : 3
+	textures : "./texture/Minecraft/creeper_head.tga"
+	textures : "./texture/Minecraft/creeper.tga"
 	textures : "./texture/Minecraft/snow.tga"
 [light:1]
-	origin : {10 -15 5}
+	origin : {0 -5 5}
 	color : 0xFFFFFF
-	distance : 10000
+	distance : 10
+	intensity : 0.25
+[light:1]
+	origin : {10 -15 2}
+	color : 0x0000FF
+	distance : 10
 	intensity : 1
 [light:1]
-	origin : {10 0 0}
-	color : 0xFFFFFF
-	distance : 10000
+	origin : {10 -15 -2}
+	color : 0x00FF00
+	distance : 10
+	intensity : 1
+[light:1]
+	origin : {10 -15 -6}
+	color : 0xFF0000
+	distance : 10
 	intensity : 1
 [camera:1]
 	origin : {0 0 0}
@@ -31,11 +44,28 @@
 	origin : {0 1 0}
 	direction : {0 -1 0}
 	color : 0x0
+[object:sphere]
+	origin : {2 -2 2}
+	color : 0xFF00FF
+	rayon : 1
 [object:plan]
 	origin : {4 0 0}
 	direction : {-1 0 0}
 	color : 0xFFFFFF
+			id_texture : 2
+			texture : 255
+			opacity : 1
+			ns : 0
+[object:obj]
+	origin : {-1.5 -1.5 5.25}
+	size : 1
+	color : 0xff5fff
+			t0 : 0
+			t1 : 1
+			t2 : 1
+			t3 : 1
+			t4 : 1
+			t5 : 1
 			id_texture : 0
 			texture : 255
-			opacity : 255
-			ns : 1
+			opacity : 125
