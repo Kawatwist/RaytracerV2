@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 15:18:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 20:24:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 	float			dot;
 	t_disk			dor;
 
-	dot = dot_product(ray.direction, c->origin.direction);
+	c->close = 1;
+	dot = dot_product(normalize(sub_vec(ray.origin, c->origin.origin)), normalize(c->origin.direction));
 	dor.rayon = rayon;
 	if (dot >= 0)
 	{
@@ -35,7 +36,7 @@ static float		close_cone(t_cone *c, t_vec ray, float rayon)
 			mult_vec2(c->origin.direction, -(c->high)));
 		dor.origin.direction = neg_norm(c->origin.direction);
 	}
-	else if (dot < 0)
+	else
 	{
 		dor.origin.origin = add_vec(c->origin.origin,
 			mult_vec2(c->origin.direction, (c->high)));
@@ -98,9 +99,8 @@ float				cone(void *coo, t_vec ray)
 	c.delta = (c.b * c.b) - (4 * c.a * c.c);
 	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
 	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
-	if (c.t0 != -1 || c.t1 != -1)
-		c.t0 = find_t(c);
-	else
+	c.t0 = find_t(c);
+	if (c.t0 == -1)
 		return (-1);
 	return (cone2(cone, ray, c));
 }

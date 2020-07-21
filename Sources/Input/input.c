@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/20 12:38:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 20:32:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,12 @@ static void	input_obj2(t_data *data, char enter)
 		data->obj.type_index -= 1;
 	if (key_check(*data, SDL_SCANCODE_KP_MULTIPLY))
 		data->bounce = 0;
+	if (key_check(*data, SDL_SCANCODE_KP_PLUS) && data->obj.type_index != 2)
+		data->hud.color_obj = 1;
 	if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
-	{
-		data->flag.tree = 1;
 		data->bounce += 1;
-	}
 	else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
-	{
-		data->flag.tree = 1;
 		data->bounce > 0 ? data->bounce -= 1 : 0;
-	}
-	else
-		data->flag.tree = 0;
 }
 
 static void	input_obj(t_data *data)
@@ -141,6 +135,8 @@ void		input(t_data *data)
 		}
 		if (key_check(*data, SDL_SCANCODE_K))
 			data->flag.show = (data->flag.show == 1 ? 0 : 1);
+		if (key_check(*data, SDL_SCANCODE_M))
+			data->flag.cam_move = (data->flag.cam_move == 1 ? 0 : 1);
 		if (data->flag.video)
 			framed(data);
 		if (data->flag.show && !data->flag.asked)

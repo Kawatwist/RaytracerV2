@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/20 09:29:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 20:50:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ int			sub_loop(t_data *data)
 {
 	int err;
 
-	if (data->flag.refresh || data->flag.asked || data->flag.video)
+	if ((data->flag.refresh || data->flag.asked || data->flag.video) && !data->flag.show)
 	{
 		if ((err = looping(data)) != 0)
 			return (err);
@@ -299,7 +299,7 @@ int			sub_loop(t_data *data)
 		real_time_icon(data);
 	}
 	else
-		SDL_Delay(16);
+		SDL_Delay(64);
 	if (data->hud.flag_hud)
 		texture_on_screen(data);
 	else
@@ -339,7 +339,6 @@ static int			signals(t_data *data)
 
 static void			effect(t_data *data)
 {
-	//data->flag.cam_move = 1;
 	if (data->flag.video && data->flag.cam_move)
 	{
 		rot_cam_video(data, &data->obj.camera[data->obj.index[0]]);

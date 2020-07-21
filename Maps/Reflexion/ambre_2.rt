@@ -2,7 +2,7 @@
 #			Scene 42 : The Ambre			#
 #############################################
 [header]
-	xscreen : 500
+	xscreen : 1000
 	yscreen : 500
 	camera : 3
 	ambiant : 0x7F007F
@@ -29,12 +29,23 @@
 [camera:1]
 	origin : {0 0 -15}
 	direction : {0 0 1}
+	mode : 0
 [camera:1]
-	origin : {0 -4 -4}
+	origin : {0 0 -15}
 	direction : {0 0 1}
+	mode : 1
 [camera:1]
-	origin : {-10 0 -15}
+	origin : {0 0 -15}
 	direction : {0 0 1}
+	mode : 2
+# [camera:1]
+# 	origin : {0 -4 -4}
+# 	direction : {0 0 1}
+# 	mode : 1
+# [camera:1]
+# 	origin : {-10 0 -15}
+# 	direction : {0 0 1}
+# 	mode : 2
 ############### OBJECT ################
 [object:sphere]
 	origin : {0 -4 0}

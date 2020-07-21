@@ -6,13 +6,23 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 20:09:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 19:51:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void		preset_cam(t_data *data, int index)
+static void		setup_stereo(t_data *data, t_camera *cam)
+{
+	cam->stereo->x = veccpy(cam->x);
+	cam->stereo->y = veccpy(cam->y);
+	cam->stereo->sc = sub_vec(cam->sc, mult_vec2(cam->x, data->window.x / 4.0)); //Padding
+	cam->stereo->pos.origin = sub_vec(cam->pos.origin, mult_vec2(cam->x, data->window.x / 4.0));
+	cam->stereo->pos.direction = veccpy(cam->pos.direction);
+	cam->axerot = sub_vec(cam->pos.origin, mult_vec2(cam->x, data->window.x / 8.0));
+}
+
+static int		preset_cam(t_data *data, int index)
 {
 	float	coef;
 
@@ -35,17 +45,28 @@ static void		preset_cam(t_data *data, int index)
 		(data->obj.camera[index]).sc = add_vec((data->obj.camera[index]).sc,
 			fill_vec(0, (1 - coef) / 2, 0));
 	}
+	if (data->obj.camera[index].mode != 0)
+	{
+		if (!(data->obj.camera[index].stereo = malloc(sizeof(t_camera))))
+			return (1);
+		setup_stereo(data, &data->obj.camera[index]);
+	}
+	return (0);
 }
 
 static void		apply_rot(t_data *data, t_point base,
 	t_point direction, int index)
 {
-	if (direction.y != base.y && direction.z != base.z)
-		rot_init_cam_x(data, &base, &direction, index);
-	if (direction.x != base.x && direction.z != base.z)
-		rot_init_cam_y(data, &base, &direction, index);
-	if (direction.x != base.x && direction.y != base.y)
-		rot_init_cam_z(data, &base, &direction, index);
+	if (!data->obj.camera[index].mode)
+	{
+		if (direction.y != base.y && direction.z != base.z)
+			rot_init_cam_x(data, &base, &direction, index);
+		if (direction.x != base.x && direction.z != base.z)
+			rot_init_cam_y(data, &base, &direction, index);
+		// if (direction.x != base.x && direction.y != base.y) // NEED IT ?
+		// 	rot_init_cam_z(data, &base, &direction, index); // NEED IT ?
+	}
+	// else rotate around one point
 }
 
 int				initialize_cam(t_data *data)
@@ -59,8 +80,10 @@ int				initialize_cam(t_data *data)
 	{
 		direction = normalize((data->obj.camera[index]).pos.direction);
 		base = fill_vec(0, 0, 1);
-		preset_cam(data, index);
-		apply_rot(data, base, direction, index);
+		if (preset_cam(data, index))
+			return (1);
+		if (!data->obj.camera[index].mode)
+			apply_rot(data, base, direction, index);
 		data->obj.camera[index].oldpos.origin =
 			veccpy(data->obj.camera[index].pos.origin);
 		data->obj.camera[index].oldpos.direction =
@@ -68,6 +91,17 @@ int				initialize_cam(t_data *data)
 		data->obj.camera[index].oldsc = veccpy(data->obj.camera[index].sc);
 		data->obj.camera[index].oldx = veccpy(data->obj.camera[index].x);
 		data->obj.camera[index].oldy = veccpy(data->obj.camera[index].y);
+		if (data->obj.camera[index].mode)
+		{
+			// apply_rot_stereo(data, base, direction, index);
+			data->obj.camera[index].stereo->oldpos.origin =
+				veccpy(data->obj.camera[index].stereo->pos.origin);
+			data->obj.camera[index].stereo->oldpos.direction =
+				veccpy(data->obj.camera[index].stereo->pos.direction);
+			data->obj.camera[index].stereo->oldsc = veccpy(data->obj.camera[index].stereo->sc);
+			data->obj.camera[index].stereo->oldx = veccpy(data->obj.camera[index].stereo->x);
+			data->obj.camera[index].stereo->oldy = veccpy(data->obj.camera[index].stereo->y);
+		}
 		index++;
 	}
 	return (0);

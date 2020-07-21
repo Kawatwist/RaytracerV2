@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 21:38:30 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/21 16:07:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int				parsing_camera(t_data *data, char **old)
 			data->obj.camera[index].pos.origin = get_point(line);
 		else if (!ft_strncmp("\tdirection : ", line, 13))
 			data->obj.camera[index].pos.direction = normalize(get_point(line));
+		else if (!ft_strncmp("\tmode : ", line, 8))
+			data->obj.camera[index].mode = ft_atoi(&(line[7])) & 0b11;
 		else if (ft_strchr(line, '#'))
 			;
 		else

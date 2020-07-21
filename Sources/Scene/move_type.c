@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 20:59:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 16:35:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ static void	refresh_cam(t_data *data, void **cam)
 		(*(t_camera **)cam)->sc = veccpy((*(t_camera **)cam)->oldsc);
 		(*(t_camera **)cam)->x = veccpy((*(t_camera **)cam)->oldx);
 		(*(t_camera **)cam)->y = veccpy((*(t_camera **)cam)->oldy);
+		if ((*(t_camera **)cam)->mode)
+		{
+			(*(t_camera **)cam)->stereo->pos.origin =
+				veccpy((*(t_camera **)cam)->stereo->oldpos.origin);
+			(*(t_camera **)cam)->stereo->pos.direction =
+				veccpy((*(t_camera **)cam)->stereo->oldpos.direction);
+			(*(t_camera **)cam)->stereo->sc = veccpy((*(t_camera **)cam)->stereo->oldsc);
+			(*(t_camera **)cam)->stereo->x = veccpy((*(t_camera **)cam)->stereo->oldx);
+			(*(t_camera **)cam)->stereo->y = veccpy((*(t_camera **)cam)->stereo->oldy);
+		}
 	}
 }
 
@@ -85,6 +95,13 @@ void		move_cam(t_data *data, void **cam)
 		add_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));
 		(*(t_camera **)cam)->sc =
 		add_vec((*(t_camera **)cam)->sc, mult_vec2(tmp, 0.5));
+		if ((*(t_camera **)cam)->mode)
+		{
+			(*(t_camera **)cam)->stereo->pos.origin =
+			add_vec((*(t_camera **)cam)->stereo->pos.origin, mult_vec2(tmp, 0.5));
+			(*(t_camera **)cam)->stereo->sc =
+			add_vec((*(t_camera **)cam)->stereo->sc, mult_vec2(tmp, 0.5));
+		}
 	}
 	if (key_old(*data, SDL_SCANCODE_S))
 	{
@@ -92,10 +109,14 @@ void		move_cam(t_data *data, void **cam)
 		sub_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));
 		(*(t_camera **)cam)->sc =
 		sub_vec((*(t_camera **)cam)->sc, mult_vec2(tmp, 0.5));
+		if ((*(t_camera **)cam)->mode)
+		{
+			(*(t_camera **)cam)->stereo->pos.origin =
+			sub_vec((*(t_camera **)cam)->stereo->pos.origin, mult_vec2(tmp, 0.5));
+			(*(t_camera **)cam)->stereo->sc =
+			sub_vec((*(t_camera **)cam)->stereo->sc, mult_vec2(tmp, 0.5));
+		}
 	}
 	input_move_cam(data, tmp, cam);
 	call_rot_cam(data);
-	// ft_putstr("Camera actually selected :");
-	// ft_putnbr(data->obj.index[2]);
-	// ft_putchar('\n');
 }

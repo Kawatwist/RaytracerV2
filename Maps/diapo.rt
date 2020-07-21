@@ -4,7 +4,7 @@
 [header]
 	xscreen : 1000
 	yscreen : 1000
-	camera : 1
+	camera : 2
 	ambiant : 0xFFFFFF
 	aa : 0
 	bounce : 3
@@ -40,10 +40,14 @@
 [camera:1]
 	origin : {0 0 0}
 	direction : {0 0 1}
+[camera:1]
+	origin : {0 0 0}
+	direction : {0 0 1}
+	mode : 1
 [object:plan]
 	origin : {0 1 0}
 	direction : {0 -1 0}
-	color : 0x0
+	color : 0xFFFFFF
 [object:sphere]
 	origin : {2 -2 2}
 	color : 0xFF00FF

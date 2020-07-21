@@ -6,28 +6,41 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 20:04:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 19:38:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-static	t_point		find_dir(t_thread *data, int x, int y)
+static	t_point		find_dir(t_thread *data, int x, int y, int cam)
 {
 	t_point		ret;
 
-	ret = veccpy(data->obj.camera[data->obj.index[0]].sc);
-	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
-	ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
-	ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
+	if (!data->obj.camera[data->obj.index[0]].mode || cam == 0)
+	{
+		ret = veccpy(data->obj.camera[data->obj.index[0]].sc);
+		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
+		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
+		ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
+	}
+	else
+	{
+		ret = veccpy(data->obj.camera[data->obj.index[0]].stereo->sc);
+		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].stereo->x, x));
+		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].stereo->y, y));
+		ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].stereo->pos.origin);
+	}
 	return (ret);
 }
 
-static t_vec		setup_ray(t_thread *data, int x, int y)
+static t_vec		setup_ray(t_thread *data, int x, int y, int cam)
 {
-	data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
-	data->ray.direction = normalize(find_dir(data, x, y));
+	if (cam == 0)
+		data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
+	else
+		data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].stereo->pos.origin);
+	data->ray.direction = normalize(find_dir(data, x, y, cam));
 	return (data->ray);
 }
 
@@ -59,9 +72,23 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 	*y = (*curr / data->x) + (data->pos / data->x);
 	*x = *curr % data->x;
 	if (*curr < data->x || (!(*x % ((data->flag.pixel * 2) + 1)) && !(*y %
-			((data->flag.pixel * 2) + 1))))
+		((data->flag.pixel * 2) + 1))))
+	{
 		((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, *x,
-				*y), data->bounce);
+				*y, 0), data->bounce);
+		if (data->obj.camera[data->obj.index[0]].mode == 1)
+		{
+			((unsigned int *)data->pxl)[*curr] = ((send_ray(data, setup_ray(data, *x,
+				*y, 1), data->bounce) & 0xFFFF) + (((unsigned int *)data->pxl)[*curr] & 0xFF0000));
+		}
+		else if (data->obj.camera[data->obj.index[0]].mode == 2)
+		{
+			if (*curr % data->x < data->x / 2.0)
+				((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, ((*x) * 2), *y, 0), data->bounce);
+			else
+				((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, ((*x - (data->x / 2)) * 2), *y, 1), data->bounce);
+		}
+	}
 	else
 		quality(data, x, y, curr);
 }

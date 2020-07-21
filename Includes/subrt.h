@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/20 10:26:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/21 19:50:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,17 +131,22 @@ typedef struct		s_input
 	int				button;
 }					t_input;
 
-typedef struct		s_camera
+typedef struct		s_camera t_camera;
+
+struct				s_camera
 {
 	t_vec			pos;
+	t_vec			oldpos;
 	t_point			sc;
 	t_point			x;
 	t_point			y;
-	t_vec			oldpos;
 	t_point			oldsc;
 	t_point			oldx;
 	t_point			oldy;
-}					t_camera;
+	t_point			axerot;
+	t_camera		*stereo; // NEED TO FREE
+	Uint32			mode : 2;
+};
 
 typedef struct		s_object
 {
