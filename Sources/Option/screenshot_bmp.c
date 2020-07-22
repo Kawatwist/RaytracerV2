@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:44:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:42:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 	char			*name;
 	SDL_Surface		*tobmp;
 
+	check_folder_screenshot();
 	name = ft_strdup(*path);
 	name = findname_bmp(name);
 	tobmp = SDL_CreateRGBSurfaceWithFormatFrom(pxl, data->window.x,
@@ -47,17 +48,19 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		{
 			SDL_FreeSurface(tobmp);
 			ft_putstr("Screenshot impossible\n");
-			free(name);
+			name ? free(name) : 0;
+			return ;
 		}
 		SDL_FreeSurface(tobmp);
 	}
 	if (mode == 1)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-			"Screenshot Done", name, data->window.window);
-		free(name);
-		free(*path);
+		if (name)
+			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+				"Screenshot Done", name, data->window.window);
+		name ? free(name) : 0;
+		*path ? free(*path) : 0;
 	}
 	else
-		free(name);
+		name ? free(name) : 0;
 }
