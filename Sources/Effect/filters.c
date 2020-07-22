@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 02:09:24 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/30 21:17:00 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/22 21:56:44 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-static void	filter_negatif(t_data *data, unsigned int i)
-{
-	while (++i < data->window.x * data->window.y)
-	{
-		((unsigned int *)data->window.pxl)[i] *= -1;
-	}
-}
 
 static void	filter_cartoon(t_data *data, unsigned int i)
 {
@@ -85,7 +77,8 @@ static void	filter_check(t_data *data, unsigned int i, int j)
 {
 	while (++i < data->window.x * data->window.y)
 	{
-		((unsigned int *)data->window.pxl)[i] = (((unsigned int *)data->window.pxl)[i] & (0xFF << (j * 8)));
+		((unsigned int *)data->window.pxl)[i] =
+		(((unsigned int *)data->window.pxl)[i] & (0xFF << (j * 8)));
 	}
 }
 

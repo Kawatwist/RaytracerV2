@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 21:10:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:56:22 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ static t_point	convert_normalrgb(t_point normal, unsigned char *color,
 {
 	t_point	base;
 	t_point	ret;
+
 	(void)dist;
 	(void)percent;
 	base = normalize((normal));
-	ret = normalize(fill_vec((color[1] / 128.0) - 1, (color[2] / 128.0) - 1, (color[3] / 128.0) - 1));
+	ret = normalize(
+		fill_vec((color[1] / 128.0) - 1,
+		(color[2] / 128.0) - 1, (color[3] / 128.0) - 1));
 	ret = fill_vec(ret.x * M_PI, ret.y * M_PI, ret.z * M_PI);
 	base = rotx(base, ret.x);
 	base = roty(base, ret.y);
