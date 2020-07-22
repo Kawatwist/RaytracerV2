@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 20:31:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 17:28:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_flag
 	Uint32		normal : 1;
 	Uint32		screen : 1;
 	Uint32		typing : 1;
+	Uint32		shadow : 1;
 }				t_flag;
 
 
@@ -232,6 +233,8 @@ int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
+void			init_case(t_data *data);
+
 /*
 **			Font
 */
@@ -279,6 +282,21 @@ void			create_menu_texture(t_data *data);
 int				init_preview(t_data *data);
 void			mini_rt(t_data *data);
 void			new_rt(t_data *data);
+float			slider(t_data *data, t_slider *slider);
+void			draw_button(t_data *data, int x, int y, t_case c);
+void			draw_background_box(t_data *data, int y);
+char			*input_hud_text(t_data *data, char *text);
+void			boo_value_diapo(t_data *data, int val);
+void			boo_value_normals(t_data *data, int val);
+void			boo_value_show(t_data *data, int val);
+void			boo_value_aa(t_data *data, int val);
+void			boo_value_quality(t_data *data, int val);
+void			boo_value_refresh(t_data *data, int val);
+void			show_button(t_data *data);
+void			show_txt(t_data *data);
+void			click_button(t_data *data);
+void			video_settings(t_data *data);
+void			draw_nbvideo_bg(t_data *data);
 
 /*
 **			Run

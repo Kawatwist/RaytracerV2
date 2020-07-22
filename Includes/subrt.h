@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 19:50:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 17:28:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_case
 		char		*to_print;
 		int			val;
 		char		i;
+		int			type;
 }					t_case;
 
 typedef struct		s_select
@@ -222,7 +223,7 @@ typedef struct		s_preview
 	SDL_Texture		*texture;
 	void			*pxl;
 	t_light			light;
-	t_slider		slider[2];
+	t_slider		slider[4];
 }					t_preview;
 
 typedef struct      s_perl

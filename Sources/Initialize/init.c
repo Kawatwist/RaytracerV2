@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 20:35:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 17:29:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			initialize(t_data *data)
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
 	data->flag.typing = 0;
+	data->flag.shadow = 0;
 	data->window.x = 0;
 	data->window.y = 0;
 	data->dist[0] = sphere;
@@ -48,6 +49,5 @@ int			initialize(t_data *data)
 	data->ambiant = 0xFF000000;
 	initialize2(data);
 	generate_perlin(data);
-
 	return (0);
 }
