@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 22:23:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:15:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	parsing_head_v3(t_data *data, char *line)
 		data->window.y = ((ft_atoi(&(line[11]))) >= 800 ?
 			ft_atoi(&(line[11])) : 800);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
-		data->bounce = ft_atoi(&(line[10]));
+		data->bounce = ((unsigned int)ft_atoi(&(line[10]))) > 500 ? 500 : ((unsigned int)ft_atoi(&(line[10])));
 	else if (!ft_strncmp("\tcamera : ", line, 10))
 		data->obj.nb_camera = ft_atoi(&(line[10]));
 	else if (!ft_strncmp("\tobject : ", line, 10))

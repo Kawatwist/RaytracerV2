@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:41:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:19:00 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void		show_hud_loading(t_data *data)
 	else
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, &pos, &pos);
 	/* Place Hud There */
-	texture_on_screen(data);
+	// texture_on_screen(data);
 }
 
 static void		loading_sc(t_data *data, int p)

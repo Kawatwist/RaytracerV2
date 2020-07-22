@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/22 20:41:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:31:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,17 +172,12 @@ int		init_case(t_data *data, int mode)
 {
 	int i;
 
-	i = 0;
 	if (mode == 0)
-	{
 		if (!(data->all_button = (t_case *)malloc(sizeof(t_case) * CASE_NBR)))
 			return (1);
-	}
-	while (i < CASE_NBR)
-	{
+	i = -1;
+	while (++i < CASE_NBR)
 		button_stand(data, i);
-		i++;
-	}
 	button_once_refresh(data);
 	button_aa(data);
 	button_normals(data);
@@ -256,7 +251,7 @@ void	draw_slider(t_data *data, int y, int selector)
 	if (selector == 2)
 		data->flag.filter = data->screen.preview.slider[selector].value * 7;
 	else if (selector == 3)
-		data->bounce = data->screen.preview.slider[selector].value * 20;
+		data->bounce = (unsigned int)(data->screen.preview.slider[selector].value * 20);
 }
 
 void	show_button(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:19:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 21:14:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int			initialize(t_data *data)
 	data->dist[6] = obj;
 	data->ambiant = 0xFF000000;
 	initialize2(data);
+	generate_perlin(data);
 	if (init_case(data, 0))
 		return (1);
-	generate_perlin(data);
 	return (0);
 }
