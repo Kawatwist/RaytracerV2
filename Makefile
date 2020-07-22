@@ -109,6 +109,7 @@ SRC				=	main.c										\
 					input_light.c								\
 					input_move_cam.c							\
 					input_textures.c							\
+					find_dir.c									\
 					screenshot.c								\
 					screenshot_bmp.c							\
 					screenshot_framed.c							\

@@ -6,11 +6,18 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 21:42:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 22:32:42 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		check_folder_screenshot(void)
+{
+	if (access("./Screenshot", F_OK))
+		if (mkdir("./Screenshot", 0777))
+			ft_putstr("Creation du dossier Screenshot impossible\n");
+}
 
 static char	*findname_bmp(char *name)
 {
@@ -32,7 +39,22 @@ static char	*findname_bmp(char *name)
 	return (name);
 }
 
-void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
+static void	screenshot_bmp_2(t_data *data, char **path, char *name, int mode)
+{
+	if (mode == 1)
+	{
+		if (name)
+			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+				"Screenshot Done", name, data->window.window);
+		name ? free(name) : 0;
+		*path ? free(*path) : 0;
+	}
+	else
+		name ? free(name) : 0;
+}
+
+void		create_screenshot_bmp(t_data *data, void *pxl,
+		char **path, int mode)
 {
 	char			*name;
 	SDL_Surface		*tobmp;
@@ -53,14 +75,5 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		}
 		SDL_FreeSurface(tobmp);
 	}
-	if (mode == 1)
-	{
-		if (name)
-			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-				"Screenshot Done", name, data->window.window);
-		name ? free(name) : 0;
-		*path ? free(*path) : 0;
-	}
-	else
-		name ? free(name) : 0;
+	screenshot_bmp_2(data, path, name, mode);
 }

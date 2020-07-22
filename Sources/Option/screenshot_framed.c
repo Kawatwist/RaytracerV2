@@ -6,29 +6,25 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:51:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 22:36:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <sys/types.h>
 
-static char		*finddirname(char *name)
+static char		*next_frame_2(int nb, char *name, char *fake, char *fake2)
 {
-	int		nb;
-	char	*fake;
-
-	fake = ft_strdup(name);
-	while (access(fake, F_OK) == 0)
-	{
-		nb = ft_atoi(ft_strchr(fake, '_') + 1);
-		nb += 1;
-		*(ft_strchr(fake, '_') + 1) = '\0';
-		fake = ft_strjoinfree(fake, ft_itoa(nb), 3);
-	}
-	free(name);
+	fake2 ? free(fake2) : 0;
+	if (*(ft_strrchr(fake, '_') + 1))
+		*(ft_strrchr(fake, '_') + 1) = '\0';
+	if (!(fake = ft_strjoinfree(fake, ft_itoa(nb), 3)))
+		return (NULL);
+	if (!(fake = ft_strjoinfree(fake, ".bmp", 1)))
+		return (NULL);
+	name ? free(name) : 0;
 	name = ft_strdup(fake);
-	free(fake);
+	fake ? free(fake) : 0;
 	return (name);
 }
 
@@ -54,43 +50,7 @@ static char		*next_frame(t_data *data, char *name)
 		return (NULL);
 	if (nb == data->flag.nb_video - 1 || access(fake2, F_OK))
 		nb = 0;
-	fake2 ? free(fake2) : 0;
-	if (*(ft_strrchr(fake, '_') + 1))
-		*(ft_strrchr(fake, '_') + 1) = '\0';
-	if (!(fake = ft_strjoinfree(fake, ft_itoa(nb), 3)))
-		return (NULL);
-	if (!(fake = ft_strjoinfree(fake, ".bmp", 1)))
-		return (NULL);
-	name ? free(name) : 0;
-	name = ft_strdup(fake);
-	fake ? free(fake) : 0;
-	return (name);
-}
-
-static char		*findcurrentdirname(char *name)
-{
-	int		nb;
-	char	*fake;
-	char	*fake2;
-
-	fake = ft_strdup(name);
-	while (access(fake, F_OK) == 0)
-	{
-		nb = ft_atoi(ft_strchr(fake, '_') + 1);
-		*(ft_strchr(fake, '_') + 1) = '\0';
-		fake2 = ft_strjoinfree(fake, ft_itoa(nb + 1), 2);
-		if (access(fake2, F_OK))
-		{
-			free(fake2);
-			break;
-		}
-		fake = ft_strjoinfree(fake, ft_itoa(nb + 1), 3);
-	}
-	fake = ft_strjoinfree(fake, ft_itoa(nb), 3);
-	free(name);
-	name = ft_strdup(fake);
-	free(fake);
-	return (name);
+	return (next_frame_2(nb, name, fake, fake2));
 }
 
 void			show_framed(t_data *data)
@@ -105,7 +65,6 @@ void			show_framed(t_data *data)
 		path = findcurrentdirname(path);
 		path = ft_strjoinfree(path, "/Frame_0.bmp\0", 1);
 	}
-	/* Secure */
 	surface = SDL_LoadBMP(path);
 	txt = SDL_CreateTextureFromSurface(data->window.rend, surface);
 	SDL_FreeSurface(surface);
@@ -123,7 +82,8 @@ void			show_framed(t_data *data)
 
 static void		stop_frame(t_data *data, char **path)
 {
-	ft_putstr("Attention, Rendu Indisponible (Creation du dossier impossible)\n");
+	ft_putstr("Attention, Rendu Indisponible");
+	ft_putstr(" (Creation du dossier impossible)\n");
 	free(*path);
 	*path = NULL;
 	data->flag.show = 0;

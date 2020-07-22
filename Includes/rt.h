@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:53:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 22:34:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,8 @@ void			light_cursor(t_data *data);
 void			check_folder_screenshot(void);
 void			create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
+char			*finddirname(char *name);
+char			*findcurrentdirname(char *name);
 void			framed(t_data *data);
 void			show_framed(t_data *data);
 /*
