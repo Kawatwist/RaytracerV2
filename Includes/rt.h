@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:34:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 22:47:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ struct			s_data
 	int					ambiant;
 	void				*thread;
 	int					max_dist;
+	int					argc;
 	t_point				perlin[GRADIENT * GRADIENT];
 };
 
