@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/22 17:29:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:18:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,11 +241,6 @@ static int	looping(t_data *data)
 	if (data->percent > 99)
 		data->percent = 0;
 	SDL_UnlockTexture(data->window.txt);
-	if (data->hud.flag_hud)
-		texture_on_screen(data);
-	else
-		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	SDL_RenderPresent(data->window.rend);
 	return (0);
 }
 
@@ -346,7 +341,6 @@ int			loop(t_data *data)
 		return (err);
 	data->flag.asked = 1;
 	create_menu_texture(data);
-	init_case(data);
 	while (TRUE)
 	{
 		if (key_check(*data, SDL_SCANCODE_BACKSPACE))

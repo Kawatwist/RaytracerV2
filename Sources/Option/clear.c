@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 04:11:18 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/22 20:37:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,21 @@ static void		destroy_text(SDL_Texture *t)
 **	Destroy Window ?
 */
 
+static void		clear_cam(t_data *data, t_camera *cam)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->obj.nb_camera)
+		cam[i].mode != 0 ? free(cam[i].stereo) : 0;
+}
+
 int				clear_memory(t_data *data)
 {
 	clear_texture(data, data->texture);
 	clear_obj_item(data, data->obj);
 	clear_normal(data, data->normal);
+	clear_cam(data, data->obj.camera);
 	ft_memdel((void **)&data->obj.camera);
 	ft_memdel((void **)&data->obj.light);
 	ft_memdel((void **)&data->input.rkey);

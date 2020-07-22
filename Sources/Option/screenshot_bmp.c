@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   screenshot_bmp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 04:12:12 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/22 20:44:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		data->window.y, 32, data->window.x * 4, SDL_PIXELFORMAT_BGRA32);
 	if (tobmp != NULL)
 	{
-		SDL_SaveBMP(tobmp, name);
+		if (SDL_SaveBMP(tobmp, name))
+		{
+			SDL_FreeSurface(tobmp);
+			ft_putstr("Screenshot impossible\n");
+			free(name);
+		}
 		SDL_FreeSurface(tobmp);
 	}
 	if (mode == 1)
@@ -51,9 +56,8 @@ void		create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
 			"Screenshot Done", name, data->window.window);
 		free(name);
-		free(*path); // Ici crash ?
+		free(*path);
 	}
 	else
 		free(name);
-	// Leaks on mode 0 ?
 }

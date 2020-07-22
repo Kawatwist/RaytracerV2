@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 19:30:22 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 20:03:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:51:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	single_loop(t_data *data)
 	data->percent++;
 	if (data->percent > 99)
 		data->percent = 0;
+	check_folder_screenshot();
 	create_screenshot(data, data->window.pxl);
 	return (0);
 }

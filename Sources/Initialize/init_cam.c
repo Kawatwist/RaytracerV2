@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 19:51:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:27:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		setup_stereo(t_data *data, t_camera *cam)
 {
 	cam->stereo->x = veccpy(cam->x);
 	cam->stereo->y = veccpy(cam->y);
-	cam->stereo->sc = sub_vec(cam->sc, mult_vec2(cam->x, data->window.x / 4.0)); //Padding
+	cam->stereo->sc = sub_vec(cam->sc, mult_vec2(cam->x, data->window.x / 4.0));
 	cam->stereo->pos.origin = sub_vec(cam->pos.origin, mult_vec2(cam->x, data->window.x / 4.0));
 	cam->stereo->pos.direction = veccpy(cam->pos.direction);
 	cam->axerot = sub_vec(cam->pos.origin, mult_vec2(cam->x, data->window.x / 8.0));
@@ -63,10 +63,9 @@ static void		apply_rot(t_data *data, t_point base,
 			rot_init_cam_x(data, &base, &direction, index);
 		if (direction.x != base.x && direction.z != base.z)
 			rot_init_cam_y(data, &base, &direction, index);
-		// if (direction.x != base.x && direction.y != base.y) // NEED IT ?
-		// 	rot_init_cam_z(data, &base, &direction, index); // NEED IT ?
+		if (direction.x != base.x && direction.y != base.y) // NEED IT ?
+			rot_init_cam_z(data, &base, &direction, index); // NEED IT ?
 	}
-	// else rotate around one point
 }
 
 int				initialize_cam(t_data *data)
@@ -93,7 +92,6 @@ int				initialize_cam(t_data *data)
 		data->obj.camera[index].oldy = veccpy(data->obj.camera[index].y);
 		if (data->obj.camera[index].mode)
 		{
-			// apply_rot_stereo(data, base, direction, index);
 			data->obj.camera[index].stereo->oldpos.origin =
 				veccpy(data->obj.camera[index].stereo->pos.origin);
 			data->obj.camera[index].stereo->oldpos.direction =

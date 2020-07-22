@@ -6,11 +6,18 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 16:43:30 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 21:16:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:50:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		check_folder_screenshot(void)
+{
+	if (access("./Screenshot", F_OK))
+		if (mkdir("./Screenshot", 0777))
+			ft_putstr("Creation du dossier Screenshot impossible\n");
+}
 
 static char	*findname(char *name)
 {

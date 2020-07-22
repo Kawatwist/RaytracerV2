@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/21 16:53:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 18:08:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 
 	if (((t_base *)r->obj)->effect.reflection)
 	{
-		tmp = setup_reflection(data, r->obj, ray, r->dist[0]);
+		tmp = setup_reflection(data, ray, r->dist[0]);
 		r->color[1] = send_ray(data, tmp, r->bounce);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.reflection / 255.0, -1);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 17:28:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:36:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ struct				s_camera
 	t_point			oldx;
 	t_point			oldy;
 	t_point			axerot;
-	t_camera		*stereo; // NEED TO FREE
+	t_camera		*stereo;
 	Uint32			mode : 2;
 };
 

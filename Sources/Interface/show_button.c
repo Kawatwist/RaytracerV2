@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   show_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/21 04:03:48 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/22 20:41:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,13 +168,16 @@ void	button_spawn(t_data *data)
 	data->all_button[10].i = 1;
 }
 
-void	init_case(t_data *data)
+int		init_case(t_data *data, int mode)
 {
 	int i;
 
 	i = 0;
-	if (!(data->all_button = (t_case *)malloc(sizeof(t_case) * CASE_NBR)))
-		return ;
+	if (mode == 0)
+	{
+		if (!(data->all_button = (t_case *)malloc(sizeof(t_case) * CASE_NBR)))
+			return (1);
+	}
 	while (i < CASE_NBR)
 	{
 		button_stand(data, i);
@@ -191,6 +194,7 @@ void	init_case(t_data *data)
 	button_oculus(data);
 	button_stereo(data);
 	button_spawn(data);
+	return (0);
 }
 
 void	draw_nbvideo_bg(t_data *data)
@@ -227,8 +231,18 @@ void	video_settings(t_data *data)
 		str = input_hud_text(data, str);
 	if (str)
 	{
-		data->font.str = ft_strdup(str); // RENTRER LA VALEUR DANS NB_VIDEO
+		data->font.str = ft_strdup(str);
 		print_text(data, 115, 4, 20);
+	}
+	if (data->input.key[SDL_SCANCODE_RETURN] && !data->input.oldkey[SDL_SCANCODE_RETURN] && str && data->flag.typing)
+	{
+		data->flag.typing = 0;
+		if (str)
+		{
+			data->flag.nb_video = ft_atoi(str) > 4095 ? 4095 : ft_atoi(str);
+			free(str);
+		}
+		str = NULL;
 	}
 }
 
@@ -255,9 +269,9 @@ void	show_button(t_data *data)
 	pos.x = 245;
 	pos.y = 95;
 	selector = 2;
+	init_case(data, 1);
 	i = (int)(data->screen.preview.slider[1].value * CASE_NBR);
 	j = i;
-	init_case(data);
 	while (i < CASE_NBR && (i - j) * 45 < data->window.y * 0.5 - 92)
 	{
 		draw_background_box(data, pos.y);

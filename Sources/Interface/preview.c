@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preview.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/21 01:42:49 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/22 20:33:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			init_preview(t_data *data)
 	data->screen.preview.sphere.effect.color = 0xFF00FF;
 	if (!(data->screen.preview.texture = SDL_CreateTexture(data->window.rend,
 		SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING, 300, 300)))
-		return (1); // Protection
+		return (1);
 	return (0);
 }
 
@@ -188,7 +188,6 @@ void		new_rt(t_data *data)
 		data->screen.preview.sphere.effect.color), 0x333333,
 		(0x1000000007), data->screen.preview.pxl));
 	SDL_UnlockTexture(data->screen.preview.texture);
-	//slider(data, &data->screen.preview.slider[0]);
 
 	data->screen.preview.slider[1].position.h = data->window.y  * 0.55 - 92;
 	data->screen.preview.slider[1].value = slider(data, &data->screen.preview.slider[1]);

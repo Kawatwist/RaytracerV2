@@ -119,15 +119,9 @@ SRC				=	main.c										\
 					filters.c									\
 					check_filter.c								\
 					cartoon.c									\
-					init_hud.c									\
-					place_hud.c									\
-					rgb_hud.c									\
-					set_hud.c									\
 					input_hud.c									\
 					menu_texture.c								\
 					input_filter.c								\
-					set_section.c								\
-					hud_obj.c									\
 					damier.c									\
 					create_specular.c							\
 					diapo.c										\
@@ -175,7 +169,7 @@ all: $(NAME)
 
 $(NAME): $(IMAGE) $(OBJ)
 	@echo "${vertfonce}Compiling $@ ...${neutre}\c"
-	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG) $(DEBUG)
+	@$(CC) $(CFLAG) -g -o $(NAME) $(OBJ) $(LFLAG)
 	@echo "${vertclair}DONE${neutre}"
 	@echo "Need to Rename in rt"
 

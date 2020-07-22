@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:05:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/20 12:26:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:27:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void			color_picker(t_data *data)
 	int		j;
 
 	distance = 0.0;
-	radius = 120; // 150
-	radius_min = 85; // 115 de base avant modif
+	radius = 120;
+	radius_min = 85;
 	i = 0;
 	j = 0;
 	while (i++ <= 2 * radius)

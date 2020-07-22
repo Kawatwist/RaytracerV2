@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/14 19:42:21 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:52:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				initialize_sdl(t_data *data)
 		return (4);
 	initialize_event(data);
 	SDL_RenderPresent(data->window.rend);
-	if (loading(data) || init_hud(data))
+	if (loading(data))
 		return (1);
 	if ((init_sub(data)) != 0)
 		return (5);

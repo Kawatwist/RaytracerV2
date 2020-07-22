@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 17:28:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 20:53:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ void			input_color_light(t_data *data, void **light, char ctrl);
 void			input_distance_light(t_data *data, void **light, char ctrl);
 void			input_intensity_light(t_data *data, void **light, char ctrl);
 void			light_cursor(t_data *data);
+void			check_folder_screenshot(void);
 void			create_screenshot_bmp(t_data *data, void *pxl, char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
 void			framed(t_data *data);
@@ -233,7 +234,7 @@ int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
-void			init_case(t_data *data);
+int				init_case(t_data *data, int mode);
 
 /*
 **			Font
@@ -320,19 +321,11 @@ void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
 void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
-int				init_hud(t_data *data);
-void			set_hud(t_data *data);
 
 void			create_rgb_txt(t_data *data);
 int				pics_on_screen(t_data *data);
-void			set_section(t_data *data);
-void			hud_triangle(t_data *data);
-void			hud_cylinder(t_data *data);
-void			hud_cone(t_data *data);
-void			hud_plan(t_data *data);
-void			hud_sphere(t_data *data);
 
-int				hitbox(int	x, int	y, SDL_Rect *pos);//mettre autre part
+int				hitbox(int	x, int	y, SDL_Rect *pos);
 
 
 
