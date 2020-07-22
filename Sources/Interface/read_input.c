@@ -3,34 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:52:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/08 20:35:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 00:01:54 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 
-static char	printable_key_check(t_data *data, int i)
+static char	printable_key_check_ext(t_data *data, int i)
 {
-	if ((i >= SDL_SCANCODE_A) && (i <= SDL_SCANCODE_Z) && !data->input.key[SDL_SCANCODE_LSHIFT])
-		return (i - SDL_SCANCODE_A + 'a');
-	else if ((i >= SDL_SCANCODE_A) && (i <= SDL_SCANCODE_Z) && data->input.key[SDL_SCANCODE_LSHIFT])
-		return (i - SDL_SCANCODE_A + 'A');
-	else if ((i >= SDL_SCANCODE_1) && (i <= SDL_SCANCODE_9) && !data->input.key[SDL_SCANCODE_LSHIFT])
-		return (i - SDL_SCANCODE_1 + '1');
-	else if ((i >= SDL_SCANCODE_KP_1) && (i <= SDL_SCANCODE_KP_9))
-		return (i - SDL_SCANCODE_KP_1 + '1');
-	else if ( i == SDL_SCANCODE_SPACE)
-		return (' ');
-	else if (i == SDL_SCANCODE_0 || i == SDL_SCANCODE_KP_0)
-		return ('0');
-	else if (i == SDL_SCANCODE_GRAVE)
-		return ('~');
-	else if (i == SDL_SCANCODE_PERIOD || i == SDL_SCANCODE_KP_PERIOD)
-		return ('.');
-	else if (i == SDL_SCANCODE_KP_DIVIDE || (i == SDL_SCANCODE_SLASH && !data->input.key[SDL_SCANCODE_LSHIFT]))
+	if (i == SDL_SCANCODE_KP_DIVIDE ||
+	(i == SDL_SCANCODE_SLASH && !data->input.key[SDL_SCANCODE_LSHIFT]))
 		return ('/');
 	else if (i == SDL_SCANCODE_MINUS || i == SDL_SCANCODE_KP_MINUS)
 		return ('-');
@@ -42,7 +27,32 @@ static char	printable_key_check(t_data *data, int i)
 		return (0);
 }
 
-char		*input_hud_text(t_data*data, char *text)
+static char	printable_key_check(t_data *data, int i)
+{
+	if ((i >= SDL_SCANCODE_A) && (i <= SDL_SCANCODE_Z) &&
+	!data->input.key[SDL_SCANCODE_LSHIFT])
+		return (i - SDL_SCANCODE_A + 'a');
+	else if ((i >= SDL_SCANCODE_A) && (i <= SDL_SCANCODE_Z) &&
+	data->input.key[SDL_SCANCODE_LSHIFT])
+		return (i - SDL_SCANCODE_A + 'A');
+	else if ((i >= SDL_SCANCODE_1) && (i <= SDL_SCANCODE_9) &&
+	!data->input.key[SDL_SCANCODE_LSHIFT])
+		return (i - SDL_SCANCODE_1 + '1');
+	else if ((i >= SDL_SCANCODE_KP_1) && (i <= SDL_SCANCODE_KP_9))
+		return (i - SDL_SCANCODE_KP_1 + '1');
+	else if (i == SDL_SCANCODE_SPACE)
+		return (' ');
+	else if (i == SDL_SCANCODE_0 || i == SDL_SCANCODE_KP_0)
+		return ('0');
+	else if (i == SDL_SCANCODE_GRAVE)
+		return ('~');
+	else if (i == SDL_SCANCODE_PERIOD || i == SDL_SCANCODE_KP_PERIOD)
+		return ('.');
+	else
+		return (printable_key_check_ext(data, i));
+}
+
+char		*input_hud_text(t_data *data, char *text)
 {
 	int				i;
 	char			str[2];

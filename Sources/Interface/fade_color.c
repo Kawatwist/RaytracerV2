@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fade_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 21:08:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/20 12:47:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/22 23:39:48 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-
-static int		lowest_value(int color)
-{
-	if ((color & 0xFF) < ((color & 0xFF00) >> 8) &&
-		(color & 0xFF) < ((color & 0xFF0000) >> 16))
-		return (color & 0xFF);
-	if ((color & 0xFF) > ((color & 0xFF00) >> 8) &&
-		((color & 0xFF00) >> 8) < ((color & 0xFF0000) >> 16))
-		return ((color & 0xFF00) >> 8);
-	return ((color & 0xFF0000) >> 16);
-}
-
-static int		highest_value(int color)
-{
-	if ((color & 0xFF) > ((color & 0xFF00) >> 8) &&
-		(color & 0xFF) > ((color & 0xFF0000) >> 16))
-		return (color & 0xFF);
-	if ((color & 0xFF) < ((color & 0xFF00) >> 8) &&
-		((color & 0xFF00) >> 8) > ((color & 0xFF0000) >> 16))
-		return ((color & 0xFF00) >> 8);
-	return ((color & 0xFF0000) >> 16);
-}
 
 static float	color_to_pos2(int color)
 {
