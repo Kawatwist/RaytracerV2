@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 14:02:20 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 16:31:26 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,21 @@ static	t_point		find_dir(t_thread *data, int x, int y, int cam)
 	if (!data->obj.camera[data->obj.index[0]].mode || cam == 0)
 	{
 		ret = veccpy(data->obj.camera[data->obj.index[0]].sc);
-		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
-		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
+		ret = add_vec(ret,
+			mult_vec2(data->obj.camera[data->obj.index[0]].x, x));
+		ret = add_vec(ret,
+			mult_vec2(data->obj.camera[data->obj.index[0]].y, y));
 		ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].pos.origin);
 	}
 	else
 	{
 		ret = veccpy(data->obj.camera[data->obj.index[0]].stereo->sc);
-		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].stereo->x, x));
-		ret = add_vec(ret, mult_vec2(data->obj.camera[data->obj.index[0]].stereo->y, y));
-		ret = sub_vec(ret, data->obj.camera[data->obj.index[0]].stereo->pos.origin);
+		ret = add_vec(ret,
+			mult_vec2(data->obj.camera[data->obj.index[0]].stereo->x, x));
+		ret = add_vec(ret,
+			mult_vec2(data->obj.camera[data->obj.index[0]].stereo->y, y));
+		ret = sub_vec(ret,
+			data->obj.camera[data->obj.index[0]].stereo->pos.origin);
 	}
 	return (ret);
 }
@@ -37,9 +42,11 @@ static	t_point		find_dir(t_thread *data, int x, int y, int cam)
 static t_vec		setup_ray(t_thread *data, int x, int y, int cam)
 {
 	if (cam == 0)
-		data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
+		data->ray.origin =
+			veccpy(data->obj.camera[data->obj.index[0]].pos.origin);
 	else
-		data->ray.origin = veccpy(data->obj.camera[data->obj.index[0]].stereo->pos.origin);
+		data->ray.origin =
+			veccpy(data->obj.camera[data->obj.index[0]].stereo->pos.origin);
 	data->ray.direction = normalize(find_dir(data, x, y, cam));
 	return (data->ray);
 }
@@ -77,35 +84,22 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 		((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, *x,
 				*y, 0), data->bounce, NULL);
 		if (data->obj.camera[data->obj.index[0]].mode == 1)
-		{
-			((unsigned int *)data->pxl)[*curr] = ((send_ray(data, setup_ray(data, *x,
-				*y, 1), data->bounce, NULL) & 0xFFFF) + (((unsigned int *)data->pxl)[*curr] & 0xFF0000));
-		}
+			((unsigned int *)data->pxl)[*curr] = ((send_ray(data,
+				setup_ray(data, *x, *y, 1), data->bounce, NULL) & 0xFFFF) +
+					(((unsigned int *)data->pxl)[*curr] & 0xFF0000));
 		else if (data->obj.camera[data->obj.index[0]].mode == 2)
 		{
 			if (*curr % data->x < data->x / 2.0)
-				((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, ((*x) * 2), *y, 0), data->bounce, NULL);
+				((unsigned int *)data->pxl)[*curr] = send_ray(data,
+					setup_ray(data, ((*x) * 2), *y, 0), data->bounce, NULL);
 			else
-				((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, ((*x - (data->x / 2)) * 2), *y, 1), data->bounce, NULL);
+				((unsigned int *)data->pxl)[*curr] = send_ray(data,
+				setup_ray(data, (*x - (data->x / 2) * 2), *y, 1),
+					data->bounce, NULL);
 		}
 	}
 	else
 		quality(data, x, y, curr);
-}
-
-int					quitrequested(t_thread *data)
-{
-	int		value;
-
-	value = 0;
-	while (pthread_mutex_trylock(&data->mutex))
-		;
-	data->loading = (char)(((float)data->current / (float)data->len) * 25.0);
-	value = data->signal;
-	if (value == THREAD_SIG)
-		data->signal = NOTHREAD;
-	pthread_mutex_unlock(&data->mutex);
-	return (value);
 }
 
 void				*thread_function(void *arg)

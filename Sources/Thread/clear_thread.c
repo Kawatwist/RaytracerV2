@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_thread.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 23:31:39 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/21 17:19:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 16:14:03 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,19 @@ int				clear_thread(t_thread *data)
 	}
 	ft_memdel((void **)&data);
 	return (0);
+}
+
+int				quitrequested(t_thread *data)
+{
+	int		value;
+
+	value = 0;
+	while (pthread_mutex_trylock(&data->mutex))
+		;
+	data->loading = (char)(((float)data->current / (float)data->len) * 25.0);
+	value = data->signal;
+	if (value == THREAD_SIG)
+		data->signal = NOTHREAD;
+	pthread_mutex_unlock(&data->mutex);
+	return (value);
 }
