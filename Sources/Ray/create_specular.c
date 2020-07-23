@@ -3,28 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/19 18:18:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 18:30:00 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-float			specular(t_light light,
-				t_vec cam, t_vec collide)
+float				specular(t_light light,
+					t_vec cam, t_vec collide)
 {
-	float				specular;
-	t_point				l;
-	t_point				v;
-	t_point				r;
-	static float		value = 300;
+	float			specular;
+	t_point			l;
+	t_point			v;
+	t_point			r;
+	static float	value = 300;
 
 	l = normalize(sub_vec(light.origin, collide.origin));
 	v = normalize(sub_vec(cam.origin, collide.origin));
-	r = sub_vec(mult_vec2(collide.direction, dot_product(collide.direction, l) * 2), l);
+	r = sub_vec(mult_vec2(collide.direction,
+		dot_product(collide.direction, l) * 2), l);
 	r = normalize(r);
 	if (dot_product(v, collide.origin) > -10)
 		specular = powf(dot_product(r, v), value);

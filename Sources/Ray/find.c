@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:20 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 13:44:29 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 18:30:24 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		*check_object_light(t_thread *data, t_vec ray, float *dist,
 		}
 		index += 1;
 	}
-	return (*dist < max_dist && *dist != -1? close : NULL);
+	return (*dist < max_dist && *dist != -1 ? close : NULL);
 }
 
 void		*check_object(t_thread *data, t_vec ray, float *dist, void *ignore)

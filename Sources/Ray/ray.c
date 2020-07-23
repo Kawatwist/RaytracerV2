@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 13:45:52 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 18:37:08 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,27 @@ static unsigned int	send_ray_txt(t_ray *r, t_thread *data, t_vec *ray,
 		((255 - ((unsigned char *)&(data->tmp_color))[0])) / 255.0, -1));
 }
 
+static unsigned int	send_ray2(t_thread *data, t_vec ray,
+					int bounce, t_ray r)
+{
+	if (((t_base *)r.obj)->effect.texture &&
+		((unsigned char *)&(data->tmp_color))[0] > 0
+		&& ((t_base *)r.obj)->effect.transparancy)
+		send_ray_txt(&r, data, &ray, &bounce);
+	if (data->flag.normal && r.bounce <= 0)
+		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) +
+		((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) +
+		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
+		return (r.color[0]);
+}
+
 unsigned int		send_ray(t_thread *data, t_vec ray,
 					int bounce, void *ignore)
 {
 	t_ray			r;
 
-	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore)) || r.dist[0] == -1)
+	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore))
+		|| r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
@@ -70,13 +85,5 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;
 	r.bounce-- ? bounce_effect(data, ray, &r) : 0;
-	if (((t_base *)r.obj)->effect.texture &&
-		((unsigned char *)&(data->tmp_color))[0] > 0
-		&& ((t_base *)r.obj)->effect.transparancy)
-		send_ray_txt(&r, data, &ray, &bounce);
-	if (data->flag.normal && r.bounce <= 0)
-		return ((int)((r.tmp.direction.x + 1) * (255 / 2.0)) +
-		((int)((r.tmp.direction.y + 1) * (255 / 2.0)) << 8) +
-		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
-		return (r.color[0]);
+	return (send_ray2(data, ray, bounce, r));
 }
