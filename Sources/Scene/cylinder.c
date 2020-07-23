@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 01:31:56 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 11:36:20 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static float		close_cyl(t_cylinder *c, t_vec ray)
 	return (disk(&dor, ray));
 }
 
-float		cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
+float				cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
 {
 	float	len;
 	float	cap;
@@ -68,7 +68,7 @@ float		cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
 	return (d.t0);
 }
 
-float		cylinder(void *cylinder, t_vec ray)
+float				cylinder(void *cylinder, t_vec ray)
 {
 	t_cylinder	*c;
 	t_point		os;

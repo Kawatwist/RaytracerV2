@@ -1,0 +1,91 @@
+#############################################
+#			Scene 42 : The Ambre			#
+#############################################
+[header]
+	xscreen : 500
+	yscreen : 500
+	camera : 3
+	ambiant : 0x7F007F
+	aa : 0
+	refresh : 0
+	bounce : 0
+	quality : 2
+	object : 9
+	screenshot : 0
+	light : 2
+	opti : 0
+############### Light ##################
+[light:1]
+	origin : {0 7 0}
+	color : 0xFFFFFF
+	distance : 100
+	intensity : 1
+[light:1]
+	origin : {0 -7 0}
+	color : 0xFFFFFF
+	distance : 100
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -15}
+	direction : {0 0 1}
+[camera:1]
+	origin : {0 -4 -4}
+	direction : {0 0 1}
+[camera:1]
+	origin : {-10 0 -15}
+	direction : {0 0 1}
+############### OBJECT ################
+[object:sphere]
+	origin : {0 -4 0}
+	rayon : 3
+	color : 0xfdbb2c
+			reflection : 255
+[object:plan]
+	origin : {-20 0 10}
+	direction : {1 0.3 0}
+	color : 0xff005f
+			reflection : 200
+[object:plan]
+	origin : {20 0 10}
+	direction : {-1 0.3 0}
+	color : 0x5f00ff
+			reflection : 200
+[object:plan]
+	origin : {0 10 10}
+	direction : {0 -1 0}
+	color : 0xff5fff
+			reflection : 200
+[object:sphere]
+	origin : {0 4 0}
+	color : 0xfdbb2c
+	rayon : 3
+			reflection : 255
+[object:plan]
+	origin : {0 0 30}
+	direction : {0 0 -1}
+	color : 0xffffff
+			reflection : 200
+[object:plan]
+	origin : {0 0 -30}
+	direction : {0 0 1}
+	color : 0xffffff
+			reflection : 200
+[object:cone]
+	origin : {10 0 -3}
+	direction : {0 0 1}
+	color : 0x7f3f7f
+	angle : 20
+	hauteur : -1
+	side : 0
+			ns : 1
+			reflection : 150
+[object:cone]
+	origin : {-10 0 -3}
+	direction : {0 0 1}
+	color : 0x7f3f7f
+	angle : 15
+	hauteur : -1
+	side : 0
+			ns : 1
+			reflection : 150

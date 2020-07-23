@@ -159,6 +159,9 @@ SRC				=	main.c										\
 					input_move_cam_2.c							\
 					input_move_cam_3.c							\
 					input_2.c									\
+					loop_draw.c									\
+					loop_draw2.c								\
+					loop_extra.c								\
 
 
 

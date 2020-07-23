@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:35:46 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/05 01:05:00 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/23 12:07:22 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,27 @@ float			box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
 	{
 		pos = sub_vec(add_vec(ray.origin, mult_vec2(ray.direction, t)),
 			p.origin.origin);
-		if (side < 2)
-		{
-			if (pos.x > 0 && pos.x < diff.x && pos.y > 0 && pos.y < diff.y)
-				return (t);
-		}
-		else if (side < 4)
-		{
-			if (pos.x > 0 && pos.x < diff.x && pos.z > 0 && pos.z < diff.z)
-				return (t);
-		}
-		else
-		{
-			if (pos.y > 0 && pos.y < diff.y && pos.z > 0 && pos.z < diff.z)
-				return (t);
-		}
+		if (side < 2 && pos.x > 0 && pos.x < diff.x
+			&& pos.y > 0 && pos.y < diff.y)
+			return (t);
+		else if (side < 4 && pos.x > 0 && pos.x < diff.x
+			&& pos.z > 0 && pos.z < diff.z)
+			return (t);
+		else if (pos.y > 0 && pos.y < diff.y
+			&& pos.z > 0 && pos.z < diff.z)
+			return (t);
 	}
 	return (-1);
+}
+
+static void		obj2(Uint8 side, t_point *p, t_point *o)
+{
+	if (side == 1)
+		p->z = o->z;
+	else if (side == 3)
+		p->y = o->y;
+	else if (side == 5)
+		p->x = o->x;
 }
 
 float			obj(void *obj, t_vec ray)
@@ -87,12 +91,7 @@ float			obj(void *obj, t_vec ray)
 	{
 		p.origin.origin = veccpy(o->low);
 		p.origin.direction = normalize(normal_face(side));
-		if (side == 1)
-			p.origin.origin.z = o->high.z;
-		else if (side == 3)
-			p.origin.origin.y = o->high.y;
-		else if (side == 5)
-			p.origin.origin.x = o->high.x;
+		obj2(side, &(p.origin.origin), &(o->high));
 		if ((t = box_(p, ray, o->diff, side)) != -1)
 		{
 			save > t ? o->face = side : 0;

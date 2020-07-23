@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 00:50:17 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 13:18:41 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,20 @@ int				check_parse(t_data *data);
 int				fill_texture(t_data *data, char *line);
 t_point			normal_face(Uint8 face);
 int				fill_normal(t_data *data, char *line);
+/*
+**			Loop
+*/
+void			set_background(t_data *data);
+void			draw_outline(t_data *data);
+void			draw_outline_color(t_data *data);
+void			draw_title_background(t_data *data);
+void			draw_background_box(t_data *data, int y);
+void			draw_separation(t_data *data, SDL_Rect dst, int nb, int x);
+void			draw_button_ext_0(t_data *data, SDL_Rect *dst, unsigned int color);
+void			draw_button_ext_1(t_data *data, SDL_Rect dst, unsigned int color);
+void			draw_button_ext_2(t_data *data, SDL_Rect dst, unsigned int color);
+void			draw_button_ext_3(t_data *data, SDL_Rect dst, unsigned int color);
+int				texture_on_screen_ext(t_data *data, SDL_Rect dst);
 /*
 **			Event's
 */

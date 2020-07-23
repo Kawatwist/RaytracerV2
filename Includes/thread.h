@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 23:06:28 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 13:36:06 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist, float max_dist);
 void					*check_object(t_thread *data, t_vec ray,
-							float *dist);
+							float *dist, void *ignore);
 /*
 **			Ray Setup
 */
@@ -127,7 +127,7 @@ unsigned int			set_color(unsigned int base, unsigned int new,
 t_point					find_normal(void *object, t_vec collide);
 t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
-unsigned int			send_ray(t_thread *data, t_vec ray, int bounce);
+unsigned int			send_ray(t_thread *data, t_vec ray, int bounce, void *ignore);
 int						start_ray(t_thread *data);
 /*
 **			Memory

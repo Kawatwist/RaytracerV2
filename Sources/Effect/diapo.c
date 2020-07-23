@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   diapo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 14:38:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:00:26 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 14:05:01 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	diapo(t_thread *data, t_vec *ray, int index, int bounce)
 	unsigned int	new_color;
 
 	max_dist = length(sub_vec(data->obj.light[index].origin, ray->origin));
-	obj = check_object(data, *ray, &dist);
+	obj = check_object(data, *ray, &dist, NULL);
 	if (!obj || bounce <= 0 || ((t_base *)obj)->effect.opacity == 0
 	|| dist > max_dist)
 		return (0xFFFFFF);
