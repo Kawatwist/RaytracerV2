@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_of_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/19 18:18:51 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 18:07:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 	return (create_specular(data, &r, dot, index));
 }
 
-
 unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 {
 	float				obj[3];
 	float				len;
+	float				len2;
 	float				dot;
 	t_vec				ray;
-
+	void			*obj2;
 	(void)color;
 	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin)),
@@ -87,6 +87,23 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
 	r.color[0] = add_color(color, light_color(r.color[0], set_color(0,
 		data->obj.color_find[0], (dot * obj[0] * len), -1)));
+	/* Collision to light */
+	ray.origin = veccpy(r.tmp.origin);
+	ray.direction = normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
+	ray.origin = add_vec(ray.origin, mult_vec2(ray.direction, 0.001));
+	len = length(sub_vec(r.tmp.origin, data->obj.light[index].origin));
+	if ((obj2 = check_object(data, ray, &len2, r.obj)) && len2 <= len)
+	{
+		return (light_color(((t_base *)obj2)->effect.opacity, 0x0));
+	}
+	/* Light to Collision */
+	ray.origin = veccpy(data->obj.light[index].origin);
+	ray.direction = normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin));
+	if ((obj2 = check_object(data, ray, &len2, r.obj)) != r.obj && len2 <= len)
+	{
+		return (light_color(((t_base *)obj2)->effect.opacity, 0x0));
+	}
+	/**/
 	if (data->flag.diapo && obj[1] < obj[2] && obj[1] != -1)
 	{
 		ray.origin = veccpy(r.tmp.origin);

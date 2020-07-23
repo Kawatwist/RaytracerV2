@@ -77,6 +77,9 @@ SRC				=	main.c										\
 					loop.c										\
 					show_button.c								\
 					create_thread.c								\
+					create_thread2.c							\
+					create_thread3.c							\
+					create_thread_aux.c							\
 					init_thread.c								\
 					init_thread_obj.c							\
 					init_thread_txt.c							\
@@ -111,7 +114,6 @@ SRC				=	main.c										\
 					input_light.c								\
 					input_move_cam.c							\
 					input_textures.c							\
-					find_dir.c									\
 					screenshot.c								\
 					screenshot_bmp.c							\
 					screenshot_framed.c							\
@@ -128,6 +130,7 @@ SRC				=	main.c										\
 					input_filter.c								\
 					damier.c									\
 					create_specular.c							\
+					find_dir.c									\
 					diapo.c										\
 					mix_color.c									\
 					draw_rect.c									\
