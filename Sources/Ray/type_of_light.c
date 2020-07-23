@@ -6,7 +6,7 @@
 /*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 18:01:30 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/23 18:07:06 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,15 @@ unsigned int		omni(t_thread *data, t_ray r, unsigned int color, int index)
 	ray.direction = normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
 	ray.origin = add_vec(ray.origin, mult_vec2(ray.direction, 0.001));
 	len = length(sub_vec(r.tmp.origin, data->obj.light[index].origin));
-	obj2 = check_object(data, ray, &len2);
-	if (check_object(data, ray, &len2) && len2 <= len)
+	if ((obj2 = check_object(data, ray, &len2, r.obj)) && len2 <= len)
 	{
-		// printf("resultat 1er printf [%d]\n", light_color(((t_base *)obj2)->effect.opacity, 0x0));
-		printf("opacity value [%d]\n", ((t_base *)obj2)->effect.opacity);
 		return (light_color(((t_base *)obj2)->effect.opacity, 0x0));
 	}
 	/* Light to Collision */
 	ray.origin = veccpy(data->obj.light[index].origin);
 	ray.direction = normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin));
-	obj2 = check_object(data, ray, &len2);
-	if (check_object(data, ray, &len2) != r.obj && len2 <= len)
+	if ((obj2 = check_object(data, ray, &len2, r.obj)) != r.obj && len2 <= len)
 	{
-		printf("resultat 2eme printf [%d]\n", light_color(((t_base *)obj2)->effect.opacity, 0x0));
 		return (light_color(((t_base *)obj2)->effect.opacity, 0x0));
 	}
 	/**/
