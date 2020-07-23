@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 11:48:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 20:28:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void		setup_perlin(t_data *data, t_thread *tmp, int x)
 static void		load_modif_other(t_data *data, t_thread *tmp, int index)
 {
 	ft_memcpy(&tmp[index].flag, &data->flag, sizeof(t_flag));
+	tmp[index].tile = !data->flag.tile ? data->percent * 2.0 : data->tile;
 	setup_perlin(data, tmp, index);
 }
 

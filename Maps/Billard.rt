@@ -2,7 +2,7 @@
 #			Scene 42 : Billard				#
 #############################################
 [header]
-	ambiant : 0x7f007f
+	ambiant : 0x0
 	xscreen : 200
 	yscreen : 200
 	refresh : 1
@@ -11,7 +11,9 @@
 	camera : 1
 	object : 7
 	light : 1
+	vhjbnl
 	filter : 0
+	icone : 0
 	flag_hud : 0
 	nb_texture : 9
 	textures : "texture/Texture/boule/noir.tga"
@@ -40,7 +42,7 @@
 	direction : {0.0 0.0 0.0}
 	rayon : 3
 			opacity : 255
-			mv : 0
+			mv : 1
 			texture : 255
 			id_texture : 0
 [object:sphere]
@@ -49,7 +51,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 0
+			mv : 1
 			texture : 255
 			id_texture : 1
 [object:sphere]
@@ -58,7 +60,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 0
+			mv : 1
 			texture : 255
 			id_texture : 2
 [object:sphere]
@@ -67,7 +69,7 @@
 	direction : {0 0 0}
 	rayon : 3
 			opacity : 255
-			mv : 0
+			mv : 1
 			texture : 255
 			id_texture : 3
 [object:sphere]

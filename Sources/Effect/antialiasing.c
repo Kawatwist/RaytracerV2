@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 14:04:23 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 19:11:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ unsigned int		send_aa_vr(t_thread *data, int x, int y, int curr)
 	if (curr % data->x < data->x / 2.0)
 		color = send_ray(data, setup_ray(data,
 					(x * 2.0) + (((rand() % 100) - 50) / 200.0),
-					y + (((rand() % 100) - 50) / 200.0), 0), data->bounce, NULL);
+				y + (((rand() % 100) - 50) / 200.0), 0), data->bounce, NULL);
 	else
 		color = send_ray(data, setup_ray(data,
 					((x - (data->x / 2.0)) * 2.0) +
 					(((rand() % 100) - 50) / 200.0),
-					y + (((rand() % 100) - 50) / 200.0), 1), data->bounce, NULL);
+				y + (((rand() % 100) - 50) / 200.0), 1), data->bounce, NULL);
 	return (color);
 }
 

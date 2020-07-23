@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:32:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:14:03 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 19:11:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void		apply_rot(t_data *data, t_point base,
 			rot_init_cam_y(data, &base, &direction, index);
 		if (direction.x != base.x && direction.y != base.y)
 			rot_init_cam_z(data, &base, &direction, index);
-			// NEED IT ? Les deux lignes d'au dessus
 	}
 }
 

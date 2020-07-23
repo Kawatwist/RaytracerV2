@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 13:36:06 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 20:22:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef	struct			s_thread
 	int					tmp_color;
 	char				loading;
 	int					current;
+	float				tile;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
@@ -68,6 +69,10 @@ typedef	struct			s_thread
 */
 int						pthread_timedjoin_np(pthread_t td, void **res,
 							struct timespec *ts);
+void					loading_bar(t_data *data);
+void					setup_rect(t_data *data, SDL_Rect *og, SDL_Rect *screen, SDL_Rect *lolz);
+void					loading_sc(t_data *data, int p);
+void					light_variance(t_data *data, t_thread *thd);
 /*
 **			Special Effect
 */
@@ -97,17 +102,21 @@ t_point					texture_cone(void *data,
 **			Light
 */
 
-unsigned int			diapo(t_thread *data, t_vec *ray, int index, int bounce);
+unsigned int			diapo(t_thread *data, t_vec *ray,
+							int index, int bounce);
 int						mix(int i, int j);
 int						apply_mult_3(int i, int j, float d);
 int						apply_mult_2(int i, float d);
 int						apply_mult(int i, int j, float d);
 unsigned int			add_color(unsigned int base, unsigned int new);
 int						light_color(unsigned int color, unsigned int newcolor);
-int						create_specular(t_thread *data, t_ray *r, float dot, int index);
+int						create_specular(t_thread *data, t_ray *r,
+							float dot, int index);
 unsigned int			add_color(unsigned int base, unsigned int new);
-unsigned int			spot(t_thread *data, t_ray r, unsigned int color, int index);
-unsigned int			omni(t_thread *data, t_ray r, unsigned int color, int index);
+unsigned int			spot(t_thread *data, t_ray r,
+							unsigned int color, int index);
+unsigned int			omni(t_thread *data, t_ray r,
+							unsigned int color, int index);
 unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist, float max_dist);
@@ -116,8 +125,10 @@ void					*check_object(t_thread *data, t_vec ray,
 /*
 **			Ray Setup
 */
-t_vec					setup_refraction(t_thread *data, void *obj, t_vec ray, float dist);
-t_vec					setup_opacity(t_thread *data, void *obj, t_vec ray, float dist);
+t_vec					setup_refraction(t_thread *data,
+							void *obj, t_vec ray, float dist);
+t_vec					setup_opacity(t_thread *data,
+							void *obj, t_vec ray, float dist);
 t_vec					setup_reflection(t_thread *data, t_vec ray, float dist);
 void					aa_render(t_thread *data, int *x, int *y, int *curr);
 unsigned int			set_ambiant(unsigned int base, int divide);
@@ -127,7 +138,8 @@ unsigned int			set_color(unsigned int base, unsigned int new,
 t_point					find_normal(void *object, t_vec collide);
 t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
-unsigned int			send_ray(t_thread *data, t_vec ray, int bounce, void *ignore);
+unsigned int			send_ray(t_thread *data, t_vec ray,
+							int bounce, void *ignore);
 int						start_ray(t_thread *data);
 /*
 **			Memory
@@ -135,5 +147,6 @@ int						start_ray(t_thread *data);
 int						setup_txt_and_normal(t_data *data, t_thread *tmp);
 int						setup_obj(t_data *data, t_thread *tmp);
 int						clear_thread(t_thread *data);
+int						quitrequested(t_thread *data);
 
 #endif
