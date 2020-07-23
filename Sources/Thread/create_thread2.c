@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_thread2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 17:00:55 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 18:43:22 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 20:53:32 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		loading_sc2(t_data *data)
 	if (data->flag.video)
 	{
 		ft_putstr("frame : ");
-		ft_putnbr(data->flag.video / data->flag.nb_video);
+		ft_putnbr(data->flag.nb_video - data->flag.video);
 		ft_putstr("\t(");
 		ft_putnbr((data->flag.nb_video - data->flag.video));
 		ft_putchar('/');

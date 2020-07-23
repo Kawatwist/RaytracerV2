@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 18:59:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 20:22:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef	struct			s_thread
 	int					tmp_color;
 	char				loading;
 	int					current;
+	float				tile;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*

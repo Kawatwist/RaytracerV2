@@ -6,20 +6,11 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/03/12 01:58:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 21:53:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-/*
-**	Id_rotation currently not Used
-**
-**	if (key_check(*data, SDL_SCANCODE_KP_6) && !ctrl)
-**		(*(t_base **)obj)->effect.id_rotation += 1;
-**	else if (key_check(*data, SDL_SCANCODE_KP_6) && ctrl)
-**		(*(t_base **)obj)->effect.id_rotation -= 1;
-*/
 
 void	input_id(t_data *data, void **obj, char ctrl)
 {

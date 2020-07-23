@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 19:52:36 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 21:48:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int				clear_memory(t_data *data)
 	int	i;
 
 	clear_texture_main(data, data->texture);
-	clear_obj_item(data, data->obj);
+	data->flag.parsing ? clear_obj_item(data, data->obj) : 0;
 	clear_normal_main(data, data->normal);
 	i = -1;
-	while (++i < data->obj.nb_camera)
+	while (++i < data->obj.nb_camera && data->flag.parsing)
 		data->obj.camera[i].mode ? free(data->obj.camera[i].stereo) : 0;
 	ft_memdel((void **)&data->obj.camera);
 	ft_memdel((void **)&data->obj.light);
@@ -49,7 +49,7 @@ int				clear_memory(t_data *data)
 	destroy_text_main(data->load.load);
 	destroy_text_main(data->load.loading);
 	destroy_text_main(data->load.lolz);
-	clear_thread((t_thread *)data->thread);
+	data->flag.parsing ? clear_thread((t_thread *)data->thread) : 0;
 	clear_sdl(data);
 	while (1)
 	{

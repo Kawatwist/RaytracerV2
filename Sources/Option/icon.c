@@ -6,14 +6,14 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:38:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 02:44:40 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 21:52:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 /*
-**	Set The Black color in alpha
+**	Set The Black color in alpha if icon mode is enable
 */
 
 int						real_time_icon(t_data *data)

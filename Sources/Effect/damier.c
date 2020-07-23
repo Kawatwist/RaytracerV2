@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:34:06 by lomasse           #+#    #+#             */
-/*   Updated: 2020/02/16 14:44:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 20:22:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static int		damier_sphere(t_thread *data, void *obj, t_vec ray)
 		sub_vec(ray.origin, ((t_sphere *)obj)->origin.origin).x);
 	while (phi < 0.0)
 		phi += 2 * M_PI;
-	ontexture.x = 50 * (phi / (2 * M_PI));
-	ontexture.y = 50 * ((M_PI - theta) / (M_PI));
+	ontexture.x = data->tile * (phi / (2 * M_PI));
+	ontexture.y = data->tile * ((M_PI - theta) / (M_PI));
 	if (((unsigned int)ontexture.x + ((unsigned int)ontexture.y)) % 2)
 		return (data->ambiant);
 	return (0xFF000000);
@@ -63,8 +63,8 @@ static int		damier_plan(t_thread *data, void *obj, t_vec ray)
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
-	uv.x = (unsigned int)((dot_product(ray.origin, v) - 1) * 50);
-	uv.y = (unsigned int)((dot_product(ray.origin, u) - 1) * 50);
+	uv.x = (unsigned int)((dot_product(ray.origin, v) - 1) * data->tile);
+	uv.y = (unsigned int)((dot_product(ray.origin, u) - 1) * data->tile);
 	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2)
 		return (data->ambiant);
 	return (0xFF000000);

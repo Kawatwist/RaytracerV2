@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_extra.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 13:06:33 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 21:55:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ int			sub_loop(t_data *data)
 			return (err);
 		data->flag.asked = 0;
 		data->flag.video ? data->flag.video -= 1 : 0;
-		real_time_icon(data);
+		if (data->flag.icon == 1)
+			real_time_icon(data);
+		else if (set_icone(data))
+			return (1);
 	}
 	else
 		SDL_Delay(64);
