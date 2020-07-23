@@ -86,6 +86,7 @@ SRC				=	main.c										\
 					pthread_timedjoin.c							\
 					shape.c										\
 					extra_shape.c								\
+					box.c										\
 					cone.c										\
 					cylinder.c									\
 					tolight.c									\

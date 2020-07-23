@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extra_shape.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:35:46 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 12:07:22 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 17:48:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,6 @@ float			triangle(void *tri, t_vec ray)
 		dot_product(t->p1.direction, cross_vec(sub_vec(t->p1.origin,
 			t->p3.origin), sub_vec(pos, t->p3.origin))) > 0)
 		return (f);
-	return (-1);
-}
-
-float			box_(t_plan p, t_vec ray, t_point diff, Uint8 side)
-{
-	float		t;
-	t_point		dir;
-	t_point		pos;
-	float		div;
-
-	dir = veccpy(p.origin.direction);
-	div = dot_product(ray.direction, dir);
-	if (div >= 0)
-		return (-1);
-	t = (-dot_product(sub_vec(p.origin.origin, ray.origin), dir) / -div);
-	if (t != -1)
-	{
-		pos = sub_vec(add_vec(ray.origin, mult_vec2(ray.direction, t)),
-			p.origin.origin);
-		if (side < 2 && pos.x > 0 && pos.x < diff.x
-			&& pos.y > 0 && pos.y < diff.y)
-			return (t);
-		else if (side < 4 && pos.x > 0 && pos.x < diff.x
-			&& pos.z > 0 && pos.z < diff.z)
-			return (t);
-		else if (pos.y > 0 && pos.y < diff.y
-			&& pos.z > 0 && pos.z < diff.z)
-			return (t);
-	}
 	return (-1);
 }
 

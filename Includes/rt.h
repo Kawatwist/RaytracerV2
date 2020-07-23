@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 17:30:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 17:51:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ float			sphere_depth(void *sphere, t_vec ray);
 /*
 **			Collide Object
 */
+float			box_(t_plan p, t_vec ray, t_point diff, Uint8 side);
 float			obj(void *obj, t_vec ray);
 float			disk(void *di, t_vec ray);
 float			triangle(void *tri, t_vec ray);
