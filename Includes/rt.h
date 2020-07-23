@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:53:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 00:50:17 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,10 @@ int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
 int				init_case(t_data *data, int mode);
+void			initialize_cam_ext(t_data *data, int index);
+void			preset_cam_ext(t_data *data, int index, float coef);
 
+void	init_slider_preview(t_data *data);
 /*
 **			Font
 */
@@ -299,6 +302,36 @@ void			click_button(t_data *data);
 void			video_settings(t_data *data);
 void			draw_nbvideo_bg(t_data *data);
 
+void			button_normals(t_data *data);
+void			boo_value_normals(t_data *data, int val);
+
+void			boo_value_show(t_data *data, int val);
+void			button_show(t_data *data);
+
+void			boo_value_quality(t_data *data, int val);
+void			button_quality(t_data *data);
+
+void			boo_value_aa(t_data *data, int val);
+void			button_aa(t_data *data);
+
+void			boo_value(t_data *data, int val);
+void			button_stand(t_data *data, int i);
+
+void			boo_value_diapo(t_data *data, int val);
+void			button_diapo(t_data *data);
+
+void			boo_value_refresh(t_data *data, int val);
+void			button_once_refresh(t_data *data);
+
+void			button_spawn(t_data *data);
+
+void			button_slider_filter(t_data *data);
+void			button_slider_bounce(t_data *data);
+
+void			draw_slider(t_data *data, int y, int selector);
+
+
+
 /*
 **			Run
 */
@@ -321,13 +354,22 @@ void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
 void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
+void			filter_negatif(t_data *data, unsigned int i);
 
 void			create_rgb_txt(t_data *data);
 int				pics_on_screen(t_data *data);
 
 int				hitbox(int	x, int	y, SDL_Rect *pos);
 
+//int				apply_mult_2(int i, float d);
+int				create_specular_mini(t_data *data, int color, t_ray *r, float dot);
+int				mix_mini(int i, int j);
 
+int		lowest_value(int color);
+int		highest_value(int color);
 
-
+void	rot_cam_axe(int key_code, t_camera *tmp, t_point tmp2);
+void		call_rot_cam(t_data *data);
+void	input_obj(t_data *data);
+void		get_input(t_data *data);
 #endif
