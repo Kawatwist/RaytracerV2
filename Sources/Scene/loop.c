@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/22 21:23:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 01:22:56 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,27 +184,11 @@ void	draw_button(t_data *data, int x, int y, t_case c)
 		draw_button_ext_3(data, dst, color);
 }
 
-int			texture_on_screen(t_data *data)
+int			texture_on_screen_ext(t_data *data, SDL_Rect dst)
 {
-	SDL_Rect	pos;
-	SDL_Rect	dst;
 	void		*pxl;
 	int			pitch;
 
-	pos.x = 200;
-	pos.y = 30;
-	pos.w = data->window.x - 200;
-	pos.h = data->window.y - 30;
-	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
-	SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
-	SDL_RenderClear(data->window.rend);
-	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
-	set_background(data);
-	draw_title_background(data);
-	dst.x = 0;
-	dst.y = 0;
-	dst.w = 300;
-	dst.h = data->window.y;
 	interface_grey(data);
 	show_button(data);
 	draw_nbvideo_bg(data);
@@ -223,6 +207,29 @@ int			texture_on_screen(t_data *data)
 	print_text(data, 10, 4, 20);
 	show_txt(data);
 	click_button(data);
+	return (0);
+}
+
+int			texture_on_screen(t_data *data)
+{
+	SDL_Rect	pos;
+	SDL_Rect	dst;
+
+	pos.x = 200;
+	pos.y = 30;
+	pos.w = data->window.x - 200;
+	pos.h = data->window.y - 30;
+	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
+	SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
+	SDL_RenderClear(data->window.rend);
+	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
+	set_background(data);
+	draw_title_background(data);
+	dst.x = 0;
+	dst.y = 0;
+	dst.w = 300;
+	dst.h = data->window.y;
+	texture_on_screen_ext(data, dst);
 	return (0);
 }
 
@@ -277,7 +284,8 @@ int			sub_loop(t_data *data)
 {
 	int err;
 
-	if ((data->flag.refresh || data->flag.asked || data->flag.video) && !data->flag.show)
+	if ((data->flag.refresh || data->flag.asked ||
+	data->flag.video) && !data->flag.show)
 	{
 		if ((err = looping(data)) != 0)
 			return (err);

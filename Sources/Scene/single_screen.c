@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 19:30:22 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 20:51:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 01:19:53 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int			single_screen(t_data *data)
 
 	if (SDL_Init(SDL_INIT_EVENTS))
 		return (1);
-	if (!(data->window.pxl = malloc(sizeof(Uint32) * data->window.x * data->window.y)))
+	if (!(data->window.pxl = malloc(sizeof(Uint32) *
+	data->window.x * data->window.y)))
 		return (1);
 	data->obj.type_index = 0;
 	if ((err = init_thread_memory(data)) != 0)
