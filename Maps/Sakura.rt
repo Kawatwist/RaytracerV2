@@ -5,74 +5,70 @@
 	xscreen : 1200
 	yscreen : 1000
 	quality : 3
-	aa : 0
-	bounce : 0
+	aa : 1
+	bounce : 500
 	camera : 2
-	object : 10
+	object : 11
 	light : 1
-	refresh : 1
+	refresh : 0
 ############### Light ##################
 [light:1]
 	origin : {-0.49 -0.40 0.45}
-	color : 0xFF00FF
+	color : 0xFFD700
 	distance : 5
 	intensity : 1
 ############### Camera ################
 [camera:1]
-	origin : {0 0 -0.5}
+	origin : {0 0 -5}
 	direction : {0 0 1}
 [camera:1]
-	origin : {0 1 0.1}
+	origin : {0 1 1}
 	direction : {0 1 0}
-############### Object #################
-[object:cylinder]
-	origin : {0 0 0.5}
+	mode : 2
+############### Cube #################
+[object:plan]
+	origin : {0 0 5}
 	direction : {0 0 -1}
 	color : 0x7F7F7F
-	hauteur : 2
-			reflection : 255
+			reflection : 235
 [object:plan]
-	origin : {0 0 -0.5}
+	origin : {0 0 -5}
 	direction : {0 0 1}
 	color : 0x7F7F7F
-			reflection : 255
+			reflection : 235
 [object:plan]
-	origin : {0.5 0 0}
+	origin : {5 0 0}
 	direction : {-1 0 0}
 	color : 0x7F7F7F
-			reflection : 255
+			reflection : 235
 [object:plan]
-	origin : {-0.5 0 0}
+	origin : {-5 0 0}
 	direction : {1 0 0}
 	color : 0x7F7F7F
-			reflection : 255
+			reflection : 235
 [object:plan]
-	origin : {0 0.5 0}
+	origin : {0 5 0}
 	direction : {0 -1 0}
 	color : 0x7F7F7F
-			reflection : 50
+			reflection : 235
 [object:plan]
-	origin : {0 -0.5 0}
+	origin : {0 -5 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
-			reflection : 255
-[object:cylinder]
-	origin : {0.5 0 0.5}
-	direction : {0 1 0}
-	color : 0xFF000000
-	rayon : 0.1
+			reflection : 235
+############# OTHER
 [object:sphere]
-	origin : {0.5 -0.25 0.40}
-	direction : {0 1 0}
+	origin : {-2.5 0 0}
 	color : 0x7F000F
-	rayon : 0.05
+	rayon : 1
+			reflection : 50
 [object:sphere]
-	origin : {0.5 -0.35 0.50}
-	direction : {0 1 0}
-	color : 0x7F007F
-	rayon : 0.15
+	origin : {2.5 0 0}
+	color : 0x7F000F
+	rayon : 1
+			reflection : 50
 [object:sphere]
-	origin : {0.4 -0.25 0.50}
-	direction : {0 1 0}
-	color : 0x7F007F
-	rayon : 0.05
+	origin : {0 2.5 0}
+	color : 0x7F000F
+	rayon : 1
+			reflection : 50

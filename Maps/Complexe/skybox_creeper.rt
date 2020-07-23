@@ -1,0 +1,155 @@
+#############################################
+#			Scene 42 : AWh MAN				#
+#############################################
+[header]
+	xscreen : 600
+	yscreen : 600
+	camera : 1
+	ambiant : 0xFF00FF
+	aa : 0
+	bounce : 0
+	refresh : 0
+	quality : 0
+	object : 15
+	light : 3
+	opti : 1000
+	nb_texture : 5
+	nb_normal : 1
+	screenshot : 0
+	textures : "./texture/Minecraft/creeper_head.tga"
+	textures : "./texture/Minecraft/creeper.tga"
+	textures : "./texture/Minecraft/snow.tga"
+	textures : "./texture/normal/flower.tga"
+	normal : "./texture/normal/water_dgeux.tga"
+	textures : "./texture/Texture/Skybox4.tga"
+############### Light ##################
+[light:1]
+	origin : {0.5 0 -2}
+	color : 0xFFFFFF
+	distance : 1
+	intensity : 1
+[light:1]
+	origin : {0.5 0 4}
+	color : 0xFFFFFF
+	distance : 1
+	intensity : 1
+[light:1]
+	origin : {2 0 0}
+	color : 0xFFFFFF
+	distance : 1
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -5}
+	direction : {0 0 1}
+############### Creeper ###############
+[object:obj]
+	origin : {0.5 1.5 0.25}
+	size : 1
+	color : 0xff5fff
+			t0 : 0
+			t1 : 1
+			t2 : 1
+			t3 : 1
+			t4 : 1
+			t5 : 1
+			id_texture : 0
+			texture : 255
+[object:obj]
+	origin : {0 1.5 0}
+	destination : {1 4 0.5}
+	color : 0xff5fff
+	size : 0
+			id_texture : 1
+			texture : 255
+[object:obj]
+	origin : {0 4 0.5}
+	destination : {1 4.7 1.3}
+	color : 0xff5fff
+	size : 0
+			id_texture : 1
+			texture : 255
+[object:obj]
+	origin : {0 4 -0.7}
+	destination : {1 4.7 0}
+	color : 0xff5fff
+	size : 0
+			id_texture : 1
+			texture : 255
+[object:sphere]
+	origin : {0 0 0}
+	color : 0xff00ff
+	rayon : 35
+			id_texture : 4
+			texture : 255
+			ns : 1
+[object:sphere]
+	origin : {-1 -1 1.5}
+	color : 0xff5fff
+	rayon : 0.5
+			reflection : 255
+[object:sphere]
+	origin : {-0.8 -1.5 1.7}
+	color : 0xff5fff
+	rayon : 0.3
+			reflection : 255
+[object:sphere]
+	origin : {-0.9 -2 1.6}
+	color : 0xff5fff
+	rayon : 0.2
+			reflection : 255
+[object:plan]
+	origin : {1 4.7 0}
+	direction : {0 -1 0}
+	color : 0xffffff
+			reflection : 200
+			ns : 0
+			mv : 1
+			normal : 255
+[object:sphere]
+	origin : {0 2.7 3.3}
+	color : 0xffffff
+	rayon : 2
+			reflection : 255
+#	Reverse #
+[object:sphere]
+	origin : {0 2 -2.5}
+	color : 0xffffff
+	rayon : 1
+			reflection : 255
+[object:cylinder]
+	origin : {0 2 -2.5}
+	direction : {0 1 0}
+	color : 0xffffff
+	rayon : 0.5
+	hauteur : 2.5
+			id_texture : 1
+			texture : 255
+[object:cylinder]
+	origin : {-0.5 4.5 -2}
+	direction : {1 0 0}
+	color : 0xffffff
+	rayon : 0.25
+	hauteur : 1
+			id_texture : 1
+			texture : 255
+[object:cylinder]
+	origin : {-0.5 4.5 -3}
+	direction : {1 0 0}
+	color : 0xffffff
+	rayon : 0.25
+	hauteur : 1
+			id_texture : 1
+			texture : 255
+[object:obj]
+	origin : {0 2 -2.5}
+	size : 1
+	color : 0xff5fff
+			t0 : 1
+			t1 : 0
+			t2 : 1
+			t3 : 1
+			t4 : 1
+			t5 : 1
+			id_texture : 0
+			texture : 255

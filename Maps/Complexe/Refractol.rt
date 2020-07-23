@@ -1,0 +1,46 @@
+[header]
+	xscreen : 1000
+	yscreen : 1000
+	camera : 1
+	ambiant : 0xFFFFFF
+	aa : 0
+	bounce : 1
+	quality : 0
+	object : 4
+	light : 0
+	nb_texture : 2
+	nb_normal : 1
+	textures : "./texture/Texture/Skybox4.tga"
+	textures : "./texture/normal/rock.tga"
+	normal : "./texture/normal/pcb.tga"
+############### Camera ################
+[camera:1]
+	origin : {0 -1 -0.5}
+	direction : {0 0 1}
+############### Object ################
+[object:sphere]
+	origin : {0 0 0}
+	color : 0xFFFFFF
+	rayon : 300
+			ns : 1
+			texture : 255
+[object:sphere]
+	origin : {0 -4 4}
+	color : 0xFFFFFF
+	rayon : 2
+			ns : 1
+			reflection : 175
+[object:sphere]
+	origin : {0 -1 4}
+	color : 0xFFFFFF
+	rayon : 1
+			ns : 1
+			reflection : 175
+			refraction : 175
+[object:plan]
+	origin : {0 0 0}
+	direction : {0 -1 0}
+	color : 0xFFFFFF
+			mv : 1
+			reflection : 255
+			normal : 255

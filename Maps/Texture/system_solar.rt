@@ -1,0 +1,164 @@
+#############################################
+#			Scene 42 : Planete				#
+#############################################
+[header]
+	ambiant : 0xFF000000
+	xscreen : 900
+	yscreen : 900
+	quality : 3
+	bounce : 0
+	camera : 1
+	object : 11
+	light : 2
+	filter : 0
+	flag_hud : 1
+	nb_texture : 11
+	textures : "./texture/planet/stars.tga"
+	textures : "./texture/planet/sun.tga"
+	textures : "./texture/planet/mercury.tga"
+	textures : "./texture/planet/venus.tga"
+	textures : "./texture/planet/earth.tga"
+	textures : "./texture/planet/moon.tga"
+	textures : "./texture/planet/mars.tga"
+	textures : "./texture/planet/jupiter.tga"
+	textures : "./texture/planet/saturn.tga"
+	textures : "./texture/planet/uranus.tga"
+	textures : "./texture/planet/neptune.tga"
+############### Light ##################
+[light:1]
+	origin : {0 -5 -5}
+	color : 0xFFFFFF
+	distance : 400
+	intensity : 1
+[light:1]
+	origin : {0 -5 -5}
+	color : 0xFFFFFF
+	distance : 400
+	intensity : 1
+############### Camera ##################
+[camera:1]
+	origin : {205 0 30}
+	direction : {1 0 0}
+############### Object ##################
+############### Sphere ##################
+############### Univers #################
+[object:sphere]
+	color : 0x000000
+	origin : {0 0 3}
+	direction : {0 1 0}
+	rayon : 800.0
+		[effect]
+			id_texture : 0
+			reflection : 255
+			texture : 255
+			ns : 1
+############### Sun #####################
+[object:sphere]
+	color : 0xFFFF00
+	origin : {0 0 3}
+	direction : {0 1 0}
+	rayon : 80.0
+		[effect]
+			id_texture : 1
+			texture : 255
+			ns : 1
+			mv : 0
+############### Mercury ###################
+[object:sphere]
+	color : 0x000000
+	origin : {100.5 0 116}
+	direction : {0 1 0}
+	rayon : 0.97
+		[effect]
+			id_texture : 2
+			texture : 255
+			ns : 1
+			mv : 1
+############### Venus ####################
+[object:sphere]
+	color : 0x000000
+	origin : {-110 0 130}
+	direction : {0 1 0}
+	rayon : 2.42
+		[effect]
+			id_texture : 3
+			texture : 255
+			ns : 1
+			mv : 1
+############### Earth ####################
+[object:sphere]
+	color : 0x000000
+	origin : {200 0 30}
+	direction : {0 1 0}
+	rayon : 2.54
+		[effect]
+			id_texture : 4
+			texture : 255
+			ns : 1
+			mv : 1
+############### Moon ####################
+[object:sphere]
+	color : 0x000000
+	origin : {198 0 35}
+	direction : {0 1 0}
+	rayon : 0.20
+		[effect]
+			id_texture : 5
+			texture : 255
+			ns : 1
+			mv : 1
+############### Mars ####################
+[object:sphere]
+	color : 0x000000
+	origin : {225 0 50}
+	direction : {0 1 0}
+	rayon : 1.35
+		[effect]
+			id_texture : 6
+			texture : 255
+			ns : 1
+			mv : 1
+############### Jupiter ####################
+[object:sphere]
+	color : 0x000000
+	origin : {295 0 -220}
+	direction : {0 1 0}
+	rayon : 27.96
+		[effect]
+			id_texture : 7
+			texture : 255
+			ns : 1
+			mv : 0
+############### Saturne ####################
+[object:sphere]
+	color : 0x000000
+	origin : {-240 0 -210}
+	direction : {0 1 0}
+	rayon : 23.29
+		[effect]
+			id_texture : 8
+			texture : 255
+			ns : 1
+			mv : 0
+############### Uranus ####################
+[object:sphere]
+	color : 0x000000
+	origin : {-330 0 140}
+	direction : {0 1 0}
+	rayon : 10.14
+		[effect]
+			id_texture : 9
+			texture : 255
+			ns : 1
+			mv : 1
+############### Neptune ####################
+[object:sphere]
+	color : 0x000000
+	origin : {260 0 250}
+	direction : {0 1 0}
+	rayon : 9.84
+		[effect]
+			id_texture : 10
+			texture : 255
+			ns : 1
+			mv : 1

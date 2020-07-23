@@ -1,0 +1,87 @@
+#############################################
+#			Scene 42 : The Ambre			#
+#############################################
+[header]
+	xscreen : 200
+	yscreen : 200
+	camera : 1
+	ambiant : 0x7F007F
+	aa : 0
+	bounce : 2
+	quality : 0
+	object : 11
+	light : 2
+	opti : 1000
+############### Light ##################
+[light:1]
+	origin : {0 7 0}
+	color : 0xFFFFFF
+	distance : 10
+	intensity : 1
+[light:1]
+	origin : {0 -7 0}
+	color : 0xFFFFFF
+	distance : 10
+	intensity : 1
+############### Camera ################
+[camera:1]
+	origin : {0 0 -10}
+	direction : {0 0 1}
+	mode : 1
+[object:plan]
+	origin : {-5 0 10}
+	direction : {1 0 0}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:plan]
+	origin : {5 0 10}
+	direction : {-1 0 0}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:plan]
+	origin : {0 15 10}
+	direction : {0 -1 0}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:sphere]
+	origin : {0 4 0}
+	color : 0xfdbb2c
+	rayon : 3
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:sphere]
+	origin : {0 -4 0}
+	direction : {0 0 0}
+	rayon : 3
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:plan]
+	origin : {0 0 -10}
+	direction : {0 0 1}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:plan]
+	origin : {0 0 10}
+	direction : {0 0 -1}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2
+[object:plan]
+	origin : {0 -10 0}
+	direction : {0 1 0}
+	color : 0xfdbb2c
+			reflection : 122
+			refraction : 122
+			id_refraction : 2

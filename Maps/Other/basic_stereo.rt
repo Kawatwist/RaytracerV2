@@ -1,0 +1,49 @@
+#############################################
+#			Scene 42 : Billard				#
+#############################################
+[header]
+	ambiant : 0x303030
+	xscreen : 1000
+	yscreen : 1000
+	refresh : 1
+	quality : 3
+	bounce : 0
+	camera : 1
+	object : 4
+	light : 1
+	flag_hud : 0
+	nb_normal : 1
+	normal : "texture/normal/coussin.tga"
+############### Light ##################
+[light:1]
+	origin : {0.0 -25.0 -25.0}
+	color : 0xFFFFFF
+	distance : 50
+	intensity : 1
+############### Camera ##################
+[camera:1]
+	origin : {0 -5 -15.0}
+	direction : {0 0 1}
+	mode : 1
+############### Object ##################
+[object:sphere]
+	origin : {0.0 -5.0 0.0}
+	direction : {0 1 0}
+	color : 0x7F007F
+	rayon : 2.0
+[object:plan]
+	color : 0x0000FF
+	origin : {0.0 0.0 0.0}
+	direction : {0 -1 0}
+			reflection : 255
+			normal : 255
+[object:plan]
+	color : 0xFF0000
+	origin : {0.0 0.0 10.0}
+	direction : {0 0 -1}
+[object:cylinder]
+	origin : {5.0 -10.0 0.0}
+	direction : {0 1 0}
+	color : 0xFF00FF00
+	rayon : 1.0
+	hauteur : 10
