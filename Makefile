@@ -43,6 +43,7 @@ SRC				=	main.c										\
 					icon.c										\
 					init_font.c									\
 					init_cam.c									\
+					init_cam_ext.c								\
 					rot_init_cam.c								\
 					ask_screenshot.c							\
 					mutex.c										\
@@ -117,6 +118,7 @@ SRC				=	main.c										\
 					shape_cartoon.c								\
 					antialiasing.c								\
 					filters.c									\
+					filters_2.c									\
 					check_filter.c								\
 					cartoon.c									\
 					input_hud.c									\
@@ -139,6 +141,26 @@ SRC				=	main.c										\
 					color_picker.c								\
 					read_input.c								\
 					filter_interface.c							\
+					button_normals.c							\
+					button_show.c								\
+					button_quality.c							\
+					button_aa.c									\
+					button_stand.c								\
+					button_diapo.c								\
+					button_refresh.c							\
+					button_spawn.c								\
+					button_slider.c								\
+					click_button.c								\
+					init_slider.c								\
+					preview_2.c									\
+					mini_rt_specular.c							\
+					fade_color_2.c								\
+					switchcolor.c								\
+					input_move_cam_2.c							\
+					input_move_cam_3.c							\
+					input_2.c									\
+
+
 
 OBJ 			= $(addprefix $(OBJ_PATH)/, $(SRC:%.c=%.o))
 
