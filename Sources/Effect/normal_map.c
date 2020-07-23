@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normal_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 21:56:22 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/23 19:55:51 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,19 @@ t_point			find_normal_texture(t_thread data, void *obj,
 		((int)uv.y * (info & 0xFFFF))) << 2) + 3])),
 		((t_base *)obj)->effect.normal / 260.0, data.dist_ray);
 	return (normalize(normal));
+}
+
+t_point			find_normal_with_txt(t_thread *data,
+					void *object, t_vec collide)
+{
+	t_point normal;
+
+	data->tmp_normal = find_normal(object, collide);
+	if (((t_base *)object)->effect.normal)
+	{
+		normal = find_normal_texture(*data, object, collide, data->tmp_normal);
+		if (dot_product(collide.direction, normal) < 0)
+			data->tmp_normal = normal;
+	}
+	return (data->tmp_normal);
 }

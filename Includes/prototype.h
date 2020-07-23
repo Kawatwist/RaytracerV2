@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 18:41:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 19:47:54 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,9 @@ int				flag(t_data *data, int argc, char **argv);
 void			flag_help(int page);
 void			super_sample(t_data *data, int x, int y);
 int				clear_memory(t_data *data);
+void			clear_texture_main(t_data *data, t_tga **tofree);
+void			clear_normal_main(t_data *data, t_tga **tofree);
+void			destroy_text_main(SDL_Texture *t);
 int				stop_main_execute(char *error, t_data *data, int error_value);
 int				stop_execute(char *error, t_data **data);
 /*

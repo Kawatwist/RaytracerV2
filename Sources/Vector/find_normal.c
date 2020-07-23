@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 17:59:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 19:54:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,6 @@ static t_point	cylinder_normal(t_cylinder c, t_vec collide)
 	normal = sub_vec(collide.origin, add_vec(plane, c.origin.origin));
 	return (normalize(normal));
 }
-/*
-static t_point	cone_normal(t_cone c, t_vec collide)
-{
-	float	dot;
-	t_point	ret;
-	t_point	oc;
-
-	oc = sub_vec(collide.origin, c.origin.origin);
-	dot = dot_product(c.origin.direction, oc);
-	ret = cross_vec(oc, c.origin.direction);
-	return (normalize(dot < 0 ? neg_norm(ret) : ret));
-}*/
-/*
-static t_point  cone_normal(t_cone c, t_vec collide)
-{
-	float   coef;
-	float   dot;
-	float   high;
-	t_point ret;
-	t_point oc;
-
-	oc = sub_vec(collide.origin, c.origin.origin);
-	dot = dot_product(c.origin.direction, oc);
-	coef = 1 / (cos(rad(c.ang)) / 2.0);
-	high = length(mult_vec2(oc, coef));
-	ret = sub_vec(oc, mult_vec2(c.origin.direction,
-		(dot > 0 ? -high : high)));
-	return (normalize(ret));
-}*/
 
 static t_point	cone_normal(t_cone c, t_vec collide)
 {
@@ -125,18 +96,4 @@ t_point			find_normal(void *object, t_vec collide)
 	else
 		normal = veccpy(((t_plan *)object)->origin.direction);
 	return (normalize(normal));
-}
-
-t_point			find_normal_with_txt(t_thread *data, void *object, t_vec collide)
-{
-	t_point normal;
-
-	data->tmp_normal = find_normal(object, collide);
-	if (((t_base *)object)->effect.normal)
-	{
-		normal = find_normal_texture(*data, object, collide, data->tmp_normal);
-		if (dot_product(collide.direction, normal) < 0)
-			data->tmp_normal = normal;
-	}
-	return (data->tmp_normal);
 }

@@ -51,6 +51,7 @@ SRC				=	main.c										\
 					loading.c									\
 					quit.c										\
 					clear.c										\
+					clear_texture.c								\
 					clear_thread.c								\
 					get_point.c									\
 					parse.c										\
