@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 18:08:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 13:45:52 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 	if (((t_base *)r->obj)->effect.reflection)
 	{
 		tmp = setup_reflection(data, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce);
+		r->color[1] = send_ray(data, tmp, r->bounce, r->obj);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.reflection / 255.0, -1);
 	}
 	if (((t_base *)r->obj)->effect.refraction)
 	{
 		tmp = setup_refraction(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce + 1);
+		r->color[1] = send_ray(data, tmp, r->bounce + 1, r->obj);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.refraction / 255.0, -1);
 	}
 	if (((t_base *)r->obj)->effect.opacity)
 	{
 		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce + 1);
+		r->color[1] = send_ray(data, tmp, r->bounce + 1, NULL);
 		r->color[0] = set_color(r->color[0], r->color[1],
 			((t_base *)r->obj)->effect.opacity / 255.0, -1);
 	}
@@ -45,16 +45,16 @@ static unsigned int	send_ray_txt(t_ray *r, t_thread *data, t_vec *ray,
 {
 	r->tmp.origin = set_neworigin_op(*ray, r->dist[0]);
 	r->tmp.direction = veccpy(ray->direction);
-	return (set_color(send_ray(data, r->tmp, *bounce), r->color[0],
+	return (set_color(send_ray(data, r->tmp, *bounce, NULL), r->color[0],
 		((255 - ((unsigned char *)&(data->tmp_color))[0])) / 255.0, -1));
 }
 
 unsigned int		send_ray(t_thread *data, t_vec ray,
-					int bounce)
+					int bounce, void *ignore)
 {
 	t_ray			r;
 
-	if (!(r.obj = check_object(data, ray, &(r.dist[0]))) || r.dist[0] == -1)
+	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore)) || r.dist[0] == -1)
 		return (data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >

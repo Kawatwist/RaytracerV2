@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:47:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 17:30:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,20 @@ int				fill_texture(t_data *data, char *line);
 t_point			normal_face(Uint8 face);
 int				fill_normal(t_data *data, char *line);
 /*
+**			Loop
+*/
+void			set_background(t_data *data);
+void			draw_outline(t_data *data);
+void			draw_outline_color(t_data *data);
+void			draw_title_background(t_data *data);
+void			draw_background_box(t_data *data, int y);
+void			draw_separation(t_data *data, SDL_Rect dst, int nb, int x);
+void			draw_button_ext_0(t_data *data, SDL_Rect *dst, unsigned int color);
+void			draw_button_ext_1(t_data *data, SDL_Rect dst, unsigned int color);
+void			draw_button_ext_2(t_data *data, SDL_Rect dst, unsigned int color);
+void			draw_button_ext_3(t_data *data, SDL_Rect dst, unsigned int color);
+int				texture_on_screen_ext(t_data *data, SDL_Rect dst);
+/*
 **			Event's
 */
 char			key_old(t_data data, int mask);
@@ -238,7 +252,10 @@ int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
 int				initialize(t_data *data);
 int				init_case(t_data *data, int mode);
+void			initialize_cam_ext(t_data *data, int index);
+void			preset_cam_ext(t_data *data, int index, float coef);
 
+void	init_slider_preview(t_data *data);
 /*
 **			Font
 */
@@ -302,6 +319,36 @@ void			click_button(t_data *data);
 void			video_settings(t_data *data);
 void			draw_nbvideo_bg(t_data *data);
 
+void			button_normals(t_data *data);
+void			boo_value_normals(t_data *data, int val);
+
+void			boo_value_show(t_data *data, int val);
+void			button_show(t_data *data);
+
+void			boo_value_quality(t_data *data, int val);
+void			button_quality(t_data *data);
+
+void			boo_value_aa(t_data *data, int val);
+void			button_aa(t_data *data);
+
+void			boo_value(t_data *data, int val);
+void			button_stand(t_data *data, int i);
+
+void			boo_value_diapo(t_data *data, int val);
+void			button_diapo(t_data *data);
+
+void			boo_value_refresh(t_data *data, int val);
+void			button_once_refresh(t_data *data);
+
+void			button_spawn(t_data *data);
+
+void			button_slider_filter(t_data *data);
+void			button_slider_bounce(t_data *data);
+
+void			draw_slider(t_data *data, int y, int selector);
+
+
+
 /*
 **			Run
 */
@@ -324,13 +371,22 @@ void 			generate_marble(float (*marble)[GRADIENT * GRADIENT]);
 void			generate_wood(float (*wood)[GRADIENT * GRADIENT]);
 void			cartoon(t_data *data, unsigned int i, int tr, int tg);
 int				post_processing(t_data *data);
+void			filter_negatif(t_data *data, unsigned int i);
 
 void			create_rgb_txt(t_data *data);
 int				pics_on_screen(t_data *data);
 
 int				hitbox(int	x, int	y, SDL_Rect *pos);
 
+//int				apply_mult_2(int i, float d);
+int				create_specular_mini(t_data *data, int color, t_ray *r, float dot);
+int				mix_mini(int i, int j);
 
+int		lowest_value(int color);
+int		highest_value(int color);
 
-
+void	rot_cam_axe(int key_code, t_camera *tmp, t_point tmp2);
+void		call_rot_cam(t_data *data);
+void	input_obj(t_data *data);
+void		get_input(t_data *data);
 #endif

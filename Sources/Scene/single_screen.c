@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 19:30:22 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 21:42:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 17:30:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int			single_screen(t_data *data)
 
 	if (SDL_Init(SDL_INIT_EVENTS))
 		return (1);
-	if (!(data->window.pxl = malloc(sizeof(Uint32) * data->window.x * data->window.y)))
+	if (!(data->window.pxl = malloc(sizeof(Uint32) *
+	data->window.x * data->window.y)))
 		return (1);
 	data->obj.type_index = 0;
 	if ((err = init_thread_memory(data)) != 0)

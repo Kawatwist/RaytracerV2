@@ -10,7 +10,7 @@
 	light : 0
 	nb_texture : 2
 	nb_normal : 1
-	textures : "./texture/Texture/Skybox2.tga"
+	textures : "./texture/Texture/Skybox4.tga"
 	textures : "./texture/normal/rock.tga"
 	normal : "./texture/normal/pcb.tga"
 ############### Camera ################

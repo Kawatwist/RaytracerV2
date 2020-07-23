@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/19 12:56:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/23 11:36:20 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ static float		close_cyl(t_cylinder *c, t_vec ray)
 	}
 	else
 	{
-		dor.origin.origin = add_vec(c->origin.origin, mult_vec2(c->origin.direction, c->hauteur));
+		dor.origin.origin = add_vec(c->origin.origin,
+		mult_vec2(c->origin.direction, c->hauteur));
 		dor.origin.direction = veccpy(c->origin.direction);
 	}
 	c->dir_close = veccpy(dor.origin.direction);
 	return (disk(&dor, ray));
 }
 
-float		cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
+float				cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
 {
 	float	len;
 	float	cap;
 
 	len = sqrtf(square((*c)->rayon) + square((*c)->hauteur));
-	if ((*c)->hauteur != -1 && (length(sub_vec((*c)->origin.origin, add_vec(ray.origin,
+	if ((*c)->hauteur != -1 && (length(sub_vec((*c)->origin.origin,
+	add_vec(ray.origin,
 		mult_vec2(ray.direction, d.t0)))) > len ||
 		dot_product(sub_vec((*c)->origin.origin, add_vec(ray.origin,
 		mult_vec2(ray.direction, d.t0))), (*c)->origin.direction) > 0))
@@ -66,7 +68,7 @@ float		cylinder_2(t_cylinder **c, t_calc d, t_vec ray)
 	return (d.t0);
 }
 
-float		cylinder(void *cylinder, t_vec ray)
+float				cylinder(void *cylinder, t_vec ray)
 {
 	t_cylinder	*c;
 	t_point		os;

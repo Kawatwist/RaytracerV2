@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   perlin.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 23:18:51 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/08 22:51:30 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/22 21:53:18 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray, int type)
 {
 	float		phi;
-	t_point		ontexture;
+	t_point		ontxt;
 	t_point		u;
 	t_point		v;
 
@@ -26,19 +26,19 @@ static int		perlin_cylinder(t_thread *data, void *obj, t_vec ray, int type)
 	v = cross_vec(u, ((t_base *)obj)->origin.direction);
 	phi = atan2(sub_vec(ray.origin, ((t_base *)obj)->origin.origin).z,
 		sub_vec(ray.origin, ((t_base *)obj)->origin.origin).x);
-	ontexture.x = (phi / (2 * M_PI)) * 10;
-	ontexture.y = ((float)((int)((t_base *)obj)->origin.origin.y) -
+	ontxt.x = (phi / (2 * M_PI)) * 10;
+	ontxt.y = ((float)((int)((t_base *)obj)->origin.origin.y) -
 		ray.origin.y) * 10;
 	if (type == 254)
-		return (perlin_color_cloud(get_perlin_cloud(data->perlin, ontexture, 4)));
+		return (perlin_color_cloud(get_perlin_cloud(data->perlin, ontxt, 4)));
 	if (type == 253)
-		return (perlin_color_marble(get_perlin_marble(data->perlin, ontexture)));
-	return (perlin_color_wood(get_perlin_wood(data->perlin, ontexture)));
+		return (perlin_color_marble(get_perlin_marble(data->perlin, ontxt)));
+	return (perlin_color_wood(get_perlin_wood(data->perlin, ontxt)));
 }
 
 static int		perlin_sphere(t_thread *data, void *obj, t_vec ray, int type)
 {
-	t_point		ontexture;
+	t_point		ontxt;
 	float		phi;
 	float		theta;
 
@@ -48,13 +48,13 @@ static int		perlin_sphere(t_thread *data, void *obj, t_vec ray, int type)
 		sub_vec(ray.origin, ((t_sphere *)obj)->origin.origin).x);
 	while (phi < 0.0)
 		phi += 2 * M_PI;
-	ontexture.x = (phi / (2 * M_PI)) * 100;
-	ontexture.y = ((M_PI - theta) / (M_PI)) * 100;
+	ontxt.x = (phi / (2 * M_PI)) * 100;
+	ontxt.y = ((M_PI - theta) / (M_PI)) * 100;
 	if (type == 254)
-		return (perlin_color_cloud(get_perlin_cloud(data->perlin, ontexture, 4)));
+		return (perlin_color_cloud(get_perlin_cloud(data->perlin, ontxt, 4)));
 	if (type == 253)
-		return (perlin_color_marble(get_perlin_marble(data->perlin, ontexture)));
-	return (perlin_color_wood(get_perlin_wood(data->perlin, ontexture)));
+		return (perlin_color_marble(get_perlin_marble(data->perlin, ontxt)));
+	return (perlin_color_wood(get_perlin_wood(data->perlin, ontxt)));
 }
 
 static int		perlin_plan(t_thread *data, void *obj, t_vec ray, int type)
@@ -78,9 +78,12 @@ static int		perlin_plan(t_thread *data, void *obj, t_vec ray, int type)
 
 int				find_perlin(t_thread *data, void *obj, t_vec ray)
 {
+	int id;
+
+	id = ((t_base *)obj)->effect.id_texture;
 	if (((t_base *)obj)->effect.type == PLAN)
-		return (perlin_plan(data, obj, ray, ((t_base *)obj)->effect.id_texture));
+		return (perlin_plan(data, obj, ray, id));
 	else if (((t_base *)obj)->effect.type == SPHERE)
-		return (perlin_sphere(data, obj, ray, ((t_base *)obj)->effect.id_texture));
-	return (perlin_cylinder(data, obj, ray, ((t_base *)obj)->effect.id_texture));
+		return (perlin_sphere(data, obj, ray, id));
+	return (perlin_cylinder(data, obj, ray, id));
 }
