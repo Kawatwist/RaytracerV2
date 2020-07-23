@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/18 18:22:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 13:18:19 by cbilga           ###   ########.fr       */
+/*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
+/*   Updated: 2020/07/23 18:48:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef enum		e_lol
 	INFO,
 }					t_lol;
 
-typedef enum		e_hud
+typedef enum		e_hudpage
 {
 	CAM_LOGO = 0,
 	LIGHT_LOGO = 1,
@@ -47,7 +47,7 @@ typedef enum		e_hud
 	HUD = 7,
 	HOME_SCREEN = 8,
 	LOAD_SCREEN = 9,
-}					e_hud;
+}					t_hudpage;
 
 typedef struct s_data	t_data;
 
@@ -59,11 +59,11 @@ typedef struct		s_c33
 
 typedef struct		s_case
 {
-		void		(*pf)(t_data *, int);
-		char		*to_print;
-		int			val;
-		char		i;
-		int			type;
+	void			(*pf)(t_data *, int);
+	char			*to_print;
+	int				val;
+	char			i;
+	int				type;
 }					t_case;
 
 typedef struct		s_select
@@ -135,7 +135,7 @@ typedef struct		s_input
 	int				button;
 }					t_input;
 
-typedef struct		s_camera t_camera;
+typedef struct s_camera	t_camera;
 
 struct				s_camera
 {
@@ -184,18 +184,18 @@ typedef struct		s_scene
 	unsigned int	error_line;
 }					t_scene;
 
-typedef struct	s_menu
+typedef struct		s_menu
 {
 	SDL_Texture		*background;
-}				t_menu;
+}					t_menu;
 
-typedef struct    	s_grad
+typedef struct		s_grad
 {
-    int ix;
-    int iy;
-    float x;
-    float y;
-}      				 t_grad;
+	int				ix;
+	int				iy;
+	float			x;
+	float			y;
+}					t_grad;
 
 typedef struct		s_slider
 {
@@ -229,29 +229,28 @@ typedef struct		s_preview
 	t_slider		slider[4];
 }					t_preview;
 
-typedef struct      s_perl
+typedef struct		s_perl
 {
-    int x0;
-    int x1;
-    int y0;
-    int y1;
-    float sx;
-    float sy;
-    float n0;
-    float n1;
-    float ix0;
-    float ix1;
-    float value;
-	float xPeriod;
-    float yPeriod;
-    float turbPower;
-	float turbSize;
-    float xyvalue;
-	float xvalue;
-	float yvalue;
-    float sinvalue;
-	float distvalue;
-}      				t_perl;
-
+	int				x0;
+	int				x1;
+	int				y0;
+	int				y1;
+	float			sx;
+	float			sy;
+	float			n0;
+	float			n1;
+	float			ix0;
+	float			ix1;
+	float			value;
+	float			xperiod;
+	float			yperiod;
+	float			turbpower;
+	float			turbsize;
+	float			xyvalue;
+	float			xvalue;
+	float			yvalue;
+	float			sinvalue;
+	float			distvalue;
+}					t_perl;
 
 #endif

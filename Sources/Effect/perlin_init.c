@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   perlin_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 15:21:10 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/08 15:37:36 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/23 18:52:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	init_perlin(t_point uv, t_perl *p)
 	p->y1 = p->y0 + 1;
 	p->sx = uv.x - (float)p->x0;
 	p->sy = uv.y - (float)p->y0;
-	p->xPeriod = 50;
-	p->yPeriod = 100;
-	p->turbPower = 5;
+	p->xperiod = 50;
+	p->yperiod = 100;
+	p->turbpower = 5;
 }
 
 void	init_perlin_wood(t_point uv, t_perl *p)
@@ -34,10 +34,10 @@ void	init_perlin_wood(t_point uv, t_perl *p)
 	p->y1 = p->y0 + 1;
 	p->sx = uv.x - (float)p->x0;
 	p->sy = uv.y - (float)p->y0;
-	p->xPeriod = 50;
-	p->yPeriod = 100;
-	p->turbPower = 0.02;
-	p->turbSize = 20.0;
+	p->xperiod = 50;
+	p->yperiod = 100;
+	p->turbpower = 0.02;
+	p->turbsize = 20.0;
 	p->xvalue = (uv.x - GRADIENT / 4) / (float)GRADIENT;
 	p->yvalue = (uv.y - GRADIENT / 4) / (float)GRADIENT;
 }
