@@ -6,23 +6,24 @@
 [header]
 	xscreen : 600
 	yscreen : 400
-	object : 2
+	object : 3
 	light : 2
 	camera : 1
 	quality : 1
 	ambiant : 0x0
 	nb_texture : 1
-	textures : "texture/texture/newjinx.tga"
+	opti : 4000
+	textures : "texture/Texture/Jinx_split.tga"
 [light:1]
 	origin : {1.5 0 1.1}
 	distance : 10
 	intensity : 1
-	color : 0xFFFFFF
+	color : 0x0
 [light:1]
 	origin : {1.5 0 -2}
 	distance : 10
 	intensity : 1
-	color : 0xFFFFFF
+	color : 0x0
 [camera:1]
 	origin : {0.5 0 -1}
 	direction : {0 0 1}
@@ -33,8 +34,16 @@
 			id_texture : 0
 			texture : 255
 			mv : 1
-[object:sphere]
-	color : 0xFFFFFF
-	origin : {0.5 0 1.5}
-	rayon : 0.5
+[object:plan]
+	color : 0x7F7F7F
+	origin : {0.5 0 1}
+	direction : {0 0 1}
+			id_texture : 0
+			texture : 255
+			mv : 1
+[object:plan]
+	color : 0xFF00FF
+	origin : {0.5 0 2}
+	direction : {0 0 -1}
 			ns : 1
+			reflection : 255

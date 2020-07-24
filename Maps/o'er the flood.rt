@@ -1,0 +1,11 @@
+[header]
+	xscreen : 600
+	yscreen : 400
+	object : 3
+	light : 2
+	camera : 1
+	quality : 1
+	ambiant : 0x0
+	nb_texture : 1
+	opti : 4000
+	textures : "texture/Texture/Jinx_split.tga"

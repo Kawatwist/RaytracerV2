@@ -1,0 +1,105 @@
+[header]
+	xscreen : 2000
+	yscreen : 2000
+	object : 15
+	light : 4
+	camera : 1
+	quality : 0
+	ambiant : 0x0
+	opti : 4000
+	bounce : 500
+	refresh : 0
+	aa : 1
+	screenshot : 1
+[camera:Basic]
+	origin : {0 0 -3}
+	direction : {0 0 1}
+	mode : 0
+[light:0]
+	origin : {0 0 3}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {0 0 -3}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {3 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {-3 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+# The Box
+[object:plan]
+	origin : {0 0 5}
+	direction : {0 0 -1}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 0 -5}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {5 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {-5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 -5 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:sphere]
+	origin : {-5 -5 5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {-5 5 5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {5 -5 5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {5 5 5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {-5 -5 -5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {-5 5 -5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {5 -5 -5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {5 5 -5}
+	rayon : 1
+	color : 0xFFFFFF
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 1
+	color : 0xFFFFFF
+			reflection : 100
