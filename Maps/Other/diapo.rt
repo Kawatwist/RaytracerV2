@@ -48,17 +48,19 @@
 	origin : {0 1 0}
 	direction : {0 -1 0}
 	color : 0xFFFFFF
+			opacity : 50
 [object:sphere]
 	origin : {2 -2 2}
 	color : 0xFF00FF
 	rayon : 1
+			opacity : 150
 [object:plan]
 	origin : {4 0 0}
 	direction : {-1 0 0}
 	color : 0xFFFFFF
 			id_texture : 2
 			texture : 255
-			opacity : 1
+			opacity : 100
 			ns : 0
 [object:obj]
 	origin : {-1.5 -1.5 5.25}
@@ -72,4 +74,4 @@
 			t5 : 1
 			id_texture : 0
 			texture : 255
-			opacity : 125
+			opacity : 250
