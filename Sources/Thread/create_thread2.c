@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 17:00:55 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 20:53:32 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/24 22:54:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ static void		loading_sc2(t_data *data)
 	}
 }
 
+void			show_advance(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		SDL_UnlockTexture(data->window.txt);
+		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
+		SDL_LockTexture(data->window.txt, NULL, &data->window.pxl,
+			&data->window.pitch);
+		((t_thread *)data->thread)[i].pxl =
+			&(((unsigned char *)data->window.pxl)
+			[(((t_thread *)data->thread)[i].len * i) << 2]);
+	}
+}
+
 void			loading_sc(t_data *data, int p)
 {
 	SDL_Rect	pos;
@@ -72,16 +89,18 @@ void			loading_sc(t_data *data, int p)
 	init_pos(&pos, p);
 	loading_sc2(data);
 	i = -1;
+	if (data->flag.adv)
+		show_advance(data);
 	while (++i < 4)
 		pthread_mutex_unlock(&((t_thread *)data->thread)[i].mutex);
 	setup_rect(data, &og, &screen, &lolz);
-	SDL_RenderClear(data->window.rend);
+	!data->flag.adv ? SDL_RenderClear(data->window.rend) : 0;
+	if ((data->flag.first == 0 || data->window.oldtxt == NULL) && !data->flag.adv)
+		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
+	else if (!data->flag.adv)
+		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	if (data->hud.flag_hud)
 		show_hud_loading(data);
-	else if (data->flag.first == 0 || data->window.oldtxt == NULL)
-		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
-	else
-		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);
 	SDL_RenderCopy(data->window.rend, data->load.load, &pos, &og);
 	loading_bar(data);
 	SDL_RenderPresent(data->window.rend);

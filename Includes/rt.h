@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 21:30:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/24 22:54:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct			s_flag
 	Uint32				shadow : 1;
 	Uint32				tile : 1;
 	Uint32				icon : 1;
+	Uint32				adv : 1;
 	Uint32				parsing : 1;
 }						t_flag;
 

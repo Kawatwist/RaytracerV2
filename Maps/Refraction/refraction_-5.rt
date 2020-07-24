@@ -12,7 +12,7 @@
 	object : 2
 	light : 1
 	filter : 4
-	tile : 1
+	tile : 0.8
 ############### Camera ################
 [camera:1]
 	origin : {0 -2 -2}

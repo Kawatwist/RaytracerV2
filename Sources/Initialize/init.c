@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 21:14:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/24 22:54:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			initialize(t_data *data)
 	data->hud.color_obj = 1;
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
+	data->flag.adv = 1;
 	data->flag.typing = 0;
 	data->flag.shadow = 0;
 	data->window.x = 0;

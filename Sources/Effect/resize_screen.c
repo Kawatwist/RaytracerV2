@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 11:36:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/24 22:52:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void		resize_size(t_data *data, int check[2])
 		check[0] = 800;
 	if (check[1] < 800)
 		check[1] = 801;
-	data->window.x = check[0];
-	data->window.y = check[1];
 	if (check[1] % 4)
 	{
 		SDL_SetWindowSize(data->window.window, check[0], check[1] +
@@ -30,6 +28,8 @@ static void		resize_size(t_data *data, int check[2])
 	}
 	else
 		SDL_SetWindowSize(data->window.window, check[0], check[1]);
+	SDL_GetWindowSize(data->window.window, (int*)(&data->window.x),
+		(int*)(&data->window.y));
 }
 
 static void		resize_thread(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 17:30:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/24 22:54:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void		input_ext(t_data *data)
 		data->flag.show = (data->flag.show == 1 ? 0 : 1);
 	if (key_check(*data, SDL_SCANCODE_M))
 		data->flag.cam_move = (data->flag.cam_move == 1 ? 0 : 1);
+	if (key_check(*data, SDL_SCANCODE_X))
+		data->flag.adv = (data->flag.adv == 1 ? 0 : 1);
 	if (data->flag.video)
 		framed(data);
 	if (data->flag.show && !data->flag.asked)
