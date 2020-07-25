@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_extra.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 21:55:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:27:01 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int			sub_loop(t_data *data)
 {
 	int err;
 
+	
 	if ((data->flag.refresh || data->flag.asked ||
 	data->flag.video) && !data->flag.show)
 	{

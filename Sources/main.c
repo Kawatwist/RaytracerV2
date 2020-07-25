@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:29:35 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 21:30:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:24:43 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			main(int argc, char *argv[])
 	if ((value = parsing(&data, argc, argv)) != 0)
 		return (stop_main_execute("Error Parsing : ", &data, value));
 	data.flag.parsing = 1;
+	
 	if ((value = check_parse(&data)) != 0)
 		return (stop_main_execute("Error Parse Check : ", &data, value));
 	if (data.flag.screen)

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   button_spawn.c                                     :+:      :+:    :+:   */
+/*   button_advance.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:39:29 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/22 23:54:58 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 16:54:31 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	button_spawn(t_data *data)
+void	boo_value_advance(t_data *data, int val)
 {
-	data->all_button[10].pf = &boo_value;
-	data->all_button[10].to_print = "Spawn";
-	data->all_button[10].val = data->flag.diapo;
-	data->all_button[10].i = 1;
+	if (data->flag.adv == val)
+		data->flag.adv = 0;
+	else
+		data->flag.adv = val;
+}
+
+void	button_advance(t_data *data)
+{
+	data->all_button[8].pf = &boo_value_advance;
+	data->all_button[8].to_print = "Advance";
+	data->all_button[8].val = data->flag.adv;
+	data->all_button[8].i = 1;
 }

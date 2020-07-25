@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 13:04:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:45:21 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ void			button_diapo(t_data *data);
 void			boo_value_refresh(t_data *data, int val);
 void			button_once_refresh(t_data *data);
 
-void			button_spawn(t_data *data);
+void			button_advance(t_data *data);
 
 void			button_slider_filter(t_data *data);
 void			button_slider_bounce(t_data *data);

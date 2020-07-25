@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/22 22:55:33 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 17:09:23 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ float			stay_in_case(float value, float min, float max)
 
 float			slider(t_data *data, t_slider *slider)
 {
-	if ((data->input.button & SDL_BUTTON_LEFT) &&
-		(hitbox(data->input.x, data->input.y, &slider->position)) == 1)
+	float		result;
+	result = 0.0;
+	if ((data->input.button & SDL_BUTTON_LEFT) && !(data->input.oldbutton & SDL_BUTTON_LEFT)
+		&& (hitbox(data->input.x, data->input.y, &slider->position)) == 1)
 		slider->selected = 1;
 	if (!(data->input.button & SDL_BUTTON_LEFT))
 		slider->selected = 0;
@@ -46,17 +48,18 @@ float			slider(t_data *data, t_slider *slider)
 		if (!slider->dir)
 			slider->cursor.x =
 			stay_in_case(data->input.x - (slider->cursor.w / 2.0),
-			slider->position.x, slider->position.x + slider->position.w);
+			slider->position.x, slider->position.x + slider->position.w - slider->cursor.w);
 		else
 			slider->cursor.y =
 			stay_in_case(data->input.y - (slider->cursor.h / 2.0),
-			slider->position.y, slider->position.y + slider->position.h);
+			slider->position.y, slider->position.y + slider->position.h - slider->cursor.h);
 	}
 	draw_rect(data, slider->position, slider->colorbg);
+	if (slider->cursor.x <= slider->position.x + slider->position.w)
 	draw_rect(data, slider->cursor, slider->colorcursor);
 	if (!slider->dir)
 		return ((float)(slider->cursor.x - slider->position.x)
-			/ (slider->position.w));
+			/ (slider->position.w) * 1.07692357396);
 		return ((float)(slider->cursor.y - slider->position.y)
-		/ (slider->position.h));
+		/ (slider->position.h) * 1.0952380);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   damier.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:34:06 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 20:22:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 18:08:30 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static int		damier_plan(t_thread *data, void *obj, t_vec ray)
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
-	uv.x = (unsigned int)((dot_product(ray.origin, v) - 1) * data->tile);
-	uv.y = (unsigned int)((dot_product(ray.origin, u) - 1) * data->tile);
-	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2)
+	uv.x = (unsigned int)((dot_product(ray.origin, v)) * data->tile);
+	uv.y = (unsigned int)((dot_product(ray.origin, u)) * data->tile);
+	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2) // avec un * ca fait des trucs cools aussi
 		return (data->ambiant);
 	return (0xFF000000);
 }

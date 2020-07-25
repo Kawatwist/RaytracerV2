@@ -5,11 +5,12 @@
 	xscreen : 1300
 	yscreen : 1300
 	quality : 3
-	bounce : 0
+	bounce : 3
 	camera : 2
 	object : 10
 	light : 1
 	refresh : 1
+	filter : 2
 ############### Light ##################
 [light:1]
 	origin : {-0.49 -0.40 0.45}

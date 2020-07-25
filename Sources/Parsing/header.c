@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 13:14:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:24:41 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,6 @@ int			parsing_head(t_data *data, char **ret)
 		line ? free(line) : 0;
 		return (12);
 	}
+	
 	return (0);
 }

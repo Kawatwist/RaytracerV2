@@ -155,7 +155,7 @@ SRC				=	main.c										\
 					button_stand.c								\
 					button_diapo.c								\
 					button_refresh.c							\
-					button_spawn.c								\
+					button_advance.c							\
 					button_slider.c								\
 					click_button.c								\
 					init_slider.c								\
