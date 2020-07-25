@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:46:03 by lomasse           #+#    #+#             */
-/*   Updated: 2020/06/20 19:40:39 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 12:11:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ static SDL_Texture	*get_loading(t_data *data, char *path)
 
 int					loading(t_data *data)
 {
-	if (!(data->load.load = get_loading(data, "./texture/mayload.tga")))
+	if (!(data->load.load = get_loading(data, "./Assets/mayload.tga")))
 		return (1);
-	if (!(data->load.loading = get_loading(data, "./texture/loading.tga")))
-		return (1);
-	if (!(data->load.lolz = get_loading(data, "./texture/test.tga")))
+	if (!(data->load.loading = get_loading(data, "./Assets/loading.tga")))
 		return (1);
 	return (0);
 }

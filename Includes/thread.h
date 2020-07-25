@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 20:22:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:12:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ typedef	struct			s_thread
 int						pthread_timedjoin_np(pthread_t td, void **res,
 							struct timespec *ts);
 void					loading_bar(t_data *data);
-void					setup_rect(t_data *data, SDL_Rect *og, SDL_Rect *screen, SDL_Rect *lolz);
+void					setup_rect(t_data *data, SDL_Rect *og,
+							SDL_Rect *screen, SDL_Rect *lolz);
 void					loading_sc(t_data *data, int p);
 void					light_variance(t_data *data, t_thread *thd);
 /*

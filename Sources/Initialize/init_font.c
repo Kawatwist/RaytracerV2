@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_font.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:50:48 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/07 23:40:44 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 12:08:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static SDL_Texture	*load_txt(t_data *data, char *path)
 
 int					init_font(t_data *data)
 {
-	if ((data->font.font_maj = load_txt(data, "./texture/Letter2.tga")) == NULL)
+	if ((data->font.font_maj = load_txt(data, "./Assets/Letter2.tga")) == NULL)
 		return (1);
 	return (0);
 }

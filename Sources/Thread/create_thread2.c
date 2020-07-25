@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 17:00:55 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/24 22:54:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:05:10 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			loading_sc(t_data *data, int p)
 		pthread_mutex_unlock(&((t_thread *)data->thread)[i].mutex);
 	setup_rect(data, &og, &screen, &lolz);
 	!data->flag.adv ? SDL_RenderClear(data->window.rend) : 0;
-	if ((data->flag.first == 0 || data->window.oldtxt == NULL) && !data->flag.adv)
+	if ((!data->flag.first || !data->window.oldtxt) && !data->flag.adv)
 		SDL_RenderCopy(data->window.rend, data->load.loading, NULL, NULL);
 	else if (!data->flag.adv)
 		SDL_RenderCopy(data->window.rend, data->window.oldtxt, NULL, NULL);

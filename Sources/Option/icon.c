@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 05:38:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 21:52:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:12:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ SDL_Surface				*icone(void)
 	t_tga				*icon;
 	SDL_Surface			*surface;
 
-	if ((icon = load_tga("./texture/icon.tga")) == NULL)
+	if ((icon = load_tga("./Assets/icon.tga")) == NULL)
 		return (NULL);
 	surface = SDL_CreateRGBSurfaceFrom(icon->data, icon->w, icon->h, 32,
 		icon->w * 4, 0xFF00, 0xFF0000, 0xFF000000, 0xFF);

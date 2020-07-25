@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 00:10:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:11:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct		s_load
 {
 	SDL_Texture		*load;
 	SDL_Texture		*loading;
-	SDL_Texture		*lolz;
 }					t_load;
 
 typedef struct		s_window

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/24 23:22:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:11:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,7 @@ int				clear_memory(t_data *data)
 	ft_memdel((void **)&data->input.rkey);
 	destroy_text_main(data->load.load);
 	destroy_text_main(data->load.loading);
-	destroy_text_main(data->load.lolz);
 	data->flag.parsing ? clear_thread((t_thread *)data->thread) : 0;
 	clear_sdl(data);
-	while (1)
-	{
-		printf("Leaks Check ?\n"); // Printf
-		SDL_Delay(500);
-	}
 	return (0);
 }

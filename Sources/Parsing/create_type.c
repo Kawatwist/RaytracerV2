@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:11 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/11 16:10:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:18:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				create_normal(t_data *data)
 	{
 		img = load_tga(data->obj.normal[index]);
 		if (img == NULL)
-			img = load_tga("./Texture/Invalid.tga");
+			img = load_tga("./Assets/Invalid.tga");
 		data->normal[index] = img;
 		index++;
 	}
@@ -72,7 +72,7 @@ int				create_texture(t_data *data)
 	{
 		img = load_tga(data->obj.texture[index]);
 		if (img == NULL)
-			img = load_tga("./Texture/Invalid.tga");
+			img = load_tga("./Assets/Invalid.tga");
 		free(data->obj.texture[index]);
 		data->texture[index] = img;
 		index++;
