@@ -98,6 +98,7 @@ SRC				=	main.c										\
 					init_vec.c									\
 					mat_vec2.c									\
 					math_vec_float.c							\
+					float.c										\
 					math_vec.c									\
 					vec_tool.c									\
 					normal_map.c								\

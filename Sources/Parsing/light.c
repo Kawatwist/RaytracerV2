@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:09 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/11 15:30:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 12:47:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int			parsing_light(t_data *data, char **old, char *line)
 		free(line);
 	}
 	data->parse.error_line -= 1;
+	if (!line)
+		return (13);
 	*old = line;
 	index++;
 	return (0);

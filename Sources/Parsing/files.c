@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/01/26 21:05:56 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/25 12:46:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	if (!ft_strncmp("[camera", *line, 7))
 	{
 		curr = 16;
-		parsing_camera(data, old);
+		if ((val = parsing_camera(data, old)))
+			return (val);
 	}
 	else if (!ft_strncmp("[object", *line, 7))
 	{
@@ -31,7 +32,8 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	else if (!ft_strncmp("[light", *line, 6))
 	{
 		curr = 15;
-		parsing_light(data, old, *line);
+		if ((val = parsing_light(data, old, *line)))
+			return (val);
 	}
 	else if ((*line)[0] == '#')
 		;

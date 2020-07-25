@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 22:33:38 by luwargni          #+#    #+#             */
-/*   Updated: 2020/02/17 13:59:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 13:09:27 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static double	check_sign(const char **nptr, int *flag)
 		return (0.0);
 	if (*(*nptr) == '-' || *(*nptr) == '+')
 	{
-		(*flag) = (*(*nptr) == '-' ? 0b1000000000000000000000000 : 0);
+		(*flag) = (*(*nptr) == '-' ? 16777216 : 0);
 		(*nptr)++;
 	}
 	while ((*nptr)[(*flag) & 0xFF] && (((*nptr)[(*flag) & 0xFF] >= '0' &&
@@ -74,7 +74,7 @@ float			ft_atof(const char *nptr)
 
 	nbr2 = 0.0;
 	flag = 0;
-	if ((check_sign(&nptr, &flag)) != 1)
+	if ((check_sign(&nptr, &flag)) != 1.0)
 		return (0.0);
 	else
 	{

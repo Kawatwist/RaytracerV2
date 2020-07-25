@@ -6,6 +6,18 @@
 	camera : 1
 	quality : 1
 	ambiant : 0x0
-	nb_texture : 1
+	nb_texture : 20
+	refresh : 1
+	flag_hud : 1
 	opti : 4000
 	textures : "texture/Texture/Jinx_split.tga"
+[camera:]
+	origin : {0 0 0}
+	direction : {- - -}
+	mode : -1
+[light:]
+	spot : 5
+[object:plan]
+	origin : {0 2 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F

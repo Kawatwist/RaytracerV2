@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 19:47:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 13:04:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ float			length(t_point v1);
 /*
 **			Tools
 */
+unsigned int	maxu(unsigned int value, unsigned int value2);
+unsigned int	lowu(unsigned int value, unsigned int value2);
 float			square(float f);
 float			ang(float value);
 float			rad(float value);

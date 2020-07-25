@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 21:51:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 13:14:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,23 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-		data->window.x = ((ft_atoi(&(line[11]))) >= 800 ?
-			ft_atoi(&(line[11])) : 800);
+		data->window.x = maxu(ft_atoi(&(line[11])), 800);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-		data->window.y = ((ft_atoi(&(line[11]))) >= 800 ?
-			ft_atoi(&(line[11])) : 800);
+		data->window.y = maxu(ft_atoi(&(line[11])), 800);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
-		data->bounce = ((unsigned int)ft_atoi(&(line[10]))) > 500
-			? 500 : ((unsigned int)ft_atoi(&(line[10])));
+		data->bounce = lowu(ft_atoi(&(line[10])), 500);
 	else if (!ft_strncmp("\tcamera : ", line, 10))
-		data->obj.nb_camera = ft_atoi(&(line[10]));
-	else if (!ft_strncmp("\tobject : ", line, 10))
-		data->obj.nb_item = ft_atoi(&(line[10]));
+		data->obj.nb_camera = lowu(ft_atoi(&(line[10])), 20);
 	else if (!ft_strncmp("\tlight : ", line, 9))
-		data->obj.nb_light = ft_atoi(&(line[9]));
+		data->obj.nb_light = lowu(ft_atoi(&(line[9])), 20);
+	else if (!ft_strncmp("\tobject : ", line, 10))
+		data->obj.nb_item = lowu(ft_atoi(&(line[10])), 100);
 	else if (!ft_strncmp("\trefresh : ", line, 11))
 		data->flag.refresh = (ft_atoi(&(line[11])) & 0b1);
 	else if (!ft_strncmp("\tnb_normal : ", line, 13))
-		data->obj.nb_normal = ft_atoi(&(line[13]));
+		data->obj.nb_normal = lowu(ft_atoi(&(line[13])), 255);
 	else if (!ft_strncmp("\tflag_hud : ", line, 11))
-		data->hud.flag_hud = ft_atoi(&(line[11]));
+		data->hud.flag_hud = ft_atoi(&(line[11])) & 0xb1;
 	else if (parsing_head_v4(data, line))
 		return (1);
 	return (0);
@@ -96,7 +93,7 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 		if ((val = parsing_head_v3(data, line)) == 0)
 			;
 		else if (!ft_strncmp("\tnb_texture : ", line, 14))
-			data->obj.nb_texture = ft_atoi(&(line[14]));
+			data->obj.nb_texture = ft_atoi(&(line[14])) & 0xF9;
 		else if (!ft_strncmp("\tfilter : ", line, 10))
 			data->flag.filter = ft_atoi(&(line[10])) & 0b111;
 		else if (!(val = is_tga(data, line)) || (line[0] == '#'))
@@ -110,6 +107,8 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 			break ;
 		free(line);
 	}
+	if (!line)
+		return (10);
 	*ret = line;
 	return (0);
 }
