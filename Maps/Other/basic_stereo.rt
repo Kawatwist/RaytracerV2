@@ -8,6 +8,7 @@
 	refresh : 1
 	quality : 3
 	bounce : 0
+	camera : 1
 	object : 4
 	light : 0
 	flag_hud : 0

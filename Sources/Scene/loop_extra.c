@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/26 18:16:24 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:52:39 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ int			sub_loop(t_data *data)
 		data->flag.video ? data->flag.video -= 1 : 0;
 		if (data->flag.icon == 1)
 			real_time_icon(data);
-		else if (set_icone(data))
-			return (1);
 	}
 	else
 		SDL_Delay(64);

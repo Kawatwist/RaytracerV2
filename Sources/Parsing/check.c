@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/11 20:12:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 17:49:33 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,25 @@ static int		check_effect(t_data *data, t_object obj)
 int				check_parse(t_data *data)
 {
 	int	val;
+	int max;
 
 	if ((val = check_effect(data, data->obj)) != 0)
 		return (val);
 	if ((data->input.rkey = malloc(282)) == NULL)
 		return (1);
+	if (data->obj.nb_texture != 0)
+	{
+		max = data->obj.nb_texture;
+		data->obj.nb_texture = 0;
+		while (data->obj.nb_texture < max && data->obj.texture[data->obj.nb_texture])
+			data->obj.nb_texture += 1;
+	}
+	if (data->obj.nb_normal != 0)
+	{
+		max = data->obj.nb_normal;
+		data->obj.nb_normal = 0;
+		while (data->obj.nb_normal < max && data->obj.normal[data->obj.nb_normal])
+			data->obj.nb_normal += 1;
+	}
 	return (0);
 }
