@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 16:15:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:16:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 				setup_ray(data, (*x - (data->x / 2)) * 2, *y, 1),
 					data->bounce, NULL);
 		}
+	}
 	else
 		quality(data, x, y, curr);
 }
