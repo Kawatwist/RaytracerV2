@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   show_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/26 14:39:24 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 15:48:57 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	show_txt(t_data *data)
 	print_text(data, 100, 40, 25);
 	data->font.str = ft_strdup("Color Picker");
 	print_text(data, 60, data->window.y * 0.55 + 10, 25);
-	
 	data->font.str = ft_strdup(tab[data->obj.type_index]);
 	print_text(data, 20, data->window.y - 40, 25);
 	data->font.str = ft_itoa(data->obj.index[data->obj.type_index]);
