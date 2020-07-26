@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/24 23:11:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:02:40 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void		input_ext(t_data *data)
 
 void		input(t_data *data)
 {
-	color_selected(data);
+	if (data->obj.type_index == 1)
+		color_selected(data);
 	get_input(data);
 	if (data->screen.interface == RUN)
 	{
@@ -91,5 +92,6 @@ void		input(t_data *data)
 		}
 		input_ext(data);
 	}
-	set_color_selected(data);
+	if (data->obj.type_index)
+		set_color_selected(data);
 }
