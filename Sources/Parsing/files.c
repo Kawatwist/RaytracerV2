@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 16:29:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:59:48 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ int				parsing_files(t_data *data, char *old)
 		data->parse.error_line += 1;
 		if ((er = parsing_files2(data, &old, &line)) != 0)
 		{
-			free(line);
+			ft_memdel((void **)&line);
 			return (er);
 		}
-		free(line);
+		ft_memdel((void **)&line);
 	}
 	return (0);
 }

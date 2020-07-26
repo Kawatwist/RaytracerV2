@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:11 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 12:18:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:58:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				create_light(t_data *data)
 
 int				create_camera(t_data *data)
 {
-	if (data->obj.nb_camera == 0)
+	if (data->obj.nb_camera == 0 || !data->obj.normal)
 		data->obj.nb_camera = 1;
 	if ((data->obj.camera =
 	malloc(sizeof(t_camera) * (data->obj.nb_camera + 1))) == NULL)
@@ -61,7 +61,7 @@ int				create_texture(t_data *data)
 	t_tga	*img;
 	int		index;
 
-	if (data->obj.nb_texture < 0)
+	if (data->obj.nb_texture < 0 || !data->obj.texture)
 		data->obj.nb_texture = 0;
 	if ((data->texture =
 	malloc(sizeof(t_tga *) * data->obj.nb_texture)) == NULL)

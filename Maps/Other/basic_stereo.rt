@@ -8,6 +8,7 @@
 	refresh : 1
 	quality : 3
 	bounce : 0
+	camera : 1
 	object : 4
 	light : 1
 	flag_hud : 0
@@ -23,7 +24,7 @@
 [camera:1]
 	origin : {0 -5 -15.0}
 	direction : {0 0 1}
-	mode : 2
+	mode : 1
 ############### Object ##################
 [object:sphere]
 	origin : {0.0 -5.0 0.0}
