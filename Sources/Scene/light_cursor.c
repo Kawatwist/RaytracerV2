@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_cursor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:19:41 by luwargni          #+#    #+#             */
-/*   Updated: 2020/06/26 19:08:43 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 14:37:39 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		add_light(t_data *data, t_light *new, int x, int y)
 	new->distance = 5;
 	new->intensity = 1;
 	new->type = 1;
-	new->ang = -0.5;
+	new->ang = 0.5;
 	new->direction = normalize(sub_vec(find_pos(data, x, y),
 		data->obj.camera[data->obj.index[0]].pos.origin));
 	new->origin = side_pos(data);

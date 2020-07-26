@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 10:45:39 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 12:51:07 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		data->max_dist) && data->max_dist)
 		return (data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
-	//r.fix.origin = veccpy(ray.origin);
-	//r.fix.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	if (((t_base *)r.obj)->effect.texture &&
 		((r.color[0] & 0xFF000000) >> 24) > 254)
@@ -115,7 +113,6 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	data->tmp_color = r.color[0];
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);
-	
 	r.tmp.direction = find_normal_with_txt(data, r.obj, r.tmp);
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
