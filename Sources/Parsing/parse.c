@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:44:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 12:46:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 16:24:42 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ int		parsing(t_data *data, int nb, char *arg[])
 	if ((error_value = initialize_cam(data)) != 0)
 		return (error_value);
 	return (0);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/21 15:05:35 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/22 23:15:30 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 16:19:11 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void		get_color_picker(t_data *data)
 
 void			new_rt(t_data *data)
 {
+	//printf("Val : %d",data->bounce);
 	if (!data->screen.preview.slider[0].init)
 		init_slider_preview(data);
 	if (!data->hud.color_obj)

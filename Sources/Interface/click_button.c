@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:45:33 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/22 23:53:52 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/25 16:44:50 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		init_case(t_data *data, int mode)
 	button_diapo(data);
 	button_slider_filter(data);
 	button_slider_bounce(data);
-	button_spawn(data);
+	button_advance(data);
 	return (0);
 }
 
