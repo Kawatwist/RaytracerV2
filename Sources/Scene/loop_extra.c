@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/25 16:27:01 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:16:24 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			texture_on_screen(t_data *data)
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
 	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
-	SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
+	//SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
 	SDL_RenderClear(data->window.rend);
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);

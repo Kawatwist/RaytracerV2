@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_cursor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:19:41 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 14:37:39 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 18:15:11 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void			light_cursor(t_data *data)
 	t_object	*obj;
 
 	i = -1;
-	if (data->input.button & SDL_BUTTON_LEFT)
+	if (data->input.button & SDL_BUTTON_LEFT && ((data->hud.flag_hud == 0) ||
+	(data->hud.flag_hud == 1 && data->input.x > 300 && data->input.y > 20)))
 		while (++i < 4)
 		{
 			add_light(data,

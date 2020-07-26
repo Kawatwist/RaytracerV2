@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 16:45:21 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:46:38 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,5 +310,5 @@ void			rot_cam_axe(int key_code, t_camera *tmp, t_point tmp2);
 void			call_rot_cam(t_data *data);
 void			input_obj(t_data *data);
 void			get_input(t_data *data);
-
+void			button_shadow(t_data *data);
 #endif

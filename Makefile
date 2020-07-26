@@ -169,6 +169,7 @@ SRC				=	main.c										\
 					loop_draw.c									\
 					loop_draw2.c								\
 					loop_extra.c								\
+					button_shadow.c								\
 
 
 
