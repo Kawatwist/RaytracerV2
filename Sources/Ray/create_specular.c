@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 19:30:49 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 11:09:08 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ double				specular(t_light light,
 	t_point			r;
 	static float	value = 300;
 	
-
-	l = sub_vec(collide.origin, light.origin);
+	collide.direction = normalize(collide.direction);
+	l = normalize(sub_vec(collide.origin, light.origin));
 	v = normalize(sub_vec(collide.origin, cam.origin));
-	v = cam.direction;
+	//v = cam.direction;
 	//v = normalize(sub_vec( cam.origin, collide.origin));
 	r = sub_vec(mult_vec2(collide.direction,
 		dot_product(collide.direction, l) * 2), l);
 	r = normalize(r);
-	specular = powf(dot_product(r, v), value);	
-	// 	if (dot_product(v, collide.origin) > -10)
-	// 	specular = powf(dot_product(r, v), value);
-	// else
-	// 	specular = 0;
+	//specular = powf(dot_product(r, v), value);
+	if (dot_product(r, v) > 0)
+	 	specular = powf(dot_product(r, v), value);
+	else
+	 	specular = 0;
 	return (specular);
 }
 
