@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 00:53:55 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 13:42:22 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void		input_obj(t_data *data)
 	static char	enter = 1;
 
 	if (key_check(*data, SDL_SCANCODE_KP_ENTER))
+	{
 		enter *= -1;
+		data->screen.preview.select_section *= -1;
+	}
 	input_obj2(data, enter);
 	stay_in_case(data);
 	if (data->obj.type_index == 1)

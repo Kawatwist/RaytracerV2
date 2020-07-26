@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 09:39:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 13:39:35 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-		data->window.x = maxu(ft_atoi(&(line[11])), 800);
+		data->window.x = maxu(ft_atoi(&(line[11])), 1000);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-		data->window.y = maxu(ft_atoi(&(line[11])), 800);
+		data->window.y = maxu(ft_atoi(&(line[11])), 1000);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
 		data->bounce = lowu(ft_atoi(&(line[10])), 500);
 	else if (!ft_strncmp("\tcamera : ", line, 10))
@@ -138,6 +138,6 @@ int			parsing_head(t_data *data, char **ret)
 		line ? free(line) : 0;
 		return (12);
 	}
-	
+
 	return (0);
 }

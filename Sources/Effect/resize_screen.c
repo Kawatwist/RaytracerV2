@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:25:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/24 22:52:56 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 13:39:30 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 static void		resize_size(t_data *data, int check[2])
 {
 	data->flag.asked = 1;
-	if (check[0] < 800)
-		check[0] = 800;
-	if (check[1] < 800)
-		check[1] = 801;
+	if (check[0] < 1000)
+		check[0] = 1000;
+	if (check[1] < 1000)
+		check[1] = 1001;
 	if (check[1] % 4)
 	{
 		SDL_SetWindowSize(data->window.window, check[0], check[1] +

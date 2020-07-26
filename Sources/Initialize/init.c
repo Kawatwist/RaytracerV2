@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/24 22:54:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 13:40:26 by luwargni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			initialize(t_data *data)
 	data->flag.refresh += 0b100000;
 	data->flag.nb_video = 30;
 	data->hud.color_obj = 1;
+	data->screen.preview.select_section = 1;
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
 	data->flag.adv = 1;
