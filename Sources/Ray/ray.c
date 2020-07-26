@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 00:27:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/25 14:12:41 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,15 @@ static unsigned int	send_ray2(t_thread *data, t_vec ray,
 static int			texture_opacity(t_thread *data,
 	t_ray *r, t_vec ray, void *ignore)
 {
+	static int	stack = 0;
+
+	if (stack++ > 20)
+	{
+		stack = 0;
+		return (0);
+	}
 	r->good = 1;
-	ray.origin = set_neworigin(ray, r->dist[0]);
+	ray.origin = set_neworigin_op(ray, r->dist[0] < 0.001 ? 0.001 : r->dist[0]);
 	if (!(r->obj = check_object(data, ray,
 		&(r->dist[0]), ignore)) || r->dist[0] == -1)
 		return (0);
@@ -81,6 +88,7 @@ static int			texture_opacity(t_thread *data,
 		& 0xFF000000) >> 24) > 240)
 		if (!texture_opacity(data, r, ray, ignore))
 			return (0);
+	stack = 0;
 	return (1);
 }
 
@@ -99,7 +107,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	if (((t_base *)r.obj)->effect.texture &&
-		((r.color[0] & 0xFF000000) >> 24) > 240)
+		((r.color[0] & 0xFF000000) >> 24) > 254)
 		if (!(texture_opacity(data, &r, ray, r.obj)))
 			return (data->ambiant);
 	data->tmp_color = r.color[0];

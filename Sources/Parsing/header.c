@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 13:14:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 09:36:49 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 		if ((val = parsing_head_v3(data, line)) == 0)
 			;
 		else if (!ft_strncmp("\tnb_texture : ", line, 14))
-			data->obj.nb_texture = ft_atoi(&(line[14])) & 0xF9;
+			data->obj.nb_texture = lowu(ft_atoi(&(line[14])), 249);
 		else if (!ft_strncmp("\tfilter : ", line, 10))
 			data->flag.filter = ft_atoi(&(line[10])) & 0b111;
 		else if (!(val = is_tga(data, line)) || (line[0] == '#'))
