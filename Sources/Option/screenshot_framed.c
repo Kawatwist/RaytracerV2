@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/18 20:32:01 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:36:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 18:54:39 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ void			show_framed(t_data *data)
 		path = findcurrentdirname(path);
 		path = ft_strjoinfree(path, "/Frame_0.bmp\0", 1);
 	}
-	surface = SDL_LoadBMP(path);
+	if (!(surface = SDL_LoadBMP(path)))
+		ft_putstr("No file to load\n");
 	txt = SDL_CreateTextureFromSurface(data->window.rend, surface);
 	SDL_FreeSurface(surface);
 	SDL_RenderCopy(data->window.rend, txt, NULL, NULL);
-	SDL_RenderPresent(data->window.rend);
 	SDL_DestroyTexture(txt);
 	path = next_frame(data, path);
-	if (data->flag.asked)
+	if (data->flag.asked && !data->flag.show)
 	{
 		free(path);
 		path = NULL;

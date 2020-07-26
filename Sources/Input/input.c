@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 16:02:40 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/26 18:42:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void		input_ext(t_data *data)
 		data->flag.adv = (data->flag.adv == 1 ? 0 : 1);
 	if (data->flag.video)
 		framed(data);
-	if (data->flag.show && !data->flag.asked)
-		show_framed(data);
 	light_cursor(data);
 	input_filter(data);
 	input_hud(data);
