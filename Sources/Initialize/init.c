@@ -6,12 +6,19 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/24 22:54:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:29:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
+
+static void	initialize_scene_data(t_data *data)
+{
+	data->obj.nb_camera = 1;
+	data->obj.nb_light = 1;
+	data->obj.nb_item = 1;
+}
 
 static void	initialize2(t_data *data)
 {
@@ -33,13 +40,14 @@ int			initialize(t_data *data)
 	data->flag.refresh += 0b100000;
 	data->flag.nb_video = 30;
 	data->hud.color_obj = 1;
+	data->screen.preview.select_section = 1;
 	data->hud.flag_hud = 0;
 	data->hud.last_hud = 0;
 	data->flag.adv = 1;
 	data->flag.typing = 0;
 	data->flag.shadow = 0;
-	data->window.x = 0;
-	data->window.y = 0;
+	data->window.x = 1000;
+	data->window.y = 1000;
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;
@@ -49,6 +57,7 @@ int			initialize(t_data *data)
 	data->dist[6] = obj;
 	data->ambiant = 0xFF000000;
 	initialize2(data);
+	initialize_scene_data(data);
 	generate_perlin(data);
 	if (init_case(data, 0))
 		return (1);

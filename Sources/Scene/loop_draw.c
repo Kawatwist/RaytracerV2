@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:35:09 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 12:40:59 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 14:43:26 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	draw_outline(t_data *data)
 	dst.y = data->window.y - 1;
 	draw_rect(data, dst, 0xffffff);
 	dst.y = data->window.y * 0.55 - 1;
+	draw_rect(data, dst, 0xffffff);
+	dst.y = data->window.y - 51;
 	draw_rect(data, dst, 0xffffff);
 }
 
@@ -78,6 +80,12 @@ void	draw_title_background(t_data *data)
 	dst.x = 0;
 	dst.y = data->window.y * 0.55;
 	dst.w = 300;
+	dst.h = 50;
+	draw_rect(data, dst, 0x1965a1);
+
+	dst.x = (data->screen.preview.select_section != 1) ? 0 : 150;
+	dst.y = data->window.y - 50;
+	dst.w = 150;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
 }

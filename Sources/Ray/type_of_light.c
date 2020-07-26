@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 17:13:01 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 17:53:22 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ unsigned int		spot(t_thread *data, t_ray r, unsigned int color, int index)
 		data->obj.light[index].origin));
 	obj[2] = length(sub_vec(data->obj.light[index].origin, r.tmp.origin));
 	obj[1] = stop_light(data, data->obj.light[index], r.tmp, obj[2]);
+	if (!data->flag.diapo && obj[1] < obj[2] && obj[1] != -1)
+		return (0x0);
 	obj[0] = (dist(obj));
 	len < 0 ? len = 0 : 0;
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);

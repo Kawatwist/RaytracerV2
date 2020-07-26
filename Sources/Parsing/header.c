@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 09:39:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:29:14 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static int	parsing_head_v4(t_data *data, char *line)
 static int	parsing_head_v3(t_data *data, char *line)
 {
 	if (!ft_strncmp("\txscreen : ", line, 11))
-		data->window.x = maxu(ft_atoi(&(line[11])), 800);
+		data->window.x = maxu(ft_atoi(&(line[11])), 1000);
 	else if (!ft_strncmp("\tyscreen : ", line, 11))
-		data->window.y = maxu(ft_atoi(&(line[11])), 800);
+		data->window.y = maxu(ft_atoi(&(line[11])), 1000);
 	else if (!ft_strncmp("\tbounce : ", line, 10))
 		data->bounce = lowu(ft_atoi(&(line[10])), 500);
 	else if (!ft_strncmp("\tcamera : ", line, 10))
@@ -100,12 +100,12 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 			;
 		else if (val == 1 || val == 14)
 		{
-			free(line);
+			ft_memdel((void **)&line);
 			return (val);
 		}
 		else
 			break ;
-		free(line);
+		ft_memdel((void **)&line);
 	}
 	if (!line)
 		return (10);
@@ -121,23 +121,23 @@ int			parsing_head(t_data *data, char **ret)
 	line = NULL;
 	while (get_next_line(data->parse.fd, &line) && line[0] == '#')
 	{
-		free(line);
+		ft_memdel((void **)&line);
 		data->parse.error_line += 1;
 	}
 	if (!line || ft_strncmp("[header]", line, 8))
 	{
-		line != NULL ? free(line) : 0;
+		ft_memdel((void **)&line);
 		return (12);
 	}
-	free(line);
+	ft_memdel((void **)(&line));
 	if ((er = parsing_head_v2(data, ret, line)) != 0)
 		return (er);
-	if (ret && *ret[0] != '[')
+	if (*ret && *ret[0] != '[')
 	{
-		free(ret);
-		line ? free(line) : 0;
+		ft_memdel((void **)&ret);
+		if (line)
+			ft_memdel((void **)&line);
 		return (12);
 	}
-	
 	return (0);
 }

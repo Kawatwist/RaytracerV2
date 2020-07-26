@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:34:06 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 18:08:30 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/26 13:57:33 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,14 @@ static int		damier_plan(t_thread *data, void *obj, t_vec ray)
 
 	u = fill_vec(((t_plan *)obj)->origin.direction.y,
 		((t_plan *)obj)->origin.direction.z,
-		-((t_plan *)obj)->origin.direction.x);
+		((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
 	uv.x = (unsigned int)((dot_product(ray.origin, v)) * data->tile);
 	uv.y = (unsigned int)((dot_product(ray.origin, u)) * data->tile);
+	if (((unsigned int)uv.x < 3))
+	{
+		return (data->ambiant);
+	}
 	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2) // avec un * ca fait des trucs cools aussi
 		return (data->ambiant);
 	return (0xFF000000);

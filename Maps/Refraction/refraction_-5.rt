@@ -28,7 +28,7 @@
 ############### Object ################
 [object:sphere]
 	origin : {0 -1 1}
-	color : 0xFFFFFF
+	color : 0xFFFFFF./
 	rayon : 1
 			refraction : 255
 			id_refraction : -5.0

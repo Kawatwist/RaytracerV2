@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 12:46:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:29:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	static int	curr = 12;
 	int			val;
 
-	if (!ft_strncmp("[camera", *line, 7))
+	if (!ft_strncmp("[camera:", *line, 8))
 	{
 		curr = 16;
 		if ((val = parsing_camera(data, old)))
 			return (val);
 	}
-	else if (!ft_strncmp("[object", *line, 7))
+	else if (!ft_strncmp("[object:", *line, 8))
 	{
 		curr = 17;
 		if ((val = parsing_obj(data, old, *line)) != 0)
 			return (val);
 	}
-	else if (!ft_strncmp("[light", *line, 6))
+	else if (!ft_strncmp("[light:", *line, 7))
 	{
 		curr = 15;
 		if ((val = parsing_light(data, old, *line)))

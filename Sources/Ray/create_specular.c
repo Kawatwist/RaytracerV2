@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 13:08:12 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 17:53:11 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ double				specular(t_light light,
 	t_point			v;
 	t_point			r;
 	static float	value = 300;
-	
+
 	collide.direction = normalize(collide.direction);
 	l = normalize(sub_vec(collide.origin, light.origin));
-	v = normalize(sub_vec(collide.origin, cam.origin));;
+	v = normalize(sub_vec(collide.origin, cam.origin));
 	r = sub_vec(mult_vec2(collide.direction,
 		dot_product(collide.direction, l) * 2), l);
 	r = normalize(r);
