@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 15:24:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/26 16:15:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 	if (*curr < data->x || (!(*x % ((data->flag.pixel * 2) + 1)) && !(*y %
 		((data->flag.pixel * 2) + 1))))
 	{
-		if (data->obj.camera[data->obj.index[0]].mode == 0
-			|| (*x < data->x / 2.0 && data->obj.camera[data->obj.index[0]].mode == 2))
+		if (data->obj.camera[data->obj.index[0]].mode == 0)
 			((unsigned int *)data->pxl)[*curr] = send_ray(data, setup_ray(data, *x,
 				*y, 0), data->bounce, NULL);
 		else if (data->obj.camera[data->obj.index[0]].mode == 1)
@@ -91,11 +90,15 @@ static void			basic_render(t_thread *data, int *x, int *y, int *curr)
 					(((unsigned int *)data->pxl)[*curr] & 0xFF0000));
 		else if (data->obj.camera[data->obj.index[0]].mode == 2)
 		{
+			if (*x < data->x / 2.0)
+				((unsigned int *)data->pxl)[*curr] = send_ray(data,
+				setup_ray(data, ((*x) * 2), *y, 0),
+					data->bounce, NULL);
+			else
 				((unsigned int *)data->pxl)[*curr] = send_ray(data,
 				setup_ray(data, (*x - (data->x / 2)) * 2, *y, 1),
 					data->bounce, NULL);
 		}
-	}
 	else
 		quality(data, x, y, curr);
 }
