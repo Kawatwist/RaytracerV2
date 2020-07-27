@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   damier.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:34:06 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 13:57:33 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/27 13:43:38 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ static int		damier_plan(t_thread *data, void *obj, t_vec ray)
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
 	uv.x = (unsigned int)((dot_product(ray.origin, v)) * data->tile);
 	uv.y = (unsigned int)((dot_product(ray.origin, u)) * data->tile);
-	if (((unsigned int)uv.x < 3))
+	if (dot_product(ray.origin, v) < 0 ^ dot_product(ray.origin, u) < 0)
 	{
-		return (data->ambiant);
+		if ((((unsigned int)uv.x + ((unsigned int)uv.y)) % 2) == 0)
+			return (data->ambiant);
+		else
+			return (0xFF000000);
 	}
 	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2) // avec un * ca fait des trucs cools aussi
 		return (data->ambiant);
