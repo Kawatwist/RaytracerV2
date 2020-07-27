@@ -17,7 +17,14 @@
 ############### Light ##################
 [light:1]
 	origin : {0.0 -25.0 -25.0}
-	color : 0xFFFFFF
+	color : 0xFFffff
+	distance : 50
+	intensity : 1
+	spot : 0
+	ang : 0.7
+[light:1]
+	origin : {0.0 25.0 -25.0}
+	color : 0xff2266
 	distance : 50
 	intensity : 1
 	spot : 0
