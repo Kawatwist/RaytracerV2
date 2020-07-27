@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 12:12:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/27 13:48:47 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,8 @@ int						light_color(unsigned int color, unsigned int newcolor);
 int						create_specular(t_thread *data, t_ray *r,
 							float dot, int index);
 unsigned int			add_color(unsigned int base, unsigned int new);
-unsigned int			spot(t_thread *data, t_ray r,
-							unsigned int color, int index);
-unsigned int			omni(t_thread *data, t_ray r,
-							unsigned int color, int index);
+unsigned int			spot(t_thread *data, t_ray r, int index);
+unsigned int			omni(t_thread *data, t_ray r, int index);
 unsigned int			ray_to_light(t_thread *data, t_ray r);
 void					*check_object_light(t_thread *data,
 							t_vec ray, float *dist, float max_dist);
@@ -150,4 +148,6 @@ int						setup_obj(t_data *data, t_thread *tmp);
 int						clear_thread(t_thread *data);
 int						quitrequested(t_thread *data);
 
+
+float			shadow(t_thread *data, t_ray r, int index);
 #endif
