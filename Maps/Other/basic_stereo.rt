@@ -7,7 +7,7 @@
 	yscreen : 1000
 	refresh : 1
 	quality : 3
-	bounce : 0
+	bounce : 4
 	camera : 1
 	object : 4
 	light : 0
@@ -20,7 +20,7 @@
 	color : 0xFFFFFF
 	distance : 50
 	intensity : 1
-	spot : 1
+	spot : 0
 	ang : 0.7
 ############### Camera ##################
 [camera:1]
@@ -42,9 +42,11 @@
 	color : 0xFF0000
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
-[object:cylinder]
+[object:cone]
 	origin : {5.0 -10.0 0.0}
 	direction : {0 1 0}
+	side : 0
 	color : 0xFF00FF00
-	rayon : 1.0
-	hauteur : 1000000000000000000000
+	angle : 45
+			opacity : 200
+	hauteur : 100

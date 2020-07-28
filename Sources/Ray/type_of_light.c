@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/27 16:50:35 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:19:01 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,8 @@ unsigned int		omni(t_thread *data, t_ray r, int index)
 	if (data->flag.shadow == 1)
 	{
 		color = shadow(data, r, index);
-		data->tmp_color = (apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, (color) / 255.0));
+		data->tmp_color = apply_mult(
+				((t_base *)r.obj)->effect.color, 0xffffff, (color / 255.0));
 	}
 	flag_diapo(data, obj, r, index);
 

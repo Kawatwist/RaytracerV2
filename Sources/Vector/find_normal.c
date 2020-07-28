@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_normal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 19:54:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 16:02:44 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,20 @@ static t_point	cylinder_normal(t_cylinder c, t_vec collide)
 static t_point	cone_normal(t_cone c, t_vec collide)
 {
 	t_point	oc;
-	t_point flank;
-	t_point tmp;
-
-	flank = sub_vec(c.origin.origin, collide.origin);
-	tmp = cross_vec(flank, c.origin.direction);
-	oc = cross_vec(tmp, flank);
-	return (normalize(oc));
+	t_point normal;
+	float	verif;
+	t_point plane;
+	
+	oc = sub_vec(collide.origin, c.origin.origin);
+	verif = dot_product(oc, c.origin.direction);
+	plane = mult_vec2(c.origin.direction, verif);
+	normal = sub_vec(collide.origin, add_vec(plane, c.origin.origin));
+	verif = dot_product(c.origin.direction, oc);
+	if (verif > 0)
+		c.ang = c.ang * -1;
+	normal = add_vec(mult_vec2(normal, cos(rad(c.ang / 2))),
+	mult_vec2(c.origin.direction, sin(rad(c.ang / 2))));
+	return (normal);
 }
 
 t_point			normal_face(Uint8 face)
