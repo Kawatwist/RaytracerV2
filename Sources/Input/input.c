@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/28 15:57:05 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 15:59:45 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void		input_ext(t_data *data)
 
 void		input(t_data *data)
 {
-	if (data->obj.type_index == 1)
-		color_selected(data);
+	color_selected(data);
 	get_input(data);
 	if (data->screen.interface == RUN)
 	{
@@ -111,6 +110,5 @@ void		input(t_data *data)
 		}
 		input_ext(data);
 	}
-	if (data->obj.type_index)
-		set_color_selected(data);
+	set_color_selected(data);
 }

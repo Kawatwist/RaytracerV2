@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 14:55:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 15:59:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,5 +311,6 @@ void			rot_cam_axe(int key_code, t_camera *tmp, t_point tmp2);
 void			call_rot_cam(t_data *data);
 void			input_obj(t_data *data);
 void			get_input(t_data *data);
+void			button_shadow(t_data *data);
 
 #endif

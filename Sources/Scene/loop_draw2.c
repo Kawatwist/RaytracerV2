@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_draw2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:46:25 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 12:49:34 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/26 18:20:25 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_button_ext_1(t_data *data, SDL_Rect dst, unsigned int color)
 	draw_rect(data, dst, color);
 	dst.y -= 3;
 	dst.h = 3;
-	color = 0x000000;
+	color = 0x212121;
 	draw_rect(data, dst, color);
 }
 
@@ -64,7 +64,7 @@ void	draw_button_ext_2(t_data *data, SDL_Rect dst, unsigned int color)
 	draw_rect(data, dst, color);
 	dst.h = 3;
 	dst.y -= 3;
-	color = 0x000000;
+	color = 0x212121;
 	draw_rect(data, dst, color);
 }
 
@@ -75,6 +75,6 @@ void	draw_button_ext_3(t_data *data, SDL_Rect dst, unsigned int color)
 	draw_rect(data, dst, color);
 	dst.h = 3;
 	dst.y -= 3;
-	color = 0x000000;
+	color = 0x212121;
 	draw_rect(data, dst, color);
 }

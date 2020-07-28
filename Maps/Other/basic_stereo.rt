@@ -26,7 +26,7 @@
 [camera:1]
 	origin : {0 -5 -15.0}
 	direction : {0 0 1}
-	mode : 1
+	mode : 0
 ############### Object ##################
 [object:sphere]
 	origin : {0.0 -5.0 0.0}
@@ -47,4 +47,4 @@
 	direction : {0 1 0}
 	color : 0xFF00FF00
 	rayon : 1.0
-	hauteur : 10
+	hauteur : 1000000000000000000000

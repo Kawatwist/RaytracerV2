@@ -1,0 +1,62 @@
+#############################################
+#			Scene 42 : Sakura				#
+#############################################
+[header]
+	camera : 2
+	object : 10
+############### Light ##################
+[light:1]
+	origin : {-0.49 -0.40 0.45}
+	color : 0xFF00FF
+	distance : 5
+	intensity : 9
+############### Camera ################
+[camera:1]
+	origin : {0 0 -0.5}
+[camera:1]
+	origin : {0 1 0.1}
+############### Object #################
+[object:plan]
+	origin : {0 0 0.5}
+[object:plan]
+	origin : {0 0 -0.5}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0.5 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {-0.5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:plan]
+	origin : {0 0.5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 50
+[object:plan]
+	origin : {0 -0.5 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 255
+[object:cylinder]
+	origin : {0.5 0 0.5}
+	direction : {0 1 0}
+	color : 0x7F007F
+	rayon : 0.1
+[object:sphere]
+	origin : {0.5 -0.25 0.40}
+	direction : {0 1 0}
+	color : 0x7F007F
+	rayon : 0.05
+[object:sphere]
+	color : 0x7F007F
+	rayon : 0.05
+[object:sephere]
+	origin : {0.4 -0.25 0.50}
+	color : 0x7F007F
+	rayon : 0.05
