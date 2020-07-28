@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/08 15:21:06 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/23 18:51:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 16:14:28 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ float			get_perlin_marble(t_point perlin[GRADIENT * GRADIENT],
 	p.n0 = dot_gradient(perlin, g);
 	p.ix1 = lerp(p.n0, p.n1, p.sx);
 	p.value = lerp(p.ix0, p.ix1, p.sy);
-	p.xyvalue = uv.x * p.xperiod / GRADIENT + uv.y
+	p.xyvalue = uv.x * (p.xperiod / GRADIENT) + uv.y
 		* p.yperiod / GRADIENT + p.turbpower * p.value;
-	p.sinvalue = fabs(sin(p.xyvalue * 3.14159));
-	p.value = p.sinvalue;
-	return (p.value);
+	p.sinvalue = fabs(sin(p.xyvalue * M_PI));
+	return (p.sinvalue >= 1.0 ? p.sinvalue - 0.01 : p.sinvalue);
 }
 
 float			get_perlin_wood(t_point perlin[GRADIENT * GRADIENT], t_point uv)
@@ -85,8 +84,8 @@ float			get_perlin_wood(t_point perlin[GRADIENT * GRADIENT], t_point uv)
 	p.value = lerp(p.ix0, p.ix1, p.sy);
 	p.distvalue = sqrt(p.xvalue * p.xvalue
 		+ p.yvalue * p.yvalue) + p.turbpower * p.value;
-	p.sinvalue = fabs(sin(2 * p.xperiod * p.distvalue * 3.14159));
-	return (p.sinvalue);
+	p.sinvalue = fabs(sin(2 * p.xperiod * p.distvalue * M_PI));
+	return (p.sinvalue >= 1.0 ? p.sinvalue - 0.01 : p.sinvalue);
 }
 
 float			get_perlin_cloud(t_point perlin[GRADIENT * GRADIENT],
