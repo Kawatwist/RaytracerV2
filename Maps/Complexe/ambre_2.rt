@@ -8,7 +8,7 @@
 	ambiant : 0x7F007F
 	aa : 0
 	refresh : 0
-	bounce : 20
+	bounce : 0
 	quality : 0
 	object : 9
 	screenshot : 0
@@ -30,22 +30,10 @@
 	origin : {0 0 -15}
 	direction : {0 0 1}
 	mode : 0
-[camera:1]
+[camera:2]
 	origin : {0 0 -15}
 	direction : {0 0 1}
 	mode : 1
-[camera:1]
-	origin : {0 0 -15}
-	direction : {0 0 1}
-	mode : 2
-# [camera:1]
-# 	origin : {0 -4 -4}
-# 	direction : {0 0 1}
-# 	mode : 1
-# [camera:1]
-# 	origin : {-10 0 -15}
-# 	direction : {0 0 1}
-# 	mode : 2
 ############### OBJECT ################
 [object:sphere]
 	origin : {0 -4 0}

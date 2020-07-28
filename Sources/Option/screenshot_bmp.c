@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 18:53:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/22 22:32:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/27 16:00:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		create_screenshot_bmp(t_data *data, void *pxl,
 			name ? free(name) : 0;
 			return ;
 		}
+		screenshot_bmp_2(data, path, name, mode);
 		SDL_FreeSurface(tobmp);
 	}
-	screenshot_bmp_2(data, path, name, mode);
 }

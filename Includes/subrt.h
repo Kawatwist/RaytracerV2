@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 13:39:01 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/28 15:52:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct		s_load
 
 typedef struct		s_window
 {
+	SDL_Window		*window_video;
+	SDL_Renderer	*rend_video;
 	SDL_Window		*window;
 	SDL_Renderer	*rend;
 	SDL_Texture		*oldtxt;
@@ -171,7 +173,6 @@ typedef struct		s_object
 typedef struct		s_ray
 {
 	t_vec			tmp;
-	//t_vec			fix;
 	unsigned int	color[2];
 	void			*obj;
 	float			dist[2];

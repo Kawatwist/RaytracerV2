@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 18:42:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 15:57:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,36 @@ static void	color_selected(t_data *data)
 	data->hud.select.color_pick = 0;
 }
 
+void		window_render(t_data *data)
+{
+	if (data->flag.show)
+	{
+		data->window.window_video = SDL_CreateWindow("Video", 0, 0,
+				500, 500, SDL_WINDOW_SHOWN);
+		data->window.rend_video = SDL_CreateRenderer(data->window.window_video,
+				-1, SDL_RENDERER_ACCELERATED);
+		SDL_RenderClear(data->window.rend_video);
+	}
+	else
+	{
+		SDL_DestroyWindow(data->window.window_video);
+	}
+}
+
 void		input_ext(t_data *data)
 {
-	if (key_check(*data, SDL_SCANCODE_K))
+	if ((key_check(*data, SDL_SCANCODE_K) &&
+		!data->flag.video) || data->flag.start_show)
+	{
 		data->flag.show = (data->flag.show == 1 ? 0 : 1);
+		data->flag.start_show = 0;
+		window_render(data);
+	}
 	if (key_check(*data, SDL_SCANCODE_M))
 		data->flag.cam_move = (data->flag.cam_move == 1 ? 0 : 1);
 	if (key_check(*data, SDL_SCANCODE_X))
 		data->flag.adv = (data->flag.adv == 1 ? 0 : 1);
-	if (data->flag.video)
+	if (data->flag.video && !data->flag.show)
 		framed(data);
 	light_cursor(data);
 	input_filter(data);

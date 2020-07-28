@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/26 18:57:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:17:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,14 @@ int			sub_loop(t_data *data)
 {
 	int err;
 
-	
-	if ((data->flag.refresh || data->flag.asked ||
-	data->flag.video) && !data->flag.show)
+	if (data->flag.show)
 	{
+		show_framed(data);
+		SDL_Delay(41);
+	}
+	else if ((data->flag.refresh || data->flag.asked ||
+	data->flag.video))
+	{	
 		if ((err = looping(data)) != 0)
 			return (err);
 		data->flag.asked = 0;
@@ -118,17 +122,13 @@ int			sub_loop(t_data *data)
 		if (data->flag.icon == 1)
 			real_time_icon(data);
 	}
-	else if (data->flag.show)
-	{
-		SDL_Delay(64);
-		show_framed(data);
-	}
 	else
 		SDL_Delay(64);
 	if (data->hud.flag_hud && !data->flag.show)
 		texture_on_screen(data);
 	else if (!data->flag.show)
 		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
-	SDL_RenderPresent(data->window.rend);
+	if (!data->flag.show)
+		SDL_RenderPresent(data->window.rend);
 	return (0);
 }

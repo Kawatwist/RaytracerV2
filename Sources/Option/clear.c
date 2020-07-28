@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:02:33 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 17:29:31 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 15:53:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ static void		clear_sdl(t_data *data)
 {
 	if (data->window.window)
 		SDL_DestroyWindow(data->window.window);
+	if (data->window.window_video)
+		SDL_DestroyWindow(data->window.window_video);
 	if (SDL_WasInit(SDL_INIT_VIDEO))
-	
 		SDL_QuitSubSystem(SDL_INIT_VIDEO);
 	SDL_Quit();
 }

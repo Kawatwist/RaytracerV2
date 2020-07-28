@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:11 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 16:58:58 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:49:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				create_light(t_data *data)
 
 int				create_camera(t_data *data)
 {
-	if (data->obj.nb_camera == 0 || !data->obj.normal)
+	if (data->obj.nb_camera == 0)
 		data->obj.nb_camera = 1;
 	if ((data->obj.camera =
 	malloc(sizeof(t_camera) * (data->obj.nb_camera + 1))) == NULL)

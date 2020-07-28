@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 16:45:21 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:55:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void			check_folder_screenshot(void);
 void			create_screenshot_bmp(t_data *data, void *pxl,
 					char **path, int mode);
 void			create_screenshot(t_data *data, void *pxl);
-char			*finddirname(char *name);
-char			*findcurrentdirname(char *name);
+char			*finddirname(void);
+char			*findcurrentdirname(void);
 void			framed(t_data *data);
 void			show_framed(t_data *data);
 /*
@@ -171,6 +171,7 @@ int				init_cam(t_data *data);
 int				initialize_cam(t_data *data);
 int				initialize_sdl(t_data *data);
 int				initialize_scene(t_data *data);
+void			window_render(t_data *data);
 int				initialize(t_data *data);
 int				init_case(t_data *data, int mode);
 void			initialize_cam_ext(t_data *data, int index);

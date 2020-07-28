@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/25 16:29:30 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/28 14:12:24 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static int		init_sub(t_data *data)
 	data->screen.interface = HOME;
 	data->screen.screen[HOME] = home_screen;
 	data->screen.screen[RUN] = sub_loop;
-	//printf("%d\n", data->flag.filter);
 	if (initialize_scene(data))
 		return (5);
 	return (0);

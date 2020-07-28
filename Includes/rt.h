@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/24 22:54:04 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 15:01:25 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct			s_flag
 	Uint32				video : 12;
 	Uint32				nb_video : 12;
 	Uint32				show : 1;
+	Uint32				start_show : 1;
 	Uint32				save : 1;
 	Uint32				normal : 1;
 	Uint32				screen : 1;

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 12:45:12 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/28 14:49:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				parsing_camera(t_data *data, char **old)
 
 	line = NULL;
 	if (index >= data->obj.nb_camera)
-		return (13);
+		return (14);
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{
 		data->parse.error_line += 1;

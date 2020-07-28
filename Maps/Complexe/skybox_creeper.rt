@@ -9,7 +9,7 @@
 	aa : 0
 	bounce : 0
 	refresh : 0
-	quality : 0
+	quality : 3
 	object : 16
 	light : 3
 	opti : 1000
@@ -42,7 +42,7 @@
 [camera:1]
 	origin : {0 0 -5}
 	direction : {0 0 1}
-	mode : 1
+	mode : 0
 ############### Creeper ###############
 [object:obj]
 	origin : {0.5 1.5 0.25}
