@@ -1,0 +1,132 @@
+[header]
+	xscreen : 1000
+	yscreen : 1000
+	object : 17
+	light : 1
+	camera : 1
+	ambiant : 0x7F007F
+	bounce : 1
+	aa : 0
+	opti : 500
+	nb_texture : 2
+	textures : "./Texture/Texture/image.tga"
+	textures : "./Texture/Minecraft/ice.tga"
+[light:1]
+	origin : {0 -10 0}
+	color : 0xFFFFFF
+	distance : 20
+	intensity : 1
+[camera:1]
+	origin : {0 -2.5 -5}
+	direction : {0 0 1}
+	mode : 0
+## Ground
+[object:plan]
+	origin : {0 0 0}
+	direction : {0 -1 0}
+	color : 0x3F9FFF
+			texture : 255
+			id_texture : 1
+			reflection : 125
+			ns : 0
+## Tree
+[object:cylinder]
+	origin : {2 0 1}
+	direction : {0 -1 0}
+	hauteur : 1
+	rayon : 0.2
+	color : 0x7F7F00
+[object:cone]
+	origin : {2 -2 1}
+	direction : {0 -1 0}
+	hauteur : 1.5
+	side : -1
+	angle : 40
+	color : 0x007F3F
+[object:cone]
+	origin : {2 -3 1}
+	direction : {0 -1 0}
+	hauteur : 2
+	side : -1
+	angle : 30
+	color : 0x007F3F
+[object:cone]
+	origin : {2 -3.5 1}
+	direction : {0 -1 0}
+	hauteur : 1.5
+	side : -1
+	angle : 25
+	color : 0x007F3F
+## Tree
+[object:cylinder]
+	origin : {-1 0 3}
+	direction : {0 -1 0}
+	hauteur : 1
+	rayon : 0.2
+	color : 0x7F7F00
+[object:cone]
+	origin : {-1 -2 3}
+	direction : {0 -1 0}
+	hauteur : 1.5
+	side : -1
+	angle : 40
+	color : 0x007F3F
+[object:cone]
+	origin : {-1 -3 3}
+	direction : {0 -1 0}
+	hauteur : 2
+	side : -1
+	angle : 30
+	color : 0x007F3F
+[object:cone]
+	origin : {-1 -3 3}
+	direction : {0 -1 0}
+	hauteur : 1.5
+	side : -1
+	angle : 25
+	color : 0x007F3F
+## Support
+[object:cylinder]
+	origin : {0 0 1}
+	direction : {0 -1 0}
+	hauteur : 0.25
+	rayon : 1
+	color : 0x5D432C
+## Snowman
+[object:sphere]
+	origin : {0 -0.5 1}
+	rayon : 0.5
+	color : 0x9FFFFF
+[object:sphere]
+	origin : {0 -1.0 1}
+	rayon : 0.4
+	color : 0x9FFFFF
+[object:sphere]
+	origin : {0 -1.4 1}
+	rayon : 0.3
+	color : 0x9FFFFF
+[object:cone]
+	origin : {0 -1.4 0.3}
+	direction : {0 0 1}
+	hauteur : 0.7
+	side : 1
+	angle : 25
+	color : 0x9F9F3F
+[object:sphere]
+	origin : {-0.1 -1.5 0.8}
+	rayon : 0.1
+	color : 0x0
+			reflection : 25
+[object:sphere]
+	origin : {0.1 -1.5 0.8}
+	rayon : 0.1
+	color : 0x0
+			reflection : 25
+#skybox
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 40
+	color : 0x0
+			ns : 1
+			texture : 255
+			id_texture : 1
