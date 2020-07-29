@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/29 14:51:54 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 16:34:31 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,8 @@ unsigned int		spot(t_thread *data, t_ray r, int index)
 	// ****
 	if (data->flag.shadow == 1)
 	{
-		color = shadow(data, r, index, 0);
-		data->tmp_color = (apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, (color) / 255.0));
-		color = shadow(data, r, index, 1);
-		data->tmp_color = apply_mult(data->tmp_color, apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, (color) / 255.0), 1);
+		color = shadow(data, r, index);
+		data->tmp_color = (apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, fabs((color) / 255.0)));
 	}
 	// ******
 	flag_diapo(data, obj, r, index);
@@ -117,8 +115,7 @@ unsigned int		omni(t_thread *data, t_ray r, int index)
 	
 	if (data->flag.shadow == 1)
 	{
-		(void)color;
-		color = shadow(data, r, index, 0);
+		color = shadow(data, r, index);
 		data->tmp_color = (apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, fabs((color) / 255.0)));
 	}
 	flag_diapo(data, obj, r, index);

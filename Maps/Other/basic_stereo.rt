@@ -42,10 +42,11 @@
 	color : 0xFF0000
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
-[object:cylinder]
+[object:co]
 	origin : {5.0 -10.0 0.0}
 	direction : {0 1 0}
+	side : 0
 	color : 0xFF00FF00
 			opacity : 200
-	hauteur : 5
-	rayon : 0.5
+	angle : 45
+	hauteur : -1
