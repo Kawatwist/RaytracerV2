@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/27 13:48:47 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:32:37 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,5 @@ int						clear_thread(t_thread *data);
 int						quitrequested(t_thread *data);
 
 
-float			shadow(t_thread *data, t_ray r, int index);
+float			shadow(t_thread *data, t_ray r, int index, int boo);
 #endif
