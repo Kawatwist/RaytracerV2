@@ -9,7 +9,7 @@
 	camera : 1
 	quality : 0
 	aa : 0
-	bounce : 10
+	bounce : 20
 	object : 10
 	light : 2
 	nb_normal : 1
@@ -66,8 +66,8 @@
 	origin : {0 -0.5 0}
 	direction : {0 1 0}
 	color : 0x7F7F7F
-			id_texture : 1
-			texture : 255
+			reflection : 255
+			normal : 255
 [object:sphere]
 	origin : {0 0 0.4}
 	direction : {0 1 0}

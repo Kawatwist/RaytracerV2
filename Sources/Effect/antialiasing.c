@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/25 15:47:01 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 17:27:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				aa_render(t_thread *data, int *x, int *y, int *curr)
 	static	int		aa;
 
 	aa = 1 << (data->flag.antialiasing * 2);
-	*y = (*curr / data->x) + (data->pos / data->x);
+	*y = (data->index_thread + ((*curr / data->x) * 4));
 	*x = *curr % data->x;
 	i = -1;
 	while (++i < aa)
@@ -118,5 +118,5 @@ void				aa_render(t_thread *data, int *x, int *y, int *curr)
 		else
 			color[i] = send_aa_vr(data, *x, *y, *curr);
 	}
-	((unsigned int *)data->pxl)[*curr] = uniformize_color(color, aa);
+	((unsigned int *)data->pxl)[(*y * data->x) + *x] = uniformize_color(color, aa);
 }

@@ -86,6 +86,7 @@ SRC				=	main.c										\
 					init_thread_txt.c							\
 					quality.c									\
 					thread_function.c							\
+					basic_render.c								\
 					thread_load.c								\
 					pthread_timedjoin.c							\
 					shape.c										\
