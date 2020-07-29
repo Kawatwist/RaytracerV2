@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 22:52:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 00:01:54 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:49:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char		*input_hud_text(t_data *data, char *text)
 	key_val = 0;
 	while (i <= 98)
 	{
-		if (key_check(*data, i))
+		if (key_check(data, i))
 		{
 			key_val = printable_key_check(data, i);
 			if (key_val != 0)

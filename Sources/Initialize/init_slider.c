@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_slider.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:52:46 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/25 17:03:58 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:41:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ void	init_slider_preview_1(t_data *data)
 	data->screen.preview.slider[1].cursor.h = 40;
 }
 
+/*
+**	Filter (Need) patch
+*/
+//
+
 void	init_slider_preview_2(t_data *data)
 {
-	//FILTER
 	data->screen.preview.slider[2].init = 1;
 	data->screen.preview.slider[2].colorbg = 0x7c7c7c;
 	data->screen.preview.slider[2].colorcursor = 0x000000;
@@ -56,8 +60,8 @@ void	init_slider_preview_2(t_data *data)
 	data->screen.preview.slider[2].cursor.y = 25;
 	data->screen.preview.slider[2].cursor.w = 20;
 	data->screen.preview.slider[2].cursor.h = 15;
-	data->screen.preview.slider[2].cursor.x = 125 + data->flag.filter * data->screen.preview.slider[2].cursor.w;
-	// PATCHER ICI POUR PAS QUE CA SORTE DU TABLEAU
+	data->screen.preview.slider[2].cursor.x = 125 + data->flag.filter *
+		data->screen.preview.slider[2].cursor.w;
 }
 
 void	init_slider_preview_3(t_data *data)

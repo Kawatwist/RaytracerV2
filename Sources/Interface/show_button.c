@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   show_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 21:49:48 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/26 15:48:57 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:43:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	show_button(t_data *data)
 void	show_txt(t_data *data)
 {
 	static char		*tab[] = {"Camera :", "Object :", "Lights :"};
-	int			i;
-	int			j;
-	SDL_Rect	pos;
+	int				i;
+	int				j;
+	SDL_Rect		pos;
 
 	pos.x = 245;
 	pos.y = 95;

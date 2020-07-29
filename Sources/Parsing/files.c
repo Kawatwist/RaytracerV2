@@ -6,11 +6,29 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/28 14:49:15 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 14:04:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static int		parsing_files3(t_data *data, char **old, char **line)
+{
+	static int	curr = 12;
+	int			val;
+
+	if (!ft_strncmp("[light:", *line, 7))
+	{
+		curr = 15;
+		if ((val = parsing_light(data, old, *line)))
+			return (val);
+	}
+	else if ((*line)[0] == '#')
+		;
+	else
+		return (curr);
+	return (0);
+}
 
 static int		parsing_files2(t_data *data, char **old, char **line)
 {
@@ -26,19 +44,15 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	else if (!ft_strncmp("[object:", *line, 8))
 	{
 		curr = 17;
-		if ((val = parsing_obj(data, old, *line)) != 0)
+		if ((val = parsing_obj(data, old, *line)))
 			return (val);
 	}
-	else if (!ft_strncmp("[light:", *line, 7))
+	else 
 	{
-		curr = 15;
-		if ((val = parsing_light(data, old, *line)))
+		if ((val = parsing_files3(data, old, line)))
 			return (val);
+		return (0);
 	}
-	else if ((*line)[0] == '#')
-		;
-	else
-		return (curr);
 	return (0);
 }
 

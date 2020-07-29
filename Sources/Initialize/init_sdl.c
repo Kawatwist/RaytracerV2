@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:46:59 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 14:12:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 13:40:47 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int				initialize_scene(t_data *data)
 
 static int		init_sub(t_data *data)
 {
-	
 	data->screen.interface = HOME;
 	data->screen.screen[HOME] = home_screen;
 	data->screen.screen[RUN] = sub_loop;

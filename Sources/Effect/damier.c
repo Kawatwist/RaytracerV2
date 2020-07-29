@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   damier.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 02:34:06 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/27 13:43:38 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/29 13:39:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int		damier_plan(t_thread *data, void *obj, t_vec ray)
 		else
 			return (0xFF000000);
 	}
-	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2) // avec un * ca fait des trucs cools aussi
+	if (((unsigned int)uv.x + ((unsigned int)uv.y)) % 2)
 		return (data->ambiant);
 	return (0xFF000000);
 }

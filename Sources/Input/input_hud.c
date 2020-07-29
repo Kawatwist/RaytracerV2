@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 03:41:10 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/05 22:20:00 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 13:47:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	input_hud(t_data *data)
 {
-	if (key_check(*data, SDL_SCANCODE_H))
+	if (key_check(data, SDL_SCANCODE_H))
 	{
 		data->hud.flag_hud = (data->hud.flag_hud ? 0 : 1);
 		data->flag.show = 0;
 	}
-	if (key_check(*data, SDL_SCANCODE_C))
+	if (key_check(data, SDL_SCANCODE_C))
 		data->hud.color_obj = !data->hud.color_obj;
 }

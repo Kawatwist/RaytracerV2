@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/27 13:48:47 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 14:51:51 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef	struct			s_thread
 	char				loading;
 	int					current;
 	float				tile;
+	char				index_thread;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
@@ -140,6 +141,7 @@ unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray,
 							int bounce, void *ignore);
 int						start_ray(t_thread *data);
+void					basic_render(t_thread *data, int *curr);
 /*
 **			Memory
 */
