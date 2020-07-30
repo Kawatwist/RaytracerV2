@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 13:40:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:35:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	initialize_scene_data(t_data *data)
 {
+	data->max_dist = 4000;
 	data->window.x = 1000;
 	data->window.y = 1000;
 	data->obj.nb_camera = 1;

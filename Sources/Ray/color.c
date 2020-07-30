@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:17 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/18 17:41:27 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 15:11:18 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ static unsigned int	find_texture_color(t_thread *data, void *obj,
 	uv = data->txt[(int)((t_base *)obj)->effect.type](data, obj, ray, 1);
 	uv.x = (int)uv.x + ((((t_base *)obj)->effect.flag & MV) ?
 			((float)(data->percent / 100.0) * data->texture[index]->w) : 0);
-	uv.y = (int)uv.y;
-	while ((int)uv.y > data->texture[index]->h || (int)uv.y < 0)
-		uv.y += (uv.y > 0 ? -data->texture[index]->w : data->texture[index]->w);
-	while ((int)uv.x > data->texture[index]->w || (int)uv.x < 0)
-		uv.x += (uv.x > 0 ? -data->texture[index]->w : data->texture[index]->w);
+	uv.y = (int)uv.y % data->texture[index]->h;
+	uv.x = (int)uv.x % data->texture[index]->w;
 	ret = ((unsigned int *)data->texture[index]->data)[(unsigned int)(uv.x +
 			(uv.y * data->texture[index]->w))];
 	ret = ((ret & 0xFF) << 24) +

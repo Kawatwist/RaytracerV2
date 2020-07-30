@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 21:03:29 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 15:12:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 {
 	t_vec			tmp;
+	float			val;
 
 	if (((t_base *)r->obj)->effect.reflection)
 	{
@@ -35,8 +36,10 @@ static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 	{
 		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
 		r->color[1] = send_ray(data, tmp, r->bounce + 1, NULL);
-		r->color[0] = set_color(r->color[0], r->color[1],
-			(r->use_alpha ? r->alpha / 255.0 : ((t_base *)r->obj)->effect.opacity) / 255.0, -1);
+		val = r->use_alpha ? ((r->alpha / 255.0 + ((t_base *)r->obj)->effect.opacity / 255.0)) : ((t_base *)r->obj)->effect.opacity / 255.0;
+		val > 1 ? val = 1 : 0;
+		r->color[0] = set_color(r->color[0], r->color[1], val, -1);
+			
 	}
 }
 
@@ -79,7 +82,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	if (((t_base *)r.obj)->effect.texture &&
-		((r.color[0] & 0xFF000000) >> 24))
+		((r.color[0] & 0xFF000000) >> 24) && data->flag.alpha)
 	{
 		r.use_alpha = 1;
 		r.alpha = ((r.color[0] & 0xFF000000) >> 24);

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 17:48:41 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 16:24:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,5 @@ int						clear_thread(t_thread *data);
 int						quitrequested(t_thread *data);
 
 
-float			shadow(t_thread *data, t_ray r, int index);
+float					shadow(t_thread *data, t_ray r, int index);
 #endif
