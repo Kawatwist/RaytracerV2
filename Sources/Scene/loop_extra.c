@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_extra.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 13:03:43 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/28 15:59:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:11:55 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int			texture_on_screen(t_data *data)
 	pos.w = data->window.x - 200;
 	pos.h = data->window.y - 30;
 	SDL_SetRenderDrawColor(data->window.rend, 33, 33, 33, 0);
-	//SDL_SetRenderDrawColor(data->window.rend, 0xcc, 0xcc, 0xcc, 0xcc);
 	SDL_RenderClear(data->window.rend);
 	SDL_RenderCopy(data->window.rend, data->window.txt, &pos, &pos);
 	set_background(data);
@@ -112,9 +111,8 @@ int			sub_loop(t_data *data)
 		show_framed(data);
 		SDL_Delay(41);
 	}
-	else if ((data->flag.refresh || data->flag.asked ||
-	data->flag.video))
-	{	
+	else if ((data->flag.refresh || data->flag.asked || data->flag.video))
+	{
 		if ((err = looping(data)) != 0)
 			return (err);
 		data->flag.asked = 0;

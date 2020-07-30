@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 17:32:57 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:10:21 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_point	cone_normal(t_cone c, t_vec collide)
 	t_point normal;
 	float	verif;
 	t_point plane;
-	
+
 	oc = sub_vec(collide.origin, c.origin.origin);
 	verif = dot_product(oc, c.origin.direction);
 	plane = mult_vec2(c.origin.direction, verif);

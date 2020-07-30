@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mat_vec2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:27:18 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 10:52:56 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 18:09:43 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_point		cross_vec(t_point v1, t_point v2)
 
 float		dot_product(t_point v1, t_point v2)
 {
-	return (((double)v1.x * (double)v2.x) + ((double)v1.y * (double)v2.y) + ((double)v1.z * (double)v2.z));
+	return (((double)v1.x * (double)v2.x) +
+	((double)v1.y * (double)v2.y) + ((double)v1.z * (double)v2.z));
 }
 
 float		length(t_point v1)
