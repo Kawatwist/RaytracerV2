@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 15:59:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 14:34:03 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ t_point			cross_vec(t_point v1, t_point v2);
 float			cross_product(double **mat, t_point v1, int row);
 float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
+t_point			cam_rotx(t_point origin, float ang);
+t_point			cam_roty(t_point origin, float ang);
+t_point			cam_rotz(t_point origin, float ang);
 /*
 **			Tools
 */

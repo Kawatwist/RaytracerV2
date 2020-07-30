@@ -3,40 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   input_move_cam_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:10:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 00:45:13 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:17:37 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+static void print_camera(t_camera tmp)
+{
+	printf("position %f %f %f ", tmp.pos.origin.x, tmp.pos.origin.y, tmp.pos.origin.z);
+	printf("SC %f %f %f ", tmp.sc.x, tmp.sc.y, tmp.sc.z);
+	printf("X %f %f %f ", tmp.x.x, tmp.x.y, tmp.x.z);
+	printf("Y %f %f %f \n", tmp.y.x, tmp.y.y, tmp.y.z);
+}
+
 static void	rot_cam_input2(int key_code, t_camera *tmp, t_point tmp2)
 {
 	if (key_code == SDL_SCANCODE_UP)
 	{
-		tmp->sc = add_vec(rotx(sub_vec(tmp->sc, tmp2), 5.0), tmp2);
-		tmp->x = rotx(tmp->x, 5.0);
-		tmp->y = rotx(tmp->y, 5.0);
+		print_camera(*tmp);
+		tmp->sc = add_vec(cam_rotx(sub_vec(tmp->sc, tmp2), 5.0), tmp2);
+		tmp->x = cam_rotx(tmp->x, 5.0);
+		tmp->y = cam_rotx(tmp->y, 5.0);
 	}
 	if (key_code == SDL_SCANCODE_DOWN)
 	{
-		tmp->sc = add_vec(rotx(sub_vec(tmp->sc, tmp2), -5.0), tmp2);
-		tmp->x = rotx(tmp->x, -5.0);
-		tmp->y = rotx(tmp->y, -5.0);
+		tmp->sc = add_vec(cam_rotx(sub_vec(tmp->sc, tmp2), -5.0), tmp2);
+		tmp->x = cam_rotx(tmp->x, -5.0);
+		tmp->y = cam_rotx(tmp->y, -5.0);
 	}
 	if (key_code == SDL_SCANCODE_LEFT)
 	{
-		tmp->sc = add_vec(roty(sub_vec(tmp->sc, tmp2), 5.0), tmp2);
-		tmp->x = roty(tmp->x, 5.0);
-		tmp->y = roty(tmp->y, 5.0);
+		print_camera(*tmp);
+		tmp->sc = add_vec(cam_roty(sub_vec(tmp->sc, tmp2), 5.0), tmp2);
+		//tmp->x = sub_vec(cam_roty(add_vec(tmp->pos.origin, tmp->x), 5.0), tmp->pos.origin);
+		//tmp->y = sub_vec(cam_roty(add_vec(tmp->pos.origin, tmp->y), 5.0), tmp->pos.origin);
+		tmp->x = cam_roty(tmp->x, 5.0);
+		tmp->y = cam_roty(tmp->y, 5.0);
 	}
 	if (key_code == SDL_SCANCODE_RIGHT)
 	{
-		tmp->sc = add_vec(roty(sub_vec(tmp->sc, tmp2), -5.0), tmp2);
-		tmp->x = roty(tmp->x, -5.0);
-		tmp->y = roty(tmp->y, -5.0);
+		print_camera(*tmp);
+		tmp->sc = add_vec(cam_roty(sub_vec(tmp->sc, tmp2), -5.0), tmp2);
+		//tmp->x = sub_vec(cam_roty(add_vec(tmp->pos.origin, tmp->x), -5.0), tmp->pos.origin);
+		//tmp->y = sub_vec(cam_roty(add_vec(tmp->pos.origin, tmp->y), -5.0), tmp->pos.origin);
+		tmp->x = cam_roty(tmp->x, -5.0);
+		tmp->y = cam_roty(tmp->y, -5.0);
 	}
 }
 

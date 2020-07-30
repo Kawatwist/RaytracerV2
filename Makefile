@@ -171,6 +171,7 @@ SRC				=	main.c										\
 					loop_extra.c								\
 					button_shadow.c								\
 					shadow.c									\
+					quat.c										\
 
 
 

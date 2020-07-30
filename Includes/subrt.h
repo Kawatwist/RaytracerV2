@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 15:52:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 14:33:10 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,5 +255,13 @@ typedef struct		s_perl
 	float			sinvalue;
 	float			distvalue;
 }					t_perl;
+
+typedef struct	s_quat
+{
+	float w;
+	float x;
+	float y;
+	float z;
+}				t_quat;
 
 #endif
