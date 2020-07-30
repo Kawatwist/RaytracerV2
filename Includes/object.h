@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/02 22:04:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 14:37:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef enum		e_item
 	OBJ = 6,
 	NONE,
 }					t_item;
+
+typedef struct		s_ipoint
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_ipoint;
 
 typedef struct		s_point
 {

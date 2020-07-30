@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/20 15:48:39 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/02 22:34:17 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 13:49:22 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		mouse_get_run(t_data *data, SDL_Rect *pos)
 
 int				info_screen(t_data *data)
 {
-	if (key_check(*data, SDL_SCANCODE_BACKSPACE))
+	if (key_check(data, SDL_SCANCODE_BACKSPACE))
 		data->screen.interface = HOME;
 	get_input(data);
 	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[3],
@@ -53,7 +53,7 @@ int				home_screen(t_data *data)
 	{
 		mouse_get_run(data, &pos);
 	}
-	if (key_check(*data, SDL_SCANCODE_RETURN))
+	if (key_check(data, SDL_SCANCODE_RETURN))
 		data->screen.interface = RUN;
 	SDL_RenderCopy(data->window.rend, data->screen.scenetxt[0],
 		NULL, NULL);

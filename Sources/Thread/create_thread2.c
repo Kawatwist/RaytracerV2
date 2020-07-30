@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 17:00:55 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/25 12:05:10 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 16:48:07 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,7 @@ void			show_advance(t_data *data)
 		SDL_RenderCopy(data->window.rend, data->window.txt, NULL, NULL);
 		SDL_LockTexture(data->window.txt, NULL, &data->window.pxl,
 			&data->window.pitch);
-		((t_thread *)data->thread)[i].pxl =
-			&(((unsigned char *)data->window.pxl)
-			[(((t_thread *)data->thread)[i].len * i) << 2]);
+		((t_thread *)data->thread)[i].pxl = data->window.pxl;
 	}
 }
 

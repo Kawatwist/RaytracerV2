@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_move_cam.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:10:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 00:41:51 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:49:56 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		input_move_cam2_ext(void **cam)
 
 void		input_move_cam2(t_data *data, void **cam)
 {
-	if (key_old(*data, SDL_SCANCODE_LSHIFT))
+	if (key_hold(data, SDL_SCANCODE_LSHIFT))
 	{
 		(*(t_camera **)cam)->pos.origin =
 		add_vec((*(t_camera **)cam)->pos.origin,
@@ -51,7 +51,7 @@ void		input_move_cam2(t_data *data, void **cam)
 			mult_vec2(normalize(fill_vec(0, 1, 0)), 0.5));
 		}
 	}
-	if (key_old(*data, SDL_SCANCODE_SPACE))
+	if (key_hold(data, SDL_SCANCODE_SPACE))
 		input_move_cam2_ext(cam);
 }
 
@@ -104,9 +104,9 @@ void		input_move_cam(t_data *data, t_point tmp, void **cam)
 		(*(t_camera **)cam)->axerot = add_vec((*(t_camera **)cam)->pos.origin,
 			div_vec2(sub_vec((*(t_camera **)cam)->stereo->pos.origin,
 			(*(t_camera **)cam)->pos.origin), 2));
-	if (key_old(*data, SDL_SCANCODE_D))
+	if (key_hold(data, SDL_SCANCODE_D))
 		input_move_cam_ext_1(data, tmp, cam);
-	if (key_old(*data, SDL_SCANCODE_A))
+	if (key_hold(data, SDL_SCANCODE_A))
 		input_move_cam_ext_2(data, tmp, cam);
 	input_move_cam2(data, cam);
 }

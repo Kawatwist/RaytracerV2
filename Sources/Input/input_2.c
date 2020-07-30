@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 13:42:22 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:47:43 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ static void	stay_in_case(t_data *data)
 
 static void	input_obj2(t_data *data, char enter)
 {
-	if (key_check(*data, SDL_SCANCODE_KP_PLUS) && enter == 1)
+	if (key_check(data, SDL_SCANCODE_KP_PLUS) && enter == 1)
 		data->obj.index[data->obj.type_index] += 1;
-	if (key_check(*data, SDL_SCANCODE_KP_MINUS) && enter == 1)
+	if (key_check(data, SDL_SCANCODE_KP_MINUS) && enter == 1)
 		data->obj.index[data->obj.type_index] -= 1;
-	if (key_check(*data, SDL_SCANCODE_KP_PLUS) && enter != 1)
+	if (key_check(data, SDL_SCANCODE_KP_PLUS) && enter != 1)
 		data->obj.type_index += 1;
-	if (key_check(*data, SDL_SCANCODE_KP_MINUS) && enter != 1)
+	if (key_check(data, SDL_SCANCODE_KP_MINUS) && enter != 1)
 		data->obj.type_index -= 1;
-	if (key_check(*data, SDL_SCANCODE_KP_MULTIPLY))
+	if (key_check(data, SDL_SCANCODE_KP_MULTIPLY))
 		data->bounce = 0;
-	if (key_check(*data, SDL_SCANCODE_KP_PLUS) && data->obj.type_index != 2)
+	if (key_check(data, SDL_SCANCODE_KP_PLUS) && data->obj.type_index != 2)
 		data->hud.color_obj = 1;
-	if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
+	if (key_check(data, SDL_SCANCODE_KP_PERIOD) && enter == 1)
 		data->bounce += 1;
-	else if (key_check(*data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
+	else if (key_check(data, SDL_SCANCODE_KP_PERIOD) && enter != 1)
 		data->bounce > 0 ? data->bounce -= 1 : 0;
 }
 
@@ -59,7 +59,7 @@ void		input_obj(t_data *data)
 	void		**obj;
 	static char	enter = 1;
 
-	if (key_check(*data, SDL_SCANCODE_KP_ENTER))
+	if (key_check(data, SDL_SCANCODE_KP_ENTER))
 	{
 		enter *= -1;
 		data->screen.preview.select_section *= -1;

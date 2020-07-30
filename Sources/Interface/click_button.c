@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   click_button.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:45:33 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/27 13:10:17 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 14:43:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		init_case(t_data *data, int mode)
 	button_slider_bounce(data);
 	button_advance(data);
 	button_shadow(data);
+	button_alpha(data);
 	return (0);
 }
 

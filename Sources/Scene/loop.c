@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/25 16:24:43 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 13:49:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int					loop(t_data *data)
 	while (TRUE)
 	{
 		
-		if (key_check(*data, SDL_SCANCODE_BACKSPACE))
+		if (key_check(data, SDL_SCANCODE_BACKSPACE))
 			data->screen.interface = HOME;
 		check_time(data);
 		if (SDL_QuitRequested())

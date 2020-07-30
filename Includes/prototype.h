@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 15:59:34 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 14:43:30 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ int				texture_on_screen_ext(t_data *data, SDL_Rect dst);
 /*
 **			Event's
 */
-char			key_old(t_data data, int mask);
-char			key_check(t_data data, int mask);
+char			mouse_hold(t_data *data, Uint32 mask);
+char			mouse_check(t_data *data, Uint32 mask);
+char			key_hold(t_data *data, Uint32 mask);
+char			key_check(t_data *data, Uint32 mask);
 void			input(t_data *data);
 /*
 **			Move Vec
@@ -238,6 +240,8 @@ void			boo_value_show(t_data *data, int val);
 void			boo_value_aa(t_data *data, int val);
 void			boo_value_quality(t_data *data, int val);
 void			boo_value_refresh(t_data *data, int val);
+void			boo_value_alpha(t_data *data, int val);
+void			button_alpha(t_data *data);
 void			show_button(t_data *data);
 void			show_txt(t_data *data);
 void			click_button(t_data *data);
