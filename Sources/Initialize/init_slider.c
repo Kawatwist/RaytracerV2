@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:52:46 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/29 13:41:53 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:06:06 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	init_slider_preview_1(t_data *data)
 }
 
 /*
-**	Filter (Need) patch
+**	Filter
 */
-//
 
 void	init_slider_preview_2(t_data *data)
 {

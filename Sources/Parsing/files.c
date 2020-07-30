@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/29 14:04:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:07:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 		if ((val = parsing_obj(data, old, *line)))
 			return (val);
 	}
-	else 
+	else
 	{
 		if ((val = parsing_files3(data, old, line)))
 			return (val);

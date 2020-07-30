@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 17:24:35 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:13:46 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,10 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 			break ;
 		ft_memdel((void **)&line);
 	}
-	if (!line)
-		return (10);
 	*ret = line;
-	return (0);
+	return (!line ? 10 : 0);
 }
+//
 
 int			parsing_head(t_data *data, char **ret)
 {

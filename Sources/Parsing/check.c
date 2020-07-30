@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 17:49:33 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:11:38 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,16 @@ int				check_parse(t_data *data)
 	{
 		max = data->obj.nb_texture;
 		data->obj.nb_texture = 0;
-		while (data->obj.nb_texture < max && data->obj.texture[data->obj.nb_texture])
+		while (data->obj.nb_texture < max &&
+			data->obj.texture[data->obj.nb_texture])
 			data->obj.nb_texture += 1;
 	}
 	if (data->obj.nb_normal != 0)
 	{
 		max = data->obj.nb_normal;
 		data->obj.nb_normal = 0;
-		while (data->obj.nb_normal < max && data->obj.normal[data->obj.nb_normal])
+		while (data->obj.nb_normal < max &&
+			data->obj.normal[data->obj.nb_normal])
 			data->obj.nb_normal += 1;
 	}
 	return (0);

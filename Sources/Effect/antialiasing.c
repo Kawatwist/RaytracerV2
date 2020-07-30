@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/30 16:50:35 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:05:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int			uniformize_color(unsigned int curr_pixel[64], int max)
 
 unsigned int		send_aa_vr(t_thread *data, int x, int y, int i)
 {
-	unsigned int 	color;
+	unsigned int	color;
 	int				aa_side;
 
 	aa_side = (int)sqrtf((1 << (data->flag.antialiasing * 2)));
@@ -99,28 +99,26 @@ void				aa_render(t_thread *data, int *x, int *y, int *curr)
 	unsigned int	color[64];
 	int				i;
 	int				aa;
-	int				aa_side;
+	int				a;
 
 	aa = 1 << (data->flag.antialiasing * 2);
 	*y = (data->index_thread + ((*curr / data->x) * 4));
 	*x = *curr % data->x;
 	i = -1;
-	aa_side = (int)sqrtf(aa);
+	a = (int)sqrtf(aa);
 	while (++i < aa)
 	{
 		if (data->obj.camera[data->obj.index[0]].mode != 2)
 		{
-			color[i] = send_ray(data, setup_ray(data,
-				*x + ((1.0 / aa_side) * (i % aa_side)),
-				*y + ((1.0 / aa_side) * (i / aa_side)), 0), data->bounce, NULL);
+			color[i] = send_ray(data, setup_ray(data, *x + ((1.0 / a) * (i %
+				a)), *y + ((1.0 / a) * (i / a)), 0), data->bounce, NULL);
 			if (data->obj.camera[data->obj.index[0]].mode == 1)
 				color[i] = (send_ray(data, setup_ray(data,
-				*x + ((1.0 / aa_side) * (i % aa_side)),
-				*y + ((1.0 / aa_side) * (i / aa_side)), 1),
-				data->bounce, NULL) & 0xFFFF) | (color[i] & 0xFF0000);
+				*x + ((1.0 / a) * (i % a)), *y + ((1.0 / a) * (i / a)), 1),
+				data->bounce, NULL) & CC) | (color[i] & CR);
 		}
 		else
 			color[i] = send_aa_vr(data, *x, *y, i);
 	}
-	((unsigned int *)data->pxl)[(*y * data->x) + *x] = uniformize_color(color, aa);
+	((Uint32 *)data->pxl)[(*y * data->x) + *x] = uniformize_color(color, aa);
 }

@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 16:24:02 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 17:55:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include <object.h>
 # include <pthread.h>
 # include "rt.h"
-# define ETIMEDOUT 110
+# define ETIMEDOUT	110
+# define CR			0xFF0000
+# define CG			0xFF00
+# define GB			0xFF
+# define CY			0xFFFF00
+# define CC			0xFFFF
+# define CM			0xFF00FF
 
 typedef struct			s_args
 {
