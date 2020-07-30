@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   basic_render.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/29 14:32:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 17:26:07 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:14:48 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "thread.h"
 
-static	t_point		find_dir(t_thread *data, int x, int y, int cam)
+static t_point	find_dir(t_thread *data, int x, int y, int cam)
 {
 	t_point		ret;
 
@@ -39,7 +39,7 @@ static	t_point		find_dir(t_thread *data, int x, int y, int cam)
 	return (ret);
 }
 
-static t_vec		setup_ray(t_thread *data, int x, int y, int cam)
+static t_vec	setup_ray(t_thread *data, int x, int y, int cam)
 {
 	if (cam == 0)
 		data->ray.origin =
@@ -60,7 +60,7 @@ static int		quality(t_thread *data, t_ipoint dir, int *curr, int color)
 	while (++i < (data->flag.pixel * 2) + 1 && dir.x + i < data->x)
 	{
 		j = -1;
-		while (++j < (data->flag.pixel * 2) +1 && dir.y + j < data->y)
+		while (++j < (data->flag.pixel * 2) + 1 && dir.y + j < data->y)
 		{
 			if (dir.y + j < data->y && dir.x + i < data->x)
 				((unsigned int *)data->pxl)[dir.z + i + (j * data->x)] = color;
@@ -69,10 +69,12 @@ static int		quality(t_thread *data, t_ipoint dir, int *curr, int color)
 	return (*curr + ((data->flag.pixel * 2) - 1));
 }
 
-static void     setup_send_ray(t_thread *data, t_ipoint dir)
+static void		setup_send_ray(t_thread *data, t_ipoint dir)
 {
-	if (!data->obj.camera[data->obj.index[0]].mode || data->obj.camera[data->obj.index[0]].mode == 1)
-		((unsigned int *)data->pxl)[dir.z] = send_ray(data, setup_ray(data, dir.x,
+	if (!data->obj.camera[data->obj.index[0]].mode ||
+	data->obj.camera[data->obj.index[0]].mode == 1)
+		((unsigned int *)data->pxl)[dir.z] =
+		send_ray(data, setup_ray(data, dir.x,
 			dir.y, 0), data->bounce, NULL);
 	if (data->obj.camera[data->obj.index[0]].mode == 1)
 		((unsigned int *)data->pxl)[dir.z] = ((send_ray(data,
@@ -96,12 +98,14 @@ void			basic_render(t_thread *data, int *curr)
 	t_ipoint		dir;
 	static int		color[4] = {0, 0, 0, 0};
 
-	dir.y = (data->index_thread + ((*curr / data->x) * 4)) * ((data->flag.pixel * 2) + 1);
+	dir.y = (data->index_thread + ((*curr / data->x) * 4))
+	* ((data->flag.pixel * 2) + 1);
 	dir.x = *curr % data->x;
 	dir.z = (dir.y * data->x) + dir.x;
 	if (dir.y >= data->y)
 		return ;
-	if ((!(dir.x % ((data->flag.pixel * 2) + 1))) && !(dir.y % ((data->flag.pixel * 2) + 1)))
+	if ((!(dir.x % ((data->flag.pixel * 2) + 1)))
+	&& !(dir.y % ((data->flag.pixel * 2) + 1)))
 	{
 		setup_send_ray(data, dir);
 		color[(int)data->index_thread] = ((unsigned int *)data->pxl)[dir.z];

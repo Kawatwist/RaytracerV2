@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 12:35:09 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/26 18:16:57 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:12:21 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	draw_title_background(t_data *data)
 	dst.w = 300;
 	dst.h = 50;
 	draw_rect(data, dst, 0x1965a1);
-
 	dst.x = (data->screen.preview.select_section != 1) ? 0 : 150;
 	dst.y = data->window.y - 50;
 	dst.w = 150;

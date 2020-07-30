@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/30 17:23:45 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:08:47 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,26 @@ static float		dist(float *obj)
 
 static void			flag_diapo(t_thread *data, float obj[3], t_ray r, int index)
 {
-
-	(void)data;
-	(void)obj;
-	(void)r;
-	(void)index;
-
 	t_vec			ray;
 	float			transparency;
 
 	if (data->flag.shadow == 1)
 	{
 		transparency = shadow(data, r, index);
-		data->tmp_color = light_color(data->tmp_color, apply_mult(((t_base *)r.obj)->effect.color, 0xffffff, fabs(transparency / 255.0)));
-	}	
+		data->tmp_color = light_color(data->tmp_color,
+		apply_mult(((t_base *)r.obj)->effect.color,
+		0xffffff, fabs(transparency / 255.0)));
+	}
 	if (data->flag.diapo && obj[1] < obj[2] && obj[1] != -1)
 	{
 		ray.origin = veccpy(r.tmp.origin);
-		ray.direction = normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
-		data->tmp_color = light_color(data->tmp_color, light_color(r.color[0], diapo(data, &ray, index, data->bounce)));
+		ray.direction =
+		normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
+		data->tmp_color =
+		light_color(data->tmp_color,
+		light_color(r.color[0], diapo(data, &ray, index, data->bounce)));
 	}
-
 }
-
-
 
 unsigned int		spot(t_thread *data, t_ray r, int index)
 {
@@ -72,8 +68,7 @@ unsigned int		spot(t_thread *data, t_ray r, int index)
 	float			len;
 	float			dot;
 	float			dot2;
-	float	color;
-	color = 1;
+
 	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin)),
 		normalize(neg_norm(r.tmp.direction))))));
@@ -89,11 +84,10 @@ unsigned int		spot(t_thread *data, t_ray r, int index)
 	flag_diapo(data, obj, r, index);
 	dot2 = dot_product(normalize(data->obj.light[index].direction),
 		normalize(sub_vec(r.tmp.origin, data->obj.light[index].origin)));
-	dot2 = (dot2 - data->obj.light[index].ang) * (1 / data->obj.light[index].ang);
+	dot2 = (dot2 - data->obj.light[index].ang) *
+	(1 / data->obj.light[index].ang);
 	dot *= dot2;
-	if (dot2 > 0)
-		return (create_specular(data, &r, dot, index));
-	return (create_specular(data, &r, 0, index));
+	return (create_specular(data, &r, dot2 > 0 ? dot : 0, index));
 }
 
 unsigned int		omni(t_thread *data, t_ray r, int index)
@@ -101,8 +95,7 @@ unsigned int		omni(t_thread *data, t_ray r, int index)
 	float			obj[3];
 	float			len;
 	float			dot;
-	
-	
+
 	dot = (((dot_product(normalize(sub_vec(r.tmp.origin,
 		data->obj.light[index].origin)),
 		normalize(neg_norm(r.tmp.direction))))));
@@ -115,9 +108,6 @@ unsigned int		omni(t_thread *data, t_ray r, int index)
 	obj[0] = (dist(obj));
 	len < 0 ? len = 0 : 0;
 	dot = (dot < 0 ? 0 : dot * data->obj.light[index].intensity);
-	
-	
 	flag_diapo(data, obj, r, index);
-
 	return (create_specular(data, &r, dot, index));
 }

@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/30 16:50:20 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 17:55:38 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ double				specular(t_light light,
 		dot_product(collide.direction, l) * 2), l);
 	r = normalize(r);
 	if (dot_product(r, v) > 0)
-	 	specular = powf(dot_product(r, v), value);
+		specular = powf(dot_product(r, v), value);
 	else
-	 	specular = 0;
+		specular = 0;
 	return (specular);
 }
 
@@ -42,8 +42,6 @@ int					create_specular(t_thread *data,
 
 	if (dot > 0.0)
 	{
-		//dot = 1;
-		//color = apply_mult(data->tmp_color, 0xFFffff, dot);
 		color = apply_mult(data->tmp_color, data->obj.light[index].color, dot);
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)

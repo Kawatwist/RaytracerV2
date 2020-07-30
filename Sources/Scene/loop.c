@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:20:13 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/29 13:49:16 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:13:04 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int					loop(t_data *data)
 	create_menu_texture(data);
 	while (TRUE)
 	{
-		
 		if (key_check(data, SDL_SCANCODE_BACKSPACE))
 			data->screen.interface = HOME;
 		check_time(data);
