@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:24:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 16:02:44 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/29 17:32:57 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static t_point	cone_normal(t_cone c, t_vec collide)
 		c.ang = c.ang * -1;
 	normal = add_vec(mult_vec2(normal, cos(rad(c.ang / 2))),
 	mult_vec2(c.origin.direction, sin(rad(c.ang / 2))));
+	normal = normalize(normal);
 	return (normal);
 }
 

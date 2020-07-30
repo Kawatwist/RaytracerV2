@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 17:53:11 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 16:50:20 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int					create_specular(t_thread *data,
 
 	if (dot > 0.0)
 	{
+		//dot = 1;
+		//color = apply_mult(data->tmp_color, 0xFFffff, dot);
 		color = apply_mult(data->tmp_color, data->obj.light[index].color, dot);
 		dot = specular(data->obj.light[index], data->obj.camera->pos, r->tmp);
 		if (dot > 0.0)

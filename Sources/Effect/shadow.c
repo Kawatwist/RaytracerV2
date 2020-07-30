@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:14:42 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/29 16:34:06 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 17:22:19 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 float  trans_shadow_calc(float a, float b)
 {
-	if (b == 0)
-    	return a;
-	if (b - a >= -255.0)
-    	return (-255.0);
-	return (b - a);
-
+	return a * (b /255);
 }
 
 float	trans_shadow(t_thread *data, t_vec *ray, int index, int bounce)
@@ -37,10 +32,10 @@ float	trans_shadow(t_thread *data, t_vec *ray, int index, int bounce)
 	 		return (0);
 	ray->origin = set_neworigin_op(*ray, dist);
 	transparency = ((t_base *)obj)->effect.opacity;
-    new_trans = trans_shadow(data, ray, index, bounce - 1);
+    new_trans = trans_shadow(data, ray, index, bounce- 1);
 	tmp = trans_shadow_calc(transparency, new_trans);
-	if (tmp == -255)
-		tmp = transparency;
+	if (tmp == 0)
+		return(transparency);
 	return (tmp);
  
 }

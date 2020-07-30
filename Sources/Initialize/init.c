@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 14:57:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 17:25:24 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	initialize_scene_data(t_data *data)
 {
+	data->max_dist = 4000;
 	data->obj.nb_camera = 1;
 	data->obj.nb_light = 1;
 	data->obj.nb_item = 1;

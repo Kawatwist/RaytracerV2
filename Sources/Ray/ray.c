@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 12:51:07 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/29 18:51:03 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static unsigned int	send_ray2(t_thread *data, t_vec ray,
 		((int)((r.tmp.direction.z + 1) * (255 / 2.0)) << 16));
 		return (r.color[0]);
 }
-
+/*
 static int			texture_opacity(t_thread *data,
 	t_ray *r, t_vec ray, void *ignore)
 {
@@ -91,7 +91,7 @@ static int			texture_opacity(t_thread *data,
 	stack = 0;
 	return (1);
 }
-
+*/
 unsigned int		send_ray(t_thread *data, t_vec ray,
 					int bounce, void *ignore)
 {
@@ -106,10 +106,12 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		return (data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
+	/*
 	if (((t_base *)r.obj)->effect.texture &&
 		((r.color[0] & 0xFF000000) >> 24) > 254)
 		if (!(texture_opacity(data, &r, ray, r.obj)))
 			return (data->ambiant);
+			*/
 	data->tmp_color = r.color[0];
 	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
 	r.tmp.direction = veccpy(ray.direction);

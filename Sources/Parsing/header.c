@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 14:50:06 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 17:24:35 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	parsing_head_v4(t_data *data, char *line)
 		data->flag.antialiasing =
 			((unsigned int)ft_atoi(&(line[6])) & 0b11);
 	else if (!ft_strncmp("\topti : ", line, 8))
-		data->max_dist = ft_atoi(&(line[8]));
+		data->max_dist = lowu(ft_atoi(&(line[8])), 1000);
 	else if (!ft_strncmp("\tscreenshot : ", line, 14))
 		data->flag.screen = ft_atoi(&(line[14])) & 0b1;
 	else if (!ft_strncmp("\ticone : ", line, 9))
