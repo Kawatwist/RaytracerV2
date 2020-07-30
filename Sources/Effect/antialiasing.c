@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 13:48:33 by cbilga            #+#    #+#             */
-/*   Updated: 2020/07/25 15:47:01 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:05:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,21 @@ static int			uniformize_color(unsigned int curr_pixel[64], int max)
 					((colors[1] / max) << 8) + (colors[0] / max));
 }
 
-unsigned int		send_aa_vr(t_thread *data, int x, int y, int curr)
+unsigned int		send_aa_vr(t_thread *data, int x, int y, int i)
 {
-	unsigned int color;
+	unsigned int	color;
+	int				aa_side;
 
-	if (curr % data->x < data->x / 2.0)
+	aa_side = (int)sqrtf((1 << (data->flag.antialiasing * 2)));
+	if (x < data->x / 2.0)
 		color = send_ray(data, setup_ray(data,
-					(x * 2.0) + (((rand() % 100) - 50) / 200.0),
-				y + (((rand() % 100) - 50) / 200.0), 0), data->bounce, NULL);
+				(x * 2.0) + ((1.0 / aa_side) * (i % aa_side)),
+				y + ((1.0 / aa_side) * (i / aa_side)), 0), data->bounce, NULL);
 	else
 		color = send_ray(data, setup_ray(data,
 					((x - (data->x / 2.0)) * 2.0) +
-					(((rand() % 100) - 50) / 200.0),
-				y + (((rand() % 100) - 50) / 200.0), 1), data->bounce, NULL);
+				((1.0 / aa_side) * (i % aa_side)),
+				y + ((1.0 / aa_side) * (i / aa_side)), 1), data->bounce, NULL);
 	return (color);
 }
 
@@ -96,27 +98,27 @@ void				aa_render(t_thread *data, int *x, int *y, int *curr)
 {
 	unsigned int	color[64];
 	int				i;
-	static	int		aa;
+	int				aa;
+	int				a;
 
 	aa = 1 << (data->flag.antialiasing * 2);
-	*y = (*curr / data->x) + (data->pos / data->x);
+	*y = (data->index_thread + ((*curr / data->x) * 4));
 	*x = *curr % data->x;
 	i = -1;
+	a = (int)sqrtf(aa);
 	while (++i < aa)
 	{
 		if (data->obj.camera[data->obj.index[0]].mode != 2)
 		{
-			color[i] = send_ray(data, setup_ray(data,
-				*x + (((rand() % 100) - 50) / 200.0),
-				*y + (((rand() % 100) - 50) / 200.0), 0), data->bounce, NULL);
+			color[i] = send_ray(data, setup_ray(data, *x + ((1.0 / a) * (i %
+				a)), *y + ((1.0 / a) * (i / a)), 0), data->bounce, NULL);
 			if (data->obj.camera[data->obj.index[0]].mode == 1)
 				color[i] = (send_ray(data, setup_ray(data,
-				*x + (((rand() % 100) - 50) / 200.0),
-				*y + (((rand() % 100) - 50) / 200.0), 1),
-				data->bounce, NULL) & 0xFFFF) | (color[i] & 0xFF0000);
+				*x + ((1.0 / a) * (i % a)), *y + ((1.0 / a) * (i / a)), 1),
+				data->bounce, NULL) & CC) | (color[i] & CR);
 		}
 		else
-			color[i] = send_aa_vr(data, *x, *y, *curr);
+			color[i] = send_aa_vr(data, *x, *y, i);
 	}
-	((unsigned int *)data->pxl)[*curr] = uniformize_color(color, aa);
+	((Uint32 *)data->pxl)[(*y * data->x) + *x] = uniformize_color(color, aa);
 }

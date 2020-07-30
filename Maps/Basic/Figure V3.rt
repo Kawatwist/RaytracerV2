@@ -17,9 +17,11 @@
 	direction : {0 0 1}
 [object:cone]
 	origin : {0.5 0.3 0.5}
-	direction : {0.5 1 0}
+	direction : {0 1 0}
 	color : 0xFFFF4F
 	angle : 75
+	side : 0
+	hauteur : -1
 [object:plan]
 	color : 0x4F2FFF
 	origin : {0.5 0.2 2}

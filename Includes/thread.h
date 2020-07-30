@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 16:34:57 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/07/30 18:19:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include <object.h>
 # include <pthread.h>
 # include "rt.h"
-# define ETIMEDOUT 110
+# define ETIMEDOUT	110
+# define CR			0xFF0000
+# define CG			0xFF00
+# define GB			0xFF
+# define CY			0xFFFF00
+# define CC			0xFFFF
+# define CM			0xFF00FF
 
 typedef struct			s_args
 {
@@ -57,6 +63,7 @@ typedef	struct			s_thread
 	char				loading;
 	int					current;
 	float				tile;
+	char				index_thread;
 	t_point				perlin[GRADIENT * GRADIENT];
 }						t_thread;
 /*
@@ -103,6 +110,7 @@ t_point					texture_cone(void *data,
 **			Light
 */
 
+float					shadow(t_thread *data, t_ray r, int index);
 unsigned int			diapo(t_thread *data, t_vec *ray,
 							int index, int bounce);
 int						mix(int i, int j);
@@ -140,6 +148,7 @@ unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray,
 							int bounce, void *ignore);
 int						start_ray(t_thread *data);
+void					basic_render(t_thread *data, int *curr);
 /*
 **			Memory
 */
@@ -148,6 +157,4 @@ int						setup_obj(t_data *data, t_thread *tmp);
 int						clear_thread(t_thread *data);
 int						quitrequested(t_thread *data);
 
-
-float			shadow(t_thread *data, t_ray r, int index);
 #endif

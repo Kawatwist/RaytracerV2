@@ -13,12 +13,14 @@
 	light : 0
 	flag_hud : 0
 	nb_normal : 1
+	nb_texture : 1
+	textures : "texture/texture/skybox.tga"
 	normal : "texture/normal/coussin.tga"
 ############### Light ##################
 [light:1]
 	origin : {0.0 -25.0 -25.0}
 	color : 0xFFFFFF
-	distance : 500
+	distance : 100
 	intensity : 1
 	spot : 0
 	ang : 0.7
@@ -34,12 +36,14 @@
 	color : 0x7F007F
 	rayon : 2.0
 			opacity : 200
+			texture : 255
+			id_texture : 0
 [object:plan]
-	color : 0x0000FF
+	color : 0xFFFFFF
 	origin : {0.0 0.0 0.0}
 	direction : {0 -1 0}
 [object:plan]
-	color : 0xFF0000
+	color : 0xFFFFFF
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
 #[object:co]

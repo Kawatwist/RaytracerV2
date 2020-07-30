@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/26 17:59:42 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 17:22:35 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ static int		start_thread4(t_data *data, int i)
 	((t_thread *)data->thread)[i].max_dist = data->max_dist;
 	((t_thread *)data->thread)[i].percent = data->percent;
 	((t_thread *)data->thread)[i].bounce = data->bounce;
+	((t_thread *)data->thread)[i].index_thread = i;
 	((t_thread *)data->thread)[i].len =
 		(data->window.x * data->window.y) >> 2;
 	((t_thread *)data->thread)[i].pos =
 		((t_thread *)data->thread)[i].len * i;
-	((t_thread *)data->thread)[i].pxl =
-		&(((unsigned char *)data->window.pxl)
-			[(((t_thread *)data->thread)[i].len * i) << 2]);
+	((t_thread *)data->thread)[i].pxl = data->window.pxl;
 	if ((err = pthread_create(&((t_thread*)data->thread)[i].thd,
 		NULL, &thread_function, &((t_thread*)data->thread)[i])) != 0)
 		return (err);

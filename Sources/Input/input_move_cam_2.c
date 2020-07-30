@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:10:28 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/30 18:17:37 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 18:42:01 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ static void	rot_cam_input(t_data *data, int key_code)
 
 void		call_rot_cam(t_data *data)
 {
-	if (key_old(*data, SDL_SCANCODE_UP))
+	if (key_hold(data, SDL_SCANCODE_UP))
 		rot_cam_input(data, SDL_SCANCODE_UP);
-	if (key_old(*data, SDL_SCANCODE_DOWN))
+	if (key_hold(data, SDL_SCANCODE_DOWN))
 		rot_cam_input(data, SDL_SCANCODE_DOWN);
-	if (key_old(*data, SDL_SCANCODE_LEFT))
+	if (key_hold(data, SDL_SCANCODE_LEFT))
 		rot_cam_input(data, SDL_SCANCODE_LEFT);
-	if (key_old(*data, SDL_SCANCODE_RIGHT))
+	if (key_hold(data, SDL_SCANCODE_RIGHT))
 		rot_cam_input(data, SDL_SCANCODE_RIGHT);
 }

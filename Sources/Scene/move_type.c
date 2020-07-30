@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:33:20 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/23 11:35:40 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/29 13:50:11 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		move_light(t_data *data, void **light)
 {
 	static char ctrl = 0;
 
-	if (key_old(*data, SDL_SCANCODE_LCTRL))
+	if (key_hold(data, SDL_SCANCODE_LCTRL))
 		ctrl = 1;
 	input_move_light(data, light);
 	input_distance_light(data, light, ctrl);
@@ -30,17 +30,17 @@ void		move_obj(t_data *data, void **obj)
 {
 	static char ctrl = 0;
 
-	if (key_old(*data, SDL_SCANCODE_LCTRL))
+	if (key_hold(data, SDL_SCANCODE_LCTRL))
 		ctrl = 1;
 	if (*obj != NULL)
 		input_move_obj(data, obj);
 	input_color_obj(data, obj, ctrl);
-	if (key_old(*data, KEY_G) && !ctrl &&
+	if (key_hold(data, KEY_G) && !ctrl &&
 	((*(t_base **)obj)->effect.type == SPHERE ||
 	(*(t_base **)obj)->effect.type == CYLINDER))
 		(*(t_sphere **)obj)->rayon < 100.0
 		? (*(t_sphere **)obj)->rayon += 0.1 : 0.0;
-	else if (key_old(*data, KEY_G) && ctrl)
+	else if (key_hold(data, KEY_G) && ctrl)
 		(*(t_sphere **)obj)->rayon > 0.1
 		? (*(t_sphere **)obj)->rayon -= 0.1 : 0.0;
 	input_descartes_obj(data, obj, ctrl);
@@ -51,7 +51,7 @@ void		move_obj(t_data *data, void **obj)
 
 static void	refresh_cam(t_data *data, void **cam)
 {
-	if (key_old(*data, SDL_SCANCODE_J))
+	if (key_hold(data, SDL_SCANCODE_J))
 	{
 		(*(t_camera **)cam)->pos.origin =
 			veccpy((*(t_camera **)cam)->oldpos.origin);
@@ -78,7 +78,7 @@ static void	refresh_cam(t_data *data, void **cam)
 
 static void	move_cam2(t_data *data, void **cam, t_point *tmp)
 {
-	if (key_old(*data, SDL_SCANCODE_S))
+	if (key_hold(data, SDL_SCANCODE_S))
 	{
 		(*(t_camera **)cam)->pos.origin =
 		sub_vec((*(t_camera **)cam)->pos.origin, mult_vec2(*tmp, 0.5));
@@ -103,7 +103,7 @@ void		move_cam(t_data *data, void **cam)
 
 	refresh_cam(data, cam);
 	tmp = veccpy(data->obj.camera[data->obj.index[0]].pos.direction);
-	if (key_old(*data, SDL_SCANCODE_W))
+	if (key_hold(data, SDL_SCANCODE_W))
 	{
 		(*(t_camera **)cam)->pos.origin =
 		add_vec((*(t_camera **)cam)->pos.origin, mult_vec2(tmp, 0.5));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_specular.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 21:35:05 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/26 17:53:11 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 17:55:38 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ double				specular(t_light light,
 		dot_product(collide.direction, l) * 2), l);
 	r = normalize(r);
 	if (dot_product(r, v) > 0)
-	 	specular = powf(dot_product(r, v), value);
+		specular = powf(dot_product(r, v), value);
 	else
-	 	specular = 0;
+		specular = 0;
 	return (specular);
 }
 

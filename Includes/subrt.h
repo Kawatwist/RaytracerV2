@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 14:33:10 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 18:42:04 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,9 @@ typedef struct		s_ray
 	void			*obj;
 	float			dist[2];
 	int				bounce;
+	Uint32			alpha : 8;
 	Uint32			good : 1;
+	Uint32			use_alpha : 1;
 }					t_ray;
 
 typedef struct		s_scene

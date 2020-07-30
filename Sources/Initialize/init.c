@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/28 14:57:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:11:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 static void	initialize_scene_data(t_data *data)
 {
+	data->percent = 0;
+	data->max_dist = 4000;
+	data->window.x = 1000;
+	data->window.y = 1000;
 	data->obj.nb_camera = 1;
 	data->obj.nb_light = 1;
 	data->obj.nb_item = 1;
@@ -46,8 +50,6 @@ int			initialize(t_data *data)
 	data->flag.adv = 1;
 	data->flag.typing = 0;
 	data->flag.shadow = 0;
-	data->window.x = 1000;
-	data->window.y = 1000;
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;

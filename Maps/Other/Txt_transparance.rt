@@ -13,7 +13,7 @@
 	ambiant : 0x0
 	nb_texture : 1
 	opti : 4000
-	textures : "texture/Texture/Jinx_split.tga"
+	textures : "texture/Texture/NewJinx.tga"
 [light:1]
 	origin : {1.5 0 1.1}
 	distance : 10

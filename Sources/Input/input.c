@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 22:05:03 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/28 15:59:45 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/29 13:48:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,27 @@ void		window_render(t_data *data)
 
 void		input_ext(t_data *data)
 {
-	if ((key_check(*data, SDL_SCANCODE_K) &&
+	if ((key_check(data, SDL_SCANCODE_K) &&
 		!data->flag.video) || data->flag.start_show)
 	{
 		data->flag.show = (data->flag.show == 1 ? 0 : 1);
 		data->flag.start_show = 0;
 		window_render(data);
 	}
-	if (key_check(*data, SDL_SCANCODE_M))
+	if (key_check(data, SDL_SCANCODE_M))
 		data->flag.cam_move = (data->flag.cam_move == 1 ? 0 : 1);
-	if (key_check(*data, SDL_SCANCODE_X))
+	if (key_check(data, SDL_SCANCODE_X))
 		data->flag.adv = (data->flag.adv == 1 ? 0 : 1);
 	if (data->flag.video && !data->flag.show)
 		framed(data);
 	light_cursor(data);
 	input_filter(data);
 	input_hud(data);
-	if (key_check(*data, SDL_SCANCODE_O) &&
-	!key_check(*data, SDL_SCANCODE_LCTRL))
+	if (key_check(data, SDL_SCANCODE_O) &&
+	!key_check(data, SDL_SCANCODE_LCTRL))
 		data->flag.antialiasing =
 		(data->flag.antialiasing < 3 ? data->flag.antialiasing + 1 : 0);
-	else if (key_check(*data, SDL_SCANCODE_O))
+	else if (key_check(data, SDL_SCANCODE_O))
 		data->flag.antialiasing = 0;
 }
 
@@ -95,15 +95,15 @@ void		input(t_data *data)
 	get_input(data);
 	if (data->screen.interface == RUN)
 	{
-		if (key_check(*data, SDL_SCANCODE_PRINTSCREEN))
+		if (key_check(data, SDL_SCANCODE_PRINTSCREEN))
 			ask_screenshot(data);
-		if (key_check(*data, SDL_SCANCODE_V))
+		if (key_check(data, SDL_SCANCODE_V))
 			data->flag.pixel =
 			(data->flag.pixel < 0b11 ? data->flag.pixel + 1 : 0);
-		if (key_check(*data, SDL_SCANCODE_R))
+		if (key_check(data, SDL_SCANCODE_R))
 			data->flag.refresh = (data->flag.refresh ? 0 : 1);
 		input_obj(data);
-		if (key_check(*data, SDL_SCANCODE_L))
+		if (key_check(data, SDL_SCANCODE_L))
 		{
 			data->flag.video = data->flag.nb_video;
 			data->flag.save = 1;
