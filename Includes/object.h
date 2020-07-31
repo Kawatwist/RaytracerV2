@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 14:37:22 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 13:46:44 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef	struct		s_cylinder
 	float			hauteur;
 	char			close;
 	t_point			dir_close;
+	Uint32			mode : 1;
 }					t_cylinder;
 
 typedef	struct		s_triangle

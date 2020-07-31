@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 11:36:20 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/31 14:12:19 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,27 @@ static float		find_t(t_calc d)
 	else if (d.t0 > 0 || d.t1 > 0)
 		return (d.t0 > 0 ? d.t0 : d.t1);
 	return (-1);
+}
+
+static float		pillule(t_cylinder *c, t_vec ray)
+{
+	t_sphere	sph;
+	float		ret[2];
+
+	sph.origin.origin = veccpy(c->origin.origin);
+	sph.rayon = c->rayon;
+	ft_memcpy(&(sph.effect), &(c->effect), sizeof(t_effect));
+	ret[0] = sphere(&sph, ray);
+	sph.origin.origin = set_neworigin(c->origin, c->hauteur);
+	ret[1] = sphere(&sph, ray);
+	if ((ret[0] < ret[1] && ret[0] != -1) || ret[1] == -1)
+		c->dir_close = sub_vec(set_neworigin(ray, ret[0]), c->origin.origin);
+	else
+	{
+		c->dir_close = sub_vec(set_neworigin(ray, ret[1]), set_neworigin(c->origin, c->hauteur));
+		ret[0] = ret[1];
+	}
+	return(ret[0]);
 }
 
 static float		close_cyl(t_cylinder *c, t_vec ray)
@@ -41,6 +62,8 @@ static float		close_cyl(t_cylinder *c, t_vec ray)
 		dor.origin.direction = veccpy(c->origin.direction);
 	}
 	c->dir_close = veccpy(dor.origin.direction);
+	if (c->mode)
+		return (pillule(c, ray));
 	return (disk(&dor, ray));
 }
 

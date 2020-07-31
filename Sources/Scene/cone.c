@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/23 13:23:18 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/30 19:06:34 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static void			cone3(t_cone *cone, t_vec ray, t_calc *c)
 			mult_vec2(cone->origin.direction, c->rayon)),
 				add_vec(ray.origin, mult_vec2(ray.direction, c->t0))));
 	}
+	else
+		c->len = cone->high;
 	c->dot = dot_product(sub_vec(cone->origin.origin,
 		add_vec(ray.origin, mult_vec2(ray.direction, c->t0))),
 			cone->origin.direction);
@@ -67,22 +69,22 @@ static void			cone3(t_cone *cone, t_vec ray, t_calc *c)
 
 static float		cone2(t_cone *cone, t_vec ray, t_calc c)
 {
+	float	cap;
+
 	cone3(cone, ray, &c);
 	if (cone->side != 0 && ((cone->side >= 1 && c.dot > 0)
 		|| (cone->side <= -1 && c.dot < 0)))
 		return (-1);
-	if (cone->high != -1)
+	cap = close_cone(cone, ray, c.rayon);
+	if (cone->high != -1 && c.len > cone->high && cap == -1)
+		return (-1);
+	if (cap != -1)
 	{
-		if (c.len >= cone->high)
-			return (-1);
-		c.t1 = close_cone(cone, ray, c.rayon);
-		if (c.t1 != -1 && (c.t0 > c.t1 || c.t0 == -1))
+		if ((c.t0 != -1 && cap < c.t0) || c.t0 == -1)
 		{
-			cone->close = 1;
-			return (c.t1);
+			(cone)->close = 1;
+			(cone)->close == 1 ? c.t0 = cap : 0;
 		}
-		else
-			cone->close = 0;
 	}
 	return (c.t0);
 }
@@ -110,7 +112,5 @@ float				cone(void *coo, t_vec ray)
 	c.t0 = (-c.b + sqrt(c.delta)) / (2 * c.a);
 	c.t1 = (-c.b - sqrt(c.delta)) / (2 * c.a);
 	c.t0 = find_t(c);
-	if (c.t0 == -1)
-		return (-1);
 	return (cone2(cone, ray, c));
 }
