@@ -10,10 +10,11 @@
 	refresh : 0
 	bounce : 0
 	quality : 2
-	object : 9
+	object : 109
 	screenshot : 0
 	light : 2
 	opti : 0
+	generate : 1
 ############### Light ##################
 [light:1]
 	origin : {0 7 0}
@@ -84,3 +85,11 @@
 	rayon : 2
 	hauteur : 6
 			reflection : 150
+[gen:torus]
+	origin : {0 0 3}
+	nb : 3
+	rayon_i : 2.5
+	rayon : 1
+	color : 0x8F8F00
+	axe : 1
+			reflection : 255

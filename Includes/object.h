@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 13:46:44 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 17:44:20 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,14 @@ typedef	struct		s_obj
 	Uint8			face;
 	Uint8			id_texture[6];
 }					t_obj;
+
+typedef struct		s_generate
+{
+	t_point			origin; // Base 0 0 0
+	int				nb; // Max 100
+	float			rayon_i; // Base 1
+	t_sphere		sphere;	// Init
+	Uint32			axe : 2;
+}					t_generate;
 
 #endif

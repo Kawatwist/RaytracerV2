@@ -57,6 +57,7 @@ SRC				=	main.c										\
 					parse.c										\
 					header.c									\
 					parse_texture.c								\
+					parsing_torus.c								\
 					fill_obj.c									\
 					fill_other_obj.c							\
 					type_tool.c									\

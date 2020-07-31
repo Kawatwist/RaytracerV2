@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 14:38:25 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 16:05:13 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ struct					s_data
 	int					max_dist;
 	int					argc;
 	float				tile;
+	Uint8				generate;
 	t_point				perlin[GRADIENT * GRADIENT];
 };
 #endif

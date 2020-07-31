@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:13:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 17:58:09 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static int	parsing_head_v4(t_data *data, char *line)
 		data->flag.screen = ft_atoi(&(line[14])) & 0b1;
 	else if (!ft_strncmp("\ticone : ", line, 9))
 		data->flag.icon = ft_atoi(&(line[9])) & 0b1;
+	else if (!ft_strncmp("\tgenerate : ", line, 12))
+		data->generate = lowu(ft_atoi(&(line[9])), 5);
 	else if (!ft_strncmp("\ttile : ", line, 8))
 	{
 		data->tile = ft_atof(&(line[8]));
@@ -70,7 +72,7 @@ static int	parsing_head_v3(t_data *data, char *line)
 	else if (!ft_strncmp("\tlight : ", line, 9))
 		data->obj.nb_light = lowu(ft_atoi(&(line[9])), 20);
 	else if (!ft_strncmp("\tobject : ", line, 10))
-		data->obj.nb_item = lowu(ft_atoi(&(line[10])), 100);
+		data->obj.nb_item = lowu(ft_atoi(&(line[10])), 10000);
 	else if (!ft_strncmp("\trefresh : ", line, 11))
 		data->flag.refresh = (ft_atoi(&(line[11])) & 0b1);
 	else if (!ft_strncmp("\tnb_normal : ", line, 13))

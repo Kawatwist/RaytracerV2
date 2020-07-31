@@ -1,0 +1,101 @@
+#############################################
+#           Scene 42 : Object               #
+#############################################
+[header]
+	ambiant : 0x000000
+	xscreen : 1000
+	yscreen : 1000
+	refresh : 1
+	quality : 3
+	bounce : 0
+	camera : 1
+	object : 12
+	light : 0
+	flag_hud : 0
+############### Light ##################
+[light:1]
+	origin : {0.0 -25.0 -25.0}
+	color : 0xFFFFFF
+	distance : 100
+	intensity : 1
+	spot : 0
+	ang : 0.7
+############### Camera ##################
+[camera:1]
+	origin : {0 -20 -50.0}
+	direction : {0 0 1}
+	mode : 0
+############### Object ##################
+[object:sphere]
+	origin : {0.0 -5.0 0.0}
+	direction : {0 1 0}
+	color : 0x7F007F
+	rayon : 2.0
+[object:plan]
+	color : 0xFFFFFF
+	origin : {0.0 0.0 0.0}
+	direction : {0 -1 0}
+			reflection : 12
+[object:cylinder]
+	color : 0xFF0000
+	origin : {-20.0 -10.0 10.0}
+	direction : {0 1 0}
+	hauteur : 10
+	rayon : 5
+	mode : 0
+[object:cylinder]
+	origin : {-27.0 -15.0 0.0}
+	direction : {0 1 0}
+	color : 0xFF00FF00
+	hauteur : 10
+	mode : 1
+	rayon : 5
+[object:cylinder]
+	origin : {-30.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x0000FF
+	hauteur : -1
+	mode : 0
+	rayon : 5
+[object:cone]
+	origin : {-10.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0xFFFF00
+	side : 1
+	angle : 45
+	hauteur : -1
+[object:cone]
+	origin : {-0.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x00FFFF
+	side : -1
+	angle : 45
+	hauteur : -1
+[object:cone]
+	origin : {10.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x00FFFF
+	side : 0
+	angle : 45
+	hauteur : -1
+[object:cone]
+	origin : {20.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x00FFFF
+	side : 0
+	angle : 45
+	hauteur : 10
+[object:cone]
+	origin : {30.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x00FFFF
+	side : 1
+	angle : 45
+	hauteur : 10
+[object:cone]
+	origin : {40.0 -20.0 15.0}
+	direction : {0 1 0}
+	color : 0x00FFFF
+	side : -1
+	angle : 45
+	hauteur : 10
