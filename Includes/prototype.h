@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 14:43:30 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/30 18:42:11 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ t_point			cross_vec(t_point v1, t_point v2);
 float			cross_product(double **mat, t_point v1, int row);
 float			dot_product(t_point v1, t_point v2);
 float			length(t_point v1);
+t_point			cam_rotx(t_point origin, float ang);
+t_point			cam_roty(t_point origin, float ang);
+t_point			cam_rotz(t_point origin, float ang);
 /*
 **			Tools
 */
@@ -247,33 +250,23 @@ void			show_txt(t_data *data);
 void			click_button(t_data *data);
 void			video_settings(t_data *data);
 void			draw_nbvideo_bg(t_data *data);
-
 void			button_normals(t_data *data);
 void			boo_value_normals(t_data *data, int val);
-
 void			boo_value_show(t_data *data, int val);
 void			button_show(t_data *data);
-
 void			boo_value_quality(t_data *data, int val);
 void			button_quality(t_data *data);
-
 void			boo_value_aa(t_data *data, int val);
 void			button_aa(t_data *data);
-
 void			boo_value(t_data *data, int val);
 void			button_stand(t_data *data, int i);
-
 void			boo_value_diapo(t_data *data, int val);
 void			button_diapo(t_data *data);
-
 void			boo_value_refresh(t_data *data, int val);
 void			button_once_refresh(t_data *data);
-
 void			button_advance(t_data *data);
-
 void			button_slider_filter(t_data *data);
 void			button_slider_bounce(t_data *data);
-
 void			draw_slider(t_data *data, int y, int selector);
 
 /*

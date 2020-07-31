@@ -9,7 +9,7 @@
 	quality : 3
 	bounce : 4
 	camera : 1
-	object : 4
+	object : 3
 	light : 0
 	flag_hud : 0
 	nb_normal : 1
@@ -28,7 +28,7 @@
 [camera:1]
 	origin : {0 -5 -15.0}
 	direction : {0 0 1}
-	mode : 0
+	mode : 2
 ############### Object ##################
 [object:sphere]
 	origin : {0.0 -5.0 0.0}
@@ -46,11 +46,11 @@
 	color : 0xFFFFFF
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
-[object:co]
-	origin : {5.0 -10.0 0.0}
-	direction : {0 1 0}
-	side : 0
-	color : 0xFF00FF00
-			opacity : 200
-	angle : 45
-	hauteur : -1
+#[object:co]
+#	origin : {5.0 -10.0 0.0}
+#	direction : {0 1 0}
+#	side : 0
+#	color : 0xFF00FF00
+#			opacity : 200
+#	angle : 45
+#	hauteur : -1
