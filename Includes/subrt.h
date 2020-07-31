@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:42:04 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/07/31 17:05:08 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,12 +258,12 @@ typedef struct		s_perl
 	float			distvalue;
 }					t_perl;
 
-typedef struct	s_quat
+typedef struct		s_quat
 {
 	float w;
 	float x;
 	float y;
 	float z;
-}				t_quat;
+}					t_quat;
 
 #endif

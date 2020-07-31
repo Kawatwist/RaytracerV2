@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 22:37:47 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 14:12:19 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 17:03:36 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ static float		pillule(t_cylinder *c, t_vec ray)
 		c->dir_close = sub_vec(set_neworigin(ray, ret[0]), c->origin.origin);
 	else
 	{
-		c->dir_close = sub_vec(set_neworigin(ray, ret[1]), set_neworigin(c->origin, c->hauteur));
+		c->dir_close = sub_vec(set_neworigin(ray, ret[1]),
+			set_neworigin(c->origin, c->hauteur));
 		ret[0] = ret[1];
 	}
-	return(ret[0]);
+	return (ret[0]);
 }
 
 static float		close_cyl(t_cylinder *c, t_vec ray)
