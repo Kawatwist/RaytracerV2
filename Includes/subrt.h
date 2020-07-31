@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 15:43:27 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/07/31 19:07:17 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,12 +259,12 @@ typedef struct		s_perl
 	float			distvalue;
 }					t_perl;
 
-typedef struct	s_quat
+typedef struct		s_quat
 {
 	float w;
 	float x;
 	float y;
 	float z;
-}				t_quat;
+}					t_quat;
 
 #endif
