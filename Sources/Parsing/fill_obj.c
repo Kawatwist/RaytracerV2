@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luwargni <luwargni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:05:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/04 21:57:55 by luwargni         ###   ########.fr       */
+/*   Updated: 2020/07/31 13:54:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ int				fill_obj(t_data *data, char **line, int index)
 	else if (!ft_strncmp("\tsize : ", *line, 8) &&
 		((t_base *)data->obj.item[index])->effect.type == OBJ)
 		((t_obj *)data->obj.item[index])->size = ft_atof(*line + 8);
+	else if (!ft_strncmp("\tmode : ", *line, 8) &&
+		((t_base *)data->obj.item[index])->effect.type == CYLINDER)
+		((t_cylinder *)data->obj.item[index])->mode = ft_atoi(*line + 8) & 0b1;
 	else if (!ft_strncmp("\tside : ", *line, 8) &&
 		((t_base *)data->obj.item[index])->effect.type == CONE)
 		((t_cone *)data->obj.item[index])->side = ft_atoi(*line + 8);
