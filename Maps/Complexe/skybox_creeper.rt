@@ -10,7 +10,7 @@
 	bounce : 0
 	refresh : 0
 	quality : 3
-	object : 16
+	object : 17
 	light : 3
 	opti : 1000
 	nb_texture : 6
@@ -44,6 +44,15 @@
 	direction : {0 0 1}
 	mode : 0
 ############### Creeper ###############
+[object:cylinder]
+	origin : {0 0 0}
+	direction : {0 0 1}
+	rayon : 0.5
+	hauteur : 2
+	mode : 0
+			dist : {0 0 0}
+			isub : 2
+			sub : 1
 [object:obj]
 	origin : {0.5 1.5 0.25}
 	size : 1

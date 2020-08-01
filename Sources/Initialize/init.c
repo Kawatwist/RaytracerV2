@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:11:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:12:52 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	initialize_scene_data(t_data *data)
 {
+	data->generate = 0;
 	data->percent = 0;
 	data->max_dist = 4000;
 	data->window.x = 1000;

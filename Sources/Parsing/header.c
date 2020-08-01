@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 16:29:14 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:46:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 	*ret = line;
 	return (!line ? 10 : 0);
 }
-//
 
 int			parsing_head(t_data *data, char **ret)
 {
