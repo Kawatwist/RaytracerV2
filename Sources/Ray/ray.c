@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:06:28 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 14:22:13 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	r.use_alpha = 0;
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore))
 		|| r.dist[0] == -1)
-		return (data->ambiant);
+		return (data->flag.ambiant == 1 ? 0x0 : data->ambiant);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
 		data->max_dist) && data->max_dist)
-		return (data->ambiant);
+		return (data->flag.ambiant == 1 ? 0x0 : data->ambiant);
 	r.tmp.direction = veccpy(ray.direction);
 	r.color[0] = find_color(data, r.obj, r.tmp);
 	if (((t_base *)r.obj)->effect.texture &&

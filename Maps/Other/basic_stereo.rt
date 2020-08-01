@@ -9,8 +9,8 @@
 	quality : 3
 	bounce : 4
 	camera : 1
-	object : 3
-	light : 0
+	object : 4
+	light : 2
 	flag_hud : 0
 	nb_normal : 1
 	nb_texture : 1
@@ -20,6 +20,13 @@
 [light:1]
 	origin : {0.0 -25.0 -25.0}
 	color : 0xFFFFFF
+	distance : 100
+	intensity : 1
+	spot : 0
+	ang : 0.7
+[light:1]
+	origin : {20.0 -25.0 -25.0}
+	color : 0x7c007c
 	distance : 100
 	intensity : 1
 	spot : 0
@@ -46,11 +53,11 @@
 	color : 0xFFFFFF
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
-#[object:co]
-#	origin : {5.0 -10.0 0.0}
-#	direction : {0 1 0}
-#	side : 0
-#	color : 0xFF00FF00
-#			opacity : 200
-#	angle : 45
-#	hauteur : -1
+[object:co]
+	origin : {5.0 -10.0 0.0}
+	direction : {0 1 0}
+	side : 0
+	color : 0xFF00FF00
+			opacity : 0
+	angle : 45
+	hauteur : -1
