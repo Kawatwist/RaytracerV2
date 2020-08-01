@@ -1,0 +1,147 @@
+[header]
+	xscreen : 1000
+	yscreen : 1000
+	object : 267
+	light : 4
+	camera : 1
+	quality : 0
+	ambiant : 0x3F1F3F
+	opti : 4000
+	bounce : 10
+	refresh : 0
+	aa : 1
+	generate : 1
+	screenshot : 1
+[camera:Basic]
+	origin : {0 3 0}
+	direction : {0 1 0}
+	mode : 0
+[light:0]
+	origin : {0 0 3}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {0 0 -3}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {3 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+[light:0]
+	origin : {-3 0 0}
+	color : 0xFFFFFF
+	distance : 5
+	intensity : 0.25
+# The Box
+[object:plan]
+	origin : {0 0 5}
+	direction : {0 0 -1}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 0 -5}
+	direction : {0 0 1}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {5 0 0}
+	direction : {-1 0 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {-5 0 0}
+	direction : {1 0 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 5 0}
+	direction : {0 -1 0}
+	color : 0x7F7F7F
+			reflection : 235
+[object:plan]
+	origin : {0 -5 0}
+	direction : {0 1 0}
+	color : 0x7F7F7F
+			reflection : 235
+#	Object
+[object:obj]
+	origin : {0 0 0}
+	size : 2
+	color : 0x7F7F7F
+			reflection : 25
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 1.25
+			dist : {0 0 0}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {-1 -1 1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {1 -1 1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {-1 1 1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {1 1 1}
+			isub : 7
+			sub : 1
+			opacity : 255
+# Face
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {-1 -1 -1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {1 -1 -1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {-1 1 -1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[object:sphere]
+	origin : {0 0 0}
+	rayon : 0.25
+			dist : {1 1 -1}
+			isub : 7
+			sub : 1
+			opacity : 255
+[gen:torus]
+	nb : 250
+	origin : {0 0 0}
+	rayon_i : 2.5
+	rayon : 0.20
+	axe : 0
+	color : 0xFFD700
+			reflection : 25

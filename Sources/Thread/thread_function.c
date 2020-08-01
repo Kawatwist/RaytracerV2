@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 22:16:37 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/29 15:50:01 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 18:35:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void				*thread_function(void *arg)
 			basic_render(data, &curr);
 		else
 			aa_render(data, &x, &y, &curr);
-		if (!(curr % 1000) && data->flag.time)
-			SDL_Delay(2);
+		if (!(curr % 1000) && (data->flag.time || data->flag.adv))
+			SDL_Delay(1);
 	}
 	data->signal = NOTHREAD;
 	return (arg);
