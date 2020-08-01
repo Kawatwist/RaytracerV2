@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 15:19:59 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 21:15:01 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct		s_effect
 	int				id_rotation;
 	float			id_refraction;
 	char			type;
+	Uint8			width;
+	Uint8			height;
 	Uint8			reflection;
 	Uint8			opacity;
 	Uint8			transparancy;
