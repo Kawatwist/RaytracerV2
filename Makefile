@@ -175,6 +175,7 @@ SRC				=	main.c										\
 					shadow.c									\
 					quat.c										\
 					quat2.c										\
+					ray2.c										\
 
 
 

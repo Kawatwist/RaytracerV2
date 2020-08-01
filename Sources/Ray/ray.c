@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 16:40:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 18:24:47 by cbilga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,56 +79,18 @@ static unsigned int	send_ray2(t_thread *data, t_vec ray,
 		return (r.color[0]);
 }
 
-static t_point	normal_sub(t_vec ray, void	*obj)
-{
-	if (((t_base *)obj)->effect.type == SPHERE)
-	{
-		return (normalize((sub_vec(((t_sphere *)obj)->origin.origin, ray.origin))));
-	}
-	return (normalize(sub_vec(((t_sphere *)obj)->origin.origin, ray.origin)));
-}
-
 unsigned int		send_ray(t_thread *data, t_vec ray,
 					int bounce, void *ignore)
 {
 	t_ray			r;
+	int				res;
 
 	r.use_alpha = 0;
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore))
 		|| r.dist[0] == -1)
 		return (data->ambiant);
-	data->sub = 0;
-	if (((t_base *)r.obj)->effect.sub)
-	{
-		void	*save;
-		void	*save2;
-		save = NULL;
-		save2 = NULL;
-		while  (((t_base *)r.obj) != save)
-		{
-			if (save == NULL)
-				save = r.obj;
-			if (r.obj != save && save2 == NULL)
-				save2 = r.obj;
-			else if (r.obj == save2)
-				save2 = NULL;
-			ray.origin = set_neworigin_op(ray, r.dist[0]);
-			if (!(r.obj = check_object(data, ray, &(r.dist[0]), NULL))
-				|| r.dist[0] == -1)
-				return (data->ambiant);
-		}
-		ray.origin = set_neworigin_op(ray, r.dist[0]);
-		if (save2 != NULL && ((t_base *)save2)->effect.type != OBJ)
-		{
-			data->sub = 1;
-			data->normal_sub = normal_sub(ray, save2);
-		}
-		else
-			data->sub = 0;
-		if (!(r.obj = check_object(data, ray, &(r.dist[0]), NULL))
-			|| r.dist[0] == -1)
-			return (data->ambiant);
-	}
+	if ((res = (send_ray22(data, &ray, &r))) == data->ambiant)
+		return (res);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
 		data->max_dist) && data->max_dist)
@@ -139,9 +101,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		((r.color[0] & 0xFF000000) >> 24) && data->flag.alpha)
 		ext_bounce_effect_send_ray(&r, 2);
 	data->tmp_color = r.color[0];
-	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
-	r.tmp.direction = veccpy(ray.direction);
-	r.tmp.direction = find_normal_with_txt(data, r.obj, r.tmp);
+	send_ray_ext(data, ray, &r);
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;
