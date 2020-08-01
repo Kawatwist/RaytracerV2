@@ -9,7 +9,7 @@
 	aa : 0
 	bounce : 5
 	quality : 0
-	object : 3
+	object : 2
 	light : 1
 	filter : 4
 	tile : 0.8
@@ -18,13 +18,13 @@
 	origin : {0 -2 -2}
 	direction : {0 0 1}
 [light:1]
-	origin : {0 3 -2}
+	origin : {0 -3 -2}
 	direction : {0 1 1}
 	color : 0xFFFFFF
 	distance : 10000
 	intensity : 1
 	ang : -0.8
-	spot : 1
+	spot : 0
 ############### Object ################
 [object:sphere]
 	origin : {0 -1 1}
@@ -39,9 +39,3 @@
 			id_texture : 255
 			texture : 255
 			ns : 1
-[object:sphere]
-	origin : {0 -1 2}
-	color : 0xFFFFFF./
-	rayon : 1
-			refraction : 255
-			id_refraction : 5.0
