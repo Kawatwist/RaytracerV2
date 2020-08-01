@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 21:49:55 by luwargni          #+#    #+#             */
-/*   Updated: 2020/08/01 21:16:49 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 21:43:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int		fill_effect_special(t_effect *effect, char *line)
 	else if (!ft_strncmp("\t\t\tsub : ", line, 9))
 		effect->sub = ft_atoi(line + 9) & 1;
 	else if (!ft_strncmp("\t\t\twidth : ", line, 11))
-		effect->width = ft_atoi(line + 11)  & 0xFF;
+		effect->width = ft_atoi(line + 11) & 0xFF;
 	else if (!ft_strncmp("\t\t\theight : ", line, 12))
-		effect->height = ft_atoi(line + 12)  & 0xFF;
+		effect->height = ft_atoi(line + 12) & 0xFF;
 	else if (!ft_strncmp("\t\t\tisub : ", line, 10))
 		effect->isub = ft_atoi(line + 10);
 	else if (!ft_strncmp("\t\t\tid_refraction : ", line, 19))
