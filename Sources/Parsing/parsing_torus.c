@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 15:38:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 17:57:24 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 16:39:08 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		generate(t_data *data, int index)
 		find++;
 	value = 0;
 	if (data->obj.generate[index].nb + find > data->obj.nb_item)
-		return (99);
+		return (97);
 	while (value <= data->obj.generate[index].nb)
 	{
 		if (!(sphere = (t_sphere *)malloc(sizeof(t_sphere))))
@@ -62,8 +62,8 @@ static int		parsing_torus2(t_data *data, char **line, int index)
 		data->obj.generate[index].nb = lowu(ft_atoi(*line + 5), 300);
 	else if (!(ft_strncmp("\trayon_i :", *line, 10)))
 		data->obj.generate[index].rayon_i = ft_atof(*line + 10);
-	else if (!(ft_strncmp("\trayon :", *line, 8)))
-		data->obj.generate[index].sphere.rayon = ft_atof(*line + 8);
+	else if (!(ft_strncmp("\trayon : ", *line, 9)))
+		data->obj.generate[index].sphere.rayon = ft_atof(*line + 9);
 	else if (!ft_strncmp("\torigin :", *line, 9))
 		data->obj.generate[index].origin = get_point(*line);
 	else if (!ft_strncmp("\tcolor :", *line, 8))
@@ -85,7 +85,7 @@ int				parsing_torus(t_data *data, char **old, char *line)
 	int			val;
 
 	if (index > data->generate)
-		return (99);
+		return (98);
 	line = NULL;
 	while (get_next_line(data->parse.fd, &line) && !ft_strncmp("\t", line, 1))
 	{

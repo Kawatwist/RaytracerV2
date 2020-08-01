@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:19:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 14:33:53 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ typedef	struct			s_thread
 	int					current;
 	float				tile;
 	char				index_thread;
+	t_point				normal_sub;
 	t_point				perlin[GRADIENT * GRADIENT];
+	Uint8				sub : 1;
 }						t_thread;
 /*
 **			Special Function pthread

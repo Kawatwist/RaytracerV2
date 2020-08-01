@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/04 21:49:55 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/31 15:55:46 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 15:35:57 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ static int		fill_effect_special(t_effect *effect, char *line)
 {
 	if (!ft_strncmp("\t\t\trefraction : ", line, 16))
 		effect->refraction = ft_atoi(line + 16);
+	else if (!ft_strncmp("\t\t\tsub : ", line, 9))
+		effect->sub = ft_atoi(line + 9) & 1;
+	else if (!ft_strncmp("\t\t\tisub : ", line, 10))
+		effect->isub = ft_atoi(line + 10);
 	else if (!ft_strncmp("\t\t\tid_refraction : ", line, 19))
 		effect->id_refraction = ft_atoi(line + 19);
 	else if (!ft_strncmp("\t\t\topacity : ", line, 13))
@@ -35,6 +39,8 @@ static int		fill_effect_special(t_effect *effect, char *line)
 		effect->reflection = ft_atoi(line + 15);
 	else if (!ft_strncmp("\t\t\ttransparancy : ", line, 18))
 		effect->transparancy = ft_atoi(line + 18);
+	else if (!ft_strncmp("\t\t\tdist :", line, 9))
+		effect->distance = get_point(line);
 	else
 		return (20);
 	return (0);

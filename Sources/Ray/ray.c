@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:06:28 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 16:21:36 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ static unsigned int	send_ray2(t_thread *data, t_vec ray,
 		return (r.color[0]);
 }
 
+static t_point	normal_sub(t_vec ray, void	*obj)
+{
+	if (((t_base *)obj)->effect.type == SPHERE)
+	{
+		return (normalize((sub_vec(((t_sphere *)obj)->origin.origin, ray.origin))));
+	}
+	return (normalize(sub_vec(((t_sphere *)obj)->origin.origin, ray.origin)));
+}
+
 unsigned int		send_ray(t_thread *data, t_vec ray,
 					int bounce, void *ignore)
 {
@@ -88,6 +97,38 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore))
 		|| r.dist[0] == -1)
 		return (data->ambiant);
+	data->sub = 0;
+	if (((t_base *)r.obj)->effect.sub)
+	{
+		void	*save;
+		void	*save2;
+		save = NULL;
+		save2 = NULL;
+		while  (((t_base *)r.obj) != save)
+		{
+			if (save == NULL)
+				save = r.obj;
+			if (r.obj != save && save2 == NULL)
+				save2 = r.obj;
+			else if (r.obj == save2)
+				save2 = NULL;
+			ray.origin = set_neworigin_op(ray, r.dist[0]);
+			if (!(r.obj = check_object(data, ray, &(r.dist[0]), NULL))
+				|| r.dist[0] == -1)
+				return (data->ambiant);
+		}
+		ray.origin = set_neworigin_op(ray, r.dist[0]);
+		if (save2 != NULL && ((t_base *)save2)->effect.type != OBJ)
+		{
+			data->sub = 1;
+			data->normal_sub = normal_sub(ray, save2);
+		}
+		else
+			data->sub = 0;
+		if (!(r.obj = check_object(data, ray, &(r.dist[0]), NULL))
+			|| r.dist[0] == -1)
+			return (data->ambiant);
+	}
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
 		data->max_dist) && data->max_dist)
