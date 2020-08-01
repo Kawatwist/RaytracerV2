@@ -7,9 +7,9 @@
 	yscreen : 1000
 	refresh : 1
 	quality : 3
-	bounce : 4
+	bounce : 1
 	camera : 1
-	object : 3
+	object : 4
 	light : 0
 	flag_hud : 0
 	nb_normal : 1
@@ -46,11 +46,11 @@
 	color : 0xFFFFFF
 	origin : {0.0 0.0 10.0}
 	direction : {0 0 -1}
-#[object:co]
-#	origin : {5.0 -10.0 0.0}
-#	direction : {0 1 0}
-#	side : 0
-#	color : 0xFF00FF00
-#			opacity : 200
-#	angle : 45
-#	hauteur : -1
+[object:co]
+	origin : {5.0 -10.0 0.0}
+	direction : {0 1 0}
+	side : 0
+	color : 0xFF00FF00
+			opacity : 200
+	angle : 45
+	hauteur : -1
