@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 20:47:44 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 15:48:39 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:53:21 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ static void		sub_obj(t_thread *data)
 	{
 		if (((t_base *)data->obj.item[i])->effect.sub == 1)
 		{
-			if (((t_base *)data->obj.item[i])->effect.isub <= data->obj.nb_item &&
-				(t_base *)data->obj.item[((t_base *)data->obj.item[i])->effect.isub - 1] != NULL)
+			if (((t_base *)data->obj.item[i])->effect.isub <=
+						data->obj.nb_item &&
+				(t_base *)data->obj.item[
+				((t_base *)data->obj.item[i])->effect.isub - 1] != NULL)
 			{
 				(((t_base *)data->obj.item[i])->origin.origin = add_vec(
-				((t_base *)data->obj.item[((t_base *)data->obj.item[i])->effect.isub - 1])->origin.origin,
-				((t_base *)data->obj.item[i])->effect.distance));
+				((t_base *)data->obj.item[
+				((t_base *)data->obj.item[i])->effect.isub - 1])->origin
+				.origin, ((t_base *)data->obj.item[i])->effect.distance));
 			}
 		}
 		i++;
@@ -68,7 +71,6 @@ int				load_modif(t_data *data, t_thread *tmp)
 		ft_memcpy(&tmp[i].obj.index, &data->obj.index, 12);
 		tmp[i].obj.type_index = data->obj.type_index;
 		tmp[i].bounce = data->bounce;
-		tmp[i].percent = data->percent;
 		if (data->obj.type_index == 0)
 			ft_memcpy(&tmp[i].obj.camera[data->obj.index[0]],
 			&data->obj.camera[data->obj.index[0]], sizeof(t_camera));

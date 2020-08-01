@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:48:34 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 15:46:55 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:52:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int				start_thread(t_data *data)
 	light_variance(data, data->thread);
 	while (++i < 4)
 	{
+		((t_thread *)data->thread)[i].percent = data->percent;
 		if ((err = start_thread4(data, i)) != 0)
 			return (err);
 	}

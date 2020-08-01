@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:06:01 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/30 18:14:54 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:46:26 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,3 @@ int				parsing_camera(t_data *data, char **old)
 	index++;
 	return (!line ? 14 : 0);
 }
-//
