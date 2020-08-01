@@ -11,7 +11,7 @@
 	light : 1
 	nb_texture : 2
 	textures : "./texture/planet/sun.tga"
-	textures : "./texture/teststar.tga"
+	textures : "./texture/icon.tga"
 ############### Light ##################
 [light:1]
 	origin : {0 0 0}
@@ -38,6 +38,8 @@
 		[effect]
 			id_texture : 1
 			texture : 255
+			width : 200
+			height : 200
 [object:plan]
 	color : 0x7F6F7F
 	origin : {-2.5 -2.5 0}

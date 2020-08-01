@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:32 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/27 16:16:33 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 21:29:58 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_point		texture_plan(void *data, void *obj, t_vec ray, int choose)
 		((t_plan *)obj)->origin.direction.z,
 		-((t_plan *)obj)->origin.direction.x);
 	v = cross_vec(u, ((t_plan *)obj)->origin.direction);
-	ontexture.y = dot_product(ray.origin, u) * (wh & 0xFFFF) +
-		((wh & 0xFFFF) >> 1);
-	ontexture.x = dot_product(ray.origin, v) * (wh >> 16) + ((wh >> 16) >> 1);
+	ontexture.y = (dot_product(ray.origin, u) * (wh & 0xFFFF) +
+		((wh & 0xFFFF) >> 1)) * (1 / (((t_plan *)obj)->effect.height + 1));
+	ontexture.x = (dot_product(ray.origin, v) * (wh >> 16) + ((wh >> 16) >> 1)) * (1 / (((t_plan *)obj)->effect.width + 1));
 	while (ontexture.x < 0 || ontexture.x >= (wh >> 16))
 		ontexture.x += (ontexture.x < 0 ? (wh >> 16) - 1 : -(wh >> 16) - 1);
 	while (ontexture.y < 0 || ontexture.y >= (wh & 0xFFFF))
