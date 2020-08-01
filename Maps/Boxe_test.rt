@@ -10,7 +10,6 @@
 	bounce : 500
 	refresh : 0
 	aa : 1
-	screenshot : 1
 [camera:Basic]
 	origin : {0 0 -3}
 	direction : {0 0 1}

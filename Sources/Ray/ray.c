@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 15:40:11 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 20:50:43 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,14 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 					int bounce, void *ignore)
 {
 	t_ray			r;
+	int				res;
 
 	r.use_alpha = 0;
 	if (!(r.obj = check_object(data, ray, &(r.dist[0]), ignore))
 		|| r.dist[0] == -1)
 		return (data->flag.ambiant == 1 ? 0x0 : data->ambiant);
+	if ((res = (send_ray22(data, &ray, &r))) == data->ambiant)
+		return (res);
 	r.tmp.origin = set_neworigin(ray, r.dist[0]);
 	if (((data->dist_ray = length(sub_vec(r.tmp.origin, ray.origin))) >
 		data->max_dist) && data->max_dist)
@@ -98,9 +101,7 @@ unsigned int		send_ray(t_thread *data, t_vec ray,
 		((r.color[0] & 0xFF000000) >> 24) && data->flag.alpha)
 		ext_bounce_effect_send_ray(&r, 2);
 	data->tmp_color = r.color[0];
-	r.tmp.origin = set_neworigin_neg(ray, r.dist[0]);
-	r.tmp.direction = veccpy(ray.direction);
-	r.tmp.direction = find_normal_with_txt(data, r.obj, r.tmp);
+	send_ray_ext(data, ray, &r);
 	if (!(((t_base *)r.obj)->effect.flag & NS))
 		r.color[0] = ray_to_light(data, r);
 	r.bounce = bounce;

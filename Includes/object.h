@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 18:14:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 17:44:20 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 15:19:59 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,22 @@ typedef struct		s_effect
 {
 	t_point			movement;
 	t_point			axe;
+	t_point			distance;
 	int				color;
 	int				id_texture;
 	int				id_normal;
 	int				id_rotation;
 	float			id_refraction;
 	char			type;
-	unsigned char	reflection;
-	unsigned char	opacity;
-	unsigned char	transparancy;
-	unsigned char	refraction;
-	unsigned char	texture;
-	unsigned char	normal;
-	unsigned char	flag;
+	Uint8			reflection;
+	Uint8			opacity;
+	Uint8			transparancy;
+	Uint8			refraction;
+	Uint8			texture;
+	Uint8			normal;
+	Uint8			flag;
+	Uint16			isub;
+	Uint8			sub : 1;
 }					t_effect;
 
 typedef struct		s_base
@@ -153,10 +156,10 @@ typedef	struct		s_obj
 
 typedef struct		s_generate
 {
-	t_point			origin; // Base 0 0 0
-	int				nb; // Max 100
-	float			rayon_i; // Base 1
-	t_sphere		sphere;	// Init
+	t_point			origin;
+	int				nb;
+	float			rayon_i;
+	t_sphere		sphere;
 	Uint32			axe : 2;
 }					t_generate;
 

@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 18:39:12 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 20:35:29 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,20 @@ typedef	struct			s_thread
 	int					current;
 	float				tile;
 	char				index_thread;
+	t_point				normal_sub;
 	t_point				perlin[GRADIENT * GRADIENT];
+	Uint8				sub : 1;
 }						t_thread;
+
+typedef struct			s_sray
+{
+	t_thread			*data;
+	t_vec				*ray;
+	t_ray				*r;
+	void				*save;
+	void				*save2;
+	int					res;
+}						t_sray;
 /*
 **			Special Function pthread
 **
@@ -147,6 +159,9 @@ t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray,
 							int bounce, void *ignore);
+unsigned int			send_ray22(t_thread *data, t_vec *ray,
+							t_ray *r);
+void					send_ray_ext(t_thread *data, t_vec ray, t_ray *r);
 int						start_ray(t_thread *data);
 void					basic_render(t_thread *data, int *curr);
 /*

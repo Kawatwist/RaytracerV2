@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:14:45 by luwargni          #+#    #+#             */
-/*   Updated: 2020/07/31 16:57:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:47:04 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ static int		parsing_files3(t_data *data, char **old, char **line)
 	{
 		curr = 15;
 		if ((val = parsing_light(data, old, *line)))
+			return (val);
+	}
+	else if (!ft_strncmp("[gen:torus", *line, 10))
+	{
+		curr = 99;
+		if ((val = parsing_torus(data, old, *line)))
 			return (val);
 	}
 	else if ((*line)[0] == '#')
@@ -45,12 +51,6 @@ static int		parsing_files2(t_data *data, char **old, char **line)
 	{
 		curr = 17;
 		if ((val = parsing_obj(data, old, *line)))
-			return (val);
-	}
-	else if (!ft_strncmp("[gen:torus", *line, 10))
-	{
-		curr = 99;
-		if ((val = parsing_torus(data, old, *line)))
 			return (val);
 	}
 	else

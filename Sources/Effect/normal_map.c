@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 18:13:36 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 14:05:44 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/08/01 16:41:05 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ t_point			find_normal_with_txt(t_thread *data,
 {
 	t_point normal;
 
+	if (data->sub)
+		return (data->normal_sub);
 	data->tmp_normal = find_normal(object, collide);
 	if (((t_base *)object)->effect.normal)
 	{

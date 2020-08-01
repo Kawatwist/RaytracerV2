@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:16:57 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 17:58:09 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:46:15 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	parsing_head_v4(t_data *data, char *line)
 	else if (!ft_strncmp("\ticone : ", line, 9))
 		data->flag.icon = ft_atoi(&(line[9])) & 0b1;
 	else if (!ft_strncmp("\tgenerate : ", line, 12))
-		data->generate = lowu(ft_atoi(&(line[9])), 5);
+		data->generate = lowu(ft_atoi(&(line[12])), 5);
 	else if (!ft_strncmp("\ttile : ", line, 8))
 	{
 		data->tile = ft_atof(&(line[8]));
@@ -112,7 +112,6 @@ static int	parsing_head_v2(t_data *data, char **ret, char *line)
 	*ret = line;
 	return (!line ? 10 : 0);
 }
-//
 
 int			parsing_head(t_data *data, char **ret)
 {

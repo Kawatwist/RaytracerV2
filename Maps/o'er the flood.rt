@@ -1,23 +1,44 @@
 [header]
 	xscreen : 600
 	yscreen : 400
-	object : 3
+	object : 5
 	light : 2
 	camera : 1
 	quality : 1
-	ambiant : 0x0
-	nb_texture : 20
+	ambiant : 0xFF00FF
+	nb_texture : 1
 	refresh : 1
 	flag_hud : 1
 	opti : 4000
 	textures : "texture/Texture/Jinx_split.tga"
 [camera:]
 	origin : {0 0 0}
-	direction : {- - -}
-	mode : -1
+	direction : {0 0 1}
+	mode : 0
 [light:]
-	spot : 5
+	origin : {0 -50 0}
+	color : 0xFFFFFF
+	intensity : 1
+	distance : 500
+	spot : 0
 [object:plan]
-	origin : {0 2 0}
+	origin : {0 3 0}
 	direction : {0 -1 0}
+	color : 0xFFFFFF
+			ns : 0
+[object:sphere]
+	origin : {0 0 0}
 	color : 0x7F7F7F
+	rayon : 1
+			isub : 4
+			sub : 1
+			ns : 1
+			dist : {0 0 0}
+[object:sphere]
+	origin : {0 -0.5 3}
+	color : 0x7F7F7F
+	rayon : 1.5
+[object:obj]
+	origin : {0 -0.5 10}
+	color : 0x7F7F7F
+	size : 1.5

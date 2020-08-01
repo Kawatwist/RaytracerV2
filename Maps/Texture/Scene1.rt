@@ -7,7 +7,7 @@
 	quality : 3
 	bounce : 0
 	camera : 1
-	object : 7
+	object : 8
 	light : 1
 	nb_texture : 2
 	textures : "./texture/planet/sun.tga"
@@ -69,9 +69,13 @@
 ############### Sphere ##################
 [object:sphere]
 	color : 0xFFFF00
+	rayon : 1
+			isub : 8
+			dist : {0 -0.5 0}
+			sub : 1
+[object:sphere]
+	color : 0xFFFF00
 	origin : {0 0 0}
 	direction : {0 1 0}
-	rayon : 0.2
-		[effect]
-			id_texture : 0
-			texture : 255
+	rayon : 1
+			reflection : 255

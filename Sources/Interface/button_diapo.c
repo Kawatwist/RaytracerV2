@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/22 22:31:41 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/30 14:44:26 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:48:02 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ void	button_alpha(t_data *data)
 	data->all_button[10].val = data->flag.alpha;
 	data->all_button[10].i = 1;
 }
-

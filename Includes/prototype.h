@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 14:25:21 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 20:35:22 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ float			sphere(void *sphere, t_vec ray);
 **			Parsing
 */
 
-int     		parsing_torus(t_data *data, char **old, char *line);
+int				parsing_torus(t_data *data, char **old, char *line);
 int				parsing_light(t_data *data, char **old, char *line);
 t_point			get_point(char *str);
 t_point			get_point_y(char *str);
