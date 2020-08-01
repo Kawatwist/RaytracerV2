@@ -9,33 +9,49 @@
 	aa : 0
 	bounce : 5
 	quality : 0
-	object : 2
+	object : 5
 	light : 1
-	filter : 4
+	filter : 0
 	tile : 0.8
 ############### Camera ################
 [camera:1]
 	origin : {0 -2 -2}
 	direction : {0 0 1}
 [light:1]
-	origin : {0 3 -2}
-	direction : {0 1 1}
+	origin : {0 -3 -2}
 	color : 0xFFFFFF
 	distance : 10000
 	intensity : 1
 	ang : -0.8
-	spot : 1
+	spot : 0
 ############### Object ################
 [object:sphere]
 	origin : {0 -1 1}
 	color : 0xFFFFFF./
 	rayon : 1
-			refraction : 255
-			id_refraction : -5.0
+			refraction : 200
+			id_refraction : 2.0
 [object:plan]
 	origin : {0 0 0}
 	direction : {0 -1 0}
 	color : 0xFFFFFF
 			id_texture : 255
 			texture : 255
-			ns : 1
+[object:obj]
+	origin : {0 -1 4}
+	color : 0xFFFFFF
+	size : 1
+			id_texture : 254
+			texture : 255
+[object:obj]
+	origin : {1 -1.5 4}
+	color : 0xFFFFFF
+	size : 1.5
+			id_texture : 253
+			texture : 255
+[object:obj]
+	origin : {-1 -1 4.5}
+	color : 0xFFFFFF
+	size : 1
+			id_texture : 252
+			texture : 255
