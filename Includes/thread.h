@@ -6,7 +6,7 @@
 /*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 18:28:06 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/08/01 19:50:03 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct			s_sray
 	t_vec				*ray;
 	t_ray				*r;
 	void				*save;
-	void 				*save2;
+	void				*save2;
 	int					res;
 }						t_sray;
 /*
@@ -159,7 +159,7 @@ t_point					find_normal_triangle(t_triangle *t);
 unsigned int			find_color(t_thread *data, void *obj, t_vec ray);
 unsigned int			send_ray(t_thread *data, t_vec ray,
 							int bounce, void *ignore);
-unsigned int			send_ray22(t_thread *data, t_vec *ray, 
+unsigned int			send_ray22(t_thread *data, t_vec *ray,
 							t_ray *r);
 void					send_ray_ext(t_thread *data, t_vec ray, t_ray *r);
 int						start_ray(t_thread *data);
