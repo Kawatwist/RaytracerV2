@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/08/01 20:32:44 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 21:45:58 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void			flag_diapo(t_thread *data, float obj[3], t_ray r, int index)
 	{
 		transparency = shadow(data, r, index);
 		if (transparency != -1)
-		data->tmp_color = apply_mult(data->tmp_color,
-		0xffffff, transparency / 255.0);
+			data->tmp_color = apply_mult(data->tmp_color,
+			0xffffff, transparency / 255.0);
 		fix = 1;
 	}
 	if (data->flag.diapo && obj[1] < obj[2] && obj[1] != -1)
@@ -60,7 +60,8 @@ static void			flag_diapo(t_thread *data, float obj[3], t_ray r, int index)
 		ray.direction =
 		normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
 		if (fix == 0)
-		data->tmp_color = light_color(r.color[0], diapo(data, &ray, index, data->bounce));
+			data->tmp_color = light_color(r.color[0], diapo(data,
+					&ray, index, data->bounce));
 		else
 			data->tmp_color = light_color(data->tmp_color,
 			light_color(r.color[0], diapo(data, &ray, index, data->bounce)));

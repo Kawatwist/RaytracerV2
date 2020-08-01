@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 21:46:46 by luwargni          #+#    #+#             */
-/*   Updated: 2020/08/01 19:49:10 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 21:42:55 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	input_descartes_obj(t_data *data, void **obj, char ctrl)
 	else if (key_hold(data, SDL_SCANCODE_KP_2) && ctrl && tmp->refraction > 0)
 		tmp->refraction -= 1;
 	if (key_hold(data, SDL_SCANCODE_KP_3) && !ctrl && tmp->opacity < 255)
-			tmp->opacity += 1;
+		tmp->opacity += 1;
 	else if (key_hold(data, SDL_SCANCODE_KP_3) && ctrl && tmp->opacity > 0)
 		tmp->opacity -= 1;
 }
