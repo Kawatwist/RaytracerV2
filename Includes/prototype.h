@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:38:04 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 17:54:11 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 20:35:22 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,5 +311,6 @@ void			call_rot_cam(t_data *data);
 void			input_obj(t_data *data);
 void			get_input(t_data *data);
 void			button_shadow(t_data *data);
+void			button_ambiant(t_data *data);
 
 #endif

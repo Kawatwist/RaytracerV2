@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 21:49:26 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 19:50:03 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 20:35:29 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_point					texture_cone(void *data,
 **			Light
 */
 
-float					shadow(t_thread *data, t_ray r, int index);
+double					shadow(t_thread *data, t_ray r, int index);
 unsigned int			diapo(t_thread *data, t_vec *ray,
 							int index, int bounce);
 int						mix(int i, int j);

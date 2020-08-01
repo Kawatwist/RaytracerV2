@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 20:11:15 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 17:12:52 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 20:35:45 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int			initialize(t_data *data)
 	data->flag.adv = 1;
 	data->flag.typing = 0;
 	data->flag.shadow = 0;
+	data->flag.ambiant = 1;
 	data->dist[0] = sphere;
 	data->dist[1] = plane;
 	data->dist[2] = cone;

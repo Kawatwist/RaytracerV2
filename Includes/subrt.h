@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   subrt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbilga <cbilga@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/23 18:45:56 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 18:24:07 by cbilga           ###   ########.fr       */
+/*   Updated: 2020/08/01 21:00:38 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define PLAN_TXT "./texture/Texture/plan.tga"
 # define OEIL_TXT "./texture/Texture/Oeil.tga"
 
-# define CASE_NBR 15
+# define CASE_NBR 12
 
 typedef enum		e_lol
 {

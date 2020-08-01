@@ -6,40 +6,42 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/27 13:14:42 by anboilea          #+#    #+#             */
-/*   Updated: 2020/07/30 17:54:18 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 20:48:53 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread.h"
 
-float	trans_shadow_calc(float a, float b)
+double	trans_shadow_calc(float a, float b)
 {
 	return (a * (b / 255));
 }
 
-float	trans_shadow(t_thread *data, t_vec *ray, int index, int bounce)
+double	trans_shadow(t_thread *data, t_vec *ray, int index, int bounce)
 {
 	void			*obj;
 	float			dist;
-	float			transparency;
-	float			new_trans;
+	double			transparency;
+	double			new_trans;
 	float			tmp;
 
 	obj = check_object(data, *ray, &dist, NULL);
-	if (!obj)
-		return (255);
-	if (bounce <= 0 || ((t_base *)obj)->effect.opacity == 0)
-		return (0);
 	ray->origin = set_neworigin_op(*ray, dist);
+	if (!obj || bounce <= 0)
+		return (-1);
+	else if (((t_base *)obj)->effect.opacity == 0)
+		return (0);
 	transparency = ((t_base *)obj)->effect.opacity;
 	new_trans = trans_shadow(data, ray, index, bounce - 1);
-	tmp = trans_shadow_calc(transparency, new_trans);
-	if (tmp == 0)
+	if (new_trans == -1)
 		return (transparency);
+	else if (new_trans == 0.0)
+		return (0.0);
+	tmp = trans_shadow_calc(transparency, new_trans);
 	return (tmp);
 }
 
-float	shadow(t_thread *data, t_ray r, int index)
+double	shadow(t_thread *data, t_ray r, int index)
 {
 	float			len2;
 	t_vec			ray;
@@ -52,5 +54,5 @@ float	shadow(t_thread *data, t_ray r, int index)
 	len = length(sub_vec(r.tmp.origin, data->obj.light[index].origin));
 	if ((check_object(data, ray, &len2, r.obj)) && len2 <= len)
 		return (trans_shadow(data, &ray, index, data->bounce));
-	return (255);
+	return (255.0);
 }

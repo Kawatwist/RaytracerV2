@@ -2,14 +2,14 @@
 #           Scene 42 : Object               #
 #############################################
 [header]
-	ambiant : 0x000000
+	ambiant : 0x7c33c7
 	xscreen : 1000
 	yscreen : 1000
 	refresh : 1
 	quality : 3
 	bounce : 0
 	camera : 1
-	object : 320
+	object : 56
 	light : 0
 	flag_hud : 0
 	generate : 3
@@ -30,15 +30,15 @@
 [object:sphere]
 	origin : {0.0 -5.0 0.0}
 	direction : {0 1 0}
-	color : 0x7F007F
+	color : 0xFF03fc9d
 	rayon : 2.0
 [object:plan]
-	color : 0xFFFFFF
+	color : 0xffffff
 	origin : {0.0 0.0 0.0}
 	direction : {0 -1 0}
 			reflection : 12
 [object:cylinder]
-	color : 0xFF0000
+	color : 0xFF03fc9d
 	origin : {-20.0 -10.0 10.0}
 	direction : {0 1 0}
 	hauteur : 10
@@ -47,79 +47,79 @@
 [object:cylinder]
 	origin : {-27.0 -15.0 0.0}
 	direction : {0 1 0}
-	color : 0xFF00FF00
+	color : 0xFF03fc9d
 	hauteur : 10
 	mode : 1
 	rayon : 5
 [object:cylinder]
 	origin : {-30.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x0000FF
+	color : 0xFF03fc9d
 	hauteur : -1
 	mode : 0
 	rayon : 5
 [object:cone]
 	origin : {-10.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0xFFFF00
+	color : 0xFF03fc9d
 	side : 1
 	angle : 45
 	hauteur : -1
 [object:cone]
 	origin : {-0.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : -1
 	angle : 45
 	hauteur : -1
 [object:cone]
 	origin : {10.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : 0
 	angle : 45
 	hauteur : -1
 [object:cone]
 	origin : {20.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : 0
 	angle : 45
 	hauteur : 10
 [object:cone]
 	origin : {30.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : 1
 	angle : 45
 	hauteur : 10
 [object:cone]
 	origin : {40.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : -1
 	angle : 45
 	hauteur : 10
 [gen:torus]
 	origin : {0 -5 0}
-	nb : 150
+	nb : 20
 	rayon_i : 2
 	rayon : 0.99
 	axe : 0
-	color : 0xFF00FF
+	color : 0xFF03fc9d
 			reflection : 255
 [object:cone]
 	origin : {40.0 -20.0 15.0}
 	direction : {0 1 0}
-	color : 0x00FFFF
+	color : 0xFF03fc9d
 	side : -1
 	angle : 45
 	hauteur : 10
 [gen:torus]
 	origin : {0 -5 0}
-	nb : 150
+	nb : 20
 	rayon_i : 2
 	rayon : 0.99
 	axe : 1
-	color : 0xFF00FF
+	color : 0xFF03fc9d
 			reflection : 255

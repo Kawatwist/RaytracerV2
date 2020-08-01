@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 17:58:10 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/31 16:05:13 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 14:22:22 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct			s_flag
 	Uint32				adv : 1;
 	Uint32				parsing : 1;
 	Uint32				alpha : 1;
+	Uint32				ambiant : 1;
 }						t_flag;
 
 typedef struct			s_interface
