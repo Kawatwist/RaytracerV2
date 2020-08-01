@@ -28,6 +28,18 @@
 	mode : 0
 ############### Object ##################
 [object:sphere]
+	origin : {0 0 0}
+	color : 0x7F7F7F
+	rayon : 3
+			isub : 2
+			sub : 1
+			ns : 1
+			dist : {0 0 0}
+[object:obj]
+	origin : {20 -3 10}
+	color : 0xFF03fc9d
+	size : 5
+[object:sphere]
 	origin : {0.0 -5.0 0.0}
 	direction : {0 1 0}
 	color : 0xFF03fc9d

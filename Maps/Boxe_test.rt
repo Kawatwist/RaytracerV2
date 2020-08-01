@@ -1,6 +1,6 @@
 [header]
-	xscreen : 2000
-	yscreen : 2000
+	xscreen : 1000
+	yscreen : 1000
 	object : 15
 	light : 4
 	camera : 1
