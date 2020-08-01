@@ -6,7 +6,7 @@
 /*   By: lomasse <lomasse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 21:10:54 by lomasse           #+#    #+#             */
-/*   Updated: 2020/07/30 18:11:38 by lomasse          ###   ########.fr       */
+/*   Updated: 2020/08/01 17:08:16 by lomasse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static int		check_effect(t_data *data, t_object obj)
 	{
 		if (((t_base *)obj.item[index])->effect.type == OBJ)
 			setup_obj(obj.item[index]);
+		if (!(((t_base *)obj.item[index])->effect.isub) || ((t_base *)obj.item[index])->effect.isub == index + 1)
+		{
+			((t_base *)obj.item[index])->effect.sub = 0;
+			((t_base *)obj.item[index])->effect.isub = 0;
+		}
 		if (((t_base *)obj.item[index])->effect.id_normal > obj.nb_normal)
 			return (4);
 		if (((t_base *)obj.item[index])->effect.opacity)
