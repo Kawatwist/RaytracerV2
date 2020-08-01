@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/05 00:42:56 by luwargni          #+#    #+#             */
-/*   Updated: 2020/08/01 15:33:39 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 20:32:44 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,28 @@ static float		dist(float *obj)
 static void			flag_diapo(t_thread *data, float obj[3], t_ray r, int index)
 {
 	t_vec			ray;
-	float			transparency;
+	double			transparency;
+	int				fix;
 
-	if (data->flag.shadow == 0)
+	fix = 0;
+	if (data->flag.shadow == 1)
 	{
 		transparency = shadow(data, r, index);
+		if (transparency != -1)
 		data->tmp_color = apply_mult(data->tmp_color,
-		0xffffff, fabs(transparency / 255.0));
+		0xffffff, transparency / 255.0);
+		fix = 1;
 	}
 	if (data->flag.diapo && obj[1] < obj[2] && obj[1] != -1)
 	{
 		ray.origin = veccpy(r.tmp.origin);
 		ray.direction =
 		normalize(sub_vec(data->obj.light[index].origin, r.tmp.origin));
-		data->tmp_color = light_color(data->tmp_color,
-		light_color(r.color[0], diapo(data, &ray, index, data->bounce)));
+		if (fix == 0)
+		data->tmp_color = light_color(r.color[0], diapo(data, &ray, index, data->bounce));
+		else
+			data->tmp_color = light_color(data->tmp_color,
+			light_color(r.color[0], diapo(data, &ray, index, data->bounce)));
 	}
 }
 

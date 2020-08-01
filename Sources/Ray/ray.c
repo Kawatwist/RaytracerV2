@@ -6,7 +6,7 @@
 /*   By: anboilea <anboilea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 16:48:27 by lomasse           #+#    #+#             */
-/*   Updated: 2020/08/01 14:22:13 by anboilea         ###   ########.fr       */
+/*   Updated: 2020/08/01 15:40:11 by anboilea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void			bounce_effect(t_thread *data, t_vec ray, t_ray *r)
 	if (((t_base *)r->obj)->effect.opacity || r->use_alpha)
 	{
 		tmp = setup_opacity(data, r->obj, ray, r->dist[0]);
-		r->color[1] = send_ray(data, tmp, r->bounce + 1, NULL);
+		r->color[1] = send_ray(data, tmp, r->bounce + 1, r->obj);
 		val = ext_bounce_effect_send_ray(r, 1);
 		val > 1 ? val = 1 : 0;
 		r->color[0] = set_color(r->color[0], r->color[1], val, -1);

@@ -23,8 +23,8 @@
 	spot : 0
 	ang : 0.7
 [light:1]
-	origin : {20.0 -25.0 -25.0}
-	color : 0xFF7C00
+	origin : {20 -25.0 -25.0}
+	color : 0x7c2b7c
 	distance : 100
 	intensity : 1
 	spot : 0
@@ -36,12 +36,10 @@
 	mode : 0
 ############### Object ##################
 [object:plan]
-	color : 0xFF03fc9d
+	color : 0xffffff
 	origin : {0.0 0.0 0.0}
 	direction : {0 -1 0}
 			opacity : 0
-			id_texture : 255
-			texture : 255
 			reflection : 12
 [object:cylinder]
 	color : 0x0003fc9d
@@ -94,11 +92,11 @@
 	size : 6
 	color : 0xFF03fc9d
 			opacity : 0
-[gen:torus]
-	origin : {10, -10, 10}      # Position
-	nb : 8           # Numbers of Sphere Create
-	axe : 0       # Axe X / Y / Z
-	rayon_i : 2        # Radius Inside
-	rayon : 0.5          # Sphere Radius
-	color : 0xFF03fc9d        # Color
-			opacity : 0
+#[gen:torus]
+#	origin : {10, -10, 10}      # Position
+#	nb : 8           # Numbers of Sphere Create
+#	axe : 0       # Axe X / Y / Z
+#	rayon_i : 2        # Radius Inside
+#	rayon : 0.5          # Sphere Radius
+#	color : 0xFF03fc9d        # Color
+#			opacity : 0
