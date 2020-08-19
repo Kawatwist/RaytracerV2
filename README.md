@@ -31,9 +31,9 @@
 </table>
 <table>
   <tr><td>Object</td><td>Stats</td></tr>
-  <tr><td>Plan :</td><td>1</td><td>Ground</td></tr>
-  <tr><td>Sphere : </td><td>1</td><td>Skybox</td></tr>
+  <tr><td>Plan :</td><td>1</td><td>Ground with reflection and normal map</td></tr>
+  <tr><td>Sphere : </td><td>2</td><td>Skybox Trees and Sky</td></tr>
   <tr><td>Cube :</td><td>4</td><td>Creeper</td></tr>
-  <tr><td>Sphere :</td><td>4</td><td>Bubble</td></tr>
+  <tr><td>Sphere :</td><td>4</td><td>Bubble with reflection and refraction</td></tr>
   <tr><td>Cylinder :</td><td>3</td><td>Fake Creeper</td></tr>
 </table>
