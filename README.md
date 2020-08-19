@@ -1,6 +1,7 @@
 <h2>Screenshot</h2>
 <h4>Name Map : Cube_troue.rt</h4><br>
-<img src:"https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.tga" width="480" height="480">
+<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.tga" width="480" height="480">
+<br>
 <table>
   <tr><td>Effect</td><td>Value</td>
   </tr>
@@ -18,7 +19,7 @@
   <tr><td>Generate Torus :</td><td>1</td><td>Create Torus with 250 sphere</td></tr>
 </table>
 <h4>Name Map : skybox_creeper.rt</h4><br>
-<img src:"https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_1.tga" width="480" height="480">
+<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.bmp" width="480" height="480">
 <table>
   <tr><td>Effect</td><td>Value</td>
   </tr>
