@@ -1,5 +1,5 @@
 build/SDL_test_imageBlit.lo: \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/test/SDL_test_imageBlit.c \
+  /tmp/RT/libraries/SDL2-2.0.8/src/test/SDL_test_imageBlit.c \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL_test.h include/SDL.h \
   include/SDL_main.h include/SDL_stdinc.h include/SDL_assert.h \

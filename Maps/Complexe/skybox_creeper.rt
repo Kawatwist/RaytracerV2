@@ -42,7 +42,7 @@
 [camera:1]
 	origin : {0 0 -5}
 	direction : {0 0 1}
-	mode : 0
+	mode : 1
 ############### Creeper ###############
 [object:cylinder]
 	origin : {0 0 0}

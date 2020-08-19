@@ -1,10 +1,9 @@
-build/k_rem_pio2.lo: \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/k_rem_pio2.c \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/math_libm.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/../SDL_internal.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/../dynapi/SDL_dynapi.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/../dynapi/SDL_dynapi_overrides.h \
+build/k_rem_pio2.lo: /tmp/RT/libraries/SDL2-2.0.8/src/libm/k_rem_pio2.c \
+  /tmp/RT/libraries/SDL2-2.0.8/src/libm/math_libm.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/libm/../SDL_internal.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/libm/../dynapi/SDL_dynapi.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/libm/../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/libm/math_private.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/libm/math_private.h \
   include/SDL_endian.h include/SDL_stdinc.h

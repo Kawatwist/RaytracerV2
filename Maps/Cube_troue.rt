@@ -1,6 +1,6 @@
 [header]
-	xscreen : 1000
-	yscreen : 1000
+	xscreen : 480
+	yscreen : 480
 	object : 267
 	light : 4
 	camera : 1
@@ -9,9 +9,9 @@
 	opti : 4000
 	bounce : 10
 	refresh : 0
-	aa : 1
+	aa : 0
 	generate : 1
-	screenshot : 1
+	screenshot : 0
 [camera:Basic]
 	origin : {0 3 0}
 	direction : {0 1 0}

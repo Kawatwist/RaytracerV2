@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/anboilea/Desktop/Rt/libraries/lib'
+libdir='/tmp/RT/libraries/lib'

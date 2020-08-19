@@ -1,8 +1,8 @@
 build/SDL_rotate.lo: \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/render/software/SDL_rotate.c \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/render/software/../../SDL_internal.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/render/software/../../dynapi/SDL_dynapi.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/render/software/SDL_rotate.c \
+  /tmp/RT/libraries/SDL2-2.0.8/src/render/software/../../SDL_internal.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/render/software/../../dynapi/SDL_dynapi.h \
+  /tmp/RT/libraries/SDL2-2.0.8/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL.h include/SDL_main.h \
   include/SDL_stdinc.h include/SDL_assert.h include/SDL_atomic.h \
@@ -18,4 +18,4 @@ build/SDL_rotate.lo: \
   include/SDL_log.h include/SDL_messagebox.h include/SDL_power.h \
   include/SDL_render.h include/SDL_shape.h include/SDL_system.h \
   include/SDL_timer.h include/SDL_version.h \
-  /Users/anboilea/Desktop/Rt/libraries/SDL2-2.0.8/src/render/software/SDL_rotate.h
+  /tmp/RT/libraries/SDL2-2.0.8/src/render/software/SDL_rotate.h
