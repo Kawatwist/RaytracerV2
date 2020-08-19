@@ -1,6 +1,6 @@
 <h2>Screenshot</h2>
 <h4>Name Map : Cube_troue.rt</h4><br>
-<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.tga" width="480" height="480">
+<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_1.bmp" width="480" height="480">
 <br>
 <table>
   <tr><td>Effect</td><td>Value</td>
