@@ -1,6 +1,7 @@
 <h2>Screenshot</h2>
 <h4>Name Map : Cube_troue.rt</h4><br>
-<img src:"https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.tga" width="480" height="480">
+<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.tga" width="480" height="480">
+<br>
 <table>
   <tr><td>Effect</td><td>Value</td>
   </tr>
@@ -18,7 +19,7 @@
   <tr><td>Generate Torus :</td><td>1</td><td>Create Torus with 250 sphere</td></tr>
 </table>
 <h4>Name Map : skybox_creeper.rt</h4><br>
-<img src:"https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_1.tga" width="480" height="480">
+<img src="https://github.com/Kawatwist/RaytracerV2/blob/master/Screenshot/screenshot_0.bmp" width="480" height="480">
 <table>
   <tr><td>Effect</td><td>Value</td>
   </tr>
@@ -31,9 +32,9 @@
 </table>
 <table>
   <tr><td>Object</td><td>Stats</td></tr>
-  <tr><td>Plan :</td><td>1</td><td>Ground</td></tr>
-  <tr><td>Sphere : </td><td>1</td><td>Skybox</td></tr>
+  <tr><td>Plan :</td><td>1</td><td>Ground with reflection and normal map</td></tr>
+  <tr><td>Sphere : </td><td>2</td><td>Skybox Trees and Sky</td></tr>
   <tr><td>Cube :</td><td>4</td><td>Creeper</td></tr>
-  <tr><td>Sphere :</td><td>4</td><td>Bubble</td></tr>
+  <tr><td>Sphere :</td><td>4</td><td>Bubble with reflection and refraction</td></tr>
   <tr><td>Cylinder :</td><td>3</td><td>Fake Creeper</td></tr>
 </table>
